@@ -1,1 +1,1 @@
-Hi readme text
+Hi everyone.My first Git commit test with jira.
