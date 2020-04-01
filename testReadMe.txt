@@ -1,4 +1,5 @@
 Definition of Done
+
 1. All sub-tasks Done
 2. Written in the user story what is to be demonstrated
 3. Commit messages contain "Jira Issue ID"
