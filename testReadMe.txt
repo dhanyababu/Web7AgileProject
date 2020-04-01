@@ -1,1 +1,1 @@
-Hi everyone.My first Git commit test with GitHub to jira
+My first Git commit test with GitHub to jira.
