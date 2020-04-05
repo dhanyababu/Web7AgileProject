@@ -7,43 +7,23 @@ pipeline {
                 git 'https://github.com/dhanyababu/Web7AgileProject'
              }
         }
-        stage('Build1') {
-            steps {
-                sh "mvn compile"
-            }
-        }
-       stage('Test') {
-            steps {
-                sh "mvn test"
-            }
+        
        }
-       stage('newman') {
-            steps {
-                sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
-            }
-            post {
-                always {
-                     junit '**/*xml'
-                }
-            }
-
-       }
-	stage('Source'){
-		steps{
-			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '825fc4d4-4161-4170-9587-28a936f82af6', url: 'http://172.30.11.178/abhishek1/aspdotnetjenkins']]])
-		}
-	}
-	stage('Build2') {
+	    stage('Source'){
+		    steps{
+			    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '825fc4d4-4161-4170-9587-28a936f82af6', url: 'https://github.com/dhanyababu/Web7AgileProject']]])
+		    }
+	    }
+	    stage('Build') {
     		steps {
-    			sh "\"${tool 'MSBuild'}\" AspDotNetJenkins.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=c:\\inetpub\\wwwroot"
+    		    sh 'nuget restore ProjectAgileWeb7.sln'
+    			sh '\'${tool "MSBuild"}\' ProjectAgileWeb7.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=c:\\inetpub\\wwwroot'
     		}
-	}
-
-       
+	    }
 
         stage('robot') {
                     steps {
-                        sh 'robot -d results --variable BROWSER:headlesschrome infotivHome.robot'
+                        sh 'robot -d results --variable BROWSER:headlesschrome TestsProjectAgileWeb7.robot'
                     }
                     post {
                         always {
@@ -67,14 +47,5 @@ pipeline {
         }
      }
 
-    post {
-        always {
-            junit '**/TEST*.xml'           
-            emailext attachLog: true, attachmentsPattern: '**/TEST*xml',
-            body: '', recipientProviders: [culprits()], subject:
-            '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!'
-
-        }
-    }
  }
 
