@@ -1,15 +1,13 @@
 //def ReleaseDir = "c:\inetpub\wwwroot"
-pipeline {
+ pipeline {
     agent any
      stages {
-        stage('Checkout') {
+         stage('Checkout') {
             steps {
                 git 'https://github.com/dhanyababu/Web7AgileProject'
              }
         }
-        
-       }
-	    stage('Source'){
+        stage('Source'){
 		    steps{
 			    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '825fc4d4-4161-4170-9587-28a936f82af6', url: 'https://github.com/dhanyababu/Web7AgileProject']]])
 		    }
@@ -46,6 +44,7 @@ pipeline {
                     }
         }
      }
-
  }
+
+
 
