@@ -11,13 +11,13 @@
 	    stage('Build') {
     		steps {
     		    bat 'dotnet restore ProjectAgileWeb7.sln'
-		    bat ('\"%MSBUILD_HOME%/msbuild.exe\" ProjectAgileWeb7.sln')
+		    bat '\"${tool 'MSBuild'}\' ProjectAgileWeb7.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=c:\\inetpub\\wwwroot"
     		}
 	    }
 
         stage('robot') {
                     steps {
-			    sh 'robot -d results --variable BROWSER:headlesschrome ProjectAgileWeb7/Web7.robot'
+			    bat 'robot -d results --variable BROWSER:headlesschrome ProjectAgileWeb7/Web7.robot'
                     }
                     post {
                         always {
