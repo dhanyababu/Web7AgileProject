@@ -17,7 +17,7 @@
 
         stage('robot') {
                     steps {
-                        sh 'robot -d results --variable BROWSER:headlesschrome Web7.robot'
+			    sh 'robot -d results --variable BROWSER:headlesschrome ProjectAgileWeb7/Web7.robot'
                     }
                     post {
                         always {
