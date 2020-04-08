@@ -10,8 +10,8 @@
         
 	    stage('Build') {
     		steps {
-    		    sh 'dotnet restore ProjectAgileWeb7.sln'
-		    sh('\"%MSBUILD_HOME%/msbuild.exe\" ProjectAgileWeb7.sln')
+    		    bat 'dotnet restore ProjectAgileWeb7.sln'
+		    bat ('\"%MSBUILD_HOME%/msbuild.exe\" ProjectAgileWeb7.sln')
     		}
 	    }
 
