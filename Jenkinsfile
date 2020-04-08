@@ -11,7 +11,7 @@
 	    stage('Build') {
     		steps {
     		    bat 'dotnet restore ProjectAgileWeb7.sln'
-		    bat '\'${tool 'MSBuild'}\' ProjectAgileWeb7.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=c:\\inetpub\\wwwroot'
+		    bat '\'${tool "MSBuild"}\'  ProjectAgileWeb7.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}'
     		}
 	    }
 
