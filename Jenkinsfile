@@ -15,12 +15,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe" ProjectAgileWeb7.sln'
+                bat '"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe" ProjectAgileWeb7.sln'
             }
         }
         stage('Run') {
             steps {
-                bat 'START /B dotnet "C:\Users\dhany\IdeaProjects\dhanyaBranch\ProjectAgileWeb7\bin\Debug\netcoreapp3.1\ProjectAgileWeb7.dll"'
+               bat 'START /B dotnet "C:/Users/dhany/IdeaProjects/dhanyaBranch/ProjectAgileWeb7/bin/Debug/netcoreapp3.1/ProjectAgileWeb7.dll"'
             }
         }
         stage('UI tests') {
