@@ -8,26 +8,47 @@ pipeline {
                     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dhanyababu/Web7AgileProject.git']]])
                 }
         }
-        stage('Restore') {
-            steps {
-                bat 'dotnet restore'
-            }
-        }
         stage('Build') {
             steps {
-                bat '"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe" ProjectAgileWeb7.sln'
+                bat 'dotnet build'
             }
         }
         stage('Run') {
             steps {
-               bat 'START /B dotnet "C:/Users/dhany/IdeaProjects/dhanyaBranch/ProjectAgileWeb7/bin/Debug/netcoreapp3.1/ProjectAgileWeb7.dll"'
+                bat 'START /B dotnet run'
             }
         }
-        stage('UI tests') {
+        stage('Robot') {
             steps {
-                    bat 'sleep 10s'
-                    bat 'robot Tests'
+                    sleep 10
+                    bat 'robot -d results --variable BROWSER:headlesschrome "ProjectAgileWeb7/Tests/web7.robot"'
             }
+            post {
+                always {
+                    script {
+                        step(
+                             [
+                               $class              : 'RobotPublisher',
+                               outputPath          : 'results',
+                               outputFileName      : '**/output.xml',
+                               reportFileName      : '**/report.html',
+                               logFileName         : '**/log.html',
+                               disableArchiveOutput: false,
+                               passThreshold       : 50,
+                               unstableThreshold   : 40,
+                               otherFiles          : "**/*.png,**/*.jpg",
+                            ]
+                        )
+                    }
+                }
+            }
+
         }
+	    
     }
+	post{
+	    always{
+            bat 'TASKKILL /F /IM dotnet.exe'
+	    }
+       }
 }
