@@ -18,12 +18,33 @@ pipeline {
                 bat 'START /B dotnet run'
             }
         }
-        stage('UI tests') {
+        stage('Robot') {
             steps {
-                    sleep 10s
-                    bat 'robot Tests'
+                    sleep 10
+                    bat 'robot -d results --variable BROWSER:headlesschrome "Tests/web7.robot"'
             }
+            post {
+                always {
+                    script {
+                        step(
+                             [
+                               $class              : 'RobotPublisher',
+                               outputPath          : 'results',
+                               outputFileName      : '/output.xml',
+                               reportFileName      : '/report.html',
+                               logFileName         : '/log.html',
+                               disableArchiveOutput: false,
+                               passThreshold       : 50,
+                               unstableThreshold   : 40,
+                               otherFiles          : "/.png,**/.jpg",
+                            ]
+                        )
+                    }
+                }
+            }
+
         }
+	    
     }
 	post{
 	    always{
