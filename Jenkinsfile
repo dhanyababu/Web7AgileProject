@@ -30,4 +30,3 @@ pipeline {
             bat 'TASKKILL /F /IM dotnet.exe'
 	}
 }
-
