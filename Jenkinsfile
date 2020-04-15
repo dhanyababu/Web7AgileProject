@@ -21,7 +21,7 @@ pipeline {
         stage('Robot') {
             steps {
                     sleep 10
-                    bat 'robot -d results --variable BROWSER:headlesschrome "/Tests/web7.robot"'
+                    bat 'robot -d results --variable BROWSER:headlesschrome "ProjectAgileWeb7/Tests/web7.robot"'
             }
             post {
                 always {
