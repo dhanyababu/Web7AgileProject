@@ -20,7 +20,7 @@ pipeline {
         }
         stage('UI tests') {
             steps {
-                    bat 'Sleep 10s'
+                    sleep 10s
                     bat 'robot Tests'
             }
         }
