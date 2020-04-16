@@ -2,7 +2,7 @@
 Begin Login Test
     Open Browser                            about:blank     ${BROWSER}
     Go To                                   ${URL}
-    Wait Until Page Contains                Use a local account to log in.
+    
 
 
 Use Valid Login
