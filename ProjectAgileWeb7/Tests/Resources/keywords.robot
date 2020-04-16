@@ -1,37 +1,55 @@
+*** Settings ***
+Library                                     SeleniumLibrary
+Library                                     DateTime
+
+
 *** Keywords ***
-Begin Login Test
-    Open Browser                            about:blank     ${BROWSER}
-    Go To                                   ${URL}
-    
+Open Browser To Start Page
+        Open Browser                        about:blank                     ${BROWSER}
+        Maximize Browser Window
+        Go To                                                               ${URL}
 
 
-Use Valid Login
-    Input Text                              id:Input_Email        abramane424@gmail.com
-    Input Text                              id:Input_Password       Balder111.
-    Click Button                            xpath://*[@id="login-submit"]
-    Wait Until Page Contains                Hello abramane424@gmail.com!
+Welcome message
+        ${link_text_welcome} =               Get Text                       class:display-4
+        Should Be Equal                      ${link_text_welcome}           Welcome
 
 
-Use Invalid Password
-    Input Text                              id:Input_Email        abramane424@gmail.com
-    Input Text                              id:Input_Password       Balder1.
-    Click Button                            xpath://*[@id="login-submit"]
-    Wait Until Page Contains                Invalid login attempt.
+Displayed registration
+         ${link_text_registration} =          Get Text                      xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a
+         Should Be Equal                      ${link_text_registration}     Register
+
+Displayed login
+        ${link_text_login} =                  Get Text                      xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a
+        Should Be Equal                       ${link_text_login}            Login
 
 
-Use Invalid Email
-    Input Text                              id:Input_Email        abramane42@gmail.com
-    Input Text                              id:Input_Password       Balder111.
-    Click Button                            xpath://*[@id="login-submit"]
-    Wait Until Page Contains                Invalid login attempt.
+Goto register
+        Click Element                       xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a
 
 
-No Uppercase Letter In Password
-    Input Text                              id:Input_Email        abramane424@gmail.com
-    Input Text                              id:Input_Password       balder111.
-    Click Button                            xpath://*[@id="login-submit"]
-    Wait Until Page Contains                Invalid login attempt.
+Input valid emailid
+        Input Text                            id:Input_Email                  dhanya.babu@iths.se
 
 
-End Test
-    Close Browser
+Input password
+        Input Text                             id:Input_Password               Iths2019$
+
+
+Input confirm password
+        Input Text                             id:Input_ConfirmPassword        Iths2019$
+
+
+Submit register
+        Click Button                            id:registerSubmit
+
+
+
+
+
+
+
+
+
+End Web Test
+        Close Browser

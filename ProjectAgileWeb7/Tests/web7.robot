@@ -1,39 +1,34 @@
 *** Settings ***
-Documentation
-Resource  ../Tests/Resources/keywords.robot
-Library  SeleniumLibrary
-Test Setup  Begin Login Test
-Test Teardown  End Test
+Documentation   This is test suite of ProjectAgileWeb7 webpage
+Resource        ../Resources/keywords.robot
+Library         SeleniumLibrary
+Test Setup      Open Browser To Start Page
+Test Teardown   End Web Test
 
 
 *** Variables ***
 ${BROWSER} =  chrome
-${URL} =  https://localhost:44364/Identity/Account/Login
+${URL} =     https://localhost:44364/
 
 
 *** Test Cases ***
-User can login to website with valid inputs
-    [Documentation]
-    [Tags]                                  LoginfunctionValid
-    Use Valid Login
+Verification of Home page
+    [Documentation]             Test to verify that Home page is displayed and registration and login button is present
+    [Tags]                      Test 1
+    Welcome message
+    Displayed registration
+    Displayed login
 
 
-User can login to website with invalid password
-    [Documentation]
-    [Tags]                                  LoginfunctionInvalidPass
-    Use Invalid Password
+Valid Registration
+    [Documentation]             Test to verify that registration page with valid details
+    [Tags]                      Test 2
+    Goto register
+    Input valid emailid
+    Input password
+    Input confirm password
+    Submit register
 
-
-User can login to website with invalid Email
-    [Documentation]
-    [Tags]                                  LoginfunctionInvalidEmail
-    Use Invalid Email
-
-
-User can login to website with no uppercase letter in password
-    [Documentation]
-    [Tags]                                  LoginfunctionNoUppercase
-    No Uppercase Letter In Password
 
 
 
