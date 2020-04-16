@@ -13,24 +13,22 @@ pipeline {
                 bat 'dotnet build'
             }
         }
-        stage('Run') {
-            parallel {
-                stage('Run web') {
-                    steps {
-                        bat 'START /B dotnet run'
-                    }
-                }
+        stage('Run web') {
+            steps {
+                bat 'START /B dotnet C:/Program Files (x86)/Jenkins/workspace/Web7AgileProjectDhanya/ProjectAgileWeb7/bin/Debug/netcoreapp3.1/ProjectAgileWeb7.dll'
+            }
+        }
 
-                stage('Robot') {
-                    steps {
-                            sleep 10
-                            bat 'robot -d results --variable BROWSER:headlesschrome "ProjectAgileWeb7/Tests/web7.robot"'
-                    }
-                    post {
-                        always {
-                            script {
-                                step(
-                                    [
+        stage('Robot') {
+            steps {
+                sleep 10
+                bat 'robot -d results --variable BROWSER:headlesschrome "ProjectAgileWeb7/Tests/web7.robot"'
+            }
+            post {
+                always {
+                    script {
+                        step(
+                            [
                                         $class              : 'RobotPublisher',
                                         outputPath          : 'results',
                                         outputFileName      : '**/output.xml',
@@ -40,14 +38,12 @@ pipeline {
                                         passThreshold       : 50,
                                         unstableThreshold   : 40,
                                         otherFiles          : "**/*.png,**/*.jpg",
-                                    ]
-                                )
-                            }
-                        }
+                            ]
+                        )
                     }
                 }
             }
         }
-	}
+    }
 	
 }
