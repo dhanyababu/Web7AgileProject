@@ -34,25 +34,7 @@ pipeline {
                 sleep 10
                 bat 'robot  ProjectAgileWeb7/Tests/web7.robot'
             }
-            post {
-                always {
-                    script {
-                        step(
-                            [
-                                        $class              : 'RobotPublisher',
-                                        outputPath          : 'results',
-                                        outputFileName      : '**/output.xml',
-                                        reportFileName      : '**/report.html',
-                                        logFileName         : '**/log.html',
-                                        disableArchiveOutput: false,
-                                        passThreshold       : 50,
-                                        unstableThreshold   : 40,
-                                        otherFiles          : "**/*.png,**/*.jpg",
-                            ]
-                        )
-                    }
-                }
-            }
+           
         }
     }
 	
