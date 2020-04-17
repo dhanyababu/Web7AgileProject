@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectAgileWeb7.Data;
+using ProjectAgileWeb7.Models;
 
 [assembly: HostingStartup(typeof(ProjectAgileWeb7.Areas.Identity.IdentityHostingStartup))]
 namespace ProjectAgileWeb7.Areas.Identity

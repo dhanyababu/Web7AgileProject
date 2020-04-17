@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Models
 {
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         [Required]
         public string FirstName { get; set; }
@@ -20,8 +20,5 @@ namespace ProjectAgileWeb7.Models
         public bool IsMember { get; set; }
         public IList<Booking> Bookings { get; set; }
         public IList<Hotel> Favorites { get; set; }
-
-
-        //public IdentityUser IdentityUser { get; set; }
     }
 }
