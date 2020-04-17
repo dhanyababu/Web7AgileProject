@@ -44,12 +44,5 @@ Submit register
         Click Button                            id:registerSubmit
 
 
-
-
-
-
-
-
-
 End Web Test
         Close Browser
