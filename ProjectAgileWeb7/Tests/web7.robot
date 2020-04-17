@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   This is test suite of ProjectAgileWeb7 webpage
-Resource        ../Resources/keywords.robot
+Resource        ../Tests/Resources/keywords.robot
 Library         SeleniumLibrary
 Test Setup      Open Browser To Start Page
 Test Teardown   End Web Test
