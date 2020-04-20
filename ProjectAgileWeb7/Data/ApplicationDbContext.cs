@@ -8,7 +8,10 @@ namespace ProjectAgileWeb7.Data
     {
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public ApplicationDbContext()
+        {
 
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
