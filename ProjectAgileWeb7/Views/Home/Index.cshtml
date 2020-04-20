@@ -1,8 +1,56 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<ProjectAgileWeb7.Models.Hotel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-left">
+    <h1 class="display-4">Find your dream destination</h1>
+</div>
+<div class="container  p-0 m-0">
+    @foreach (var item in Model)
+    {
+        <div class="card-deck">
+            <div class="card mt-4">
+
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="hotel-image flex-column">
+                            <img src="@item.ImageUrl" style="width:350px; height:250px" />
+                        </div>
+                        <div class="ml-3 flex-column">
+                            <div>
+                                <h2>
+                                    @item.Name
+                                </h2>
+                            </div>
+                            <div>
+                                <span>
+                                    @for (var i = 0; i < item.Stars; i++)
+                                    {
+                                        <i class="fas fa-star text-warning "></i>
+                                    }
+                                </span>
+                            </div>
+                            <div>
+                                <p>
+                                    @item.Address, @item.ZipCode, @item.City, @item.Country
+
+                                </p>
+                                <p>
+                                    Distance from centre: @item.DistanceFromCenter km.
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p>@item.Description</p>
+                            </div>
+                            <div class="card-text">
+                                <p> <a href="@item.Website">@item.Website</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                    <a asp-controller="" asp-action="" asp-route-id="@item.Id" class="btn my-button  btn-lg btn-success float-right ">Book</a>
+                </div>
+            </div>
+        </div>
+    }
+
 </div>

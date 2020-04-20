@@ -7,7 +7,7 @@ namespace ProjectAgileWeb7.Data
     {
         public static void Initialize(ApplicationDbContext dbContext)
         {
-            //dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
 
             if (!dbContext.Hotels.Any())
@@ -16,7 +16,7 @@ namespace ProjectAgileWeb7.Data
                 {
                     new Hotel
                     {
-                        Name="Ritz Paris",
+                        Name="Ritz Hotel Paris",
                         Website="https://www.ritzparis.com/en-GB",
                         Address="15 Place Vendôme",
                         ZipCode="75001",
@@ -27,7 +27,7 @@ namespace ProjectAgileWeb7.Data
                         DistanceFromCenter=6.3,
                         Latitude="48.868164",
                         Longitude="2.328888",
-                        ImageUrl="~/images/ritz.jpg",
+                        ImageUrl="https://q-cf.bstatic.com/images/hotel/max1280x900/195/195274734.jpg"
                     },
                     new Hotel
                     {
@@ -42,7 +42,22 @@ namespace ProjectAgileWeb7.Data
                         DistanceFromCenter=1.6,
                         Latitude="51.506753",
                         Longitude="-0.124422",
-                        ImageUrl="~/images/corinthia.jpg"
+                        ImageUrl="https://r-cf.bstatic.com/images/hotel/max1280x900/188/188474168.jpg"
+                    },
+                    new Hotel
+                    {
+                        Name="Eden Hotel Amsterdam",
+                        Website="https://www.edenhotelamsterdam.com/en/",
+                        Address="Amstelstraat 17",
+                        ZipCode="1017 DA",
+                        City="Amsterdam",
+                        Country="Netherlands",
+                        Description="Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by tram.",
+                        Stars=4,
+                        DistanceFromCenter=0.9,
+                        Latitude="52.366983",
+                        Longitude="4.898774",
+                        ImageUrl="https://r-cf.bstatic.com/images/hotel/max1024x768/177/177954582.jpg"
                     }
                 };
 
