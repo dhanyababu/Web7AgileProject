@@ -32,6 +32,7 @@ namespace ProjectAgileWeb7
             //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddScoped<ApplicationDbContext>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
