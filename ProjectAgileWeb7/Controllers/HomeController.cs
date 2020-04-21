@@ -23,8 +23,8 @@ namespace ProjectAgileWeb7.Controllers
         {
             var hotelsViewModel = new HotelsViewModel()
             {
-                Hotels = _appContext.Hotels.Include(h => h.HotelFacilities)
-            };            
+                Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+            };
 
             return View(hotelsViewModel);
         }
@@ -34,9 +34,9 @@ namespace ProjectAgileWeb7.Controllers
         {
             if (hotelsVievModel.searchKeyword != null)
             {
-                hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities)
-                    .Where(h => h.City == hotelsVievModel.searchKeyword 
-                             || h.Name == hotelsVievModel.searchKeyword 
+                hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                    .Where(h => h.City == hotelsVievModel.searchKeyword
+                             || h.Name == hotelsVievModel.searchKeyword
                              || h.Name.Contains(hotelsVievModel.searchKeyword)
                              || h.City.Contains(hotelsVievModel.searchKeyword));
             }
@@ -48,10 +48,10 @@ namespace ProjectAgileWeb7.Controllers
             return View("Index", hotelsVievModel);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

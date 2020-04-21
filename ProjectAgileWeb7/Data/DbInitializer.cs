@@ -1,4 +1,5 @@
-﻿using ProjectAgileWeb7.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectAgileWeb7.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,17 @@ namespace ProjectAgileWeb7.Data
         {
             dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
+            try
+            {
+                if (dbContext.Database.GetPendingMigrations().Count() > 0)
+                {
+                    dbContext.Database.Migrate();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
 
 
             if (!dbContext.Hotels.Any())
