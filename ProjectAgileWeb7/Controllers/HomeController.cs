@@ -20,7 +20,7 @@ namespace ProjectAgileWeb7.Controllers
 
         public IActionResult Index()
         {
-            var hotels = _appContext.Hotels.Include(h => h.HotelFacilities);
+            var hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.HotelRooms);
 
             return View(hotels);
         }

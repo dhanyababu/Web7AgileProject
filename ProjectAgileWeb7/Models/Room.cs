@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
-    public enum RoomType { Simple, Double, Twin, Triple }
+    public enum RoomType { Single, Double, Twin, Triple }
     public class Room
     {
         public int RoomId { get; set; }

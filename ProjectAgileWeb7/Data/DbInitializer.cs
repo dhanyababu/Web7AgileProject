@@ -1,4 +1,6 @@
 ﻿using ProjectAgileWeb7.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ProjectAgileWeb7.Data
@@ -121,6 +123,52 @@ namespace ProjectAgileWeb7.Data
                 dbContext.SaveChanges();
             }
 
+            if (!dbContext.Rooms.Any())
+            {
+                var rooms = new Room[]
+                {
+                    new Room
+                    {
+                         RoomType= RoomType.Single,
+                         RoomPrice=500,
+                         RoomDescription="A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower.",
+                         NumberOfBeds=1,
+                         Capacity=1,
+                         IsAvailable=true
+                    },
+                    new Room
+                    {
+                         RoomType= RoomType.Double,
+                         RoomPrice=800,
+                         RoomDescription="This double room is fully fitted with air-conditioning, flat screen TV, direct dial telephone, high-speed WiFi, hairdryer and a safe. The modern bathroom features a powerful shower.",
+                         NumberOfBeds=1,
+                         Capacity=2,
+                         IsAvailable=true
+                    },
+                    new Room
+                    {
+                         RoomType= RoomType.Twin,
+                         RoomPrice=750,
+                         RoomDescription="This room includes a satellite TV, tea and coffee-making facilities, a hairdryer and a private bathroom.",
+                         NumberOfBeds=2,
+                         Capacity=2,
+                         IsAvailable=true
+                    },
+                    new Room
+                    {
+                         RoomType= RoomType.Triple,
+                         RoomPrice=800,
+                         RoomDescription="This triple room has air conditioning, electric kettle, free wi-fi and hairdryer.",
+                         NumberOfBeds=2,
+                         Capacity=3,
+                         IsAvailable=true
+                    }
+
+                };
+
+                dbContext.Rooms.AddRange(rooms);
+                dbContext.SaveChanges();
+            }
 
             if (!dbContext.HotelFacilities.Any())
             {
@@ -172,6 +220,35 @@ namespace ProjectAgileWeb7.Data
                 dbContext.HotelFacilities.AddRange(hotelFacilities);
                 dbContext.SaveChanges();
             }
+
+            if (!dbContext.HotelRooms.Any())
+            {
+                Random random = new Random();
+                int numberOfHotels = dbContext.Hotels.Count();
+                int numberOfRooms = dbContext.Rooms.Count();
+                var hotelRooms = new List<HotelRoom>();
+                //var hotelRooms1 = new HotelRoom[100];
+
+                for (int i = 1; i < numberOfHotels + 1; i++)
+                {
+                    for (int j = 1; j < numberOfRooms + 1; j++)
+                    {
+                        var hotelRoom = new HotelRoom
+                        {
+                            HotelId = i,
+                            RoomId = j
+                        };
+                        hotelRooms.Add(hotelRoom);
+                    }
+                }
+
+
+                dbContext.HotelRooms.AddRange(hotelRooms);
+                dbContext.SaveChanges();
+            }
+
+
+
         }
     }
 }
