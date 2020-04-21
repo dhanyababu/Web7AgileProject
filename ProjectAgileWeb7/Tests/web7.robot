@@ -20,14 +20,7 @@ Verification of Home page
     Displayed login
 
 
-Valid Registration
-    [Documentation]             Test to verify that registration page with valid details
-    [Tags]                      Test 2
-    Goto register
-    Input valid emailid
-    Input password
-    Input confirm password
-    Submit register
+
 
 
 
