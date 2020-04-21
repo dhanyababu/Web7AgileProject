@@ -10,6 +10,7 @@ namespace ProjectAgileWeb7.Data
             dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
 
+
             if (!dbContext.Hotels.Any())
             {
                 var hotels = new Hotel[]
@@ -62,6 +63,113 @@ namespace ProjectAgileWeb7.Data
                 };
 
                 dbContext.Hotels.AddRange(hotels);
+                dbContext.SaveChanges();
+            }
+
+            if (!dbContext.Facilities.Any())
+            {
+                var facilities = new Facility[]
+                {
+                    new Facility
+                    {
+                        Name="Room service",
+                        IsFree=false,
+                        Price= 30
+                    },
+                    new Facility
+                    {
+                        Name= "Breakfast",
+                        IsFree=false,
+                        Price=25
+                    },
+                    new Facility
+                    {
+                        Name="Parking",
+                        IsFree=true,
+                        Price=0
+                    },
+                    new Facility
+                    {
+                        Name="Wi-fi",
+                        IsFree=true,
+                         Price=0
+                    },
+                    new Facility
+                    {
+                        Name="Fitness center",
+                        IsFree=true,
+                         Price=0
+
+                    },
+                    new Facility
+                    {
+                        Name="Pool",
+                        IsFree=true,
+                         Price=0
+                    },
+                    new Facility
+                    {
+                        Name="Sauna",
+                        IsFree=true,
+                         Price=0
+                    }
+
+                };
+
+                dbContext.Facilities.AddRange(facilities);
+
+                dbContext.SaveChanges();
+            }
+
+
+            if (!dbContext.HotelFacilities.Any())
+            {
+
+                var hotelFacilities = new HotelFacility[]
+                {
+                new HotelFacility
+                {
+                    HotelId=1,
+                    FacilityId=1
+                },
+                new HotelFacility
+                {
+                    HotelId=1,
+                    FacilityId=3
+                },
+                new HotelFacility
+                {
+                    HotelId=2,
+                    FacilityId=5
+                },
+                new HotelFacility
+                {
+                    HotelId=3,
+                    FacilityId=6
+                },
+                 new HotelFacility
+                {
+                    HotelId=3,
+                    FacilityId=1
+                },
+                new HotelFacility
+                {
+                    HotelId=3,
+                    FacilityId=7
+                },
+                 new HotelFacility
+                {
+                    HotelId=3,
+                    FacilityId=4
+                },
+                new HotelFacility
+                {
+                    HotelId=3,
+                    FacilityId=3
+                }
+                };
+
+                dbContext.HotelFacilities.AddRange(hotelFacilities);
                 dbContext.SaveChanges();
             }
         }

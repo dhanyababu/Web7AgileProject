@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
@@ -19,7 +20,8 @@ namespace ProjectAgileWeb7.Controllers
 
         public IActionResult Index()
         {
-            var hotels = _appContext.Hotels;
+            var hotels = _appContext.Hotels.Include(h => h.HotelFacilities);
+
             return View(hotels);
         }
 
