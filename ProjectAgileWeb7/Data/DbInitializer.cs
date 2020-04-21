@@ -125,48 +125,35 @@ namespace ProjectAgileWeb7.Data
 
             if (!dbContext.Rooms.Any())
             {
-                var rooms = new Room[]
-                {
-                    new Room
-                    {
-                         RoomType= RoomType.Single,
-                         RoomPrice=500,
-                         RoomDescription="A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower.",
-                         NumberOfBeds=1,
-                         Capacity=1,
-                         IsAvailable=true
-                    },
-                    new Room
-                    {
-                         RoomType= RoomType.Double,
-                         RoomPrice=800,
-                         RoomDescription="This double room is fully fitted with air-conditioning, flat screen TV, direct dial telephone, high-speed WiFi, hairdryer and a safe. The modern bathroom features a powerful shower.",
-                         NumberOfBeds=1,
-                         Capacity=2,
-                         IsAvailable=true
-                    },
-                    new Room
-                    {
-                         RoomType= RoomType.Twin,
-                         RoomPrice=750,
-                         RoomDescription="This room includes a satellite TV, tea and coffee-making facilities, a hairdryer and a private bathroom.",
-                         NumberOfBeds=2,
-                         Capacity=2,
-                         IsAvailable=true
-                    },
-                    new Room
-                    {
-                         RoomType= RoomType.Triple,
-                         RoomPrice=800,
-                         RoomDescription="This triple room has air conditioning, electric kettle, free wi-fi and hairdryer.",
-                         NumberOfBeds=2,
-                         Capacity=3,
-                         IsAvailable=true
-                    }
-
+                Random random = new Random();
+                int totalNumberOfRooms = 100;
+                var rooms2 = new List<Room>();
+                var numberOfHotels = dbContext.Hotels.Count();
+                var roomDescriptionArray = new[]
+                { "A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower." ,
+                "This double room is fully fitted with air-conditioning, flat screen TV, direct dial telephone, high-speed WiFi, hairdryer and a safe. The modern bathroom features a powerful shower.",
+                "This room includes a satellite TV, tea and coffee-making facilities, a hairdryer and a private bathroom.",
+                "This triple room has air conditioning, electric kettle, free wi-fi and hairdryer."
                 };
+                var numberOfBedsArray = new[] { 1, 1, 2, 2 };
+                var capacityArray = new[] { 1, 2, 2, 3 };
 
-                dbContext.Rooms.AddRange(rooms);
+                for (int i = 0; i < totalNumberOfRooms; i++)
+                {
+                    var index = random.Next(Enum.GetNames(typeof(RoomType)).Length);
+                    rooms2.Add(new Room
+                    {
+                        RoomType = (RoomType)index,
+                        RoomPrice = (index + random.Next(1, 6)) * 100,
+                        RoomDescription = roomDescriptionArray[index],
+                        NumberOfBeds = numberOfBedsArray[index],
+                        Capacity = capacityArray[index],
+                        IsAvailable = true,
+                        HotelId = random.Next(1, numberOfHotels + 1)
+                    });
+                }
+
+                dbContext.Rooms.AddRange(rooms2);
                 dbContext.SaveChanges();
             }
 
@@ -220,34 +207,6 @@ namespace ProjectAgileWeb7.Data
                 dbContext.HotelFacilities.AddRange(hotelFacilities);
                 dbContext.SaveChanges();
             }
-
-            if (!dbContext.HotelRooms.Any())
-            {
-                Random random = new Random();
-                int numberOfHotels = dbContext.Hotels.Count();
-                int numberOfRooms = dbContext.Rooms.Count();
-                var hotelRooms = new List<HotelRoom>();
-                //var hotelRooms1 = new HotelRoom[100];
-
-                for (int i = 1; i < numberOfHotels + 1; i++)
-                {
-                    for (int j = 1; j < numberOfRooms + 1; j++)
-                    {
-                        var hotelRoom = new HotelRoom
-                        {
-                            HotelId = i,
-                            RoomId = j
-                        };
-                        hotelRooms.Add(hotelRoom);
-                    }
-                }
-
-
-                dbContext.HotelRooms.AddRange(hotelRooms);
-                dbContext.SaveChanges();
-            }
-
-
 
         }
     }

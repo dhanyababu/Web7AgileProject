@@ -21,9 +21,7 @@ namespace ProjectAgileWeb7.Data
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Facility> Facilities { get; set; }
-
         public DbSet<HotelFacility> HotelFacilities { get; set; }
-        public DbSet<HotelRoom> HotelRooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,17 +37,9 @@ namespace ProjectAgileWeb7.Data
                 .WithMany(f => f.HotelFacilities)
                 .HasForeignKey(hf => hf.FacilityId);
 
-            modelBuilder.Entity<HotelRoom>()
-                .HasKey(hr => new { hr.HotelId, hr.RoomId });
-            modelBuilder.Entity<HotelRoom>()
-                .HasOne(hr => hr.Hotel)
-                .WithMany(h => h.HotelRooms)
-                .HasForeignKey(hr => hr.HotelId);
-            modelBuilder.Entity<HotelRoom>()
-                .HasOne(hr => hr.Room)
-                .WithMany(r => r.HotelRooms)
-                .HasForeignKey(hr => hr.RoomId);
-
+            modelBuilder.Entity<Hotel>()
+                .HasMany(h => h.Rooms)
+                .WithOne(r => r.Hotel);
         }
     }
 }

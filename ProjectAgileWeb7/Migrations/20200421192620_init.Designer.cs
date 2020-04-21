@@ -10,7 +10,7 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200421155443_init")]
+    [Migration("20200421192620_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -347,21 +347,6 @@ namespace ProjectAgileWeb7.Migrations
                     b.ToTable("HotelFacilities");
                 });
 
-            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelRoom", b =>
-                {
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HotelId", "RoomId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("HotelRooms");
-                });
-
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -370,6 +355,9 @@ namespace ProjectAgileWeb7.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HotelId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsAvailable")
@@ -391,6 +379,8 @@ namespace ProjectAgileWeb7.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("RoomId");
+
+                    b.HasIndex("HotelId");
 
                     b.ToTable("Rooms");
                 });
@@ -475,17 +465,11 @@ namespace ProjectAgileWeb7.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelRoom", b =>
+            modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
                 {
                     b.HasOne("ProjectAgileWeb7.Models.Hotel", "Hotel")
-                        .WithMany("HotelRooms")
+                        .WithMany("Rooms")
                         .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
-                        .WithMany("HotelRooms")
-                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

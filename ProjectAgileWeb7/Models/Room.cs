@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
@@ -15,6 +14,8 @@ namespace ProjectAgileWeb7.Models
         public int NumberOfBeds { get; set; }
         public int Capacity { get; set; } //how many persons 
         public bool IsAvailable { get; set; }
-        public ICollection<HotelRoom> HotelRooms { get; set; }
+        public int HotelId { get; set; }
+        public Hotel Hotel { get; set; }
     }
+
 }
