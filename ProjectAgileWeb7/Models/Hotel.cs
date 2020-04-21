@@ -4,7 +4,7 @@ namespace ProjectAgileWeb7.Models
 {
     public class Hotel
     {
-        public int Id { get; set; }
+        public int HotelId { get; set; }
         public string Name { get; set; }
         public string Website { get; set; }
         public string Address { get; set; }
@@ -20,7 +20,8 @@ namespace ProjectAgileWeb7.Models
         public int RatedByGuests { get; set; }
 
         public IList<Room> Rooms { get; set; }
-        public IList<Facility> Facilities { get; set; }
+
+        public ICollection<HotelFacility> HotelFacilities { get; set; }
 
     }
 }

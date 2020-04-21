@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectAgileWeb7.Data;
 
-namespace ProjectAgileWeb7.Data.Migrations
+namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200421064641_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,24 +257,28 @@ namespace ProjectAgileWeb7.Data.Migrations
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Facility", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FacilityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsFree")
+                        .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("HotelId");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("FacilityId");
 
                     b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Hotel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("HotelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -319,11 +325,26 @@ namespace ProjectAgileWeb7.Data.Migrations
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("HotelId");
 
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelFacility", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FacilityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HotelId", "FacilityId");
+
+                    b.HasIndex("FacilityId");
+
+                    b.ToTable("HotelFacility");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
@@ -401,18 +422,26 @@ namespace ProjectAgileWeb7.Data.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
-            modelBuilder.Entity("ProjectAgileWeb7.Models.Facility", b =>
-                {
-                    b.HasOne("ProjectAgileWeb7.Models.Hotel", null)
-                        .WithMany("Facilities")
-                        .HasForeignKey("HotelId");
-                });
-
             modelBuilder.Entity("ProjectAgileWeb7.Models.Hotel", b =>
                 {
                     b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", null)
                         .WithMany("Favorites")
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelFacility", b =>
+                {
+                    b.HasOne("ProjectAgileWeb7.Models.Facility", "Facility")
+                        .WithMany("HotelFacilities")
+                        .HasForeignKey("FacilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectAgileWeb7.Models.Hotel", "Hotel")
+                        .WithMany("HotelFacilities")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>

@@ -38,6 +38,9 @@
                         <div class="card-text text-justify">
                             <p>@item.Description</p>
                         </div>
+                        @*<div>
+                                @item.HotelFacilities.Count
+                            </div>*@
                         <div class="card-text">
                             <p> <a href="@item.Website">@item.Website</a></p>
                         </div>
@@ -45,7 +48,7 @@
                 </div>
 
                 <div class="card-footer border-top-0 bg-white">
-                    <a asp-controller="" asp-action="" asp-route-id="@item.Id" class="btn my-button  btn-lg btn-success float-right ">Book</a>
+                    <a asp-controller="" asp-action="" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">Book</a>
                 </div>
             </div>
         </div>
