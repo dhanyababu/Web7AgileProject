@@ -29,7 +29,7 @@ Goto register
 
 
 Input valid emailid
-        Input Text                           id:Input_Email                  maria@gmail.com
+        Input Text                           id:Input_Email                  dhanyaeuro@gmail.com
 
 
 Input password
@@ -54,14 +54,14 @@ Goto registration form
 
 
 Goto Profile details
-        Sleep                                   3s
+        #Sleep                                   3s
         Click Element                          xpath:/html/body/div/main/div/div/div[1]/ul/li[1]
         Wait Until Page Contains               Profile
 
 
 Verify displayed user email
         ${link_reg_user_email}                 Get Element Attribute       id:Username     attribute=value
-        Should Be Equal                        ${link_reg_user_email}      maria@gmail.com
+        Should Be Equal                        ${link_reg_user_email}      dhanyaeuro@gmail.com
 
 
 Enter mobile number
@@ -94,7 +94,7 @@ Enter Country
 
 Save details
         Click Button                            id:update-profile-button
-         Wait Until Page Contains               Your profile has been updated
+        Wait Until Page Contains               Your profile has been updated
 
 
 Goto personal details
@@ -103,16 +103,34 @@ Goto personal details
 
 
 Delete user
-        Wait Until Page Contains                Personal Data
+        Wait Until Page Contains                Personal Data                               timeout=10
         Click Element                           xpath://*[@id="delete"]
-        Wait Until Page Contains                Delete Personal Data
+        Wait Until Page Contains                Delete Personal Data                        timeout=10
         Input Text                              id:Input_Password                           Pqrs123$
         Click Element                           xpath://*[@id="delete-user"]/button
         ${link_text_welcome} =                  Get Text                                    class:display-4
          Should Be Equal                        ${link_text_welcome}                        Welcome
 
 
+Goto Email
+        Click Element                           xpath:/html/body/div/main/div/div/div[1]/ul/li[2]
+        Wait Until Page Contains                Manage Email                                timeout=10
 
+
+Verify email displayed in verification
+        ${link_email_verify} =                 Get Element Attribute            id:Email        attribute=value
+        Should Be Equal                        ${link_email_verify}             dhanyaeuro@gmail.com
+
+
+Send verification email
+        Click Button                            id:email-verification
+        Wait Until Page Contains                Verification email sent. Please check your email      timeout=10
+
+
+Enter new email
+        Input Text                              id:Input_NewEmail              mailmedhanyarineesh@gmail.com
+        Click Button                            id:change-email-button
+        Wait Until Page Contains               Confirmation link to change email sent. Please check your email.         timeout=10
 
 
 
