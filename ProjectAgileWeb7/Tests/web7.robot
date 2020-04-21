@@ -20,6 +20,31 @@ Verification of Home page
     Displayed login
 
 
+Valid Registration
+    [Documentation]             Test to verify that registration page with valid email id and valid password
+    [Tags]                      Test 2
+    Goto register
+    Input valid emailid
+    Input password
+    Input confirm password
+    Submit register
+    Welcome user
+    Goto registration form
+    Goto Profile details
+    Verify displayed user email
+    Enter mobile number
+    Enter first name
+    Enter last name
+    Enter Address
+    Enter postcode
+    Enter city
+    Enter Country
+    Save details
+    Goto personal details
+    Delete user
+
+
+
 
 
 
