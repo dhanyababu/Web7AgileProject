@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Run') {
                 steps {
-                    bat 'START /B dotnet C:/Program Files (x86)/Jenkins/workspace/Web7AgileProjectDhanya/ProjectAgileWeb7/bin/Debug/netcoreapp3.1/ProjectAgileWeb7.dll'
+                    bat 'START /B dotnet run'
                 }
         }
 
