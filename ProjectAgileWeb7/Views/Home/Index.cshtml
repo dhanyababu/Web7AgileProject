@@ -1,57 +1,65 @@
-﻿@model IEnumerable<ProjectAgileWeb7.Models.Hotel>
+﻿@model ProjectAgileWeb7.Models.HotelsViewModel
 
-<div class="text-left">
-    <h1 class="display-4">Find your dream destination</h1>
-</div>
-<div class="container  p-0 m-0">
-    @foreach (var item in Model)
-    {
-        <div class="card-deck">
-            <div class="card mt-4">
+<partial name="_SearchPartial" />
 
-                <div class="card-body d-flex">
+@if (Model.Hotels.Count() == 0)
+{
+    <h1>No results</h1>
+}
+else
+{
+    <div class="text-left">
+        <h1 class="display-4">Find your dream destination</h1>
+    </div>
+    <div class="container  p-0 m-0">
+        @foreach (var item in Model.Hotels)
+        {
+            <div class="card-deck">
+                <div class="card mt-4">
 
-                    <div class="text-center">
-                        <img class="hotel-image" src="@item.ImageUrl" />
+                    <div class="card-body d-flex">
+
+                        <div class="text-center">
+                            <img class="hotel-image" src="@item.ImageUrl" />
+                        </div>
+                        <div class="ml-3">
+                            <div>
+                                <h2 class="hotel-name">
+                                    @item.Name
+                                </h2>
+                            </div>
+                            <div>
+                                @for (var i = 0; i < item.Stars; i++)
+                                {
+                                    <i class="fas fa-star text-warning "></i>
+                                }
+                            </div>
+                            <div>
+                                <p>
+                                    @item.Address, @item.ZipCode, @item.City, @item.Country
+
+                                </p>
+                                <p>
+                                    Distance from centre: @item.DistanceFromCenter km.
+                                </p>
+                            </div>
+                            <div class="card-text text-justify">
+                                <p>@item.Description</p>
+                            </div>
+                            @*<div>
+                                    @item.HotelFacilities.Count
+                                </div>*@
+                            <div class="card-text">
+                                <p> <a href="@item.Website">@item.Website</a></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ml-3">
-                        <div>
-                            <h2 class="hotel-name">
-                                @item.Name
-                            </h2>
-                        </div>
-                        <div>
-                            @for (var i = 0; i < item.Stars; i++)
-                            {
-                                <i class="fas fa-star text-warning "></i>
-                            }
-                        </div>
-                        <div>
-                            <p>
-                                @item.Address, @item.ZipCode, @item.City, @item.Country
 
-                            </p>
-                            <p>
-                                Distance from centre: @item.DistanceFromCenter km.
-                            </p>
-                        </div>
-                        <div class="card-text text-justify">
-                            <p>@item.Description</p>
-                        </div>
-                        <div class="card-text">
-                            <p>Available rooms:  @item.Rooms.Count</p>
-                        </div>
-                        <div class="card-text">
-                            <p> <a href="@item.Website">@item.Website</a></p>
-                        </div>
+                    <div class="card-footer border-top-0 bg-white">
+                        <a asp-controller="" asp-action="" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">Book</a>
                     </div>
-                </div>
-
-                <div class="card-footer border-top-0 bg-white">
-                    <a asp-controller="" asp-action="" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">Book</a>
                 </div>
             </div>
-        </div>
-    }
-
-</div>
+        }
+    </div>
+}
