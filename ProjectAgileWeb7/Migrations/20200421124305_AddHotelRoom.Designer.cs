@@ -10,8 +10,8 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200421064641_init")]
-    partial class init
+    [Migration("20200421124305_AddHotelRoom")]
+    partial class AddHotelRoom
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,7 +269,7 @@ namespace ProjectAgileWeb7.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("FacilityId");
 
@@ -344,22 +344,53 @@ namespace ProjectAgileWeb7.Migrations
 
                     b.HasIndex("FacilityId");
 
-                    b.ToTable("HotelFacility");
+                    b.ToTable("HotelFacilities");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelRoom", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HotelId", "RoomId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("HotelRooms");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("HotelId")
+                    b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("HotelId");
+                    b.Property<int>("NumberOfBeds")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoomDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoomNumber")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("RoomPrice")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<int>("RoomType")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomId");
 
                     b.ToTable("Rooms");
                 });
@@ -444,11 +475,19 @@ namespace ProjectAgileWeb7.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelRoom", b =>
                 {
-                    b.HasOne("ProjectAgileWeb7.Models.Hotel", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("HotelId");
+                    b.HasOne("ProjectAgileWeb7.Models.Hotel", "Hotel")
+                        .WithMany("HotelRooms")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
+                        .WithMany("HotelRooms")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

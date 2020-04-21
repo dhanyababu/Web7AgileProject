@@ -19,7 +19,8 @@ namespace ProjectAgileWeb7.Models
         public string ImageUrl { get; set; }
         public int RatedByGuests { get; set; }
 
-        public IList<Room> Rooms { get; set; }
+
+        public ICollection<HotelRoom> HotelRooms { get; set; }
 
         public ICollection<HotelFacility> HotelFacilities { get; set; }
 
