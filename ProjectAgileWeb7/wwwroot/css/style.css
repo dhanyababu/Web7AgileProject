@@ -1,0 +1,28 @@
+﻿.hotel-image {
+    width: 350px;
+    height: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .card-body {
+        flex-direction: column;
+    }
+
+    .hotel-image {
+        width: 295px;
+        height: 205px;
+        margin-bottom: 5px;
+    }
+
+    .hotel-name, .display-4 {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 356px) {
+    .hotel-image {
+        width: 255px;
+        height: 175px;
+    }
+}
