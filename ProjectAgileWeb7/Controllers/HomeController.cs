@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ProjectAgileWeb7.Controllers
 {
@@ -20,9 +21,31 @@ namespace ProjectAgileWeb7.Controllers
 
         public IActionResult Index()
         {
-            var hotels = _appContext.Hotels.Include(h => h.HotelFacilities);
+            var hotelsViewModel = new HotelsViewModel()
+            {
+                Hotels = _appContext.Hotels.Include(h => h.HotelFacilities)
+            };            
 
-            return View(hotels);
+            return View(hotelsViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Search(HotelsViewModel hotelsVievModel)
+        {
+            if (hotelsVievModel.searchKeyword != null)
+            {
+                hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities)
+                    .Where(h => h.City == hotelsVievModel.searchKeyword 
+                             || h.Name == hotelsVievModel.searchKeyword 
+                             || h.Name.Contains(hotelsVievModel.searchKeyword)
+                             || h.City.Contains(hotelsVievModel.searchKeyword));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("Index", hotelsVievModel);
         }
 
         public IActionResult Privacy()

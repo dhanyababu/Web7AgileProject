@@ -33,6 +33,7 @@ namespace ProjectAgileWeb7
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddScoped<ApplicationDbContext>();
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
