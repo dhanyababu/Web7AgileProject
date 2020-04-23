@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
                 steps {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/DhanyaTest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dhanyababu/Web7AgileProject.git']]])
+                    git branch: 'DhanyaTest', url: 'https://github.com/dhanyababu/Web7AgileProject.git'
                 }
         }
         stage('Restore Packages') {
