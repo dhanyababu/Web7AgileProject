@@ -2,24 +2,25 @@
 
 <h1 class="text-success mb-3" id="heading">Just a step away</h1>
 
-<form asp-controller="Home" asp-action="Search" method="post" id="form">
+<button type="button" id="search-btn" class="btn btn-outline-success btn-block mb-1" data-toggle="collapse" data-target="#search-form"><i class="fas fa-search-plus"></i> &nbsp; Search Availability</button><br />
+
+<form asp-controller="Home" asp-action="Search" method="post" id="search-form" class="collapse">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <div class="form-group">
             <div class="input-group mb-1">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend" id="search-icon">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                 </div>
-                <input asp-controller="Home" asp-action="Search" asp-for="@Model.searchKeyword" class="input-group-text bg-white form-control p-4" type="text" placeholder="Search by city or hotel name...">
-                <input class="input-group-text bg-white form-control p-4 date-input" type="date">
-                <input class="input-group-text bg-white form-control p-4 date-input" type="date">
+                <input asp-for="@Model.SearchKeyword" class="input-group-text bg-white form-control p-4 custom-file" type="text" autocomplete="off" placeholder="Search by city or hotel name...">
+                <input asp-for="@Model.CheckIn" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-in" type="text" readonly="readonly" placeholder="Check-In Date">
+                <input asp-for="@Model.CheckOut" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-out" type="text" readonly="readonly" placeholder="Check-Out Date">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-success btn-lg" id="search-submit-btn">Search</button>
+                    <button type="submit" class="btn btn-success btn-lg">Search</button>
                 </div>
             </div>
-            <input class="input-group-text bg-white form-control mb-1 date-input-sm" type="date">
-            <input class="input-group-text bg-white form-control mb-1 date-input-sm" type="date">
         </div>
     </div>
+    <a asp-action="Index" class="btn btn-outline-success"><i class="fas fa-filter"></i> &nbsp; Clear Filter</a>
 </form>
-<a asp-action="Index" class="btn btn-outline-success"><i class="fas fa-filter"></i> &nbsp; Clear Filter</a>
 <hr />

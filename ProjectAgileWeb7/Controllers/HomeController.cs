@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -30,22 +31,30 @@ namespace ProjectAgileWeb7.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Search(HotelsViewModel hotelsVievModel)
         {
-            if (hotelsVievModel.searchKeyword != null)
+            if (ModelState.IsValid)
             {
-                hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
-                    .Where(h => h.City == hotelsVievModel.searchKeyword
-                             || h.Name == hotelsVievModel.searchKeyword
-                             || h.Name.Contains(hotelsVievModel.searchKeyword)
-                             || h.City.Contains(hotelsVievModel.searchKeyword));
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+                if (hotelsVievModel.SearchKeyword != null)
+                {
+                    hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                        .Where(h => h.City == hotelsVievModel.SearchKeyword
+                                 || h.Name == hotelsVievModel.SearchKeyword
+                                 || h.Name.Contains(hotelsVievModel.SearchKeyword)
+                                 || h.City.Contains(hotelsVievModel.SearchKeyword));
+                }
+                if (hotelsVievModel.CheckIn != null)
+                {
 
-            return View("Index", hotelsVievModel);
+                }
+                if (hotelsVievModel.CheckOut != null)
+                {
+                }
+
+                return View("Index", hotelsVievModel);
+            }
+            return RedirectToAction("Index");
         }
 
         //public IActionResult Privacy()

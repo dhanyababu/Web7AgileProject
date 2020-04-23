@@ -19,7 +19,7 @@ namespace ProjectAgileWeb7.Data
                     dbContext.Database.Migrate();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
