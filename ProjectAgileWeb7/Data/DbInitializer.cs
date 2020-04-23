@@ -139,7 +139,7 @@ namespace ProjectAgileWeb7.Data
             {
                 Random random = new Random();
                 int totalNumberOfRooms = 100;
-                var rooms2 = new List<Room>();
+                var roomsList = new List<Room>();
                 var numberOfHotels = dbContext.Hotels.Count();
                 var roomDescriptionArray = new[]
                 { "A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower." ,
@@ -153,19 +153,20 @@ namespace ProjectAgileWeb7.Data
                 for (int i = 0; i < totalNumberOfRooms; i++)
                 {
                     var index = random.Next(Enum.GetNames(typeof(RoomType)).Length);
-                    rooms2.Add(new Room
+                    var randomHotel = random.Next(1, numberOfHotels + 1);
+                    roomsList.Add(new Room
                     {
                         RoomType = (RoomType)index,
-                        RoomPrice = (index + random.Next(1, 6)) * 100,
+                        RoomPrice = ((index + 1) * 200) + ((randomHotel + 1) * 50),
                         RoomDescription = roomDescriptionArray[index],
                         NumberOfBeds = numberOfBedsArray[index],
                         Capacity = capacityArray[index],
                         IsAvailable = true,
-                        HotelId = random.Next(1, numberOfHotels + 1)
+                        HotelId = randomHotel
                     });
                 }
 
-                dbContext.Rooms.AddRange(rooms2);
+                dbContext.Rooms.AddRange(roomsList);
                 dbContext.SaveChanges();
             }
 
