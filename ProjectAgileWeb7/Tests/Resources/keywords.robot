@@ -223,6 +223,21 @@ Verify change password
 
 
 
+Goto Login
+        Wait Until Element Is Visible       xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a            timeout=10
+        Click Element                       xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a
+        Wait Until Page Contains            Log in                                          timeout=10
+
+
+
+Verify new user link
+        Click Element                       xpath://*[@id="account"]/div[6]/p[2]/a
+        Wait Until Page Contains            Register                                         timeout=10
+        Element Should Be Visible           id:Input_Email
+        Element Should Be Visible           id:Input_Password
+        Element Should Be Visible           id:Input_ConfirmPassword
+        Element Should Be Visible           xpath:/html/body/div/main/div/div[1]/form/button
+
 
 
 

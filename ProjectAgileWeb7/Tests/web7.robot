@@ -94,6 +94,12 @@ Change Password in User Profile
 
 
 
+Verify Register as a new user link
+    [Documentation]             Test to verify that 'verify as a new user link' in login should be redirecting to the registration page
+    [Tags]                      Test WEB7-42
+    Goto Login
+    Verify new user link
+
 
 
 
