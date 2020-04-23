@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   This is test suite of ProjectAgileWeb7 webpage
-Resource        ../Resources/keywords.robot
+Resource        ../Tests/Resources/keywords.robot
 Library         SeleniumLibrary
 Test Setup      Open Browser To Start Page
 Test Teardown   End Web Test
@@ -60,6 +60,39 @@ Change User Email in Manage Account
     Send verification email
     Goto personal details
     Delete user
+
+
+Registration with Invalid data
+     [Documentation]            Test to verify that registration with invalid user name and invalid password
+    ...                         is not able to create a user and verifying that is it showing proper error message
+    [Tags]                      Test WEB7-128
+    Goto register
+    Input invalid emailid
+    Input invalid password
+    Verify confirm password
+    Goto register
+    Register with empty email
+    Goto register
+    Register with empty password
+    Goto register
+    Register with empty confirm password
+
+
+Change Password in User Profile
+    [Documentation]             Test to verify that registrered user is able to change current password to new password in user profile
+    [Tags]                      Test WEB7-135
+    Goto register
+    Input valid emailid
+    Input password
+    Input confirm password
+    Submit register
+    Welcome user
+    Goto registration form
+    Goto password
+    Change password
+    Verify change password
+
+
 
 
 
