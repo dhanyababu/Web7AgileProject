@@ -42,7 +42,7 @@ namespace ProjectAgileWeb7.Data
                         DistanceFromCenter=6.3,
                         Latitude="48.868164",
                         Longitude="2.328888",
-                        ImageUrl="https://q-cf.bstatic.com/images/hotel/max1280x900/195/195274734.jpg"
+                        ImageUrl="~/pictures/ritz.jpg"
                     },
                     new Hotel
                     {
@@ -57,7 +57,7 @@ namespace ProjectAgileWeb7.Data
                         DistanceFromCenter=1.6,
                         Latitude="51.506753",
                         Longitude="-0.124422",
-                        ImageUrl="https://r-cf.bstatic.com/images/hotel/max1280x900/188/188474168.jpg"
+                        ImageUrl="~/pictures/corinthia.jpg"
                     },
                     new Hotel
                     {
@@ -72,7 +72,7 @@ namespace ProjectAgileWeb7.Data
                         DistanceFromCenter=0.9,
                         Latitude="52.366983",
                         Longitude="4.898774",
-                        ImageUrl="https://r-cf.bstatic.com/images/hotel/max1024x768/177/177954582.jpg"
+                        ImageUrl="~/pictures/eden.jpg"
                     }
                 };
 
