@@ -1,0 +1,50 @@
+﻿@model ProjectAgileWeb7.Models.Hotel
+
+@*@Html.Partial("_SearchPartial", ViewData["hotelsViewModel"])*@
+    <partial name="_SearchPartial", model="new HotelsViewModel { }" />
+
+@{
+    var RoomPrices = new Dictionary<RoomType, decimal>();
+
+    foreach (var item in Model.Rooms)
+    {
+        if (RoomPrices.ContainsKey(item.RoomType))
+            continue;
+        else
+            RoomPrices.Add(item.RoomType, item.RoomPrice);
+    }
+}
+
+<div id="descriptionArea">
+</div>
+
+<div class="border p-3 mt-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Room Type:</th>
+                <th>Price per night:</th>
+                <th>Rooms left during stay:</th>
+                <th></th>
+            </tr>
+            @foreach (var pair in RoomPrices)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(p => pair.Key)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => pair.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayText("3")
+                    </td>
+                    <td>
+                        <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" class="btn btn-success">Book</a>
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>
+

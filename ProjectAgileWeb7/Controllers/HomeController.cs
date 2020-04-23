@@ -23,7 +23,7 @@ namespace ProjectAgileWeb7.Controllers
         {
             var hotelsViewModel = new HotelsViewModel()
             {
-                Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms).ToList()
             };
 
             return View(hotelsViewModel);
@@ -38,7 +38,7 @@ namespace ProjectAgileWeb7.Controllers
                     .Where(h => h.City == hotelsVievModel.searchKeyword
                              || h.Name == hotelsVievModel.searchKeyword
                              || h.Name.Contains(hotelsVievModel.searchKeyword)
-                             || h.City.Contains(hotelsVievModel.searchKeyword));
+                             || h.City.Contains(hotelsVievModel.searchKeyword)).ToList();
             }
             else
             {
