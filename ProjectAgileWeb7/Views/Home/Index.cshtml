@@ -11,55 +11,117 @@ else
     <div class="text-left">
         <h1 class="display-4">Find your dream destination</h1>
     </div>
-    <div class="container  p-0 m-0">
-        @foreach (var item in Model.Hotels)
-        {
-            <div class="card-deck">
-                <div class="card mt-4">
+    <div class="d-flex big-container">
+        <div class=" border border-light p-0 mt-4 mr-2 w-25 rounded">
 
-                    <div class="card-body d-flex">
+            <form asp-controller="Home" asp-action="Filter" method="post">
+                <input name="GGG" value="1" type="checkbox" />
+                <input name="GGG" value="2" type="checkbox" />
 
-                        <div class="text-center">
-                            <img class="hotel-image" src=@Url.Content(@item.ImageUrl) />
+                <div class="form-group ml-2">
+                    <p class="ml-2">Facilities</p>
+
+                    @foreach (var facility in (List<Facility>)ViewBag.Facilities)
+                    {
+                        <div class="custom-control custom-checkbox">
+
+                            <input class="custom-control-input" name="Facilities" value="@facility.FacilityId" type="checkbox" id="@facility.FacilityId" />
+                            <label class="custom-control-label" for="@facility.FacilityId">@facility.Name</label>
+
                         </div>
-                        <div class="ml-3">
-                            <div>
-                                <h2 class="hotel-name">
-                                    @item.Name
-                                </h2>
-                            </div>
-                            <div>
-                                @for (var i = 0; i < item.Stars; i++)
-                                {
-                                    <i class="fas fa-star text-warning "></i>
-                                }
-                            </div>
-                            <div>
-                                <p>
-                                    @item.Address, @item.ZipCode, @item.City, @item.Country
+                    }
 
-                                </p>
-                                <p>
-                                    Distance from centre: @item.DistanceFromCenter km.
-                                </p>
+                </div>
+                @*<div class="form-group ml-2">
+
+                        <p class="ml-2">Stars</p>
+                        @foreach (var star in (List<int>)ViewBag.Stars)
+                        {
+
+                            <div class="custom-control custom-checkbox">
+                                <input name="starArray" value="@star" type="checkbox" class="custom-control-input" id="@star">
+
+                                <label class="custom-control-label" for="@star">
+                                    @for (var i = 0; i < @star; i++)
+                                    {
+                                        <i class="fas fa-star text-warning "></i>
+                                    }
+                                </label>
                             </div>
-                            <div class="card-text text-justify">
-                                <p>@item.Description</p>
+                        }
+
+
+                    </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Filter" class="btn btn-primary float-right mr-2" />
+                </div>
+            </form>
+
+        </div>
+
+        <div class="container  p-0 m-0">
+            @foreach (var item in Model.Hotels)
+            {
+                <div class="card-deck">
+                    <div class="card mt-4">
+
+                        <div class="card-body d-flex">
+
+                            <div class="text-center">
+                                <img class="hotel-image" src=@Url.Content(@item.ImageUrl) />
                             </div>
-                            <div>
-                                <p>Available rooms: @item.Rooms.Count</p>
-                            </div>
-                            <div class="card-text">
-                                <p> <a href="@item.Website">@item.Website</a></p>
+                            <div class="ml-3">
+                                <div>
+                                    <h2 class="hotel-name">
+                                        @item.Name
+                                    </h2>
+                                </div>
+                                <div>
+                                    @for (var i = 0; i < item.Stars; i++)
+                                    {
+                                        <i class="fas fa-star text-warning "></i>
+                                    }
+                                </div>
+                                <div>
+                                    <p>
+                                        @item.Address, @item.ZipCode, @item.City, @item.Country
+
+                                    </p>
+                                    <p>
+                                        Distance from centre: @item.DistanceFromCenter km.
+                                    </p>
+                                </div>
+                                <div class="card-text text-justify">
+                                    <p>@item.Description</p>
+                                </div>
+                                <div>
+                                    <p>Available rooms: &nbsp; @item.Rooms.Count</p>
+
+                                </div>
+
+                                <div>
+
+                                    <p>
+                                        Facilities: &nbsp;
+                                        @foreach (var facility in @item.HotelFacilities)
+                                        {
+                                            <span class="mr-1">@facility.Facility.Name</span>
+                                        }
+                                    </p>
+                                </div>
+                                <div class="card-text">
+                                    <p> <a href="@item.Website">@item.Website</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="card-footer border-top-0 bg-white">
-                        <a asp-controller="" asp-action="" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">Book</a>
+                        <div class="card-footer border-top-0 bg-white">
+                            <a asp-controller="" asp-action="" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">Book</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
+
     </div>
 }

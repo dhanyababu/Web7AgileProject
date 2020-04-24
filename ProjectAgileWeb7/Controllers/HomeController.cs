@@ -3,11 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
 namespace ProjectAgileWeb7.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -23,8 +25,12 @@ namespace ProjectAgileWeb7.Controllers
         {
             var hotelsViewModel = new HotelsViewModel()
             {
-                Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                Hotels = _appContext.Hotels
+                .Include(h => h.Rooms)
+                .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
             };
+
+            FillingViewBags();
 
             return View(hotelsViewModel);
         }
@@ -34,19 +40,45 @@ namespace ProjectAgileWeb7.Controllers
         {
             if (hotelsVievModel.searchKeyword != null)
             {
-                hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
                     .Where(h => h.City == hotelsVievModel.searchKeyword
                              || h.Name == hotelsVievModel.searchKeyword
                              || h.Name.Contains(hotelsVievModel.searchKeyword)
                              || h.City.Contains(hotelsVievModel.searchKeyword));
+
+                TempData["searchKeyword"] = hotelsVievModel.searchKeyword;
             }
             else
             {
                 return RedirectToAction("Index");
             }
+            FillingViewBags();
+
 
             return View("Index", hotelsVievModel);
         }
+
+        [HttpPost]
+        public IActionResult Test(HotelsViewModel hotelsViewModel)
+        {
+            return View(hotelsViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Filter(HotelsViewModel hotelViewModel)
+        {
+            var searchKeyword = TempData["searchKeyword"]?.ToString();
+            var hotelList = GetHotelsBySearch(searchKeyword);
+            var facilitiesList = hotelViewModel.Facilities;
+            hotelViewModel.Hotels = hotelList?.Where(h => facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
+                                         .ToList();
+
+            FillingViewBags();
+
+            return View("Index", hotelViewModel);
+        }
+
+
 
         //public IActionResult Privacy()
         //{
@@ -57,6 +89,35 @@ namespace ProjectAgileWeb7.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private void FillingViewBags()
+        {
+            ViewBag.Facilities = _appContext.Hotels
+                                             .Include(h => h.Rooms)
+                                             .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
+                                             .SelectMany(x => x.HotelFacilities.Select(y => y.Facility))
+                                              .Distinct().ToList();
+
+            ViewBag.Stars = _appContext.Hotels
+                       .Select(h => h.Stars)
+                       .OrderByDescending(s => s)
+                       .Distinct()
+                       .ToList();
+        }
+
+        private IEnumerable<Hotel> GetHotelsBySearch(string searchKeyword)
+        {
+            if (searchKeyword != null)
+            {
+                return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
+                    .Where(h => h.Name.Contains(searchKeyword)
+                             || h.City.Contains(searchKeyword));
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProjectAgileWeb7.Models;
+﻿using ProjectAgileWeb7.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +9,19 @@ namespace ProjectAgileWeb7.Data
     {
         public static void Initialize(ApplicationDbContext dbContext)
         {
-            dbContext.Database.EnsureDeleted();
+            //dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
-            try
-            {
-                if (dbContext.Database.GetPendingMigrations().Count() > 0)
-                {
-                    dbContext.Database.Migrate();
-                }
-            }
-            catch (Exception ex)
-            {
+            //try
+            //{
+            //    if (dbContext.Database.GetPendingMigrations().Count() > 0)
+            //    {
+            //        dbContext.Database.Migrate();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
 
 
             if (!dbContext.Hotels.Any())
@@ -73,6 +72,21 @@ namespace ProjectAgileWeb7.Data
                         Latitude="52.366983",
                         Longitude="4.898774",
                         ImageUrl="~/pictures/eden.jpg"
+                    },
+                     new Hotel
+                    {
+                        Name="Paris France Hotel",
+                        Website="https://www.paris-france-hotel.com/",
+                        Address="72 Rue De Turbigo",
+                        ZipCode="75003",
+                        City="Paris",
+                        Country="France",
+                        Description="Built in 1910 during the Belle Epoque period, this hotel is in a great location in central Paris, with easy access to the city’s tourist attractions.",
+                        Stars=3,
+                        DistanceFromCenter=3.1,
+                        Latitude="48.866954",
+                        Longitude="2.360468",
+                        ImageUrl="~/pictures/france.jpg"
                     }
                 };
 
@@ -214,6 +228,11 @@ namespace ProjectAgileWeb7.Data
                 {
                     HotelId=3,
                     FacilityId=3
+                },
+                new HotelFacility
+                {
+                    HotelId=4,
+                    FacilityId=1
                 }
                 };
 

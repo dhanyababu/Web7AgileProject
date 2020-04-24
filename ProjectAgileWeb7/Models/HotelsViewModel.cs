@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Models
 {
@@ -11,5 +9,7 @@ namespace ProjectAgileWeb7.Models
         public string searchKeyword { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
+        public List<string> Facilities { get; set; }
+        public List<string> GGG { get; set; }
     }
 }
