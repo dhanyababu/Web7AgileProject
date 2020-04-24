@@ -1,0 +1,25 @@
+﻿@model ProjectAgileWeb7.Models.HotelsViewModel
+
+<h1 class="text-success mb-3" id="heading">Just a step away</h1>
+
+<form asp-controller="Home" asp-action="Search" method="post" id="form">
+    <div class="form-group">
+        <div class="form-group">
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                </div>
+                <input asp-controller="Home" asp-action="Search" asp-for="@Model.searchKeyword" class="input-group-text bg-white form-control p-4" type="text" placeholder="Search by city or hotel name...">
+                <input class="input-group-text bg-white form-control p-4 date-input" type="date">
+                <input class="input-group-text bg-white form-control p-4 date-input" type="date">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success btn-lg" id="search-submit-btn">Search</button>
+                </div>
+            </div>
+            <input class="input-group-text bg-white form-control mb-1 date-input-sm" type="date">
+            <input class="input-group-text bg-white form-control mb-1 date-input-sm" type="date">
+        </div>
+    </div>
+</form>
+<a asp-action="Index" class="btn btn-outline-success"><i class="fas fa-filter"></i> &nbsp; Clear Filter</a>
+<hr />
