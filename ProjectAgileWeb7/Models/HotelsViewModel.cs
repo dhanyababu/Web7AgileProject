@@ -10,6 +10,7 @@ namespace ProjectAgileWeb7.Models
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
         public List<string> Facilities { get; set; }
+        public List<string> StarsList { get; set; }
         public List<string> GGG { get; set; }
     }
 }

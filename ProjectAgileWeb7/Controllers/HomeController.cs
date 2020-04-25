@@ -67,6 +67,7 @@ namespace ProjectAgileWeb7.Controllers
         [HttpPost]
         public IActionResult Filter(HotelsViewModel hotelViewModel)
         {
+            var gg = HttpContext;
             var searchKeyword = TempData["searchKeyword"]?.ToString();
             var hotelList = GetHotelsBySearch(searchKeyword);
             var facilitiesList = hotelViewModel.Facilities;
@@ -111,12 +112,12 @@ namespace ProjectAgileWeb7.Controllers
             if (searchKeyword != null)
             {
                 return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
-                    .Where(h => h.Name.Contains(searchKeyword)
-                             || h.City.Contains(searchKeyword));
+                .Where(h => h.Name.Contains(searchKeyword)
+                         || h.City.Contains(searchKeyword));
             }
             else
             {
-                return null;
+                return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility);
             }
         }
     }
