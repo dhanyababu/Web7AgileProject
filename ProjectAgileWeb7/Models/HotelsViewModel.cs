@@ -10,9 +10,13 @@ namespace ProjectAgileWeb7.Models
     {
         public IEnumerable<Hotel> Hotels { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Enter a city or a hotel name")]
         public string SearchKeyword { get; set; }
-        public string CheckIn { get; set; }
-        public string CheckOut { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime CheckIn { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime CheckOut { get; set; }
     }
 }

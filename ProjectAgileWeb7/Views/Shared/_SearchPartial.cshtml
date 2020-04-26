@@ -9,14 +9,14 @@
     <div class="form-group">
         <div class="form-group">
             <div class="input-group mb-1">
-                <div class="input-group-prepend" id="search-icon">
-                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                <div class="input-group-prepend hide-icon">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt fa-lg"></i></span>
                 </div>
-                <input asp-for="@Model.SearchKeyword" class="input-group-text bg-white form-control p-4 custom-file" type="text" autocomplete="off" placeholder="Search by city or hotel name...">
-                <input asp-for="@Model.CheckIn" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-in" type="text" readonly="readonly" placeholder="Check-In Date">
-                <input asp-for="@Model.CheckOut" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-out" type="text" readonly="readonly" placeholder="Check-Out Date">
+                <input asp-for="@Model.SearchKeyword" class="input-group-text bg-white form-control p-4 custom-file" id="search-input" type="text" autocomplete="off" placeholder="Search by city or hotel name...">
+                <input asp-for="@Model.CheckIn" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-in" type="text" readonly="readonly" placeholder="Check-In Date">                
+                <input asp-for="@Model.CheckOut" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-out" type="text" readonly="readonly" placeholder="Check-In Date">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-success btn-lg">Search</button>
+                    <button type="submit" class="btn btn-success btn-lg" id="submit-btn">Search</button>
                 </div>
             </div>
         </div>

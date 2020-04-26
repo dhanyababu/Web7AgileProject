@@ -13,7 +13,8 @@ function mobileSearchForm() {
         $('#search-form').addClass('collapse');
         $('.custom-file').removeClass('p-4');
         $('.custom-file').addClass('p-3');
-        $('#search-icon').hide();
+        $('.hide-icon').hide();
+        $('#submit-btn').addClass('btn-block');
 
     }
     else {
@@ -22,7 +23,8 @@ function mobileSearchForm() {
         $('#search-form').removeClass('collapse');
         $('.custom-file').addClass('p-4');
         $('.custom-file').removeClass('p-3');
-        $('#search-icon').show();
+        $('.hide-icon').show();
+        $('#submit-btn').removeClass('btn-block');
     }
 }
 
@@ -31,18 +33,28 @@ $(document).ready(function () {
         showAnim: 'drop',
         numberOfMonths: 1,
         minDate: 0,
-        dateFormat: 'dd/mm/yy',
+        maxDate: '+1Y',
+        dateFormat: 'yy-MM-dd',
         onSelect: function (selectedDate) {
-            $('#check-out').datepicker('option', 'minDate', selectedDate);
+            var date = $(this).datepicker('getDate');
+            if (date) {
+                date.setDate(date.getDate() + 1);
+            }
+            $('#check-out').datepicker('option', 'minDate', date || 1);
         }
-    });
+    }).val('');
     $("#check-out").datepicker({
         showAnim: 'drop',
         numberOfMonths: 1,
-        minDate: 0,
-        dateFormat: 'dd/mm/yy',
-        onSelect: function (selectedDate) {
-            $('#check-in').datepicker('option', 'minDate', selectedDate);
-        }
-    });
+        minDate: 1,
+        maxDate: '+1Y',
+        dateFormat: 'yy-MM-dd'
+    }).val('');
+});
+
+$(document).ready(function () {
+    $('#submit-btn').attr('disabled', true);
+    $('#search-input').keyup(function () {
+        ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);        
+    })
 });

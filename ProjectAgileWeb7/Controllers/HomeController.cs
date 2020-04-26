@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -34,27 +35,32 @@ namespace ProjectAgileWeb7.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Search(HotelsViewModel hotelsVievModel)
         {
-            if (ModelState.IsValid)
+            DateTime checkIn = Convert.ToDateTime(hotelsVievModel.CheckIn);
+            DateTime checkOut = Convert.ToDateTime(hotelsVievModel.CheckOut);            
+
+            hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                  .Where(h => h.City == hotelsVievModel.SearchKeyword
+                           || h.Name == hotelsVievModel.SearchKeyword
+                           || h.Name.Contains(hotelsVievModel.SearchKeyword)
+                           || h.City.Contains(hotelsVievModel.SearchKeyword));
+                           // Add more (ex: split search keyword)
+
+            if (checkIn >= DateTime.Now.Date && checkOut >= DateTime.Now.Date)
             {
-                if (hotelsVievModel.SearchKeyword != null)
+                var stay = new List<DateTime>();
+                for (DateTime date = checkIn; date < checkOut; date = date.AddDays(1))
                 {
-                    hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
-                        .Where(h => h.City == hotelsVievModel.SearchKeyword
-                                 || h.Name == hotelsVievModel.SearchKeyword
-                                 || h.Name.Contains(hotelsVievModel.SearchKeyword)
-                                 || h.City.Contains(hotelsVievModel.SearchKeyword));
-                }
-                if (hotelsVievModel.CheckIn != null)
-                {
+                    stay.Add(date);
+                }               
 
-                }
-                if (hotelsVievModel.CheckOut != null)
-                {
-                }
+                var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookingPerDays.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
+                var availableRooms = _appContext.Rooms.Except(unavailableRooms);
+                var availableHotels = availableRooms.Select(r => r.Hotel).Distinct().ToList();
 
-                return View("Index", hotelsVievModel);
+                hotelsVievModel.Hotels = hotelsVievModel.Hotels.Where(h1 => availableHotels.Any(h2 => h2.HotelId == h1.HotelId));
             }
-            return RedirectToAction("Index");
+
+            return View("Index", hotelsVievModel);
         }
 
         //public IActionResult Privacy()

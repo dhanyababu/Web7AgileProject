@@ -10,8 +10,8 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200423152335_UpdateBooking")]
-    partial class UpdateBooking
+    [Migration("20200424145739_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,7 +254,7 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -263,7 +263,27 @@ namespace ProjectAgileWeb7.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Booking");
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.BookingPerDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("BookingPerDays");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Facility", b =>
@@ -455,7 +475,18 @@ namespace ProjectAgileWeb7.Migrations
 
                     b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.BookingPerDay", b =>
+                {
+                    b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Hotel", b =>
