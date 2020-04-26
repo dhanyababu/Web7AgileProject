@@ -71,8 +71,25 @@ namespace ProjectAgileWeb7.Controllers
             var searchKeyword = TempData["searchKeyword"]?.ToString();
             var hotelList = GetHotelsBySearch(searchKeyword);
             var facilitiesList = hotelViewModel.Facilities;
-            hotelViewModel.Hotels = hotelList?.Where(h => facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
+            var starList = hotelViewModel.StarsList;
+
+            if (starList == null)
+            {
+                hotelViewModel.Hotels = hotelList.Where(h => facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
                                          .ToList();
+            }
+            else if (facilitiesList == null)
+            {
+                hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s)))
+                                         .ToList();
+            }
+            else
+            {
+
+                hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s))
+                                && facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
+                                             .ToList();
+            }
 
             FillingViewBags();
 

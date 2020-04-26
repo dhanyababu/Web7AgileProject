@@ -15,8 +15,10 @@ else
         <div class=" border border-light p-0 mt-4 mr-2 w-25 rounded">
 
             <form asp-controller="Home" asp-action="Filter" method="post">
-                <input name="GGG" value="1" type="checkbox" />
-                <input name="GGG" value="2" type="checkbox" />
+                @*<input name="GGG" value="1" type="checkbox" id="ggg1" />
+                    <label for="ggg1">gg1</label>
+                    <input name="GGG" value="2" type="checkbox" id="ggg2" />
+                    <label for="ggg2">gg2</label>*@
 
                 <div class="form-group ml-2">
                     <p class="ml-2">Facilities</p>
@@ -25,33 +27,33 @@ else
                     {
                         <div class="custom-control custom-checkbox">
 
-                            <input class="custom-control-input" name="Facilities" value="@facility.FacilityId" type="checkbox" id="@facility.FacilityId" />
-                            <label class="custom-control-label" for="@facility.FacilityId">@facility.Name</label>
+                            <input class="custom-control-input" name="Facilities" value="@facility.FacilityId" type="checkbox" id="facility_@facility.FacilityId" />
+                            <label class="custom-control-label" for="facility_@facility.FacilityId">@facility.Name</label>
 
                         </div>
                     }
 
                 </div>
-                @*<div class="form-group ml-2">
+                <div class="form-group ml-2">
 
-                        <p class="ml-2">Stars</p>
-                        @foreach (var star in (List<int>)ViewBag.Stars)
-                        {
+                    <p class="ml-2">Stars</p>
+                    @foreach (var star in (List<int>)ViewBag.Stars)
+                    {
 
-                            <div class="custom-control custom-checkbox">
-                                <input name="starArray" value="@star" type="checkbox" class="custom-control-input" id="@star">
+                        <div class="custom-control custom-checkbox">
+                            <input name="StarsList" value="@star" type="checkbox" id="star_@star" class="custom-control-input">
 
-                                <label class="custom-control-label" for="@star">
-                                    @for (var i = 0; i < @star; i++)
-                                    {
-                                        <i class="fas fa-star text-warning "></i>
-                                    }
-                                </label>
-                            </div>
-                        }
+                            <label for="star_@star" class="custom-control-label">
+                                @for (var i = 0; i < @star; i++)
+                                {
+                                    <i class="fas fa-star text-warning "></i>
+                                }
+                            </label>
+                        </div>
+                    }
 
 
-                    </div>*@
+                </div>
                 <div class="form-group">
                     <input type="submit" value="Filter" class="btn btn-primary float-right mr-2" />
                 </div>
