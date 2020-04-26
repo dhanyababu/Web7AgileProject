@@ -52,8 +52,8 @@ namespace ProjectAgileWeb7.Controllers
             {
                 return RedirectToAction("Index");
             }
-            FillingViewBags();
 
+            FillingViewBags();
 
             return View("Index", hotelsVievModel);
         }
@@ -67,34 +67,65 @@ namespace ProjectAgileWeb7.Controllers
         [HttpPost]
         public IActionResult Filter(HotelsViewModel hotelViewModel)
         {
-            var gg = HttpContext;
             var searchKeyword = TempData["searchKeyword"]?.ToString();
             var hotelList = GetHotelsBySearch(searchKeyword);
             var facilitiesList = hotelViewModel.Facilities;
             var starList = hotelViewModel.StarsList;
+            var distanceList = hotelViewModel.DistanceList;
 
-            if (starList == null)
-            {
-                hotelViewModel.Hotels = hotelList.Where(h => facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
-                                         .ToList();
-            }
-            else if (facilitiesList == null)
-            {
-                hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s)))
-                                         .ToList();
-            }
-            else
-            {
+            hotelViewModel.Hotels = hotelList
+                .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
+                .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
+                .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
+                .ToList();
 
-                hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s))
-                                && facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
-                                             .ToList();
-            }
+
+            //if (starList == null && distanceList == null && facilitiesList != null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f))).ToList();
+            //}
+            //else if (facilitiesList == null && distanceList == null && starList != null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s))).ToList();
+            //}
+            //else if (starList == null && facilitiesList == null && distanceList != null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => h.DistanceFromCenter < distanceList.Max());
+            //}
+            //else if (facilitiesList != null && distanceList == null && starList != null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s))
+            //                           && facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
+            //                          .ToList();
+            //}
+            //else if (facilitiesList != null && distanceList != null && starList == null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => (h.DistanceFromCenter < distanceList.Max())
+            //                             && facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
+            //                            .ToList();
+            //}
+            //else if (facilitiesList == null && distanceList != null && starList != null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s)
+            //                        && h.DistanceFromCenter < distanceList.Max()))
+            //                         .ToList();
+            //}
+            //else if (starList != null && facilitiesList != null && distanceList != null)
+            //{
+            //    hotelViewModel.Hotels = hotelList.Where(h => starList.All(s => h.Stars.ToString().Contains(s) && h.DistanceFromCenter < distanceList.Max())
+            //                            && facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)))
+            //                           .ToList();
+            //}
+            //else if (starList == null && facilitiesList == null && distanceList == null)
+            //{
+            //    hotelViewModel.Hotels = hotelList;
+            //}
 
             FillingViewBags();
 
             return View("Index", hotelViewModel);
         }
+
 
 
 

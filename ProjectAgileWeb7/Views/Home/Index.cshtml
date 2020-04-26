@@ -15,27 +15,20 @@ else
         <div class=" border border-light p-0 mt-4 mr-2 w-25 rounded">
 
             <form asp-controller="Home" asp-action="Filter" method="post">
-                @*<input name="GGG" value="1" type="checkbox" id="ggg1" />
-                    <label for="ggg1">gg1</label>
-                    <input name="GGG" value="2" type="checkbox" id="ggg2" />
-                    <label for="ggg2">gg2</label>*@
-
+                <p class="ml-3 mt-2 "><strong>Filter by</strong></p>
                 <div class="form-group ml-2">
                     <p class="ml-2">Facilities</p>
 
                     @foreach (var facility in (List<Facility>)ViewBag.Facilities)
                     {
                         <div class="custom-control custom-checkbox">
-
                             <input class="custom-control-input" name="Facilities" value="@facility.FacilityId" type="checkbox" id="facility_@facility.FacilityId" />
                             <label class="custom-control-label" for="facility_@facility.FacilityId">@facility.Name</label>
-
                         </div>
                     }
 
                 </div>
                 <div class="form-group ml-2">
-
                     <p class="ml-2">Stars</p>
                     @foreach (var star in (List<int>)ViewBag.Stars)
                     {
@@ -51,8 +44,51 @@ else
                             </label>
                         </div>
                     }
+                </div>
+                <div class="form-group ml-2">
+                    <p>Distance from city center</p>
+                    @foreach (var element in Enum.GetValues(typeof(DistanceEnum)))
+                    {
+                        <div class="custom-control custom-checkbox">
 
+                            <input name="DistanceList" value="@((Int32)element)" type="checkbox" id="d_@((Int32)element)" class="custom-control-input">
 
+                            <label for="d_@((Int32)element)" class="custom-control-label">
+                                Less then @((Int32)element) km
+                            </label>
+
+                        </div>
+                    }
+
+                    @*<div class="custom-control custom-checkbox">
+
+                            <input name="DistanceList" value="@DistanceEnum.less1" type="checkbox" id="d_@DistanceEnum.less1" class="custom-control-input">
+
+                            <label for=d_@DistanceEnum.less1 class="custom-control-label">
+                                Less then @((Int16)DistanceEnum.less1) km
+                            </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input name="DistanceList" value="3" type="checkbox" id="less3" class="custom-control-input">
+
+                            <label for="less3" class="custom-control-label">
+                                Less then 3 km
+                            </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input name="DistanceList" value="5" type="checkbox" id="less5" class="custom-control-input">
+
+                            <label for="less5" class="custom-control-label">
+                                Less then 5 km
+                            </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input name="DistanceList" value="10" type="checkbox" id="less10" class="custom-control-input">
+
+                            <label for="less10" class="custom-control-label">
+                                Less then 10 km
+                            </label>
+                        </div>*@
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Filter" class="btn btn-primary float-right mr-2" />
@@ -66,9 +102,7 @@ else
             {
                 <div class="card-deck">
                     <div class="card mt-4">
-
                         <div class="card-body d-flex">
-
                             <div class="text-center">
                                 <img class="hotel-image" src=@Url.Content(@item.ImageUrl) />
                             </div>
@@ -87,7 +121,6 @@ else
                                 <div>
                                     <p>
                                         @item.Address, @item.ZipCode, @item.City, @item.Country
-
                                     </p>
                                     <p>
                                         Distance from centre: @item.DistanceFromCenter km.
@@ -98,11 +131,8 @@ else
                                 </div>
                                 <div>
                                     <p>Available rooms: &nbsp; @item.Rooms.Count</p>
-
                                 </div>
-
                                 <div>
-
                                     <p>
                                         Facilities: &nbsp;
                                         @foreach (var facility in @item.HotelFacilities)
@@ -116,7 +146,6 @@ else
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-footer border-top-0 bg-white">
                             <a asp-controller="" asp-action="" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">Book</a>
                         </div>
