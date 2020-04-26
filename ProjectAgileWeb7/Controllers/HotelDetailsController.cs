@@ -24,17 +24,14 @@ namespace ProjectAgileWeb7.Controllers
             var hotel = await _appContext.Hotels
                 .Where(h => h.HotelId == id)
                 .Include(r => r.Rooms)
-                .Include(hf => hf.HotelFacilities)
-                .ToListAsync();
-
-            //var hotelsViewModel = new HotelsViewModel();
-            //ViewData["hotelsViewModel"] = hotelsViewModel;
-            
+                .Include(f => f.HotelFacilities)
+                .ThenInclude(fa => fa.Facility)
+                .ToListAsync();            
 
             return View(hotel[0]);
         }
 
-        public async Task<IActionResult> BookRoom(RoomType roomType)
+        public IActionResult BookRoom(RoomType roomType)
         {
             ViewData["roomType"] = roomType;
             return View();
