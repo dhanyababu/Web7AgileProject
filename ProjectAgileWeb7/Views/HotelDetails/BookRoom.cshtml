@@ -1,0 +1,18 @@
+﻿@model ProjectAgileWeb7.Models.Room
+<partial name="_SearchPartial" , model="new HotelsViewModel { }" />
+
+<div class="card">
+    <div class="card-header">
+        <h3>@Model.RoomType room</h3>
+    </div>
+    <div class="card-body">
+        <br />
+        <h5 class="card-title">@Model.RoomDescription</h5>
+        <p class="card-text">
+            Price per night: @Model.RoomPrice.ToString("F")<br />
+            Capacity: @Model.Capacity<br />
+            Number of beds: @Model.NumberOfBeds<br />
+        </p>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to homepage</a>
+    </div>
+</div>

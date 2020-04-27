@@ -42,6 +42,9 @@ namespace ProjectAgileWeb7.Data
             modelBuilder.Entity<Hotel>()
                 .HasMany(h => h.Rooms)
                 .WithOne(r => r.Hotel);
+
+            modelBuilder.Entity<HotelsViewModel>()
+                .HasNoKey();
         }
     }
 }
