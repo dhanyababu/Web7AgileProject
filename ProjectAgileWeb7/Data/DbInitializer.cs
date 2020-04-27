@@ -11,15 +11,15 @@ namespace ProjectAgileWeb7.Data
         {
             //dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
-            //try
-            //{
-            //    if (dbContext.Database.GetPendingMigrations().Count() > 0)
-            //    {
-            //        dbContext.Database.Migrate();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
+            try
+            {
+                if (dbContext.Database.GetPendingMigrations().Count() > 0)
+                {
+                    dbContext.Database.Migrate();
+                }
+            }
+            catch (Exception)
+            {
 
             //}
 
@@ -209,7 +209,7 @@ namespace ProjectAgileWeb7.Data
                     HotelId=3,
                     FacilityId=6
                 },
-                 new HotelFacility
+                new HotelFacility
                 {
                     HotelId=3,
                     FacilityId=1
@@ -219,7 +219,7 @@ namespace ProjectAgileWeb7.Data
                     HotelId=3,
                     FacilityId=7
                 },
-                 new HotelFacility
+                new HotelFacility
                 {
                     HotelId=3,
                     FacilityId=4
@@ -239,6 +239,40 @@ namespace ProjectAgileWeb7.Data
                 dbContext.HotelFacilities.AddRange(hotelFacilities);
                 dbContext.SaveChanges();
             }
+
+
+
+
+
+            
+            #region For testing purposes only!!!
+            
+            // Delete when booking has been implemented.
+
+            if (!dbContext.BookingPerDays.Any())
+            {
+                foreach (var room in dbContext.Rooms)
+                {
+                    if (room.HotelId == 1)
+                    {
+                        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = room.RoomId, Date = DateTime.Now.Date.AddDays(1) });
+                    }
+                }
+            }
+            dbContext.SaveChanges();
+
+            //foreach (var booking in dbContext.Bookings)
+            //{
+            //    for (DateTime date = booking.CheckIn; date < booking.CheckOut; date = date.AddDays(1))
+            //    {
+            //        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = booking.RoomId, Date = date });
+            //    }                        
+            //}
+            //dbContext.SaveChanges();
+
+            #endregion
+
+
 
         }
     }

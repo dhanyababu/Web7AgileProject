@@ -4106,6 +4106,13 @@ input[type="button"].btn-block {
             border-bottom-left-radius: 0;
         }
 
+
+@media only screen and (max-width: 1000px) {
+    .input-group {
+        flex-direction: column;
+    }
+}
+
 .input-group-prepend,
 .input-group-append {
     display: -webkit-box;
