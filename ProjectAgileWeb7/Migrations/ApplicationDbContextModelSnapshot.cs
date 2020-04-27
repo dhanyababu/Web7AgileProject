@@ -376,6 +376,21 @@ namespace ProjectAgileWeb7.Migrations
                     b.ToTable("HotelFacilities");
                 });
 
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelsViewModel", b =>
+                {
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SearchKeyword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("HotelsViewModel");
+                });
+
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")

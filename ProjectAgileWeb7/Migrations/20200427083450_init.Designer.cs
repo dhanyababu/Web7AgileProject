@@ -10,7 +10,7 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200427081035_init")]
+    [Migration("20200427083450_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -376,6 +376,21 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasIndex("FacilityId");
 
                     b.ToTable("HotelFacilities");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelsViewModel", b =>
+                {
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SearchKeyword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("HotelsViewModel");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>

@@ -69,6 +69,18 @@ namespace ProjectAgileWeb7.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HotelsViewModel",
+                columns: table => new
+                {
+                    SearchKeyword = table.Column<string>(nullable: false),
+                    CheckIn = table.Column<DateTime>(nullable: false),
+                    CheckOut = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -399,6 +411,9 @@ namespace ProjectAgileWeb7.Migrations
 
             migrationBuilder.DropTable(
                 name: "HotelFacilities");
+
+            migrationBuilder.DropTable(
+                name: "HotelsViewModel");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -47,7 +47,8 @@ namespace ProjectAgileWeb7.Controllers
                   .Where(h => h.City == hotelsVievModel.SearchKeyword
                            || h.Name == hotelsVievModel.SearchKeyword
                            || h.Name.Contains(hotelsVievModel.SearchKeyword)
-                           || h.City.Contains(hotelsVievModel.SearchKeyword));
+                           || h.City.Contains(hotelsVievModel.SearchKeyword))
+                           .ToList();
             // Add more (ex: split search keyword)
             TempData["searchKeyword"] = hotelsVievModel.SearchKeyword;
             if (checkIn >= DateTime.Now.Date && checkOut >= DateTime.Now.Date)
@@ -62,7 +63,7 @@ namespace ProjectAgileWeb7.Controllers
                 var availableRooms = _appContext.Rooms.Except(unavailableRooms);
                 var availableHotels = availableRooms.Select(r => r.Hotel).Distinct().ToList();
 
-                hotelsVievModel.Hotels = hotelsVievModel.Hotels.Where(h1 => availableHotels.Any(h2 => h2.HotelId == h1.HotelId));
+                hotelsVievModel.Hotels = hotelsVievModel.Hotels.Where(h1 => availableHotels.Any(h2 => h2.HotelId == h1.HotelId)).ToList();
             }
 
             FillingViewBags();
@@ -128,11 +129,12 @@ namespace ProjectAgileWeb7.Controllers
             {
                 return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
                 .Where(h => h.Name.Contains(searchKeyword)
-                         || h.City.Contains(searchKeyword));
+                         || h.City.Contains(searchKeyword))
+                         .ToList();
             }
             else
             {
-                return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility);
+                return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility).ToList();
             }
         }
     }

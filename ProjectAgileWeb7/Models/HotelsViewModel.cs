@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
@@ -14,7 +13,7 @@ namespace ProjectAgileWeb7.Models
     public class HotelsViewModel
     {
         public IEnumerable<Hotel> Hotels { get; set; }
-        
+
         [Required(ErrorMessage = "Enter a city or a hotel name")]
         public string SearchKeyword { get; set; }
 
@@ -23,8 +22,11 @@ namespace ProjectAgileWeb7.Models
 
         [DataType(DataType.Date)]
         public DateTime CheckOut { get; set; }
+        [NotMapped]
         public List<string> Facilities { get; set; }
+        [NotMapped]
         public List<string> StarsList { get; set; }
+        [NotMapped]
         public List<int> DistanceList { get; set; }
     }
 }
