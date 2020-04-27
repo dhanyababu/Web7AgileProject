@@ -70,6 +70,7 @@ Verify first hotel
         ${discription_link}=            Get Text                        xpath:/html/body/div/main/div[2]/div[1]/div/div[1]/div[2]/div[4]
         Should Be Equal                 ${discription_link}             Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.
         Element Should Contain          xpath:/html/body/div/main/div[2]/div[1]/div/div[1]/div[2]/div[5]          Available rooms
+        Element Should Be Visible       xpath:/html/body/div/main/div[2]/div[1]/div/div[2]/a
         ${extern_link}=                 Get Text                        xpath:/html/body/div/main/div[2]/div[1]/div/div[1]/div[2]/div[6]
         Should Be Equal                 ${extern_link}                  https://www.ritzparis.com/en-GB
         Click Element                   xpath:/html/body/div/main/div[2]/div[1]/div/div[1]/div[2]/div[6]/p/a
@@ -89,6 +90,7 @@ Verify second hotel
         ${discription_link}=            Get Text                        xpath:/html/body/div/main/div[2]/div[2]/div/div[1]/div[2]/div[4]
         Should Be Equal                 ${discription_link}             The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist, London’s largest spa and the world's first hotel concession for Harrods.
         Element Should Contain          xpath:/html/body/div/main/div[2]/div[2]/div/div[1]/div[2]/div[5]         Available rooms
+        Element Should Be Visible       xpath:/html/body/div/main/div[2]/div[2]/div/div[2]/a
         ${extern_link}=                 Get Text                        xpath:/html/body/div/main/div[2]/div[2]/div/div[1]/div[2]/div[6]/p/a
         Should Be Equal                 ${extern_link}                  https://www.corinthia.com/london/
         Click Element                   xpath:/html/body/div/main/div[2]/div[2]/div/div[1]/div[2]/div[6]/p/a
@@ -108,12 +110,19 @@ Verify third hotel
         ${discription_link}=            Get Text                        xpath:/html/body/div/main/div[2]/div[3]/div/div[1]/div[2]/div[4]
         Should Be Equal                 ${discription_link}             Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by tram.        Element Should Contain          xpath:/html/body/div/main/div[2]/div[2]/div/div[1]/div[2]/div[5]         Available rooms
         Element Should Contain          xpath:/html/body/div/main/div[2]/div[3]/div/div[1]/div[2]/div[5]        Available rooms
+        Element Should Be Visible       xpath:/html/body/div/main/div[2]/div[3]/div/div[2]/a
         ${extern_link}=                 Get Text                        xpath:/html/body/div/main/div[2]/div[3]/div/div[1]/div[2]/div[6]/p/a
         Should Be Equal                 ${extern_link}                  https://www.edenhotelamsterdam.com/en/
         Click Element                   xpath:/html/body/div/main/div[2]/div[3]/div/div[1]/div[2]/div[6]/p/a
         Title Should Be                 Eden Hotel Amsterdam 4* | Along the famous Amstel | 10% discount
         Go Back
         Wait Until Page Contains        Find your dream destination     timeout=10
+
+
+Change window size value
+        [Arguments]                      ${width}                       ${height}
+        Set Window Size                  ${width}                       ${height}
+
 
 
 
