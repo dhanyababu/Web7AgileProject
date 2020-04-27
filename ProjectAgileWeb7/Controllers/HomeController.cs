@@ -41,22 +41,22 @@ namespace ProjectAgileWeb7.Controllers
         public IActionResult Search(HotelsViewModel hotelsVievModel)
         {
             DateTime checkIn = Convert.ToDateTime(hotelsVievModel.CheckIn);
-            DateTime checkOut = Convert.ToDateTime(hotelsVievModel.CheckOut);            
+            DateTime checkOut = Convert.ToDateTime(hotelsVievModel.CheckOut);
 
             hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
                   .Where(h => h.City == hotelsVievModel.SearchKeyword
                            || h.Name == hotelsVievModel.SearchKeyword
                            || h.Name.Contains(hotelsVievModel.SearchKeyword)
                            || h.City.Contains(hotelsVievModel.SearchKeyword));
-                           // Add more (ex: split search keyword)
-
+            // Add more (ex: split search keyword)
+            TempData["searchKeyword"] = hotelsVievModel.SearchKeyword;
             if (checkIn >= DateTime.Now.Date && checkOut >= DateTime.Now.Date)
             {
                 var stay = new List<DateTime>();
                 for (DateTime date = checkIn; date < checkOut; date = date.AddDays(1))
                 {
                     stay.Add(date);
-                }               
+                }
 
                 var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookingPerDays.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
                 var availableRooms = _appContext.Rooms.Except(unavailableRooms);

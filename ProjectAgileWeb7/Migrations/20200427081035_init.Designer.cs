@@ -10,8 +10,8 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200424145739_Initial")]
-    partial class Initial
+    [Migration("20200427081035_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,4 +1,5 @@
-﻿using ProjectAgileWeb7.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectAgileWeb7.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,13 @@ namespace ProjectAgileWeb7.Data
             catch (Exception)
             {
 
-            //}
+                //}
 
 
-            if (!dbContext.Hotels.Any())
-            {
-                var hotels = new Hotel[]
+                if (!dbContext.Hotels.Any())
                 {
+                    var hotels = new Hotel[]
+                    {
                     new Hotel
                     {
                         Name="Ritz Hotel Paris",
@@ -88,16 +89,16 @@ namespace ProjectAgileWeb7.Data
                         Longitude="2.360468",
                         ImageUrl="~/pictures/france.jpg"
                     }
-                };
+                    };
 
-                dbContext.Hotels.AddRange(hotels);
-                dbContext.SaveChanges();
-            }
+                    dbContext.Hotels.AddRange(hotels);
+                    dbContext.SaveChanges();
+                }
 
-            if (!dbContext.Facilities.Any())
-            {
-                var facilities = new Facility[]
+                if (!dbContext.Facilities.Any())
                 {
+                    var facilities = new Facility[]
+                    {
                     new Facility
                     {
                         Name="Room service",
@@ -142,53 +143,53 @@ namespace ProjectAgileWeb7.Data
                          Price=0
                     }
 
-                };
+                    };
 
-                dbContext.Facilities.AddRange(facilities);
+                    dbContext.Facilities.AddRange(facilities);
 
-                dbContext.SaveChanges();
-            }
+                    dbContext.SaveChanges();
+                }
 
-            if (!dbContext.Rooms.Any())
-            {
-                Random random = new Random();
-                int totalNumberOfRooms = 100;
-                var roomsList = new List<Room>();
-                var numberOfHotels = dbContext.Hotels.Count();
-                var roomDescriptionArray = new[]
-                { "A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower." ,
+                if (!dbContext.Rooms.Any())
+                {
+                    Random random = new Random();
+                    int totalNumberOfRooms = 100;
+                    var roomsList = new List<Room>();
+                    var numberOfHotels = dbContext.Hotels.Count();
+                    var roomDescriptionArray = new[]
+                    { "A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower." ,
                 "This double room is fully fitted with air-conditioning, flat screen TV, direct dial telephone, high-speed WiFi, hairdryer and a safe. The modern bathroom features a powerful shower.",
                 "This room includes a satellite TV, tea and coffee-making facilities, a hairdryer and a private bathroom.",
                 "This triple room has air conditioning, electric kettle, free wi-fi and hairdryer."
                 };
-                var numberOfBedsArray = new[] { 1, 1, 2, 2 };
-                var capacityArray = new[] { 1, 2, 2, 3 };
+                    var numberOfBedsArray = new[] { 1, 1, 2, 2 };
+                    var capacityArray = new[] { 1, 2, 2, 3 };
 
-                for (int i = 0; i < totalNumberOfRooms; i++)
-                {
-                    var index = random.Next(Enum.GetNames(typeof(RoomType)).Length);
-                    var randomHotel = random.Next(1, numberOfHotels + 1);
-                    roomsList.Add(new Room
+                    for (int i = 0; i < totalNumberOfRooms; i++)
                     {
-                        RoomType = (RoomType)index,
-                        RoomPrice = ((index + 1) * 200) + ((randomHotel + 1) * 50),
-                        RoomDescription = roomDescriptionArray[index],
-                        NumberOfBeds = numberOfBedsArray[index],
-                        Capacity = capacityArray[index],
-                        IsAvailable = true,
-                        HotelId = randomHotel
-                    });
+                        var index = random.Next(Enum.GetNames(typeof(RoomType)).Length);
+                        var randomHotel = random.Next(1, numberOfHotels + 1);
+                        roomsList.Add(new Room
+                        {
+                            RoomType = (RoomType)index,
+                            RoomPrice = ((index + 1) * 200) + ((randomHotel + 1) * 50),
+                            RoomDescription = roomDescriptionArray[index],
+                            NumberOfBeds = numberOfBedsArray[index],
+                            Capacity = capacityArray[index],
+                            IsAvailable = true,
+                            HotelId = randomHotel
+                        });
+                    }
+
+                    dbContext.Rooms.AddRange(roomsList);
+                    dbContext.SaveChanges();
                 }
 
-                dbContext.Rooms.AddRange(roomsList);
-                dbContext.SaveChanges();
-            }
-
-            if (!dbContext.HotelFacilities.Any())
-            {
-
-                var hotelFacilities = new HotelFacility[]
+                if (!dbContext.HotelFacilities.Any())
                 {
+
+                    var hotelFacilities = new HotelFacility[]
+                    {
                 new HotelFacility
                 {
                     HotelId=1,
@@ -234,46 +235,47 @@ namespace ProjectAgileWeb7.Data
                     HotelId=4,
                     FacilityId=1
                 }
-                };
+                    };
 
-                dbContext.HotelFacilities.AddRange(hotelFacilities);
-                dbContext.SaveChanges();
-            }
-
-
+                    dbContext.HotelFacilities.AddRange(hotelFacilities);
+                    dbContext.SaveChanges();
+                }
 
 
 
-            
-            #region For testing purposes only!!!
-            
-            // Delete when booking has been implemented.
 
-            if (!dbContext.BookingPerDays.Any())
-            {
-                foreach (var room in dbContext.Rooms)
+
+
+                #region For testing purposes only!!!
+
+                // Delete when booking has been implemented.
+
+                if (!dbContext.BookingPerDays.Any())
                 {
-                    if (room.HotelId == 1)
+                    foreach (var room in dbContext.Rooms)
                     {
-                        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = room.RoomId, Date = DateTime.Now.Date.AddDays(1) });
+                        if (room.HotelId == 1)
+                        {
+                            dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = room.RoomId, Date = DateTime.Now.Date.AddDays(1) });
+                        }
                     }
                 }
+                dbContext.SaveChanges();
+
+                //foreach (var booking in dbContext.Bookings)
+                //{
+                //    for (DateTime date = booking.CheckIn; date < booking.CheckOut; date = date.AddDays(1))
+                //    {
+                //        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = booking.RoomId, Date = date });
+                //    }                        
+                //}
+                //dbContext.SaveChanges();
+
+                #endregion
+
+
+
             }
-            dbContext.SaveChanges();
-
-            //foreach (var booking in dbContext.Bookings)
-            //{
-            //    for (DateTime date = booking.CheckIn; date < booking.CheckOut; date = date.AddDays(1))
-            //    {
-            //        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = booking.RoomId, Date = date });
-            //    }                        
-            //}
-            //dbContext.SaveChanges();
-
-            #endregion
-
-
-
         }
     }
 }
