@@ -19,7 +19,7 @@ namespace ProjectAgileWeb7.Controllers
             _appContext = appContext;
         }
 
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> HotelPage(int id)
         {
             var hotel = await _appContext.Hotels
                 .Where(h => h.HotelId == id)
@@ -31,10 +31,13 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel[0]);
         }
 
-        public IActionResult BookRoom(RoomType roomType)
+        public async Task<IActionResult> BookRoom(RoomType roomType)
         {
-            ViewData["roomType"] = roomType;
-            return View();
+            var rooms = await _appContext.Rooms
+                .Where(t => t.RoomType == roomType)
+                .ToListAsync();
+
+            return View(rooms[0]);
         }
     }
 }
