@@ -13,9 +13,9 @@ else
     </div>
     <div class="d-flex big-container">
         <div class=" border border-light p-0 mt-4 mr-2  rounded filter-form">
-
-            <form asp-controller="Home" asp-action="Filter" method="post">
-                <p class="ml-3 mt-2 "><strong>Filter by</strong></p>
+            <button type="button" id="filter-button" class="btn btn-outline-success btn-block mb-1" data-toggle="collapse" data-target="#filter-form-id"><i class="fas fa-filter"></i> Filter hotels by</button>
+            <form id="filter-form-id" class="collapse" asp-controller="Home" asp-action="Filter" method="post">
+                <p id="filter-title" class="ml-3 mt-2"><strong>Filter hotels by</strong></p>
                 <div class="form-group ml-2">
                     <p class="ml-2">Facilities</p>
 

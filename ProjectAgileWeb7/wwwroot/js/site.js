@@ -7,7 +7,7 @@ $(window).on('resize', mobileSearchForm);
 $(window).on('load', mobileSearchForm);
 
 function mobileSearchForm() {
-    if ($(window).width() < 1000) {
+    if ($(window).width() < 990) {
         $('#heading').css('fontSize', '2rem');
         $('#search-btn').show();
         $('#search-form').addClass('collapse');
@@ -15,6 +15,9 @@ function mobileSearchForm() {
         $('.custom-file').addClass('p-3');
         $('.hide-icon').hide();
         $('#submit-btn').addClass('btn-block');
+        $('#filter-button').show();
+        $('#filter-form-id').addClass('collapse');
+        $('#filter-title').hide();
 
     }
     else {
@@ -25,6 +28,9 @@ function mobileSearchForm() {
         $('.custom-file').removeClass('p-3');
         $('.hide-icon').show();
         $('#submit-btn').removeClass('btn-block');
+        $('#filter-button').hide();
+        $('#filter-form-id').removeClass('collapse');
+        $('#filter-title').show();
     }
 }
 
@@ -55,6 +61,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#submit-btn').attr('disabled', true);
     $('#search-input').keyup(function () {
-        ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);        
+        ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
     })
 });
