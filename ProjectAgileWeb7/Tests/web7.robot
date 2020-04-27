@@ -7,7 +7,8 @@ Test Teardown   End Web Test
 
 
 *** Variables ***
-${BROWSER} =  chrome
+${BROWSER} =  chrome			options=add_argument("--ignore-certificate-errors")
+Open Browser                    about:blank  ${BROWSERS}    options=add_argument("--ignore-certificate-errors")
 ${URL} =     https://localhost:44364/
 
 
