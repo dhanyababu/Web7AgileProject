@@ -3,7 +3,7 @@
     height: 250px;
 }
 
-.filter-form {
+.filter-form, .weather-card {
     width: 25%;
 }
 
@@ -16,6 +16,10 @@
     .filter-form {
         margin-right: 0;
         width: 100%;
+    }
+
+    .weather-card {
+        width: 50%;
     }
 
     .filter-button {
@@ -38,5 +42,9 @@
     .hotel-image {
         width: 255px;
         height: 175px;
+    }
+
+    .weather-card {
+        width: 100%;
     }
 }

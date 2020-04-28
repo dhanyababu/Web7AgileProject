@@ -13,6 +13,53 @@
     }
 }
 
+<div>
+    <div class="card mb-4 border-0">
+        <h1 class="hotel-name ">
+            @Model.Name
+            <span class="float-right">
+                @for (var i = 0; i < Model.Stars; i++)
+                {
+                    <i class="fas fa-star text-warning "></i>
+                }
+            </span>
+        </h1>
+    </div>
+
+</div>
+
+
+<div class="card weather-card">
+    <input type="hidden" id="latitude" asp-for=@Model.Latitude />
+    <input type="hidden" id="longitude" asp-for=@Model.Longitude />
+
+    <div class="card-body pb-3">
+        <div class="mb-3">
+
+            <i class="fas fa-temperature-low fa-2x text-primary "></i>
+            <span id="location" class="card-title font-weight-bold h4 "></span>
+        </div>
+        <div>
+            <span id="today" class="card-text mr-2"></span>
+            <span id="time" class="card-text"></span>
+        </div>
+        <div id="temperature" class="display-3"></div>
+        <p id="weather"></p>
+        <div>
+            <span id="weather-icon" class="mr-2"></span>
+            <span class="text-capitalize" id="description"></span>
+
+
+        </div>
+        <div>
+            <span class="mr-2"><i class="fas fa-wind fa-2x text-info"></i></span>
+            <span id="wind"></span>
+            <span>m/h</span>
+        </div>
+
+    </div>
+
+</div>
 
 
 <div class="card-deck">
@@ -78,6 +125,7 @@
 </div>
 &nbsp;
 
+
 <div class="border p-3 mt-3">
     <table class="table table-striped">
         <thead>
@@ -107,4 +155,3 @@
         </thead>
     </table>
 </div>
-
