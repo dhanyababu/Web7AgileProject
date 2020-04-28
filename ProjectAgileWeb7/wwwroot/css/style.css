@@ -3,10 +3,24 @@
     height: 250px;
 }
 
-@media only screen and (max-width: 770px) {
+.filter-form {
+    width: 25%;
+}
 
-    .card-body {
+@media only screen and (max-width: 990px) {
+
+    .card-body, .big-container {
         flex-direction: column;
+    }
+
+    .filter-form {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .filter-button {
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 
     .hotel-image {

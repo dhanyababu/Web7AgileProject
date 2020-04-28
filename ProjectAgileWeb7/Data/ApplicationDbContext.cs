@@ -22,6 +22,8 @@ namespace ProjectAgileWeb7.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<HotelFacility> HotelFacilities { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<BookingPerDay> BookingPerDays { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +42,9 @@ namespace ProjectAgileWeb7.Data
             modelBuilder.Entity<Hotel>()
                 .HasMany(h => h.Rooms)
                 .WithOne(r => r.Hotel);
+
+            modelBuilder.Entity<HotelsViewModel>()
+                .HasNoKey();
         }
     }
 }

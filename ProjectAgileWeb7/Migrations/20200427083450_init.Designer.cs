@@ -10,7 +10,7 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200421194748_init")]
+    [Migration("20200427083450_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -248,11 +248,42 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("Booking");
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.BookingPerDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("BookingPerDays");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Facility", b =>
@@ -345,6 +376,21 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasIndex("FacilityId");
 
                     b.ToTable("HotelFacilities");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelsViewModel", b =>
+                {
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SearchKeyword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("HotelsViewModel");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
@@ -441,6 +487,21 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", null)
                         .WithMany("Bookings")
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.BookingPerDay", b =>
+                {
+                    b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Hotel", b =>
