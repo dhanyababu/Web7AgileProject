@@ -1,9 +1,18 @@
 ﻿@model ProjectAgileWeb7.Models.Room
-<partial name="_SearchPartial" , model="new HotelsViewModel { }" />
+
+@{
+    var user = ViewData["User"] as ApplicationUser;
+}
 
 <div class="card">
     <div class="card-header">
-        <h3>@Model.RoomType room</h3>
+            <h3 class="text-center">
+                @Model.Hotel.Name,<br />
+                @Model.RoomType room
+            </h3>
+            <div class="mr-2 text-center">
+                <img class="hotel-image" src=@Url.Content(@Model.Hotel.ImageUrl) />
+            </div>
     </div>
     <div class="card-body">
         <br />
@@ -14,5 +23,19 @@
             Number of beds: @Model.NumberOfBeds<br />
         </p>
         <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to homepage</a>
+    </div>
+    <div class="card-body">
+        <br />
+        <h5 class="card-title">
+            Step 1: Personal details
+        </h5>
+        <div class="card-body">
+            <h6 class="card-text font-weight-bold">Email:</h6>
+            <p class="card-text text-muted">Enter the booking persons email.</p>
+            <input asp-for="@user.Email" /><br />
+            <h6 class="card-text font-weight-bold">Phone number:</h6>
+            <p class="card-text text-muted">Add a phone number so we can contact you if necessary.</p>
+            <input asp-for="@user.PhoneNumber" /><br />
+        </div>
     </div>
 </div>

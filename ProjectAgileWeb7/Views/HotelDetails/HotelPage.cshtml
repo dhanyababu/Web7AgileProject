@@ -13,10 +13,9 @@
     }
 }
 
-
-
 <div class="card-deck">
     <div class="card mt-4">
+    <h1 class="text-center">@Model.Name</h1>
         <div class="card-body d-flex">
             <div class="m-auto img">
                 <!--Carousel Wrapper-->
@@ -100,7 +99,7 @@
                         @Model.Rooms.Where(t => t.RoomType == pair.Key).Count()
                     </td>
                     <td>
-                        <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" class="btn btn-success">Book</a>
+                        <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" asp-route-id="@Model.HotelId" class="btn btn-success">Book</a>
                     </td>
                 </tr>
             }
