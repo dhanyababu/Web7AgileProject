@@ -3,13 +3,21 @@
     height: 250px;
 }
 
-.filter-form, .weather-card {
+.filter-form {
     width: 25%;
+}
+
+.weather-card {
+    width: 20%
+}
+
+.carousel-container {
+    width: 80%;
 }
 
 @media only screen and (max-width: 990px) {
 
-    .card-body, .big-container {
+    .card-body, .big-container, .container-hotel {
         flex-direction: column;
     }
 
@@ -18,7 +26,13 @@
         width: 100%;
     }
 
+    .carousel-container {
+        width: 100%;
+        order: 2;
+    }
+
     .weather-card {
+        order: 1;
         width: 50%;
     }
 
