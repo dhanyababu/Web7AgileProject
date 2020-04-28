@@ -31,7 +31,12 @@ namespace ProjectAgileWeb7
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
             services.AddControllersWithViews();
+            services.AddScoped<ApplicationDbContext>();
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
@@ -51,6 +56,7 @@ namespace ProjectAgileWeb7
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

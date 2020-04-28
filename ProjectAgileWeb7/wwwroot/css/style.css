@@ -1,0 +1,42 @@
+﻿.hotel-image {
+    width: 350px;
+    height: 250px;
+}
+
+.filter-form {
+    width: 25%;
+}
+
+@media only screen and (max-width: 990px) {
+
+    .card-body, .big-container {
+        flex-direction: column;
+    }
+
+    .filter-form {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .filter-button {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .hotel-image {
+        width: 295px;
+        height: 205px;
+        margin-bottom: 5px;
+    }
+
+    .hotel-name, .display-4 {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 356px) {
+    .hotel-image {
+        width: 255px;
+        height: 175px;
+    }
+}
