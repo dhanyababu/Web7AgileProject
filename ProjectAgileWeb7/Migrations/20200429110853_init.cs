@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectAgileWeb7.Migrations
 {
-    public partial class BuildDB : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,6 +78,27 @@ namespace ProjectAgileWeb7.Migrations
                 },
                 constraints: table =>
                 {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(nullable: false),
+                    Method = table.Column<int>(nullable: false),
+                    CardNumber = table.Column<long>(nullable: false),
+                    CVV = table.Column<int>(nullable: false),
+                    CardHolderFirstName = table.Column<string>(nullable: true),
+                    CardHolderLastName = table.Column<string>(nullable: true),
+                    BankAndClearing = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -297,6 +318,8 @@ namespace ProjectAgileWeb7.Migrations
                     RoomId = table.Column<int>(nullable: false),
                     CheckIn = table.Column<DateTime>(nullable: false),
                     CheckOut = table.Column<DateTime>(nullable: false),
+                    PaymentId = table.Column<int>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -308,6 +331,12 @@ namespace ProjectAgileWeb7.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Payment_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "Payment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Bookings_Rooms_RoomId",
                         column: x => x.RoomId,
@@ -366,6 +395,11 @@ namespace ProjectAgileWeb7.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bookings_PaymentId",
+                table: "Bookings",
+                column: "PaymentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_RoomId",
                 table: "Bookings",
                 column: "RoomId");
@@ -417,6 +451,9 @@ namespace ProjectAgileWeb7.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Payment");
 
             migrationBuilder.DropTable(
                 name: "Rooms");

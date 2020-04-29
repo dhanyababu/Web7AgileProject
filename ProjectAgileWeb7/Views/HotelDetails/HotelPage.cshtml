@@ -124,7 +124,7 @@
                                 @Model.Rooms.Where(t => t.RoomType == pair.Key).Count()
                             </td>
                             <td>
-                                <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" class="btn btn-success">Book a room</a>
+                                <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" asp-route-id="@Model.HotelId" class="btn btn-success">Book a room</a>
                             </td>
                         </tr>
                     }

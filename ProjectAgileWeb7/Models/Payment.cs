@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
@@ -8,6 +9,7 @@ namespace ProjectAgileWeb7.Models
         public int Id { get; set; }
         public Status Status { get; set; }
         public DateTime Date { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Amount { get; set; }
         public PaymentMethod Method { get; set; }
         public long CardNumber { get; set; }
