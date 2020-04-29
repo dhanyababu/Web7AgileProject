@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,8 @@ namespace ProjectAgileWeb7.Controllers
 
         [BindProperty]
         public ApplicationUser CurrentUser { get; set; }
+        [BindProperty]
+        public Payment Payment { get; set; }
 
         public async Task<IActionResult> HotelPage(int id)
         {
@@ -45,6 +48,7 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel[0]);
         }
 
+        [Authorize]
         public async Task<IActionResult> BookRoom(RoomType roomType, int id)
         {
             var rooms = await _appContext.Rooms
@@ -53,7 +57,7 @@ namespace ProjectAgileWeb7.Controllers
 
             CurrentUser = await _userManager.GetUserAsync(User);
             if (CurrentUser != null)
-                ViewData["User"] = CurrentUser;
+                ViewBag.User = CurrentUser;
 
             return View(rooms[0]);
         }
