@@ -165,7 +165,9 @@ const getWeather = function () {
 
 
 $(document).ready(function () {
-    $('#submit-btn').attr('disabled', true);
+    if ($('#search-input').val().length == 0) {
+        $('#submit-btn').attr('disabled', true);
+    }
     $('#search-input').keyup(function () {
         ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
     });
