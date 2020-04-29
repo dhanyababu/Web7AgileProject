@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
 using System;
@@ -46,6 +48,17 @@ namespace ProjectAgileWeb7.Controllers
 
             hotelsViewModel.Hotels = GetHotelsBySearch(hotelsViewModel.SearchKeyword, hotelsViewModel.CheckIn, hotelsViewModel.CheckOut);
 
+            var myModel = new HotelsViewModel
+            {
+                SearchKeyword = hotelsViewModel.SearchKeyword,
+                CheckIn = hotelsViewModel.CheckIn,
+                CheckOut = hotelsViewModel.CheckOut
+            };
+            // HttpContext.Session.SetString("HotelModelView", JsonConvert.SerializeObject(myModel));
+            // HttpContext.Session.SetString("SearchWord", JsonConvert.SerializeObject(hotelsViewModel.SearchKeyword));
+            HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(hotelsViewModel.CheckIn));
+            HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(hotelsViewModel.CheckOut));
+
             FillingViewBags();
 
             return Filter(hotelsViewModel);
@@ -55,18 +68,18 @@ namespace ProjectAgileWeb7.Controllers
 
         [HttpPost]
         public IActionResult Filter(HotelsViewModel hotelsViewModel)
-        { 
-            var hotelList = hotelsViewModel.Hotels ?? GetHotelsBySearch(TempData["searchKeyword"]?.ToString(), Convert.ToDateTime(TempData["checkInDate"]?.ToString()), Convert.ToDateTime(TempData["checkOutDate"]?.ToString()));          
+        {
+            var hotelList = hotelsViewModel.Hotels ?? GetHotelsBySearch(TempData["searchKeyword"]?.ToString(), Convert.ToDateTime(TempData["checkInDate"]?.ToString()), Convert.ToDateTime(TempData["checkOutDate"]?.ToString()));
 
             var facilitiesList = hotelsViewModel.Facilities;
             var starList = hotelsViewModel.StarsList;
             var distanceList = hotelsViewModel.DistanceList;
 
             hotelsViewModel.Hotels = hotelList
-                .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
-                .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
-                .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
-                .ToList();
+      .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
+      .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
+      .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
+      .ToList();
 
             FillingViewBags();
 
@@ -107,7 +120,7 @@ namespace ProjectAgileWeb7.Controllers
                 hotelsViewModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
                       .Where(h => h.Name.Contains(searchKeyword)
                                || h.City.Contains(searchKeyword)).ToList();
-                                // Add more (ex: split search keyword)
+                // Add more (ex: split search keyword)
 
                 if (checkInDate != null && checkOutDate != null)
                 {

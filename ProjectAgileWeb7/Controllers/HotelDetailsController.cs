@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,6 +59,21 @@ namespace ProjectAgileWeb7.Controllers
             if (CurrentUser != null)
                 ViewBag.User = CurrentUser;
 
+            //var wordDeser = JsonConvert.DeserializeObject(HttpContext.Session.GetString("SearchWord"));
+            var checkInObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"));
+            var checkOutObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"));
+            //var myModel = JsonConvert.DeserializeObject(HttpContext.Session.GetString("HotelModelView"));
+            var checkInDate = Convert.ToDateTime(checkInObj);
+            var checkOutDate = Convert.ToDateTime(checkOutObj);
+            var daysRangeList = new List<DateTime>();
+
+
+            for (DateTime date = checkInDate; date < checkOutDate; date = date.AddDays(1))
+            {
+                daysRangeList.Add(date);
+            }
+
+            var gg = daysRangeList;
             return View(rooms[0]);
         }
     }
