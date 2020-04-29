@@ -83,12 +83,6 @@
                 <p class="card-body">
                     @Model.Description
 
-                    @{
-                        var imgUrl = "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/" + Model.Latitude + "," + Model.Longitude + "/15?mapsize=250,250&pp=" + Model.Latitude + "," + Model.Longitude + ";46;&key=AocUCPY9VNUqJ0iPkXIq8cOS63SAALaMk4SfzD6QVk_8IZH2vhfZePB8Tsg4zUsa";
-                        var bingUrl = "https://www.bing.com/maps/directions?cp=" + Model.Latitude + "~" + Model.Longitude + "&sty=r&lvl=16&rtp=~pos." + Model.Latitude + "_" + Model.Longitude + "____&amp;FORM=MBEDLD";
-                    }
-                    <a id="largeMapLink" target="_blank" href=@Url.Content(bingUrl) title="Get Directions"><img class="img m-lg-auto" src=@Url.Content(imgUrl) frameborder="0" scrolling="no" width="250" height="250" /></a>
-
                 </p>
                 <ul class="card-footer">
                     <h4>Services offered:</h4>&nbsp;
@@ -133,33 +127,52 @@
         </div>
 
     </div>
-    <div class="card weather-card mt-4">
-        <input type="hidden" id="latitude" asp-for=@Model.Latitude />
-        <input type="hidden" id="longitude" asp-for=@Model.Longitude />
 
-        <div class="card-body pb-3">
-            <div class="mb-3">
-                <i class="fas fa-temperature-low fa-2x text-primary "></i>
-                <span id="location" class="card-title font-weight-bold h4 "></span>
-            </div>
-            <div>
-                <span id="today" class="card-text mr-2"></span>
-                <span id="time" class="card-text"></span>
-            </div>
-            <div id="temperature" class="display-3"></div>
-            <p id="weather"></p>
-            <div>
-                <span id="weather-icon" class="mr-2"></span>
-                <span class="text-capitalize" id="description"></span>
-            </div>
-            <div>
-                <span class="mr-2"><i class="fas fa-wind fa-2x text-info"></i></span>
-                <span id="wind"></span>
-                <span>m/h</span>
+    <div class="side-bar-container ">
+
+        <div class="card weather-card">
+            <input type="hidden" id="latitude" asp-for=@Model.Latitude />
+            <input type="hidden" id="longitude" asp-for=@Model.Longitude />
+
+            <div class="card-body pb-3">
+                <div class="mb-3 text-center ">
+                    <i class="fas fa-temperature-low fa-2x text-primary "></i>
+                    <span id="location" class="card-title font-weight-bold h4 "></span>
+                </div>
+                <div>
+                    <span id="today" class="card-text mr-2"></span>
+                    <span id="time" class="card-text"></span>
+                </div>
+                <div id="temperature" class="display-3"></div>
+                <p id="weather"></p>
+                <div>
+                    <span id="weather-icon" class="mr-2"></span>
+                    <span class="text-capitalize" id="description"></span>
+                </div>
+                <div>
+                    <span class="mr-2"><i class="fas fa-wind fa-2x text-info"></i></span>
+                    <span id="wind"></span>
+                    <span>m/h</span>
+                </div>
+
             </div>
 
         </div>
+        <div class="card map-card text-center">
+            <div class="mb-3 mt-2 pt-3 ">
+                <i class="fas fa-map-marked-alt fa-2x text-primary"></i>
+                <span class="card-title font-weight-bold mt-2 h4">Map View</span>
+            </div>
+            <div class="mb-3">
 
+                @{
+                    var imgUrl = "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/" + Model.Latitude + "," + Model.Longitude + "/15?mapsize=225,225&pp=" + Model.Latitude + "," + Model.Longitude + ";46;&key=AocUCPY9VNUqJ0iPkXIq8cOS63SAALaMk4SfzD6QVk_8IZH2vhfZePB8Tsg4zUsa";
+                    var bingUrl = "https://www.bing.com/maps/directions?cp=" + Model.Latitude + "~" + Model.Longitude + "&sty=r&lvl=16&rtp=~pos." + Model.Latitude + "_" + Model.Longitude + "____&amp;FORM=MBEDLD";
+                }
+                <a id="largeMapLink" target="_blank" href=@Url.Content(bingUrl) title="Get Directions"><img class="img m-lg-auto" src=@Url.Content(imgUrl) frameborder="0" scrolling="no" /></a>
+
+            </div>
+        </div>
     </div>
 
 </div>
