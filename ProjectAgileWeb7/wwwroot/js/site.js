@@ -120,6 +120,25 @@ const getWeather = function () {
                     case 'Snow':
                         weatherIcon.innerHTML = '<i class="fas fa-snowflake fa-2x text-info"></i>';
                         break;
+                    case 'Drizzle':
+                        weatherIcon.innerHTML = '<i class="fas fa-cloud-sun-rain fa-2x text-secondary"></i>';
+                        break;
+                    case 'Mist':
+                        weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
+                        break;
+                    case 'Fog':
+                        weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
+                        break;
+                    case 'Haze':
+                        weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
+                        break;
+                    case 'Thunderstorm':
+                        weatherIcon.innerHTML = '<i class="fas fa-bolt fa-2x text-warning"></i>';
+                        break;
+                    case 'Tornado':
+                        weatherIcon.innerHTML = '<i class="fas fa-cloud-showers-heavy fa-2x text-info"></i>';
+                        break;
+
                     default:
                         weatherIcon.innerHTML = ' <i class="fas fa-cloud-sun fa-2x text-primary"></i>';
                 }

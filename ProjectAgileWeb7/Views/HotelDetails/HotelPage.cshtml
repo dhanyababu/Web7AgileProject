@@ -99,9 +99,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Room Type:</th>
-                        <th>Price per night:</th>
-                        <th>Rooms:</th>
+                        <th>Room type:</th>
+                        <th>Price/night:</th>
+                        <th>Available rooms:</th>
                         <th></th>
                     </tr>
                     @foreach (var pair in RoomPrices)
@@ -111,13 +111,13 @@
                                 @Html.DisplayFor(p => pair.Key)
                             </td>
                             <td>
-                                @Html.DisplayFor(p => pair.Value)
+                                @Html.DisplayFor(p => pair.Value) SEK
                             </td>
                             <td>
                                 @Model.Rooms.Where(t => t.RoomType == pair.Key).Count()
                             </td>
                             <td>
-                                <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" class="btn btn-success">Book</a>
+                                <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" class="btn btn-success">Book a room</a>
                             </td>
                         </tr>
                     }
@@ -132,7 +132,6 @@
 
         <div class="card-body pb-3">
             <div class="mb-3">
-
                 <i class="fas fa-temperature-low fa-2x text-primary "></i>
                 <span id="location" class="card-title font-weight-bold h4 "></span>
             </div>
@@ -145,8 +144,6 @@
             <div>
                 <span id="weather-icon" class="mr-2"></span>
                 <span class="text-capitalize" id="description"></span>
-
-
             </div>
             <div>
                 <span class="mr-2"><i class="fas fa-wind fa-2x text-info"></i></span>
