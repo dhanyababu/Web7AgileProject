@@ -82,6 +82,13 @@
                 </div>
                 <p class="card-body">
                     @Model.Description
+
+                    @{
+                        var imgUrl = "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/" + Model.Latitude + "," + Model.Longitude + "/15?mapsize=250,250&pp=" + Model.Latitude + "," + Model.Longitude + ";46;&key=AocUCPY9VNUqJ0iPkXIq8cOS63SAALaMk4SfzD6QVk_8IZH2vhfZePB8Tsg4zUsa";
+                        var bingUrl = "https://www.bing.com/maps/directions?cp=" + Model.Latitude + "~" + Model.Longitude + "&sty=r&lvl=16&rtp=~pos." + Model.Latitude + "_" + Model.Longitude + "____&amp;FORM=MBEDLD";
+                    }
+                    <a id="largeMapLink" target="_blank" href=@Url.Content(bingUrl) title="Get Directions"><img class="img m-lg-auto" src=@Url.Content(imgUrl) frameborder="0" scrolling="no" width="250" height="250" /></a>
+
                 </p>
                 <ul class="card-footer">
                     <h4>Services offered:</h4>&nbsp;
