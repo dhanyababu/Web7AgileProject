@@ -10,8 +10,8 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200427083450_init")]
-    partial class init
+    [Migration("20200429110943_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,12 +254,20 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("PaymentId");
 
                     b.HasIndex("RoomId");
 
@@ -393,6 +401,45 @@ namespace ProjectAgileWeb7.Migrations
                     b.ToTable("HotelsViewModel");
                 });
 
+            modelBuilder.Entity("ProjectAgileWeb7.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<string>("BankAndClearing")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CardHolderFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardHolderLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CardNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Method")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payment");
+                });
+
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -487,6 +534,12 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", null)
                         .WithMany("Bookings")
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("ProjectAgileWeb7.Models.Payment", "Payment")
+                        .WithMany()
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
                         .WithMany()
