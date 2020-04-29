@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
-    public enum PaymentMethod { Card, Cash, Other }
+    public enum CardType { Visa, MasterCard, AmericanExpress }
     public class Payment
     {
         public int Id { get; set; }
@@ -11,7 +11,7 @@ namespace ProjectAgileWeb7.Models
         public DateTime Date { get; set; }
         [Column(TypeName = "decimal(18,4)")]
         public decimal Amount { get; set; }
-        public PaymentMethod Method { get; set; }
+        public CardType Type { get; set; }
         public long CardNumber { get; set; }
         public int CVV { get; set; }
         public string CardHolderFirstName { get; set; }

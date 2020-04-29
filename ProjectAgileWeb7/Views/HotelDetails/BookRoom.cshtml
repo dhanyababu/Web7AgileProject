@@ -53,9 +53,9 @@
             Step 2: Payment details
         </h5>
         <div>
-            @foreach (var item in Enum.GetValues(typeof(PaymentMethod)))
+            @foreach (var item in Enum.GetValues(typeof(CardType)))
             {
-                @Html.RadioButtonFor(p => payment.Method, PaymentMethod.Card)
+                @Html.RadioButtonFor(p => payment.Type, @item)
 
                 <label>@item</label>
                 <br />
