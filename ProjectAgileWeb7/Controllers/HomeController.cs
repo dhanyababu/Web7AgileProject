@@ -33,15 +33,21 @@ namespace ProjectAgileWeb7.Controllers
                 .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
             };
 
+
+
             FillingViewBags();
+            HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(null));
+            HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(null));
 
             return View(hotelsViewModel);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public IActionResult Search(HotelsViewModel hotelsViewModel)
         {
+
+
             TempData["searchKeyword"] = hotelsViewModel.SearchKeyword;
             TempData["checkInDate"] = hotelsViewModel.CheckIn;
             TempData["checkOutDate"] = hotelsViewModel.CheckOut;

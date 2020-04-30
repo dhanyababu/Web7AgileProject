@@ -92,9 +92,16 @@
                     }
                 </ul>
             </div>
+
         </div>
         &nbsp;
+        @*<div>
+                @if (ViewBag.DataInfo.Count < 2)
+                {
+                    <p>In order to book a room you need to choose check-in and check-out  </p>
+                }
 
+            </div>*@
 
         <div class="border p-3 mt-3">
             <table class="table table-striped">
@@ -102,7 +109,7 @@
                     <tr>
                         <th>Room type:</th>
                         <th>Price/night:</th>
-                        <th>Available rooms:</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     @foreach (var pair in RoomPrices)
@@ -118,7 +125,22 @@
                                 @Model.Rooms.Where(t => t.RoomType == pair.Key).Count()
                             </td>
                             <td>
-                                <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" asp-route-id="@Model.HotelId" class="btn btn-success">Book a room</a>
+                                @if (ViewBag.DataInfo.Count < 2)
+                                {
+                                    <a asp-action="Index" asp-controller="Home" class="btn btn-success">Select dates</a>
+                                }
+                                else
+                                {
+
+                                    if (Model.Rooms.Where(t => t.RoomType == pair.Key).Count() == 0)
+                                    {
+                                        <p>No available rooms of this type</p>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="BookRoom" asp-controller="HotelDetails" asp-route-roomType="@pair.Key" asp-route-id="@Model.HotelId" class="btn btn-success">Book a room</a>
+                                    }
+                                }
                             </td>
                         </tr>
                     }
@@ -126,7 +148,22 @@
             </table>
         </div>
 
+
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="side-bar-container ">
 

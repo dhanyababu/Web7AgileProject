@@ -249,17 +249,24 @@ namespace ProjectAgileWeb7.Data
             #region For testing purposes only!!!
 
             // Delete when booking has been implemented.
+            var x = dbContext.BookingPerDays.ToList();
+            dbContext.BookingPerDays.RemoveRange(x);
+            dbContext.SaveChanges();
 
             if (!dbContext.BookingPerDays.Any())
             {
                 foreach (var room in dbContext.Rooms)
                 {
-                    if (room.HotelId == 1)
+                    if (room.HotelId == 1 && room.RoomId < 50)
                     {
                         dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = room.RoomId, Date = DateTime.Now.Date.AddDays(1) });
                     }
                 }
             }
+
+
+
+
             dbContext.SaveChanges();
 
             //foreach (var booking in dbContext.Bookings)
