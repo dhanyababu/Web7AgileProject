@@ -10,7 +10,7 @@ namespace ProjectAgileWeb7.Data
     {
         public static void Initialize(ApplicationDbContext dbContext)
         {
-            dbContext.Database.EnsureDeleted();
+            //dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
             try
             {
@@ -19,7 +19,7 @@ namespace ProjectAgileWeb7.Data
                     dbContext.Database.Migrate();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -73,6 +73,21 @@ namespace ProjectAgileWeb7.Data
                         Latitude="52.366983",
                         Longitude="4.898774",
                         ImageUrl="~/pictures/eden.jpg"
+                    },
+                     new Hotel
+                    {
+                        Name="Paris France Hotel",
+                        Website="https://www.paris-france-hotel.com/",
+                        Address="72 Rue De Turbigo",
+                        ZipCode="75003",
+                        City="Paris",
+                        Country="France",
+                        Description="Built in 1910 during the Belle Epoque period, this hotel is in a great location in central Paris, with easy access to the city’s tourist attractions.",
+                        Stars=3,
+                        DistanceFromCenter=3.1,
+                        Latitude="48.866954",
+                        Longitude="2.360468",
+                        ImageUrl="~/pictures/france.jpg"
                     }
                 };
 
@@ -195,7 +210,7 @@ namespace ProjectAgileWeb7.Data
                     HotelId=3,
                     FacilityId=6
                 },
-                 new HotelFacility
+                new HotelFacility
                 {
                     HotelId=3,
                     FacilityId=1
@@ -205,7 +220,7 @@ namespace ProjectAgileWeb7.Data
                     HotelId=3,
                     FacilityId=7
                 },
-                 new HotelFacility
+                new HotelFacility
                 {
                     HotelId=3,
                     FacilityId=4
@@ -214,12 +229,51 @@ namespace ProjectAgileWeb7.Data
                 {
                     HotelId=3,
                     FacilityId=3
+                },
+                new HotelFacility
+                {
+                    HotelId=4,
+                    FacilityId=1
                 }
                 };
 
                 dbContext.HotelFacilities.AddRange(hotelFacilities);
                 dbContext.SaveChanges();
             }
+
+
+
+
+
+
+            #region For testing purposes only!!!
+
+            // Delete when booking has been implemented.
+
+            if (!dbContext.BookingPerDays.Any())
+            {
+                foreach (var room in dbContext.Rooms)
+                {
+                    if (room.HotelId == 1)
+                    {
+                        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = room.RoomId, Date = DateTime.Now.Date.AddDays(1) });
+                    }
+                }
+            }
+            dbContext.SaveChanges();
+
+            //foreach (var booking in dbContext.Bookings)
+            //{
+            //    for (DateTime date = booking.CheckIn; date < booking.CheckOut; date = date.AddDays(1))
+            //    {
+            //        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = booking.RoomId, Date = date });
+            //    }                        
+            //}
+            //dbContext.SaveChanges();
+
+            #endregion
+
+
 
         }
     }
