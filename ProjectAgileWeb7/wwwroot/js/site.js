@@ -48,14 +48,14 @@ $(document).ready(function () {
             }
             $('#check-out').datepicker('option', 'minDate', date || 1);
         }
-    }).val('');
+    });
     $("#check-out").datepicker({
         showAnim: 'drop',
         numberOfMonths: 1,
         minDate: 1,
         maxDate: '+1Y',
         dateFormat: 'yy-MM-dd'
-    }).val('');
+    });
 });
 
 
