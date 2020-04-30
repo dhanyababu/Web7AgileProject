@@ -7,15 +7,48 @@
     width: 25%;
 }
 
-@media only screen and (max-width: 990px) {
+.side-bar-container {
+    margin-top: 24px;
+    display: block;
+    width: 25%
+}
 
-    .card-body, .big-container {
+.carousel-container {
+    width: 75%;
+}
+
+.weather-card, .map-card {
+    flex-direction: column;
+    width: 100%;
+}
+
+@media only screen and (max-width: 990px) {
+    .card-body, .big-container, .container-hotel {
         flex-direction: column;
     }
 
     .filter-form {
         margin-right: 0;
         width: 100%;
+    }
+
+
+    .weather-card, .map-card {
+        width: 50%;
+    }
+
+
+
+    .carousel-container {
+        width: 100%;
+        order: 2;
+    }
+
+    .side-bar-container {
+        display: flex;
+        order: 1;
+        width: 100%;
+        flex-direction: row;
     }
 
     .filter-button {
@@ -38,5 +71,21 @@
     .hotel-image {
         width: 255px;
         height: 175px;
+    }
+
+    /*.side-bar-container {
+        flex-direction: column;
+        width: 100%;
+    }*/
+}
+
+@media only screen and (max-width: 488px) {
+    .side-bar-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .weather-card, .map-card {
+        width: 100%;
     }
 }

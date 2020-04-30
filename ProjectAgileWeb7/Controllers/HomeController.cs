@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
 using System;
@@ -38,64 +40,51 @@ namespace ProjectAgileWeb7.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Search(HotelsViewModel hotelsVievModel)
+        public IActionResult Search(HotelsViewModel hotelsViewModel)
         {
-            DateTime checkIn = Convert.ToDateTime(hotelsVievModel.CheckIn);
-            DateTime checkOut = Convert.ToDateTime(hotelsVievModel.CheckOut);
+            TempData["searchKeyword"] = hotelsViewModel.SearchKeyword;
+            TempData["checkInDate"] = hotelsViewModel.CheckIn;
+            TempData["checkOutDate"] = hotelsViewModel.CheckOut;
 
-            hotelsVievModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
-                  .Where(h => h.City == hotelsVievModel.SearchKeyword
-                           || h.Name == hotelsVievModel.SearchKeyword
-                           || h.Name.Contains(hotelsVievModel.SearchKeyword)
-                           || h.City.Contains(hotelsVievModel.SearchKeyword))
-                           .ToList();
-            // Add more (ex: split search keyword)
-            TempData["searchKeyword"] = hotelsVievModel.SearchKeyword;
-            if (checkIn >= DateTime.Now.Date && checkOut >= DateTime.Now.Date)
+            hotelsViewModel.Hotels = GetHotelsBySearch(hotelsViewModel.SearchKeyword, hotelsViewModel.CheckIn, hotelsViewModel.CheckOut);
+
+            var myModel = new HotelsViewModel
             {
-                var stay = new List<DateTime>();
-                for (DateTime date = checkIn; date < checkOut; date = date.AddDays(1))
-                {
-                    stay.Add(date);
-                }
-
-                var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookingPerDays.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
-                var availableRooms = _appContext.Rooms.Except(unavailableRooms);
-                var availableHotels = availableRooms.Select(r => r.Hotel).Distinct().ToList();
-
-                hotelsVievModel.Hotels = hotelsVievModel.Hotels.Where(h1 => availableHotels.Any(h2 => h2.HotelId == h1.HotelId)).ToList();
-            }
+                SearchKeyword = hotelsViewModel.SearchKeyword,
+                CheckIn = hotelsViewModel.CheckIn,
+                CheckOut = hotelsViewModel.CheckOut
+            };
+            // HttpContext.Session.SetString("HotelModelView", JsonConvert.SerializeObject(myModel));
+            // HttpContext.Session.SetString("SearchWord", JsonConvert.SerializeObject(hotelsViewModel.SearchKeyword));
+            HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(hotelsViewModel.CheckIn));
+            HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(hotelsViewModel.CheckOut));
 
             FillingViewBags();
 
-            return View("Index", hotelsVievModel);
+            return Filter(hotelsViewModel);
         }
 
 
 
         [HttpPost]
-        public IActionResult Filter(HotelsViewModel hotelViewModel)
+        public IActionResult Filter(HotelsViewModel hotelsViewModel)
         {
-            var searchKeyword = TempData["searchKeyword"]?.ToString();
-            var hotelList = GetHotelsBySearch(searchKeyword);
-            var facilitiesList = hotelViewModel.Facilities;
-            var starList = hotelViewModel.StarsList;
-            var distanceList = hotelViewModel.DistanceList;
+            var hotelList = hotelsViewModel.Hotels ?? GetHotelsBySearch(TempData["searchKeyword"]?.ToString(), Convert.ToDateTime(TempData["checkInDate"]?.ToString()), Convert.ToDateTime(TempData["checkOutDate"]?.ToString()));
 
-            hotelViewModel.Hotels = hotelList
-                .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
-                .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
-                .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
-                .ToList();
+            var facilitiesList = hotelsViewModel.Facilities;
+            var starList = hotelsViewModel.StarsList;
+            var distanceList = hotelsViewModel.DistanceList;
 
+            hotelsViewModel.Hotels = hotelList
+      .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
+      .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
+      .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
+      .ToList();
 
             FillingViewBags();
 
-            return View("Index", hotelViewModel);
+            return View("Index", hotelsViewModel);
         }
-
-
-
 
         //public IActionResult Privacy()
         //{
@@ -111,26 +100,44 @@ namespace ProjectAgileWeb7.Controllers
         private void FillingViewBags()
         {
             ViewBag.Facilities = _appContext.Hotels
-                                             .Include(h => h.Rooms)
-                                             .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
-                                             .SelectMany(x => x.HotelFacilities.Select(y => y.Facility))
-                                              .Distinct().ToList();
+                .Include(h => h.Rooms)
+                .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
+                .SelectMany(x => x.HotelFacilities.Select(y => y.Facility))
+                .Distinct().ToList();
 
             ViewBag.Stars = _appContext.Hotels
-                       .Select(h => h.Stars)
-                       .OrderByDescending(s => s)
-                       .Distinct()
-                       .ToList();
+                .Select(h => h.Stars)
+                .OrderByDescending(s => s)
+                .Distinct()
+                .ToList();
         }
 
-        private IEnumerable<Hotel> GetHotelsBySearch(string searchKeyword)
+        private IEnumerable<Hotel> GetHotelsBySearch(string searchKeyword, DateTime checkInDate, DateTime checkOutDate)
         {
             if (searchKeyword != null)
             {
-                return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
-                .Where(h => h.Name.Contains(searchKeyword)
-                         || h.City.Contains(searchKeyword))
-                         .ToList();
+                var hotelsViewModel = new HotelsViewModel();
+                hotelsViewModel.Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
+                      .Where(h => h.Name.Contains(searchKeyword)
+                               || h.City.Contains(searchKeyword)).ToList();
+                // Add more (ex: split search keyword)
+
+                if (checkInDate != null && checkOutDate != null)
+                {
+                    var stay = new List<DateTime>();
+                    for (DateTime date = checkInDate; date < checkOutDate; date = date.AddDays(1))
+                    {
+                        stay.Add(date);
+                    }
+
+                    var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookingPerDays.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
+                    var availableRooms = _appContext.Rooms.Except(unavailableRooms);
+                    var availableHotels = availableRooms.Select(r => r.Hotel).Distinct().ToList();
+
+                    hotelsViewModel.Hotels = hotelsViewModel.Hotels.Where(h1 => availableHotels.Any(h2 => h2.HotelId == h1.HotelId)).ToList();
+                }
+
+                return hotelsViewModel.Hotels;
             }
             else
             {
