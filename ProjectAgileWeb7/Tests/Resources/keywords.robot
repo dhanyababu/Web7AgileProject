@@ -207,9 +207,9 @@ Login with new password
         Wait Until Page Contains            Log in                                   timeout=10
         Wait Until Page Contains            Email                                    timeout=10
         Wait Until Element Is Visible       id:Input_Email                           timeout=10
-        Input Text                          id:Input_Email                           dhanyaeuro@gmail.com
+        Input Text                          id:Input_Email                           testaccount@gmail.com
         Wait Until Element Is Visible       id:Input_Password                        timeout=10
-        Input Text                          id:Input_Password                        Abcd123$
+        Input Text                          id:Input_Password                        Test123$
         Click Element                       xpath://*[@id="account"]/div[5]/button
         Wait Until Page Contains            Hello                                    timeout=10
 
@@ -223,12 +223,11 @@ Verify invalid current password
         Wait Until Element Is Visible       id:Input_ConfirmPassword                timeout=10
         Input Text                          id:Input_ConfirmPassword                Abcd123$
         Click Element                       xpath://*[@id="change-password-form"]/button
-        ${link_invalid_pwd}=                Get Text                               xpath://*[@id="change-password-form"]/div[1]/ul/li
-        Should Be Equal                     ${link_invalid_pwd}                    Incorrect password.
+        Wait Until Page contains             Incorrect password.                    timeout=10
 
 
 Verify invalid confirm password
-        Input Text                          id:Input_OldPassword                   Abcd123$
+        Input Text                          id:Input_OldPassword                   Test123$
         Input Text                          id:Input_NewPassword                   Pqrs123$
         Input Text                          id:Input_ConfirmPassword               Pqrs123
         Click Element                       xpath://*[@id="change-password-form"]/button
@@ -237,7 +236,7 @@ Verify invalid confirm password
 
 
 Verify invalid new password
-        Input Text                          id:Input_OldPassword                   Abcd123$
+        Input Text                          id:Input_OldPassword                   Test123$
         Input Text                          id:Input_NewPassword                   Pqrs
         Click Element                       id:Input_ConfirmPassword
         ${link_invalid_new_pwd}=            Get Text                               id:Input_NewPassword-error
