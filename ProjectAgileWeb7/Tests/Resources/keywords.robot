@@ -31,17 +31,18 @@ Goto register
 
 
 Input valid emailid
-        Wait Until Element Is Visible       id:Input_Email                                timeout=10
+        Wait Until Page Contains            Create a new account                          timeout=10
+        Wait Until Page Contains Element    id:Input_Email                                timeout=10
         Input Text                          id:Input_Email                                dhanyaeuro@gmail.com
 
 
 Input password
-        Wait Until Element Is Visible       id:Input_Password                             timeout=10
+        Wait Until Page Contains Element    id:Input_Password                             timeout=10
         Input Text                          id:Input_Password                             Pqrs123$
 
 
 Input confirm password
-        Wait Until Element Is Visible       id:Input_ConfirmPassword                      timeout=10
+        Wait Until Page Contains Element    id:Input_ConfirmPassword                      timeout=10
         Input Text                          id:Input_ConfirmPassword                      Pqrs123$
 
 
@@ -109,24 +110,25 @@ Goto Email
 Input invalid emailid
         Input Text                           id:Input_Email                  abcd
         Click Element                        id:Input_Password
-        Wait Until Element Is Visible        id:Input_Email-error                                   timeout=10
+        Wait Until Element Is Visible        id:Input_Email-error            timeout=10
         ${link_email_error} =                Get Text                        id:Input_Email-error
-        Should Be Equal                      ${link_email_error}              The Email field is not a valid e-mail address.
+        Should Be Equal                      ${link_email_error}             The Email field is not a valid e-mail address.
 
 
 Input invalid password
-        Input Text                           id:Input_Password                  abcd
+        Wait Until Page Contains Element     id:Input_Password                timeout=10
+        Input Text                           id:Input_Password                abcd
         Click Element                        id:Input_ConfirmPassword
-        Wait Until Element Is Visible        id:Input_Password-error                                   timeout=10
-        ${link_pwd_error} =                  Get Text                          id:Input_Password-error
-        Should Be Equal                      ${link_pwd_error}                 The Password must be at least 6 and at max 100 characters long.
+        Wait Until Element Is Visible        id:Input_Password-error          timeout=10
+        ${link_pwd_error} =                  Get Text                         id:Input_Password-error
+        Should Be Equal                      ${link_pwd_error}                The Password must be at least 6 and at max 100 characters long.
 
 
 Verify confirm password
-        Input Text                           id:Input_Password                   abcdefg
-        Input Text                           id:Input_ConfirmPassword            abcd
+        Input Text                           id:Input_Password                 abcdefg
+        Input Text                           id:Input_ConfirmPassword          abcd
         Click Element                        xpath:/html/body/div/main/div/div[1]/form/button
-        Wait Until Element Is Visible        id:Input_ConfirmPassword-error                             timeout=10
+        Wait Until Element Is Visible        id:Input_ConfirmPassword-error      timeout=10
         ${link_pwd_mismatch} =               Get Text                            id:Input_ConfirmPassword-error
         Should Be Equal                      ${link_pwd_mismatch}                The password and confirmation password do not match.
 
@@ -174,28 +176,32 @@ Goto password
 
 Change password
         Wait Until Page Contains             Change password                        timeout=10
-        Wait Until Element Is Visible        id:Input_OldPassword                   timeout=10
+        Wait Until Page Contains Element     id:Input_OldPassword                   timeout=10
+        Wait Until Page Contains             Current password                       timeout=10
         Input Text                           id:Input_OldPassword                   Pqrs123$
-        Wait Until Element Is Visible        id:Input_NewPassword                   timeout=10
+        Wait Until Page Contains Element     id:Input_NewPassword                   timeout=10
+        Wait Until Page Contains             New password                           timeout=10
         Input Text                           id:Input_NewPassword                   Abcd123$
-        Wait Until Element Is Visible        id:Input_ConfirmPassword               timeout=10
+        Wait Until Page Contains Element     id:Input_ConfirmPassword               timeout=10
+        Wait Until Page Contains             Confirm new password                   timeout=10
         Input Text                           id:Input_ConfirmPassword               Abcd123$
         Click Element                        xpath://*[@id="change-password-form"]/button
         Wait Until Page Contains             Your password has been changed.         timeout=10
         Wait Until Page Contains             Logout                                  timeout=10
-        Click Button                         xpath: //*[contains(text(), "Logout")]
+        Wait Until Page Contains Element     xpath: //*[contains(text(), "Logout")]   timeout=10
+        Click Element                        xpath: //*[contains(text(), "Logout")]
         Sleep                                5
         Wait Until Page Contains             Find your dream destination             timeout=10
 
 
 Verify change password
-        Wait Until Element Is Visible       xpath:/html/body/header/nav/div/div/ul[1]/li[2]     timeout=10
+        Wait Until Page Contains Element    xpath:/html/body/header/nav/div/div/ul[1]/li[2]     timeout=10
         Click Element                       xpath: //*[contains(text(), "Login")]
         Wait Until Page Contains            Log in                                   timeout=10
         Wait Until Page Contains            Email                                    timeout=10
-        Wait Until Element Is Visible       id:Input_Email                           timeout=10
+        Wait Until Page Contains Element    id:Input_Email                           timeout=10
         Input Text                          id:Input_Email                           dhanyaeuro@gmail.com
-        Wait Until Element Is Visible       id:Input_Password                        timeout=10
+        Wait Until Page Contains Element    id:Input_Password                        timeout=10
         Input Text                          id:Input_Password                        Abcd123$
         Click Element                       xpath://*[@id="account"]/div[5]/button
         Wait Until Page Contains            Hello                                    timeout=10
@@ -206,9 +212,9 @@ Verify change password
 Login with new password
         Wait Until Page Contains            Log in                                   timeout=10
         Wait Until Page Contains            Email                                    timeout=10
-        Wait Until Element Is Visible       id:Input_Email                           timeout=10
+        Wait Until Page Contains Element    id:Input_Email                           timeout=10
         Input Text                          id:Input_Email                           testaccount@gmail.com
-        Wait Until Element Is Visible       id:Input_Password                        timeout=10
+        Wait Until Page Contains Element    id:Input_Password                        timeout=10
         Input Text                          id:Input_Password                        Test123$
         Click Element                       xpath://*[@id="account"]/div[5]/button
         Wait Until Page Contains            Hello                                    timeout=10
@@ -216,17 +222,18 @@ Login with new password
 
 Verify invalid current password
         Wait Until Page Contains             Change password                        timeout=10
-        Wait Until Element Is Visible       id:Input_OldPassword                    timeout=10
+        Wait Until Page Contains Element    id:Input_OldPassword                    timeout=10
         Input Text                          id:Input_OldPassword                    Pqrs123$
-        Wait Until Element Is Visible       id:Input_NewPassword                    timeout=10
+        Wait Until Page Contains Element    id:Input_NewPassword                    timeout=10
         Input Text                          id:Input_NewPassword                    Abcd123$
-        Wait Until Element Is Visible       id:Input_ConfirmPassword                timeout=10
+        Wait Until Page Contains Element    id:Input_ConfirmPassword                timeout=10
         Input Text                          id:Input_ConfirmPassword                Abcd123$
         Click Element                       xpath://*[@id="change-password-form"]/button
         Wait Until Page contains             Incorrect password.                    timeout=10
 
 
 Verify invalid confirm password
+        Wait Until Page Contains Element    id:Input_OldPassword                   timeout=10
         Input Text                          id:Input_OldPassword                   Test123$
         Input Text                          id:Input_NewPassword                   Pqrs123$
         Input Text                          id:Input_ConfirmPassword               Pqrs123
@@ -236,6 +243,7 @@ Verify invalid confirm password
 
 
 Verify invalid new password
+        Wait Until Page Contains Element    id:Input_OldPassword                   timeout=10
         Input Text                          id:Input_OldPassword                   Test123$
         Input Text                          id:Input_NewPassword                   Pqrs
         Click Element                       id:Input_ConfirmPassword
@@ -244,7 +252,7 @@ Verify invalid new password
 
 
 Goto Login
-        Wait Until Element Is Visible       xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a         timeout=10
+        Wait Until Page Contains Element    xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a         timeout=10
         Click Element                       xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a
         Wait Until Page Contains            Log in                                                  timeout=10
 
