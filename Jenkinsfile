@@ -1,7 +1,6 @@
 pipeline {
-
     agent any
-
+    stages {
         stage('Restore Packages') {
                 steps {
                     bat "dotnet restore"
@@ -13,9 +12,9 @@ pipeline {
                 }
         }
         stage('Pack') {
-           	    steps {
+           steps {
             	    bat 'dotnet pack --no-build --output nupkgs'
-           	    }
+           	 }
         }
         stage('Run') {
                 steps {
