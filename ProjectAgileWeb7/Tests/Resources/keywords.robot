@@ -5,7 +5,7 @@ Library                                     DateTime
 
 *** Keywords ***
 Open Browser To Start Page
-        Open Browser                        about:blank                                 ${BROWSER}
+        Open Browser                        about:blank                                 ${BROWSER}        options=add_argument("--ignore-certificate-errors")
         Maximize Browser Window
         Go To                                                                           ${URL}
 
