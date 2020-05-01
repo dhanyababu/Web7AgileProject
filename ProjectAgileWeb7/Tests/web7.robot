@@ -7,7 +7,7 @@ Test Teardown   End Web Test
 
 
 *** Variables ***
-${BROWSER} =  chrome			
+${BROWSER} =  chrome
 ${URL} =     https://localhost:44364/
 
 
@@ -40,26 +40,6 @@ Valid Registration
     Enter city
     Enter Country
     Save details
-    Goto personal details
-    Delete user
-
-Change User Email in Manage Account
-    [Documentation]             Test to verify that registration profile contains change email via verification message
-    ...                         send to the current email
-    [Tags]                      Test WEB7-133
-    Goto register
-    Input valid emailid
-    Input password
-    Input confirm password
-    Submit register
-    Welcome user
-    Goto registration form
-    Goto Email
-    Verify email displayed in verification
-    Enter new email
-    Send verification email
-    Goto personal details
-    Delete user
 
 
 Registration with Invalid data
@@ -78,20 +58,30 @@ Registration with Invalid data
     Register with empty confirm password
 
 
-Change Password in User Profile
+Change Password with valid data
     [Documentation]             Test to verify that registrered user is able to change current password to new password in user profile
     [Tags]                      Test WEB7-135
-    Goto register
-    Input valid emailid
-    Input password
-    Input confirm password
-    Submit register
-    Welcome user
+    Goto Login
+    Login with valid deatils
     Goto registration form
     Goto password
     Change password
     Verify change password
 
+
+Change Password with invalid data
+    [Documentation]             Test to verify that registrered user is able to change current password to new password
+    ...                         by entering invalid current password and invalid new password and confirm with invalid password
+    [Tags]                      Test WEB7-135.1
+    Goto Login
+    Login with new password
+    Goto registration form
+    Goto password
+    Verify invalid current password
+    Goto password
+    Verify invalid confirm password
+    Goto password
+    Verify invalid new password
 
 
 Verify Register as a new user link
