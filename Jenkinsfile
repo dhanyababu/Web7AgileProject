@@ -25,7 +25,7 @@ pipeline {
         stage('Robot') {
             steps {
                 sleep 10
-		bat 'robot  ProjectAgileWeb7/Tests/WEB7-35-GoogleMap.robot'
+		bat 'robot  ProjectAgileWeb7/Tests/web7.robot'
                
             }
            
