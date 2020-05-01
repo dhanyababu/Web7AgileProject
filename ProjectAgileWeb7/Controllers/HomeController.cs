@@ -43,7 +43,7 @@ namespace ProjectAgileWeb7.Controllers
         }
 
         [HttpPost]
-
+        [AutoValidateAntiforgeryToken]
         public IActionResult Search(HotelsViewModel hotelsViewModel)
         {
 

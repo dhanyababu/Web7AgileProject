@@ -1,0 +1,56 @@
+﻿@model ProjectAgileWeb7.Models.Payment
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<form asp-controller="HotelDetails" asp-action="Checkout" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                Step 2: Payment details
+            </h5><br />
+            <h6 class="card-text font-weight-bold">Select your payment method:</h6>
+            <div>
+                @foreach (var item in Enum.GetValues(typeof(CardType)))
+                {
+                    @Html.RadioButtonFor(p => Model.Type, @item)
+
+                    <label>@item</label>
+                    <br />
+                }
+                <span asp-validation-for="@Model.Type" class="text-danger"></span><br /><br />
+
+                <h6 class="card-text font-weight-bold">First name:</h6>
+                <p class="card-text text-muted">Enter the <span class="font-weight-bold">first</span> name that's written on the card.</p>
+                <input asp-for="@Model.CardHolderFirstName" />
+                <span asp-validation-for="@Model.CardHolderFirstName" class="text-danger"></span><br /><br />
+
+                <h6 class="card-text font-weight-bold">Last name:</h6>
+                <p class="card-text text-muted">Enter the <span class="font-weight-bold">last</span> name that's written on the card.</p>
+                <input asp-for="@Model.CardHolderLastName" />
+                <span asp-validation-for="@Model.CardHolderLastName" class="text-danger"></span><br /><br />
+
+                <h6 class="card-text font-weight-bold">Card number:</h6>
+                <p class="card-text text-muted">Enter the card number</p>
+                <input asp-for="@Model.CardNumber" />
+                <span asp-validation-for="@Model.CardNumber" class="text-danger"></span><br /><br />
+
+                <h6 class="card-text font-weight-bold">CVV:</h6>
+                <p class="card-text text-muted">Enter the Card Verification Value number</p>
+                <input asp-for="@Model.CVV" />
+                <span asp-validation-for="@Model.CVV" class="text-danger"></span><br />
+                <a href="https://www.cvvnumber.com/cvv.html" target="_blank" class="text-muted font-weight-light">What is my CVV code?</a><br /><br /><br />
+
+                <button type="submit" class="btn btn-success" id="submit-btn">Confirm booking</button>
+                <a asp-action="BookingConfirmation" asp-controller="HotelDetailsController" class="btn btn-danger">Cancel booking</a>
+            </div>
+            <br />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

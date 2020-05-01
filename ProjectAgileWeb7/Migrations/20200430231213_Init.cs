@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectAgileWeb7.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,12 +88,12 @@ namespace ProjectAgileWeb7.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<decimal>(nullable: false),
-                    Method = table.Column<int>(nullable: false),
-                    CardNumber = table.Column<long>(nullable: false),
-                    CVV = table.Column<int>(nullable: false),
-                    CardHolderFirstName = table.Column<string>(nullable: true),
-                    CardHolderLastName = table.Column<string>(nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    Type = table.Column<int>(nullable: false),
+                    CardNumber = table.Column<string>(maxLength: 16, nullable: false),
+                    CVV = table.Column<string>(maxLength: 3, nullable: false),
+                    CardHolderFirstName = table.Column<string>(nullable: false),
+                    CardHolderLastName = table.Column<string>(nullable: false),
                     BankAndClearing = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
