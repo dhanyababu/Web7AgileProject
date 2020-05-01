@@ -5,7 +5,7 @@ Library                                     DateTime
 
 *** Keywords ***
 Open Browser To Start Page
-        Open Browser                        about:blank                                 ${BROWSER}        options=add_argument("--ignore-certificate-errors")
+        Open Browser                        about:blank                                 ${BROWSER}      options=add_argument("--ignore-certificate-errors")
         Maximize Browser Window
         Go To                                                                           ${URL}
 
@@ -169,6 +169,7 @@ Goto password
 
 
 Change password
+        Wait Until Page Contains             Change password                        timeout=10
         Wait Until Element Is Visible        id:Input_OldPassword                   timeout=10
         Input Text                           id:Input_OldPassword                   Pqrs123$
         Wait Until Element Is Visible        id:Input_NewPassword                   timeout=10
@@ -177,7 +178,7 @@ Change password
         Input Text                           id:Input_ConfirmPassword               Abcd123$
         Click Element                        xpath://*[@id="change-password-form"]/button
         Wait Until Page Contains             Your password has been changed.         timeout=10
-        Wait Until Element Is Visible        css:li.nav-item form.form-inline button     timeout=10
+        Wait Until Page Contains             Logout                                  timeout=10
         Click Button                         xpath: //*[contains(text(), "Logout")]
         Sleep                                5
         Wait Until Page Contains             Find your dream destination             timeout=10
@@ -187,6 +188,7 @@ Verify change password
         Wait Until Element Is Visible       xpath:/html/body/header/nav/div/div/ul[1]/li[2]     timeout=10
         Click Element                       xpath: //*[contains(text(), "Login")]
         Wait Until Page Contains            Log in                                   timeout=10
+        Wait Until Page Contains            Email                                    timeout=10
         Wait Until Element Is Visible       id:Input_Email                           timeout=10
         Input Text                          id:Input_Email                           dhanyaeuro@gmail.com
         Wait Until Element Is Visible       id:Input_Password                        timeout=10
@@ -198,6 +200,8 @@ Verify change password
 
 
 Login with new password
+        Wait Until Page Contains            Log in                                   timeout=10
+        Wait Until Page Contains            Email                                    timeout=10
         Wait Until Element Is Visible       id:Input_Email                           timeout=10
         Input Text                          id:Input_Email                           dhanyaeuro@gmail.com
         Wait Until Element Is Visible       id:Input_Password                        timeout=10
@@ -207,11 +211,15 @@ Login with new password
 
 
 Verify invalid current password
+        Wait Until Page Contains             Change password                        timeout=10
+        Wait Until Element Is Visible       id:Input_OldPassword                    timeout=10
         Input Text                          id:Input_OldPassword                    Pqrs123$
+        Wait Until Element Is Visible       id:Input_NewPassword                    timeout=10
         Input Text                          id:Input_NewPassword                    Abcd123$
+        Wait Until Element Is Visible       id:Input_ConfirmPassword                timeout=10
         Input Text                          id:Input_ConfirmPassword                Abcd123$
         Click Element                       xpath://*[@id="change-password-form"]/button
-        ${link_invalid_pwd}=                Get Text                               xpath://*[@id="change-password-form"]/div[1]
+        ${link_invalid_pwd}=                Get Text                               xpath://*[@id="change-password-form"]/div[1]/ul/li
         Should Be Equal                     ${link_invalid_pwd}                    Incorrect password.
 
 
