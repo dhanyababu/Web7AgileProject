@@ -26,18 +26,22 @@ Displayed login
 
 
 Goto register
-        Click Element                        xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a
+        Click Element                       xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a
+        Wait Until Page Contains            Register                                        timeout=10
 
 
 Input valid emailid
+        Wait Until Element Is Visible       id:Input_Email                                timeout=10
         Input Text                          id:Input_Email                                dhanyaeuro@gmail.com
 
 
 Input password
+        Wait Until Element Is Visible       id:Input_Password                             timeout=10
         Input Text                          id:Input_Password                             Pqrs123$
 
 
 Input confirm password
+        Wait Until Element Is Visible       id:Input_ConfirmPassword                      timeout=10
         Input Text                          id:Input_ConfirmPassword                      Pqrs123$
 
 
@@ -56,7 +60,7 @@ Goto registration form
 
 Goto Profile details
         Click Element                       xpath:/html/body/div/main/div/div/div[1]/ul/li[1]
-        Wait Until Page Contains            Profile
+        Wait Until Page Contains            Profile                         timeout=10
 
 
 Verify displayed user email
