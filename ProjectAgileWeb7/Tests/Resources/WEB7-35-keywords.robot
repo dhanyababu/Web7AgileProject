@@ -22,7 +22,7 @@ Goto hotel details
 
 
 Googlemap image is displayed
-        Wait Until Page Contains Element        id:largeMapLink
+        Wait Until Page Contains Element        id:largeMapLink						 timeout=10
         Element Should Be Visible               css:div.mb-3 a#largeMapLink img
 
 
