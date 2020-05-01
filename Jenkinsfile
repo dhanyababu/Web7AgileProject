@@ -5,6 +5,8 @@ pipeline {
         stage('Checkout') {
                 steps {
                     git branch: 'DhanyaTest', url: 'https://github.com/dhanyababu/Web7AgileProject.git'
+			bat 'git config user.name 'dhanyababu''
+      			bat 'git config user.email 'Agileproject7''
                 }
         }
         stage('Restore Packages') {
