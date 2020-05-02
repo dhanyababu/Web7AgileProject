@@ -79,6 +79,11 @@ namespace ProjectAgileWeb7
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapFallbackToController(
+                    action: "Index",
+                    controller: "Home"
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
