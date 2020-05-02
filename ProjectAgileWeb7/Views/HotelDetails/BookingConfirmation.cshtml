@@ -1,7 +1,20 @@
-﻿
-@{
-    ViewData["Title"] = "BookingConfirmation";
-}
+﻿@model ProjectAgileWeb7.Models.Room
 
-<h1>BookingConfirmation</h1>
 
+<h1>Booking confirmation</h1>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Congratulations!</h4>
+        <div class="h5">
+            <br />
+            <p> You booked 1 @Model.RoomType room for @((ViewBag.DataInfo as List<DateTime>).Count()-1) nights at the hotel @Model.Hotel.Name in @Model.Hotel.City, @Model.Hotel.Country.</p>
+
+            <p>Your staying is between @((ViewBag.DataInfo as List<DateTime>).First().ToString("dddd, dd MMMM yyyy")) and @((ViewBag.DataInfo as List<DateTime>).Last().ToString("dddd, dd MMMM yyyy")).</p>
+            <br />
+            <p> The check-in is at 14:00 and the check-out at 11:00. For more details or additional questions contact us at team7@contact.com.</p>
+            <p> Have a nice staying!</p>
+        </div>
+        <br />
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to homepage</a>
+    </div>
+</div>

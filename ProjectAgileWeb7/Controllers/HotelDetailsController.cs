@@ -105,7 +105,7 @@ namespace ProjectAgileWeb7.Controllers
             var roomBooked = _appContext.Rooms
                             .Where(r => r.RoomId == id)
                             .Include(r => r.Hotel)
-                            .ToList();
+                            .FirstOrDefault();
 
             List<DateTime> daysRangeList = GetStayingDaysRangeList();
             var newBookedDaysList = new List<BookingPerDay>();
