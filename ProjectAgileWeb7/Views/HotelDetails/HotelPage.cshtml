@@ -2,6 +2,7 @@
 <partial name="_SearchPartial" , model="new HotelsViewModel { }" />
 
 @{
+    var imageUrl = Model.ImageUrl;
     var RoomPrices = new Dictionary<RoomType, decimal>();
 
     foreach (var item in Model.Rooms)
@@ -40,16 +41,20 @@
                             <!--Slides-->
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(88).jpg"
+                                    <img class="d-block w-100" id="hotelSlideImage" src="@Url.Content(Model.ImageUrl)"
                                          alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(121).jpg"
+                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(88).jpg"
                                          alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(31).jpg"
+                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(121).jpg"
                                          alt="Third slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(31).jpg"
+                                         alt="Fourth slide">
                                 </div>
                             </div>
                             <!--/.Slides-->
