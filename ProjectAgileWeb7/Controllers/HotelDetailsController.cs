@@ -97,6 +97,37 @@ namespace ProjectAgileWeb7.Controllers
             }
 
         }
+
+
+        [Authorize]
+        public IActionResult BookingConfirmation(int id)
+        {
+            var roomBooked = _appContext.Rooms
+                            .Where(r => r.RoomId == id)
+                            .Include(r => r.Hotel)
+                            .ToList();
+
+            List<DateTime> daysRangeList = GetStayingDaysRangeList();
+            var newBookedDaysList = new List<BookingPerDay>();
+            foreach (var day in daysRangeList)
+            {
+                var newBookingPerDay = new BookingPerDay()
+                {
+                    RoomId = id,
+                    Date = day
+                };
+                newBookedDaysList.Add(newBookingPerDay);
+            }
+
+            _appContext.BookingPerDays.AddRange(newBookedDaysList);
+            _appContext.SaveChanges();
+
+            ViewBag.DataInfo = daysRangeList;
+
+            return View(roomBooked);
+        }
+
+
         private List<DateTime> GetStayingDaysRangeList()
         {
             var checkInObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"));

@@ -20,7 +20,7 @@
         <h5 class="card-title">@Model.RoomDescription</h5>
         <p class="card-text">
             Price per night: @Model.RoomPrice.ToString("F")<br />
-            Capacity: @Model.Capacity<br />
+            Capacity: @Model.Capacity persons<br />
             Number of beds: @Model.NumberOfBeds<br />
         </p>
         <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to homepage</a>
@@ -69,8 +69,8 @@
             <h6 class="card-text font-weight-bold">Card number:</h6>
             <p class="card-text text-muted">Enter the card number</p>
             <input asp-for="@payment.CardNumber" /><br /><br />
-            <a asp-action="BookingConfirmation" asp-controller="HotelDetailsController" class="btn btn-success">Confirm booking</a>
-            <a asp-action="BookingConfirmation" asp-controller="HotelDetailsController" class="btn btn-danger">Cancel booking</a>
+            <a asp-action="BookingConfirmation" asp-controller="HotelDetails" asp-route-id="@Model.RoomId" class="btn btn-success">Confirm booking</a>
+            <a asp-action="BookingConfirmation" asp-controller="HotelDetails" class="btn btn-danger">Cancel booking</a>
         </div>
         <br />
     </div>
