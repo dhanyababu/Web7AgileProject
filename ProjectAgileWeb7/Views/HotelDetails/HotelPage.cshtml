@@ -95,21 +95,17 @@
 
         </div>
         &nbsp;
-        @*<div>
-                @if (ViewBag.DataInfo.Count < 2)
-                {
-                    <p>In order to book a room you need to choose check-in and check-out  </p>
-                }
 
-            </div>*@
+
 
         <div class="border p-3 mt-3">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Room type:</th>
-                        <th>Price/night:</th>
-                        <th></th>
+                        <th>Room type</th>
+                        <th>Price/night</th>
+
+                        <th>Available rooms</th>
                         <th></th>
                     </tr>
                     @foreach (var pair in RoomPrices)
@@ -122,8 +118,11 @@
                                 @Html.DisplayFor(p => pair.Value) SEK
                             </td>
                             <td>
+                                @((ViewBag.RoomsAvailable as List<Room>).Where(r=>r.RoomType == pair.Key).Count())/
                                 @Model.Rooms.Where(t => t.RoomType == pair.Key).Count()
+
                             </td>
+
                             <td>
                                 @if (ViewBag.DataInfo.Count < 2)
                                 {
@@ -132,7 +131,7 @@
                                 else
                                 {
 
-                                    if (Model.Rooms.Where(t => t.RoomType == pair.Key).Count() == 0)
+                                    if (((ViewBag.RoomsAvailable as List<Room>).Where(r => r.RoomType == pair.Key).Count() == 0))
                                     {
                                         <p>No available rooms of this type</p>
                                     }
