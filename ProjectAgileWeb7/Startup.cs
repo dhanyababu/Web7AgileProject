@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace ProjectAgileWeb7
 {
@@ -36,6 +38,13 @@ namespace ProjectAgileWeb7
             services.AddSession();
             services.AddControllersWithViews();
             services.AddScoped<ApplicationDbContext>();
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "346232706638-4mhc073ul7db2is8ickqo6gp7q5th5hu.apps.googleusercontent.com";
+                    options.ClientSecret = "dDxbxMoyLuDAJ42-1Fns5p46";
+                });
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
