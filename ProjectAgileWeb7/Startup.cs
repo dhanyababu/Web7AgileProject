@@ -44,6 +44,11 @@ namespace ProjectAgileWeb7
                 {
                     options.ClientId = "346232706638-4mhc073ul7db2is8ickqo6gp7q5th5hu.apps.googleusercontent.com";
                     options.ClientSecret = "dDxbxMoyLuDAJ42-1Fns5p46";
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = "238960640755122";
+                    options.AppSecret = "6485815bc32dc80d39e48720e4e62bab";
                 });
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
