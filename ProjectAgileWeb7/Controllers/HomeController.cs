@@ -136,7 +136,7 @@ namespace ProjectAgileWeb7.Controllers
                         stay.Add(date);
                     }
 
-                    var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookingPerDays.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
+                    var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookedRooms.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
                     var availableRooms = _appContext.Rooms.Except(unavailableRooms);
                     var availableHotels = availableRooms.Select(r => r.Hotel).Distinct().ToList();
 

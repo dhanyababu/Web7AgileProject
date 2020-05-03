@@ -112,19 +112,21 @@ namespace ProjectAgileWeb7.Controllers
             //    ;
 
             var unavailableRooms = _appContext.Rooms
-                .Where(r => _appContext.BookingPerDays
+                .Where(r => _appContext.BookedRooms
                 .Any(b => b.RoomId == r.RoomId && daysRangeList.Contains(b.Date)));
 
 
             var availableRoomToBeBooked = _appContext.Rooms.Except(unavailableRooms)
                 .Where(r => r.HotelId == id)
                 .Where(r => r.RoomType == roomType)
-                .FirstOrDefault();
+                .FirstOrDefault();           
+            
 
             var gg = daysRangeList;
 
             if (availableRoomToBeBooked != null)
             {
+                HttpContext.Session.SetInt32("roomId", availableRoomToBeBooked.RoomId);
                 return View(availableRoomToBeBooked);
             }
             else
@@ -133,30 +135,12 @@ namespace ProjectAgileWeb7.Controllers
             }
 
 
-
+           
 
 
             //return View(rooms[0]);
         }
 
-        public async Task<IActionResult> Checkout()
-        {
-            return View();
-        }
 
-
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult Checkout(Payment payment)
-        {
-            if (ModelState.IsValid)
-            {
-                return View();  // Proceed to conf
-            }
-            else
-            {
-                return View();
-            }
-        }
     }
 }
