@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace ProjectAgileWeb7.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Checkout()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -54,20 +56,24 @@ namespace ProjectAgileWeb7.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
+        [Authorize]
         public IActionResult Checkout(Payment payment)        {
 
             if (ModelState.IsValid)
             {
                 var bookingId = Convert.ToInt32(HttpContext.Session.GetInt32("bookingId"));
+                var booking = _appContext.Bookings.FirstOrDefault(b => b.Id == bookingId);
+                var numberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
                 var roomId = _appContext.Bookings.Where(b => b.Id == bookingId).Select(b => b.RoomId).FirstOrDefault();
                 var roomPrice = _appContext.Rooms.Where(r => r.RoomId == roomId).Select(r => r.RoomPrice).FirstOrDefault();
+                var total = roomPrice * numberOfNights;
 
                 var newPayment = new Payment()
                 {
                     BookingId = bookingId,
                     Status = Status.Pending,
                     Date = DateTime.Now.Date,
-                    Amount = roomPrice,
+                    Amount = total,
                     Type = payment.Type,
                     CardNumber = payment.CardNumber.Substring(12),
                     CVV = payment.CVV.Substring(0, 1),
@@ -85,6 +91,7 @@ namespace ProjectAgileWeb7.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult PaymentCheckout(Payment payment)
         {
             if (payment != null)
@@ -103,14 +110,33 @@ namespace ProjectAgileWeb7.Controllers
                 }
 
                 _appContext.SaveChanges();
-                return RedirectToAction("BookingConfirmation");
+                return RedirectToAction("BookingConfirmation", paymentFromDb);
             }
             return View();
         }
 
-        public IActionResult BookingConfirmation()
+        [Authorize]
+        public IActionResult BookingConfirmation(Payment payment)
         {
-            return View();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var user = _appContext.ApplicationUsers.FirstOrDefault(u => u.Id == identityClaim.Value);
+            var bookingId = _appContext.Payments.Where(p => p == payment).Select(p => p.BookingId).FirstOrDefault();
+            var booking = _appContext.Bookings.FirstOrDefault(b => b.Id == bookingId);
+            var room = _appContext.Rooms.FirstOrDefault(r => r.RoomId == booking.RoomId);
+            var hotel = _appContext.Hotels.FirstOrDefault(h => h.HotelId == room.HotelId);
+
+            var bookingConfVM = new BookingConfirmationViewModel()
+            {   
+                User = user,
+                Payment = payment,
+                Booking = booking,
+                Room = room,
+                Hotel = hotel
+            };
+
+            return View(bookingConfVM);
         }
     }
 }
