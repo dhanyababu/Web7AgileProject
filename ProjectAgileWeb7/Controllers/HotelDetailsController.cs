@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
@@ -144,5 +145,7 @@ namespace ProjectAgileWeb7.Controllers
 
             return daysRangeList;
         }
+
+
     }
 }
