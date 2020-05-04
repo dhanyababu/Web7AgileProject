@@ -89,6 +89,7 @@ namespace ProjectAgileWeb7.Controllers
 
             if (availableRoomToBeBooked != null)
             {
+                HttpContext.Session.SetInt32("roomId", availableRoomToBeBooked.RoomId);
                 return View(availableRoomToBeBooked);
             }
             else
@@ -99,33 +100,33 @@ namespace ProjectAgileWeb7.Controllers
         }
 
 
-        [Authorize]
-        public IActionResult BookingConfirmation(int id)
-        {
-            var roomBooked = _appContext.Rooms
-                            .Where(r => r.RoomId == id)
-                            .Include(r => r.Hotel)
-                            .FirstOrDefault();
+        //[Authorize]
+        //public IActionResult BookingConfirmation(int id)
+        //{
+        //    var roomBooked = _appContext.Rooms
+        //                    .Where(r => r.RoomId == id)
+        //                    .Include(r => r.Hotel)
+        //                    .FirstOrDefault();
 
-            List<DateTime> daysRangeList = GetStayingDaysRangeList();
-            var newBookedDaysList = new List<BookingPerDay>();
-            foreach (var day in daysRangeList)
-            {
-                var newBookingPerDay = new BookingPerDay()
-                {
-                    RoomId = id,
-                    Date = day
-                };
-                newBookedDaysList.Add(newBookingPerDay);
-            }
+        //    List<DateTime> daysRangeList = GetStayingDaysRangeList();
+        //    var newBookedDaysList = new List<BookingPerDay>();
+        //    foreach (var day in daysRangeList)
+        //    {
+        //        var newBookingPerDay = new BookingPerDay()
+        //        {
+        //            RoomId = id,
+        //            Date = day
+        //        };
+        //        newBookedDaysList.Add(newBookingPerDay);
+        //    }
 
-            _appContext.BookingPerDays.AddRange(newBookedDaysList);
-            _appContext.SaveChanges();
+        //    _appContext.BookingPerDays.AddRange(newBookedDaysList);
+        //    _appContext.SaveChanges();
 
-            ViewBag.DataInfo = daysRangeList;
+        //    ViewBag.DataInfo = daysRangeList;
 
-            return View(roomBooked);
-        }
+        //    return View(roomBooked);
+        //}
 
 
         private List<DateTime> GetStayingDaysRangeList()
