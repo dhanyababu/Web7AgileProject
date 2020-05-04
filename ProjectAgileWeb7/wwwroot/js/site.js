@@ -48,14 +48,14 @@ $(document).ready(function () {
             }
             $('#check-out').datepicker('option', 'minDate', date || 1);
         }
-    }).val('');
+    });
     $("#check-out").datepicker({
         showAnim: 'drop',
         numberOfMonths: 1,
         minDate: 1,
         maxDate: '+1Y',
         dateFormat: 'yy-MM-dd'
-    }).val('');
+    });
 });
 
 
@@ -165,12 +165,12 @@ const getWeather = function () {
 
 
 $(document).ready(function () {
-    if ($('#search-input').val().length == 0) {
-        $('#submit-btn').attr('disabled', true);
-    }
-    $('#search-input').keyup(function () {
-        ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
-    });
+    //if ($('#search-input').val().length == 0) {
+    //    $('#submit-btn').attr('disabled', true);
+    //}
+    //$('#search-input').keyup(function () {
+    //    ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
+    //});
 
     //$('#my-testing-button').click(function () {
     //    getWeather();

@@ -1,0 +1,130 @@
+﻿@model ProjectAgileWeb7.Models.BookingConfirmationViewModel
+
+@{
+    ViewData["Title"] = "BookingConfirmation";
+}
+
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading">
+        Congratulations,
+        @if (Model.User.FirstName == null && Model.User.LastName == null)
+        {
+
+            @Model.User.UserName
+        }
+        else
+        {
+            @*@Model.User.FirstName @Model.User.LastName*@
+            @Html.Raw($"{@Model.User.FirstName} {@Model.User.LastName}")
+        }
+        !
+    </h4>
+
+    <i class="fas fa-check-circle"></i>&nbsp; Your booking has been completed successfully!
+
+</div>
+
+<div class="card">
+    <h5 class="card-header">Booking No. @Model.Booking.Id</h5>
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src=@Url.Content(Model.Hotel.ImageUrl) class="card-img" alt="Hotel Image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">@Model.Hotel.Name</h3>
+                <div>
+                    @for (var i = 0; i < Model.Hotel.Stars; i++)
+                    {
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    }
+                </div>
+                <p class="card-text">@Model.Hotel.Address, @Model.Hotel.ZipCode, @Model.Hotel.City, @Model.Hotel.Country</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        Distance from Center: @Model.Hotel.DistanceFromCenter km
+                    </small>
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">@Model.Hotel.Description</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <p> The check-in is at 14:00 and the check-out at 11:00. For more details or additional questions contact us at team7@contact.com.</p>
+        <p> Have a nice staying!</p>
+    </div>
+</div>
+<div class="row pl-3 pr-3">
+    <div class="col-sm-6 p-0">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Booking Details</h4>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Number of nights:
+                        @{ var nightsCount = Model.Booking.CheckOut - Model.Booking.CheckIn; }
+                        <span class="text-success">@nightsCount.ToString("%d")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Arrival Date:
+                        <span class="text-success">@Model.Booking.CheckIn.ToString("dddd, MMMM d, yyyy", new System.Globalization.CultureInfo("en-US"))</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Departure Date:
+                        <span class="text-success">@Model.Booking.CheckOut.ToString("dddd, MMMM d, yyyy", new System.Globalization.CultureInfo("en-US"))</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Total:
+                        <span class="text-success">@Model.Payment.Amount.ToString("c")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Payment Method:
+                        <span class="text-success">@Model.Payment.Type</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Payment Status:
+                        <span class="text-success">@Model.Payment.Status</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 p-0">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Room Details</h4>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Room Type:
+                        <span class="text-success">@Model.Room.RoomType</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Number of Beds:
+                        <span class="text-success">@Model.Room.NumberOfBeds</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Max Number of Guests:
+                        <span class="text-success">@Model.Room.Capacity</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Price per Night:
+                        <span class="text-success">@Model.Room.RoomPrice.ToString("c")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Description:
+                        <span class="text-success pl-xl-5 text-right">@Model.Room.RoomDescription</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="text-center m-4">
+        <i class="fas fa-print fa-lg"></i>&nbsp;Get the printed version
+    </div>*@

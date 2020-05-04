@@ -23,8 +23,8 @@ namespace ProjectAgileWeb7.Data
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<HotelFacility> HotelFacilities { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<BookingPerDay> BookingPerDays { get; set; }
-        public DbSet<Payment> Payment { get; set; }
+        public DbSet<BookingPerDay> BookedRooms { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

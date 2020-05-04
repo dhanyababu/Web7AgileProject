@@ -33,15 +33,21 @@ namespace ProjectAgileWeb7.Controllers
                 .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
             };
 
+
+
             FillingViewBags();
+            HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(null));
+            HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(null));
 
             return View(hotelsViewModel);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Search(HotelsViewModel hotelsViewModel)
         {
+
+
             TempData["searchKeyword"] = hotelsViewModel.SearchKeyword;
             TempData["checkInDate"] = hotelsViewModel.CheckIn;
             TempData["checkOutDate"] = hotelsViewModel.CheckOut;
@@ -86,10 +92,10 @@ namespace ProjectAgileWeb7.Controllers
             return View("Index", hotelsViewModel);
         }
 
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -130,7 +136,7 @@ namespace ProjectAgileWeb7.Controllers
                         stay.Add(date);
                     }
 
-                    var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookingPerDays.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
+                    var unavailableRooms = _appContext.Rooms.Where(r => _appContext.BookedRooms.Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
                     var availableRooms = _appContext.Rooms.Except(unavailableRooms);
                     var availableHotels = availableRooms.Select(r => r.Hotel).Distinct().ToList();
 

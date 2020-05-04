@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace ProjectAgileWeb7
 {
@@ -37,6 +39,18 @@ namespace ProjectAgileWeb7
             services.AddControllersWithViews();
             services.AddScoped<ApplicationDbContext>();
 
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "346232706638-4mhc073ul7db2is8ickqo6gp7q5th5hu.apps.googleusercontent.com";
+                    options.ClientSecret = "dDxbxMoyLuDAJ42-1Fns5p46";
+                });
+                //.AddFacebook(options =>
+                //{
+                //    options.AppId = "238960640755122";
+                //    options.AppSecret = "6485815bc32dc80d39e48720e4e62bab";
+                //});
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
@@ -65,6 +79,11 @@ namespace ProjectAgileWeb7
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapFallbackToController(
+                    action: "Index",
+                    controller: "Home"
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

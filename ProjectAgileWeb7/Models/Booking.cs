@@ -15,8 +15,10 @@ namespace ProjectAgileWeb7.Models
 
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
-        public int PaymentId { get; set; }
-        public Payment Payment { get; set; }
         public Status Status { get; set; }
+
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }
