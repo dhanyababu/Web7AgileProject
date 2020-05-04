@@ -6,8 +6,23 @@
 
 <div class="alert alert-dismissible alert-success">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading">Congratulations, @Model.User.UserName!</h4>
+    <h4 class="alert-heading">
+        Congratulations,
+        @if (Model.User.FirstName == null && Model.User.LastName == null)
+        {
+
+            @Model.User.UserName
+        }
+        else
+        {
+            @*@Model.User.FirstName @Model.User.LastName*@
+            @Html.Raw($"{@Model.User.FirstName} {@Model.User.LastName}")
+        }
+        !
+    </h4>
+
     <i class="fas fa-check-circle"></i>&nbsp; Your booking has been completed successfully!
+
 </div>
 
 <div class="card">
@@ -36,6 +51,12 @@
                 </p>
             </div>
         </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <p> The check-in is at 14:00 and the check-out at 11:00. For more details or additional questions contact us at team7@contact.com.</p>
+        <p> Have a nice staying!</p>
     </div>
 </div>
 <div class="row pl-3 pr-3">
@@ -105,5 +126,5 @@
 </div>
 
 @*<div class="text-center m-4">
-    <i class="fas fa-print fa-lg"></i>&nbsp;Get the printed version
-</div>*@
+        <i class="fas fa-print fa-lg"></i>&nbsp;Get the printed version
+    </div>*@
