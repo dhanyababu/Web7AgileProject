@@ -16,7 +16,6 @@ namespace ProjectAgileWeb7.Models
         public string City { get; set; }
         public string Country { get; set; }
         public bool IsMember { get; set; }
-        public IList<Booking> Bookings { get; set; }
         public IList<Hotel> Favorites { get; set; }
     }
 }

@@ -45,36 +45,106 @@ namespace ProjectAgileWeb7.Controllers
                 .ThenInclude(fa => fa.Facility)
                 .ToListAsync();
 
+            List<DateTime> daysRangeList = GetStayingDaysRangeList();
+            ViewBag.DataInfo = daysRangeList;
+
+            var unavailableRooms = _appContext.Rooms
+                                    .Where(r => _appContext.BookedRooms
+                                    .Any(b => b.RoomId == r.RoomId && daysRangeList.Contains(b.Date)));
+
+            var availableRoomsToBeBooked = _appContext.Rooms.Except(unavailableRooms)
+                                                .Where(r => r.HotelId == id);
+
+            ViewBag.RoomsAvailable = availableRoomsToBeBooked.ToList();
+
             return View(hotel[0]);
         }
+
+
 
         [Authorize]
         public async Task<IActionResult> BookRoom(RoomType roomType, int id)
         {
-            var rooms = await _appContext.Rooms
-                .Where(t => t.RoomType == roomType).Include(h => h.Hotel).Where(hi => hi.HotelId == id)
-                .ToListAsync();
+            //var rooms = await _appContext.Rooms
+            //    .Where(t => t.RoomType == roomType).Include(h => h.Hotel).Where(hi => hi.HotelId == id)
+            //    .ToListAsync();
 
             CurrentUser = await _userManager.GetUserAsync(User);
             if (CurrentUser != null)
                 ViewBag.User = CurrentUser;
 
-            //var wordDeser = JsonConvert.DeserializeObject(HttpContext.Session.GetString("SearchWord"));
+            List<DateTime> daysRangeList = GetStayingDaysRangeList();
+            ViewBag.DataInfo = daysRangeList;
+
+            var unavailableRooms = _appContext.Rooms
+                .Where(r => _appContext.BookedRooms
+                .Any(b => b.RoomId == r.RoomId && daysRangeList.Contains(b.Date)));
+
+            var availableRoomToBeBooked = _appContext.Rooms
+                .Except(unavailableRooms)
+                .Include(h => h.Hotel)
+                .Where(r => r.HotelId == id)
+                .Where(r => r.RoomType == roomType)
+                .FirstOrDefault();
+
+            if (availableRoomToBeBooked != null)
+            {
+                HttpContext.Session.SetInt32("roomId", availableRoomToBeBooked.RoomId);
+                return View(availableRoomToBeBooked);
+            }
+            else
+            {
+                return (NotFound());
+            }
+
+        }
+
+
+        //[Authorize]
+        //public IActionResult BookingConfirmation(int id)
+        //{
+        //    var roomBooked = _appContext.Rooms
+        //                    .Where(r => r.RoomId == id)
+        //                    .Include(r => r.Hotel)
+        //                    .FirstOrDefault();
+
+        //    List<DateTime> daysRangeList = GetStayingDaysRangeList();
+        //    var newBookedDaysList = new List<BookingPerDay>();
+        //    foreach (var day in daysRangeList)
+        //    {
+        //        var newBookingPerDay = new BookingPerDay()
+        //        {
+        //            RoomId = id,
+        //            Date = day
+        //        };
+        //        newBookedDaysList.Add(newBookingPerDay);
+        //    }
+
+        //    _appContext.BookingPerDays.AddRange(newBookedDaysList);
+        //    _appContext.SaveChanges();
+
+        //    ViewBag.DataInfo = daysRangeList;
+
+        //    return View(roomBooked);
+        //}
+
+
+        private List<DateTime> GetStayingDaysRangeList()
+        {
             var checkInObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"));
             var checkOutObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"));
-            //var myModel = JsonConvert.DeserializeObject(HttpContext.Session.GetString("HotelModelView"));
             var checkInDate = Convert.ToDateTime(checkInObj);
             var checkOutDate = Convert.ToDateTime(checkOutObj);
             var daysRangeList = new List<DateTime>();
 
-
-            for (DateTime date = checkInDate; date < checkOutDate; date = date.AddDays(1))
+            for (DateTime date = checkInDate; date <= checkOutDate; date = date.AddDays(1))
             {
                 daysRangeList.Add(date);
             }
 
-            var gg = daysRangeList;
-            return View(rooms[0]);
+            return daysRangeList;
         }
+
+
     }
 }

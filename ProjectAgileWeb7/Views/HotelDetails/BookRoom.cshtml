@@ -20,7 +20,7 @@
         <h5 class="card-title">@Model.RoomDescription</h5>
         <p class="card-text">
             Price per night: @Model.RoomPrice.ToString("F")<br />
-            Capacity: @Model.Capacity<br />
+            Capacity: @Model.Capacity persons<br />
             Number of beds: @Model.NumberOfBeds<br />
         </p>
         <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to homepage</a>
@@ -47,31 +47,4 @@
 </div>
 <br />
 
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">
-            Step 2: Payment details
-        </h5>
-        <div>
-            @foreach (var item in Enum.GetValues(typeof(CardType)))
-            {
-                @Html.RadioButtonFor(p => payment.Type, @item)
-
-                <label>@item</label>
-                <br />
-            }
-            <h6 class="card-text font-weight-bold">First name:</h6>
-            <p class="card-text text-muted">Enter the <span class="font-weight-bold">first</span> name that's written on the card.</p>
-            <input asp-for="@payment.CardHolderFirstName" /><br /><br />
-            <h6 class="card-text font-weight-bold">Last name:</h6>
-            <p class="card-text text-muted">Enter the <span class="font-weight-bold">last</span> name that's written on the card.</p>
-            <input asp-for="@payment.CardHolderLastName" /><br /><br />
-            <h6 class="card-text font-weight-bold">Card number:</h6>
-            <p class="card-text text-muted">Enter the card number</p>
-            <input asp-for="@payment.CardNumber" /><br /><br />
-            <a asp-action="BookingConfirmation" asp-controller="HotelDetailsController" class="btn btn-success">Confirm booking</a>
-            <a asp-action="BookingConfirmation" asp-controller="HotelDetailsController" class="btn btn-danger">Cancel booking</a>
-        </div>
-        <br />
-    </div>
-</div>
+<a asp-action="Checkout" asp-controller="Checkout" class="btn btn-success">Proceed to Checkout</a>
