@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
@@ -50,7 +49,7 @@ namespace ProjectAgileWeb7.Controllers
             ViewBag.DataInfo = daysRangeList;
 
             var unavailableRooms = _appContext.Rooms
-                                    .Where(r => _appContext.BookingPerDays
+                                    .Where(r => _appContext.BookedRooms
                                     .Any(b => b.RoomId == r.RoomId && daysRangeList.Contains(b.Date)));
 
             var availableRoomsToBeBooked = _appContext.Rooms.Except(unavailableRooms)
@@ -78,7 +77,7 @@ namespace ProjectAgileWeb7.Controllers
             ViewBag.DataInfo = daysRangeList;
 
             var unavailableRooms = _appContext.Rooms
-                .Where(r => _appContext.BookingPerDays
+                .Where(r => _appContext.BookedRooms
                 .Any(b => b.RoomId == r.RoomId && daysRangeList.Contains(b.Date)));
 
             var availableRoomToBeBooked = _appContext.Rooms
