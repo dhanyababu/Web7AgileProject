@@ -35,6 +35,49 @@ html {
   }
 }
 
+@media (max-width: 768px) {
+
+    #hotelSlideImage {
+        height: 28vh;
+    }
+}
+
+@media (max-width: 700px) {
+
+    #hotelSlideImage {
+        height: 16.8vh;
+    }
+}
+
+@media (max-width: 500px) {
+
+    #hotelSlideImage {
+        height: 20.2vh;
+    }
+}
+
+@media (min-width: 650px) {
+
+    #hotelSlideImage {
+        height: 18.5vh;
+    }
+}
+
+@media (min-width: 900px) {
+
+    #hotelSlideImage {
+        height: 32.5vh;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    #hotelSlideImage {
+        height: 36.2vh;
+    }
+}
+
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }

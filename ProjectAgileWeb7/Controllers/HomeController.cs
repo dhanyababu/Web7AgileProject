@@ -92,10 +92,10 @@ namespace ProjectAgileWeb7.Controllers
             return View("Index", hotelsViewModel);
         }
 
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
