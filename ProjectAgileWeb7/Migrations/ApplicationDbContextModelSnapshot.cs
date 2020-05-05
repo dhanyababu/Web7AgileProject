@@ -308,6 +308,9 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,4)");
 
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("FacilityId");
 
                     b.ToTable("Facilities");

@@ -92,17 +92,17 @@
                         <!--/.Carousel Wrapper-->
                     </div>
                 </div>
-                <p class="card-body">
+                <p class="card-body text-justify">
                     @Model.Description
 
                 </p>
-                <ul class="card-footer">
+                <div class="card-body">
                     <h4>Services offered:</h4>&nbsp;
                     @foreach (var facility in Model.HotelFacilities)
                     {
-                        <li class="list-group-item">@facility.Facility.Name</li>
+                        <div class="list-group-item"><i class="fas fa-@facility.Facility.Symbol"></i> &nbsp; @facility.Facility.Name</div>
                     }
-                </ul>
+                </div>
             </div>
 
         </div>

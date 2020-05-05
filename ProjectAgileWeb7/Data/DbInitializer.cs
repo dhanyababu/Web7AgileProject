@@ -102,45 +102,52 @@ namespace ProjectAgileWeb7.Data
                     new Facility
                     {
                         Name="Room service",
-                        IsFree=false,
-                        Price= 30
+                        Symbol="concierge-bell",
+                        IsFree=true,
+                        Price= 0
                     },
                     new Facility
                     {
                         Name= "Breakfast",
-                        IsFree=false,
-                        Price=25
+                        IsFree=true,
+                        Symbol="utensils",
+                        Price=0
                     },
                     new Facility
                     {
                         Name="Parking",
+                        Symbol="parking",
                         IsFree=true,
                         Price=0
                     },
                     new Facility
                     {
                         Name="Wi-fi",
+                        Symbol="wifi",
                         IsFree=true,
-                         Price=0
+                        Price=0
                     },
                     new Facility
                     {
                         Name="Fitness center",
                         IsFree=true,
-                         Price=0
+                        Symbol="dumbbell",
+                        Price=0
 
                     },
                     new Facility
                     {
                         Name="Pool",
                         IsFree=true,
-                         Price=0
+                        Symbol="swimming-pool",
+                        Price=0
                     },
                     new Facility
                     {
                         Name="Sauna",
+                        Symbol="hot-tub",
                         IsFree=true,
-                         Price=0
+                        Price=0
                     }
 
                 };
@@ -210,38 +217,74 @@ namespace ProjectAgileWeb7.Data
                 },
                 new HotelFacility
                 {
-                    HotelId=2,
+                    HotelId=1,
                     FacilityId=5
                 },
                 new HotelFacility
                 {
-                    HotelId=3,
+                    HotelId=1,
                     FacilityId=6
                 },
+                new HotelFacility
+                {
+                    HotelId=1,
+                    FacilityId=7
+                },
+                new HotelFacility
+                {
+                    HotelId=2,
+                    FacilityId=1
+                },
+                new HotelFacility
+                {
+                    HotelId=2,
+                    FacilityId=2
+                },
+                new HotelFacility
+                {
+                    HotelId=2,
+                    FacilityId=3
+                },
+                new HotelFacility
+                {
+                    HotelId=2,
+                    FacilityId=6
+                },
+                 new HotelFacility
+                {
+                    HotelId=2,
+                    FacilityId=7
+                },
+
                 new HotelFacility
                 {
                     HotelId=3,
                     FacilityId=1
                 },
-                new HotelFacility
+                 new HotelFacility
                 {
                     HotelId=3,
-                    FacilityId=7
-                },
-                new HotelFacility
-                {
-                    HotelId=3,
-                    FacilityId=4
+                    FacilityId=2
                 },
                 new HotelFacility
                 {
                     HotelId=3,
                     FacilityId=3
                 },
+                 new HotelFacility
+                {
+                    HotelId=3,
+                    FacilityId=4
+                },
                 new HotelFacility
                 {
                     HotelId=4,
                     FacilityId=1
+                },
+                new HotelFacility
+                {
+                    HotelId=4,
+                    FacilityId=4
                 }
                 };
 
