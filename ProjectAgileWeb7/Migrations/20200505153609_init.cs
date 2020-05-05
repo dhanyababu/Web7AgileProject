@@ -61,7 +61,6 @@ namespace ProjectAgileWeb7.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     IsFree = table.Column<bool>(nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     Symbol = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
