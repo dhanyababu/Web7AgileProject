@@ -464,6 +464,9 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<string>("RoomDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RoomImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 

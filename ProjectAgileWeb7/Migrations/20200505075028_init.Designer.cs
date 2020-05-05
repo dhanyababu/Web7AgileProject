@@ -10,7 +10,7 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200504182339_init")]
+    [Migration("20200505075028_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -464,6 +464,9 @@ namespace ProjectAgileWeb7.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RoomDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoomImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomNumber")

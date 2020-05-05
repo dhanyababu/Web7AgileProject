@@ -276,6 +276,7 @@ namespace ProjectAgileWeb7.Migrations
                     NumberOfBeds = table.Column<int>(nullable: false),
                     Capacity = table.Column<int>(nullable: false),
                     IsAvailable = table.Column<bool>(nullable: false),
+                    RoomImageUrl = table.Column<string>(nullable: true),
                     HotelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

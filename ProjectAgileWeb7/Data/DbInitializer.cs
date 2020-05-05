@@ -164,6 +164,13 @@ namespace ProjectAgileWeb7.Data
                 };
                 var numberOfBedsArray = new[] { 1, 1, 2, 2 };
                 var capacityArray = new[] { 1, 2, 2, 3 };
+                var roomImagesArray = new[]
+                {
+                    "~/pictures/single.jpg",
+                    "~/pictures/double.jpg",
+                    "~/pictures/twin.jpg",
+                    "~/pictures/triple.jpg",
+                };
 
                 for (int i = 0; i < totalNumberOfRooms; i++)
                 {
@@ -177,6 +184,7 @@ namespace ProjectAgileWeb7.Data
                         NumberOfBeds = numberOfBedsArray[index],
                         Capacity = capacityArray[index],
                         IsAvailable = true,
+                        RoomImageUrl = roomImagesArray[index],
                         HotelId = randomHotel
                     });
                 }
