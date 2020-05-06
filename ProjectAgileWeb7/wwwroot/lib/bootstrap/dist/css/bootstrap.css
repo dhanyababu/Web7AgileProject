@@ -11784,7 +11784,6 @@ a.text-dark:hover, a.text-dark:focus {
         color: #000;
     }
 
-.cover {
-    object-fit: fill;
-    width: 100%;
+details > summary {
+    list-style-type: none;
 }
