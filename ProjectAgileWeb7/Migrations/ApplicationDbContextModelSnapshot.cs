@@ -243,17 +243,11 @@ namespace ProjectAgileWeb7.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CheckIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("int");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
@@ -261,13 +255,14 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("PaymentId");
-
                     b.HasIndex("RoomId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
                 });
@@ -289,7 +284,7 @@ namespace ProjectAgileWeb7.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("BookingPerDays");
+                    b.ToTable("BookedRooms");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Facility", b =>
@@ -412,30 +407,39 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<string>("BankAndClearing")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CVV")
+                    b.Property<int>("BookingId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CardHolderFirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CardHolderLastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("CardNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Method")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Payment");
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Room", b =>
@@ -529,21 +533,15 @@ namespace ProjectAgileWeb7.Migrations
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.Booking", b =>
                 {
-                    b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", null)
-                        .WithMany("Bookings")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("ProjectAgileWeb7.Models.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ProjectAgileWeb7.Models.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.BookingPerDay", b =>
@@ -573,6 +571,15 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasOne("ProjectAgileWeb7.Models.Hotel", "Hotel")
                         .WithMany("HotelFacilities")
                         .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.Payment", b =>
+                {
+                    b.HasOne("ProjectAgileWeb7.Models.Booking", "Bookings")
+                        .WithMany()
+                        .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

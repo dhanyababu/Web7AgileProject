@@ -165,12 +165,12 @@ const getWeather = function () {
 
 
 $(document).ready(function () {
-    if ($('#search-input').val().length == 0) {
-        $('#submit-btn').attr('disabled', true);
-    }
-    $('#search-input').keyup(function () {
-        ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
-    });
+    //if ($('#search-input').val().length == 0) {
+    //    $('#submit-btn').attr('disabled', true);
+    //}
+    //$('#search-input').keyup(function () {
+    //    ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
+    //});
 
     //$('#my-testing-button').click(function () {
     //    getWeather();
