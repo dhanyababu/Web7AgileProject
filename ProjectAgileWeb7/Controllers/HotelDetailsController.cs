@@ -60,8 +60,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel[0]);
         }
 
-
-
         [Authorize]
         public async Task<IActionResult> BookRoom(RoomType roomType, int id)
         {
