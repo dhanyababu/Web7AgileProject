@@ -150,5 +150,6 @@ namespace ProjectAgileWeb7.Controllers
                 return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility).ToList();
             }
         }
+
     }
 }

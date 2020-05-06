@@ -26,8 +26,15 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li>
+                            <label style="color:white;">Current Price</label>
+                            <input readonly="readonly" id="totalPriceDisplay" style="width:100px;" value="@(ViewBag.TotalPrice == null || ViewBag.TotalPrice == 0 ? "" : ViewBag.TotalPrice)" />
+                            @Html.DropDownList("SelectedCurrency",
+                                new SelectList(Enum.GetValues(typeof(Currency))),
+                                new { @id = "selectedCurrency" })
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -47,6 +54,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/currencyConverter.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @RenderSection("Scripts", required: false)
