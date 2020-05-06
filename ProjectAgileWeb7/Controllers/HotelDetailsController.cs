@@ -65,10 +65,6 @@ namespace ProjectAgileWeb7.Controllers
         [Authorize]
         public async Task<IActionResult> BookRoom(RoomType roomType, int id)
         {
-            //var rooms = await _appContext.Rooms
-            //    .Where(t => t.RoomType == roomType).Include(h => h.Hotel).Where(hi => hi.HotelId == id)
-            //    .ToListAsync();
-
             CurrentUser = await _userManager.GetUserAsync(User);
             if (CurrentUser != null)
                 ViewBag.User = CurrentUser;
@@ -96,38 +92,7 @@ namespace ProjectAgileWeb7.Controllers
             {
                 return (NotFound());
             }
-
         }
-
-
-        //[Authorize]
-        //public IActionResult BookingConfirmation(int id)
-        //{
-        //    var roomBooked = _appContext.Rooms
-        //                    .Where(r => r.RoomId == id)
-        //                    .Include(r => r.Hotel)
-        //                    .FirstOrDefault();
-
-        //    List<DateTime> daysRangeList = GetStayingDaysRangeList();
-        //    var newBookedDaysList = new List<BookingPerDay>();
-        //    foreach (var day in daysRangeList)
-        //    {
-        //        var newBookingPerDay = new BookingPerDay()
-        //        {
-        //            RoomId = id,
-        //            Date = day
-        //        };
-        //        newBookedDaysList.Add(newBookingPerDay);
-        //    }
-
-        //    _appContext.BookingPerDays.AddRange(newBookedDaysList);
-        //    _appContext.SaveChanges();
-
-        //    ViewBag.DataInfo = daysRangeList;
-
-        //    return View(roomBooked);
-        //}
-
 
         private List<DateTime> GetStayingDaysRangeList()
         {

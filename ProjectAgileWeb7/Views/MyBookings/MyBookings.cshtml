@@ -123,7 +123,7 @@
                     </div>
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                         Total:
-                        <span class="text-success">@booking.Payment.Amount.ToString("c")</span>
+                        <span class="text-success">@booking.Payment.Amount.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))</span>
                     </div>
 
                 </div>
