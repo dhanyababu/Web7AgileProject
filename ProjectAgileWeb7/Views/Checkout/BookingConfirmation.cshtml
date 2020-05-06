@@ -78,7 +78,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Total:
-                        <span class="text-success">@Model.Payment.Amount.ToString("c")</span>
+                        <span class="text-success">@Model.Payment.Amount.ToString("c", new System.Globalization.CultureInfo("sr-Cyrl-CS"))</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Payment Method:
@@ -111,7 +111,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Price per Night:
-                        <span class="text-success">@Model.Room.RoomPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))</span>
+                        <span class="text-success">@Model.Room.RoomPrice.ToString("c", new System.Globalization.CultureInfo("sr-Cyrl-CS"))</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Description:
