@@ -119,11 +119,12 @@ Select end date in calendar
         ${current_date} =                   Get Current Date               local                                  result_format=%Y-%m-%d
         ${less_A_day_withzero} =            Subtract Time From Date        ${current_date}            1 days       result_format=%d
         ${current_date_less_A_day}=         Replace String Using Regexp    ${less_A_day_withzero}     ^0           ${EMPTY}
-        Mouse Over                          xpath: //*[contains(text(), "${current_date_less_A_day}")]
-        Click Element                       xpath: //*[contains(text(), "${current_date_less_A_day}")]
+        Mouse Over                          xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "${current_date_less_A_day}")]
+        Click Element                       xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "${current_date_less_A_day}")]
         Click Element                       id:check-out
         Press Keys                          id:check-out                 CTRL     ENTER
         Click Element                       xpath://*[@id="search-form"]/div/div/div/div[2]
+
 
 
 Verify end date of calendar

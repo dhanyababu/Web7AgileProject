@@ -1,0 +1,1235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200506 09:35:03.763" rpa="false">
+<suite id="s1" name="WEB7-23-Search" source="C:\Users\dhany\PycharmProjects\AgileProjectWeb7\Tests\WEB7-23-Search.robot">
+<test id="s1-t1" name="Verify clear filter">
+<kw name="Open Browser To Start Page" library="WEB7-23-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200506 09:35:04.401" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200506 09:35:04.400" endtime="20200506 09:35:10.289"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200506 09:35:10.289" endtime="20200506 09:35:14.418"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200506 09:35:14.419" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200506 09:35:14.418" endtime="20200506 09:35:15.246"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:04.400" endtime="20200506 09:35:15.247"></status>
+</kw>
+<kw name="Before search" library="WEB7-23-keywords">
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${search_text_clear}</var>
+</assign>
+<msg timestamp="20200506 09:35:15.358" level="INFO">${search_text_clear} = </msg>
+<status status="PASS" starttime="20200506 09:35:15.249" endtime="20200506 09:35:15.358"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${search_text_clear}</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:15.358" endtime="20200506 09:35:15.359"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_in_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:15.390" level="INFO">${Search_in_date} = 0001-01-01</msg>
+<status status="PASS" starttime="20200506 09:35:15.359" endtime="20200506 09:35:15.390"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_in_date}</arg>
+<arg>0001-01-01</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:15.390" endtime="20200506 09:35:15.391"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_out_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:15.418" level="INFO">${Search_out_date} = 0001-01-01</msg>
+<status status="PASS" starttime="20200506 09:35:15.391" endtime="20200506 09:35:15.418"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_out_date}</arg>
+<arg>0001-01-01</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:15.418" endtime="20200506 09:35:15.419"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:15.248" endtime="20200506 09:35:15.419"></status>
+</kw>
+<kw name="Input search text" library="WEB7-23-keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>London</arg>
+</arguments>
+<msg timestamp="20200506 09:35:15.420" level="INFO">Typing text 'London' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200506 09:35:15.419" endtime="20200506 09:35:15.601"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:15.419" endtime="20200506 09:35:15.601"></status>
+</kw>
+<kw name="Input date" library="WEB7-23-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+</arguments>
+<msg timestamp="20200506 09:35:15.603" level="INFO">Clicking element 'id:check-in'.</msg>
+<status status="PASS" starttime="20200506 09:35:15.603" endtime="20200506 09:35:15.771"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>CTRL+ARROW_DOWN</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200506 09:35:15.772" level="INFO">Sending key(s) ('CTRL+ARROW_DOWN', 'ENTER') to id:check-in element.</msg>
+<msg timestamp="20200506 09:35:16.071" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20200506 09:35:16.072" level="INFO">Pressing special key ARROW_DOWN down.</msg>
+<msg timestamp="20200506 09:35:16.072" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200506 09:35:16.072" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20200506 09:35:16.101" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200506 09:35:16.102" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200506 09:35:15.772" endtime="20200506 09:35:16.155"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+</arguments>
+<msg timestamp="20200506 09:35:16.156" level="INFO">Clicking element 'id:check-out'.</msg>
+<status status="PASS" starttime="20200506 09:35:16.155" endtime="20200506 09:35:16.320"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>CTRL+ARROW_DOWN</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200506 09:35:16.321" level="INFO">Sending key(s) ('CTRL+ARROW_DOWN', 'ENTER') to id:check-out element.</msg>
+<msg timestamp="20200506 09:35:16.617" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20200506 09:35:16.617" level="INFO">Pressing special key ARROW_DOWN down.</msg>
+<msg timestamp="20200506 09:35:16.617" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200506 09:35:16.617" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20200506 09:35:16.644" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200506 09:35:16.644" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200506 09:35:16.321" endtime="20200506 09:35:16.676"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:15.602" endtime="20200506 09:35:16.676"></status>
+</kw>
+<kw name="Click Search" library="WEB7-23-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200506 09:35:16.679" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200506 09:35:16.678" endtime="20200506 09:35:17.070"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>London</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.071" endtime="20200506 09:35:17.112"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:16.678" endtime="20200506 09:35:17.113"></status>
+</kw>
+<kw name="Search text before clear" library="WEB7-23-keywords">
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${search_text_old}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.133" level="INFO">${search_text_old} = London</msg>
+<status status="PASS" starttime="20200506 09:35:17.114" endtime="20200506 09:35:17.133"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${search_text_old}</arg>
+<arg>London</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.134" endtime="20200506 09:35:17.134"></status>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%m-%d</arg>
+</arguments>
+<assign>
+<var>${current_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.135" level="INFO">${current_date} = 2020-05-06</msg>
+<status status="PASS" starttime="20200506 09:35:17.134" endtime="20200506 09:35:17.135"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>7 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${selected_checkin_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.145" level="INFO">${selected_checkin_date} = 2020-May-13</msg>
+<status status="PASS" starttime="20200506 09:35:17.135" endtime="20200506 09:35:17.145"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_in_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.165" level="INFO">${Search_in_date} = 2020-May-13</msg>
+<status status="PASS" starttime="20200506 09:35:17.145" endtime="20200506 09:35:17.165"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_in_date}</arg>
+<arg>${selected_checkin_date}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.166" endtime="20200506 09:35:17.166"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>15 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${selected_checkout_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.168" level="INFO">${selected_checkout_date} = 2020-May-21</msg>
+<status status="PASS" starttime="20200506 09:35:17.167" endtime="20200506 09:35:17.168"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_out_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.186" level="INFO">${Search_out_date} = 2020-May-21</msg>
+<status status="PASS" starttime="20200506 09:35:17.168" endtime="20200506 09:35:17.186"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_out_date}</arg>
+<arg>${selected_checkout_date}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.186" endtime="20200506 09:35:17.187"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:17.113" endtime="20200506 09:35:17.187"></status>
+</kw>
+<kw name="Click clear filter" library="WEB7-23-keywords">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/a</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.188" endtime="20200506 09:35:17.206"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/a</arg>
+</arguments>
+<msg timestamp="20200506 09:35:17.236" level="INFO">Element 'xpath:/html/body/div[1]/main/a' is displayed.</msg>
+<status status="PASS" starttime="20200506 09:35:17.206" endtime="20200506 09:35:17.237"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/a</arg>
+</arguments>
+<msg timestamp="20200506 09:35:17.237" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/a'.</msg>
+<status status="PASS" starttime="20200506 09:35:17.237" endtime="20200506 09:35:17.489"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:17.188" endtime="20200506 09:35:17.490"></status>
+</kw>
+<kw name="Verify filter" library="WEB7-23-keywords">
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${search_text_clear}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.522" level="INFO">${search_text_clear} = </msg>
+<status status="PASS" starttime="20200506 09:35:17.496" endtime="20200506 09:35:17.522"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${search_text_clear}</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.522" endtime="20200506 09:35:17.522"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_in_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.542" level="INFO">${Search_in_date} = 0001-01-01</msg>
+<status status="PASS" starttime="20200506 09:35:17.523" endtime="20200506 09:35:17.542"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_in_date}</arg>
+<arg>0001-01-01</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.543" endtime="20200506 09:35:17.543"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_out_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:17.561" level="INFO">${Search_out_date} = 0001-01-01</msg>
+<status status="PASS" starttime="20200506 09:35:17.544" endtime="20200506 09:35:17.561"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_out_date}</arg>
+<arg>0001-01-01</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:17.561" endtime="20200506 09:35:17.561"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:17.495" endtime="20200506 09:35:17.562"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-23-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200506 09:35:17.562" endtime="20200506 09:35:19.940"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:17.562" endtime="20200506 09:35:19.941"></status>
+</kw>
+<doc>Test to verify that Clear filter button is clearing various search input</doc>
+<tags>
+<tag>Test WEb7-155</tag>
+</tags>
+<status status="PASS" starttime="20200506 09:35:04.399" endtime="20200506 09:35:19.943" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Verify calendar start date is uptodate">
+<kw name="Open Browser To Start Page" library="WEB7-23-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200506 09:35:19.953" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200506 09:35:19.952" endtime="20200506 09:35:25.588"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200506 09:35:25.589" endtime="20200506 09:35:29.717"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200506 09:35:29.718" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200506 09:35:29.718" endtime="20200506 09:35:32.066"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:19.951" endtime="20200506 09:35:32.067"></status>
+</kw>
+<kw name="Select start date in calendar" library="WEB7-23-keywords">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>id:search-input</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:32.070" endtime="20200506 09:35:32.094"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>London</arg>
+</arguments>
+<msg timestamp="20200506 09:35:32.096" level="INFO">Typing text 'London' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200506 09:35:32.095" endtime="20200506 09:35:32.511"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+</arguments>
+<msg timestamp="20200506 09:35:32.512" level="INFO">Clicking element 'id:check-in'.</msg>
+<status status="PASS" starttime="20200506 09:35:32.511" endtime="20200506 09:35:32.695"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div table.ui-datepicker-calendar td.ui-datepicker-today</arg>
+</arguments>
+<msg timestamp="20200506 09:35:32.696" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div table.ui-datepicker-calendar td.ui-datepicker-today'.</msg>
+<status status="PASS" starttime="20200506 09:35:32.695" endtime="20200506 09:35:32.993"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div table.ui-datepicker-calendar td.ui-datepicker-today</arg>
+</arguments>
+<msg timestamp="20200506 09:35:32.993" level="INFO">Clicking element 'css:div#ui-datepicker-div table.ui-datepicker-calendar td.ui-datepicker-today'.</msg>
+<status status="PASS" starttime="20200506 09:35:32.993" endtime="20200506 09:35:33.084"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+</arguments>
+<msg timestamp="20200506 09:35:33.085" level="INFO">Clicking element 'id:check-out'.</msg>
+<status status="PASS" starttime="20200506 09:35:33.084" endtime="20200506 09:35:33.238"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>CTRL</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200506 09:35:33.240" level="INFO">Sending key(s) ('CTRL', 'ENTER') to id:check-out element.</msg>
+<msg timestamp="20200506 09:35:33.558" level="INFO">Pressing special key CONTROL to element.</msg>
+<msg timestamp="20200506 09:35:33.558" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200506 09:35:33.566" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200506 09:35:33.566" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200506 09:35:33.239" endtime="20200506 09:35:33.585"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200506 09:35:33.585" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200506 09:35:33.585" endtime="20200506 09:35:35.514"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:32.069" endtime="20200506 09:35:35.515"></status>
+</kw>
+<kw name="Verify start date is current date" library="WEB7-23-keywords">
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${current_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:35.517" level="INFO">${current_date} = 2020-May-06</msg>
+<status status="PASS" starttime="20200506 09:35:35.516" endtime="20200506 09:35:35.517"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_in_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:35.572" level="INFO">${Search_in_date} = 2020-May-06</msg>
+<status status="PASS" starttime="20200506 09:35:35.518" endtime="20200506 09:35:35.573"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_in_date}</arg>
+<arg>${current_date}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:35.573" endtime="20200506 09:35:35.574"></status>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%m-%d</arg>
+</arguments>
+<assign>
+<var>${current_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:35.575" level="INFO">${current_date} = 2020-05-06</msg>
+<status status="PASS" starttime="20200506 09:35:35.574" endtime="20200506 09:35:35.575"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>1 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${selected_checkout_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:35.577" level="INFO">${selected_checkout_date} = 2020-May-07</msg>
+<status status="PASS" starttime="20200506 09:35:35.576" endtime="20200506 09:35:35.577"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_out_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:35.612" level="INFO">${Search_out_date} = 2020-May-07</msg>
+<status status="PASS" starttime="20200506 09:35:35.577" endtime="20200506 09:35:35.612"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_out_date}</arg>
+<arg>${selected_checkout_date}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:35.613" endtime="20200506 09:35:35.614"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:35.515" endtime="20200506 09:35:35.614"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-23-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200506 09:35:35.615" endtime="20200506 09:35:38.584"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:35.614" endtime="20200506 09:35:38.584"></status>
+</kw>
+<doc>Test to verify that calendar check in start date is current date and checkout
+date is one ahead from check in date</doc>
+<tags>
+<tag>Test WEb7-118</tag>
+</tags>
+<status status="PASS" starttime="20200506 09:35:19.948" endtime="20200506 09:35:38.586" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Verify calendar end date">
+<kw name="Open Browser To Start Page" library="WEB7-23-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200506 09:35:38.593" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200506 09:35:38.592" endtime="20200506 09:35:44.292"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200506 09:35:44.293" endtime="20200506 09:35:48.435"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200506 09:35:48.437" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200506 09:35:48.436" endtime="20200506 09:35:49.154"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:38.592" endtime="20200506 09:35:49.154"></status>
+</kw>
+<kw name="Select end date in calendar" library="WEB7-23-keywords">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>id:search-input</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:49.158" endtime="20200506 09:35:49.190"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>London</arg>
+</arguments>
+<msg timestamp="20200506 09:35:49.191" level="INFO">Typing text 'London' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200506 09:35:49.190" endtime="20200506 09:35:49.366"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+</arguments>
+<msg timestamp="20200506 09:35:49.367" level="INFO">Clicking element 'id:check-in'.</msg>
+<status status="PASS" starttime="20200506 09:35:49.367" endtime="20200506 09:35:49.522"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:49.522" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:49.522" endtime="20200506 09:35:49.892"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:49.893" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:49.892" endtime="20200506 09:35:49.995"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:49.996" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:49.996" endtime="20200506 09:35:50.272"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:50.272" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:50.272" endtime="20200506 09:35:50.344"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:50.345" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:50.344" endtime="20200506 09:35:50.618"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:50.619" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:50.618" endtime="20200506 09:35:50.712"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:50.712" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:50.712" endtime="20200506 09:35:50.988"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:50.990" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:50.989" endtime="20200506 09:35:51.087"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:51.087" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:51.087" endtime="20200506 09:35:51.360"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:51.361" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:51.361" endtime="20200506 09:35:51.458"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:51.459" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:51.458" endtime="20200506 09:35:51.731"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:51.732" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:51.731" endtime="20200506 09:35:51.809"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:51.810" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:51.810" endtime="20200506 09:35:52.086"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:52.088" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:52.087" endtime="20200506 09:35:52.176"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:52.176" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:52.176" endtime="20200506 09:35:52.451"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:52.453" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:52.452" endtime="20200506 09:35:52.566"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:52.567" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:52.567" endtime="20200506 09:35:52.847"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:52.847" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:52.847" endtime="20200506 09:35:52.975"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:52.976" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:52.975" endtime="20200506 09:35:53.287"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:53.288" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:53.287" endtime="20200506 09:35:53.390"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:53.391" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:53.390" endtime="20200506 09:35:53.681"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:53.681" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:53.681" endtime="20200506 09:35:53.758"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:53.759" level="INFO">Simulating Mouse Over on element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:53.759" endtime="20200506 09:35:54.033"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>css:div#ui-datepicker-div a.ui-datepicker-next</arg>
+</arguments>
+<msg timestamp="20200506 09:35:54.034" level="INFO">Clicking element 'css:div#ui-datepicker-div a.ui-datepicker-next'.</msg>
+<status status="PASS" starttime="20200506 09:35:54.033" endtime="20200506 09:35:54.116"></status>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%m-%d</arg>
+</arguments>
+<assign>
+<var>${current_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:54.116" level="INFO">${current_date} = 2020-05-06</msg>
+<status status="PASS" starttime="20200506 09:35:54.116" endtime="20200506 09:35:54.116"></status>
+</kw>
+<kw name="Subtract Time From Date" library="DateTime">
+<doc>Subtracts time from date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>1 days</arg>
+<arg>result_format=%d</arg>
+</arguments>
+<assign>
+<var>${less_A_day_withzero}</var>
+</assign>
+<msg timestamp="20200506 09:35:54.117" level="INFO">${less_A_day_withzero} = 05</msg>
+<status status="PASS" starttime="20200506 09:35:54.116" endtime="20200506 09:35:54.117"></status>
+</kw>
+<kw name="Replace String Using Regexp" library="String">
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${less_A_day_withzero}</arg>
+<arg>^0</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<assign>
+<var>${current_date_less_A_day}</var>
+</assign>
+<msg timestamp="20200506 09:35:54.119" level="INFO">${current_date_less_A_day} = 5</msg>
+<status status="PASS" starttime="20200506 09:35:54.117" endtime="20200506 09:35:54.119"></status>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "${current_date_less_A_day}")]</arg>
+</arguments>
+<msg timestamp="20200506 09:35:54.120" level="INFO">Simulating Mouse Over on element 'xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "5")]'.</msg>
+<status status="PASS" starttime="20200506 09:35:54.119" endtime="20200506 09:35:54.436"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "${current_date_less_A_day}")]</arg>
+</arguments>
+<msg timestamp="20200506 09:35:54.438" level="INFO">Clicking element 'xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "5")]'.</msg>
+<status status="PASS" starttime="20200506 09:35:54.437" endtime="20200506 09:35:54.552"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+</arguments>
+<msg timestamp="20200506 09:35:54.553" level="INFO">Clicking element 'id:check-out'.</msg>
+<status status="PASS" starttime="20200506 09:35:54.553" endtime="20200506 09:35:54.656"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>CTRL</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200506 09:35:54.657" level="INFO">Sending key(s) ('CTRL', 'ENTER') to id:check-out element.</msg>
+<msg timestamp="20200506 09:35:54.951" level="INFO">Pressing special key CONTROL to element.</msg>
+<msg timestamp="20200506 09:35:54.951" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200506 09:35:54.959" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200506 09:35:54.959" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200506 09:35:54.657" endtime="20200506 09:35:54.982"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200506 09:35:54.983" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200506 09:35:54.982" endtime="20200506 09:35:57.475"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:49.157" endtime="20200506 09:35:57.475"></status>
+</kw>
+<kw name="Verify end date of calendar" library="WEB7-23-keywords">
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%m-%d</arg>
+</arguments>
+<assign>
+<var>${current_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:57.477" level="INFO">${current_date} = 2020-05-06</msg>
+<status status="PASS" starttime="20200506 09:35:57.477" endtime="20200506 09:35:57.478"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>364 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${selected_checkin_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:57.479" level="INFO">${selected_checkin_date} = 2021-May-05</msg>
+<status status="PASS" starttime="20200506 09:35:57.478" endtime="20200506 09:35:57.479"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_in_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:57.503" level="INFO">${Search_in_date} = 2021-May-05</msg>
+<status status="PASS" starttime="20200506 09:35:57.479" endtime="20200506 09:35:57.503"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_in_date}</arg>
+<arg>${selected_checkin_date}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:57.503" endtime="20200506 09:35:57.504"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>365 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${selected_checkout_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:57.504" level="INFO">${selected_checkout_date} = 2021-May-06</msg>
+<status status="PASS" starttime="20200506 09:35:57.504" endtime="20200506 09:35:57.504"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Search_out_date}</var>
+</assign>
+<msg timestamp="20200506 09:35:57.524" level="INFO">${Search_out_date} = 2021-May-06</msg>
+<status status="PASS" starttime="20200506 09:35:57.504" endtime="20200506 09:35:57.525"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Search_out_date}</arg>
+<arg>${selected_checkout_date}</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:35:57.526" endtime="20200506 09:35:57.526"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:57.476" endtime="20200506 09:35:57.527"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-23-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200506 09:35:57.528" endtime="20200506 09:35:59.833"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:57.527" endtime="20200506 09:35:59.833"></status>
+</kw>
+<doc>Test to verify that calendar checkin maximum date is one year ahead from less a day current date
+and check out date is one year ahead from current date,checkin and checkout date minimum difference is
+one day</doc>
+<tags>
+<tag>Test WEb7-118 1.1</tag>
+</tags>
+<status status="PASS" starttime="20200506 09:35:38.589" endtime="20200506 09:35:59.834" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Verify calendar date is between limit">
+<kw name="Open Browser To Start Page" library="WEB7-23-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200506 09:35:59.839" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200506 09:35:59.838" endtime="20200506 09:36:05.533"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200506 09:36:05.534" endtime="20200506 09:36:09.670"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200506 09:36:09.671" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200506 09:36:09.670" endtime="20200506 09:36:10.994"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:35:59.838" endtime="20200506 09:36:10.994"></status>
+</kw>
+<kw name="Select a random date" library="WEB7-23-keywords">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>id:search-input</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:36:11.004" endtime="20200506 09:36:11.073"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>London</arg>
+</arguments>
+<msg timestamp="20200506 09:36:11.073" level="INFO">Typing text 'London' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200506 09:36:11.073" endtime="20200506 09:36:11.288"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+</arguments>
+<msg timestamp="20200506 09:36:11.289" level="INFO">Clicking element 'id:check-in'.</msg>
+<status status="PASS" starttime="20200506 09:36:11.288" endtime="20200506 09:36:11.454"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>CTRL+ARROW_DOWN</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200506 09:36:11.456" level="INFO">Sending key(s) ('CTRL+ARROW_DOWN', 'ENTER') to id:check-in element.</msg>
+<msg timestamp="20200506 09:36:11.829" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20200506 09:36:11.829" level="INFO">Pressing special key ARROW_DOWN down.</msg>
+<msg timestamp="20200506 09:36:11.829" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200506 09:36:11.829" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20200506 09:36:11.855" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200506 09:36:11.855" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200506 09:36:11.455" endtime="20200506 09:36:11.901"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+</arguments>
+<msg timestamp="20200506 09:36:11.902" level="INFO">Clicking element 'id:check-out'.</msg>
+<status status="PASS" starttime="20200506 09:36:11.901" endtime="20200506 09:36:12.034"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>CTRL+ARROW_DOWN</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200506 09:36:12.036" level="INFO">Sending key(s) ('CTRL+ARROW_DOWN', 'ENTER') to id:check-out element.</msg>
+<msg timestamp="20200506 09:36:12.320" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20200506 09:36:12.320" level="INFO">Pressing special key ARROW_DOWN down.</msg>
+<msg timestamp="20200506 09:36:12.320" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200506 09:36:12.320" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20200506 09:36:12.348" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200506 09:36:12.349" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200506 09:36:12.034" endtime="20200506 09:36:12.371"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200506 09:36:12.372" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200506 09:36:12.371" endtime="20200506 09:36:12.781"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:36:11.003" endtime="20200506 09:36:12.782"></status>
+</kw>
+<kw name="Verify random date is in between limit" library="WEB7-23-keywords">
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%m-%d</arg>
+</arguments>
+<assign>
+<var>${current_date}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.783" level="INFO">${current_date} = 2020-05-06</msg>
+<status status="PASS" starttime="20200506 09:36:12.782" endtime="20200506 09:36:12.783"></status>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>local</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${start_date_checkin}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.783" level="INFO">${start_date_checkin} = 2020-May-06</msg>
+<status status="PASS" starttime="20200506 09:36:12.783" endtime="20200506 09:36:12.783"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>364 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${end_date_checkin}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.784" level="INFO">${end_date_checkin} = 2021-May-05</msg>
+<status status="PASS" starttime="20200506 09:36:12.783" endtime="20200506 09:36:12.784"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Selected_checkin}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.819" level="INFO">${Selected_checkin} = 2020-May-13</msg>
+<status status="PASS" starttime="20200506 09:36:12.785" endtime="20200506 09:36:12.819"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>'${start_date_checkin}' &lt; '${Selected_checkin}' &lt; '${end_date_checkin}'</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:36:12.819" endtime="20200506 09:36:12.820"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>1 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${start_date_checkout}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.821" level="INFO">${start_date_checkout} = 2020-May-07</msg>
+<status status="PASS" starttime="20200506 09:36:12.821" endtime="20200506 09:36:12.821"></status>
+</kw>
+<kw name="Add Time To Date" library="DateTime">
+<doc>Adds time to date and returns the resulting date.</doc>
+<arguments>
+<arg>${current_date}</arg>
+<arg>365 days</arg>
+<arg>result_format=%Y-%b-%d</arg>
+</arguments>
+<assign>
+<var>${end_date_checkout}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.823" level="INFO">${end_date_checkout} = 2021-May-06</msg>
+<status status="PASS" starttime="20200506 09:36:12.822" endtime="20200506 09:36:12.823"></status>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${Selected_checkout}</var>
+</assign>
+<msg timestamp="20200506 09:36:12.848" level="INFO">${Selected_checkout} = 2020-May-21</msg>
+<status status="PASS" starttime="20200506 09:36:12.823" endtime="20200506 09:36:12.848"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>'${start_date_checkout}' &lt; '${Selected_checkout}' &lt; '${end_date_checkout}'</arg>
+</arguments>
+<status status="PASS" starttime="20200506 09:36:12.848" endtime="20200506 09:36:12.849"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:36:12.782" endtime="20200506 09:36:12.849"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-23-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200506 09:36:12.850" endtime="20200506 09:36:15.206"></status>
+</kw>
+<status status="PASS" starttime="20200506 09:36:12.850" endtime="20200506 09:36:15.207"></status>
+</kw>
+<doc>Test to verify that calendar selecting date is in between start date(current date) and end date
+(one year ahead from current day).</doc>
+<tags>
+<tag>Test WEb7-118 1.2</tag>
+</tags>
+<status status="PASS" starttime="20200506 09:35:59.836" endtime="20200506 09:36:15.208" critical="yes"></status>
+</test>
+<doc>This is test suite of ProjectAgileWeb7 webpage</doc>
+<status status="PASS" starttime="20200506 09:35:03.766" endtime="20200506 09:36:15.212"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">Test WEb7-118</stat>
+<stat pass="1" fail="0">Test WEb7-118 1.1</stat>
+<stat pass="1" fail="0">Test WEb7-118 1.2</stat>
+<stat pass="1" fail="0">Test WEb7-155</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" id="s1" name="WEB7-23-Search">WEB7-23-Search</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,1831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200501 18:04:27.346" rpa="false">
+<suite id="s1" name="WEB7-24-SampleList" source="C:\Program Files (x86)\Jenkins\workspace\Web7AgileProjectDhanya\ProjectAgileWeb7\Tests\WEB7-24-SampleList.robot">
+<test id="s1-t1" name="Verify image is visible in Homepage">
+<kw name="Open Browser To Start Page" library="WEB7-24-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 18:04:28.356" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 18:04:28.355" endtime="20200501 18:04:36.636"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 18:04:36.636" endtime="20200501 18:04:41.285"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 18:04:41.286" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 18:04:41.286" endtime="20200501 18:04:42.198"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:04:28.355" endtime="20200501 18:04:42.198"></status>
+</kw>
+<kw name="Verify image is visible" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:42.199" endtime="20200501 18:04:42.239"></status>
+</kw>
+<kw name="Page Should Contain Image" library="SeleniumLibrary">
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:04:42.271" level="INFO">Current page contains image 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img'.</msg>
+<status status="PASS" starttime="20200501 18:04:42.239" endtime="20200501 18:04:42.272"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:04:42.310" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:04:42.272" endtime="20200501 18:04:42.310"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:04:42.198" endtime="20200501 18:04:42.310"></status>
+</kw>
+<kw name="Verify src of first image" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>${element id}</arg>
+<arg>attribute=src</arg>
+</arguments>
+<assign>
+<var>${img src}</var>
+</assign>
+<msg timestamp="20200501 18:04:42.332" level="INFO">${img src} = https://localhost:44364/pictures/ritz.jpg</msg>
+<status status="PASS" starttime="20200501 18:04:42.311" endtime="20200501 18:04:42.332"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${img src}</arg>
+<arg>https://localhost:44364/pictures/ritz.jpg</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:42.333" endtime="20200501 18:04:42.333"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200501 18:04:42.336" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200501 18:04:42.335" endtime="20200501 18:04:42.432"></status>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:42.432" endtime="20200501 18:04:42.446"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>https://localhost:44364/pictures/ritz.jpg</arg>
+</arguments>
+<msg timestamp="20200501 18:04:42.447" level="INFO">Opening url 'https://localhost:44364/pictures/ritz.jpg'</msg>
+<status status="PASS" starttime="20200501 18:04:42.447" endtime="20200501 18:04:46.533"></status>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<doc>Returns the title of the current page.</doc>
+<assign>
+<var>${image_title}</var>
+</assign>
+<msg timestamp="20200501 18:04:46.560" level="INFO">${image_title} = ritz.jpg (1280×854)</msg>
+<status status="PASS" starttime="20200501 18:04:46.534" endtime="20200501 18:04:46.561"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${image_title}</arg>
+<arg>ritz.jpg (1280×854)</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:46.561" endtime="20200501 18:04:46.562"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:04:51.563" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20200501 18:04:46.562" endtime="20200501 18:04:51.563"></status>
+</kw>
+<kw name="Close Window" library="SeleniumLibrary">
+<doc>Closes currently opened and selected browser window/tab.</doc>
+<status status="PASS" starttime="20200501 18:04:51.563" endtime="20200501 18:04:51.589"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:51.590" endtime="20200501 18:04:51.659"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:04:42.311" endtime="20200501 18:04:51.659"></status>
+</kw>
+<kw name="Verify image is visible" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:51.660" endtime="20200501 18:04:51.673"></status>
+</kw>
+<kw name="Page Should Contain Image" library="SeleniumLibrary">
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:04:51.694" level="INFO">Current page contains image 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img'.</msg>
+<status status="PASS" starttime="20200501 18:04:51.673" endtime="20200501 18:04:51.694"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:04:51.722" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:04:51.694" endtime="20200501 18:04:51.722"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:04:51.659" endtime="20200501 18:04:51.723"></status>
+</kw>
+<kw name="Verify src of second image" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>${element id}</arg>
+<arg>attribute=src</arg>
+</arguments>
+<assign>
+<var>${img src}</var>
+</assign>
+<msg timestamp="20200501 18:04:51.743" level="INFO">${img src} = https://localhost:44364/pictures/corinthia.jpg</msg>
+<status status="PASS" starttime="20200501 18:04:51.723" endtime="20200501 18:04:51.743"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${img src}</arg>
+<arg>https://localhost:44364/pictures/corinthia.jpg</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:51.744" endtime="20200501 18:04:51.744"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200501 18:04:51.745" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200501 18:04:51.744" endtime="20200501 18:04:51.789"></status>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:51.789" endtime="20200501 18:04:51.799"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>https://localhost:44364/pictures/corinthia.jpg</arg>
+</arguments>
+<msg timestamp="20200501 18:04:51.800" level="INFO">Opening url 'https://localhost:44364/pictures/corinthia.jpg'</msg>
+<status status="PASS" starttime="20200501 18:04:51.799" endtime="20200501 18:04:56.149"></status>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<doc>Returns the title of the current page.</doc>
+<assign>
+<var>${image_title}</var>
+</assign>
+<msg timestamp="20200501 18:04:56.163" level="INFO">${image_title} = corinthia.jpg (1280×853)</msg>
+<status status="PASS" starttime="20200501 18:04:56.149" endtime="20200501 18:04:56.163"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${image_title}</arg>
+<arg>corinthia.jpg (1280×853)</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:04:56.163" endtime="20200501 18:04:56.164"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:05:01.164" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20200501 18:04:56.164" endtime="20200501 18:05:01.164"></status>
+</kw>
+<kw name="Close Window" library="SeleniumLibrary">
+<doc>Closes currently opened and selected browser window/tab.</doc>
+<status status="PASS" starttime="20200501 18:05:01.164" endtime="20200501 18:05:01.197"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:01.197" endtime="20200501 18:05:01.238"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:04:51.723" endtime="20200501 18:05:01.239"></status>
+</kw>
+<kw name="Verify image is visible" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:01.239" endtime="20200501 18:05:01.250"></status>
+</kw>
+<kw name="Page Should Contain Image" library="SeleniumLibrary">
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:05:01.273" level="INFO">Current page contains image 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img'.</msg>
+<status status="PASS" starttime="20200501 18:05:01.251" endtime="20200501 18:05:01.273"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:05:01.297" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:05:01.273" endtime="20200501 18:05:01.297"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:01.239" endtime="20200501 18:05:01.297"></status>
+</kw>
+<kw name="Verify src of third image" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>${element id}</arg>
+<arg>attribute=src</arg>
+</arguments>
+<assign>
+<var>${img src}</var>
+</assign>
+<msg timestamp="20200501 18:05:01.315" level="INFO">${img src} = https://localhost:44364/pictures/eden.jpg</msg>
+<status status="PASS" starttime="20200501 18:05:01.298" endtime="20200501 18:05:01.315"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${img src}</arg>
+<arg>https://localhost:44364/pictures/eden.jpg</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:01.315" endtime="20200501 18:05:01.316"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200501 18:05:01.316" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200501 18:05:01.316" endtime="20200501 18:05:01.349"></status>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:01.349" endtime="20200501 18:05:01.360"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>https://localhost:44364/pictures/eden.jpg</arg>
+</arguments>
+<msg timestamp="20200501 18:05:01.360" level="INFO">Opening url 'https://localhost:44364/pictures/eden.jpg'</msg>
+<status status="PASS" starttime="20200501 18:05:01.360" endtime="20200501 18:05:06.840"></status>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<doc>Returns the title of the current page.</doc>
+<assign>
+<var>${image_title}</var>
+</assign>
+<msg timestamp="20200501 18:05:06.847" level="INFO">${image_title} = eden.jpg (1024×683)</msg>
+<status status="PASS" starttime="20200501 18:05:06.841" endtime="20200501 18:05:06.847"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${image_title}</arg>
+<arg>eden.jpg (1024×683)</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:06.848" endtime="20200501 18:05:06.848"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:05:11.849" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20200501 18:05:06.849" endtime="20200501 18:05:11.849"></status>
+</kw>
+<kw name="Close Window" library="SeleniumLibrary">
+<doc>Closes currently opened and selected browser window/tab.</doc>
+<status status="PASS" starttime="20200501 18:05:11.849" endtime="20200501 18:05:11.909"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:11.910" endtime="20200501 18:05:11.984"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:01.298" endtime="20200501 18:05:11.984"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-24-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 18:05:11.986" endtime="20200501 18:05:14.160"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:11.985" endtime="20200501 18:05:14.160"></status>
+</kw>
+<doc>Test to verify that Home page is displayed with sample list of hotels images</doc>
+<tags>
+<tag>Test WEb7-49</tag>
+</tags>
+<status status="PASS" starttime="20200501 18:04:28.353" endtime="20200501 18:05:14.160" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Verify name and details">
+<kw name="Open Browser To Start Page" library="WEB7-24-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 18:05:14.165" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 18:05:14.164" endtime="20200501 18:05:20.762"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 18:05:20.762" endtime="20200501 18:05:24.900"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 18:05:24.901" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 18:05:24.901" endtime="20200501 18:05:25.779"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:14.163" endtime="20200501 18:05:25.779"></status>
+</kw>
+<kw name="Verify first hotel" library="WEB7-24-keywords">
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[1]/h2</arg>
+</arguments>
+<assign>
+<var>${hotel_name}</var>
+</assign>
+<msg timestamp="20200501 18:05:25.843" level="INFO">${hotel_name} = Ritz Hotel Paris</msg>
+<status status="PASS" starttime="20200501 18:05:25.780" endtime="20200501 18:05:25.843"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${hotel_name}</arg>
+<arg>Ritz Hotel Paris</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:25.843" endtime="20200501 18:05:25.843"></status>
+</kw>
+<kw name="Locator Should Match X Times" library="SeleniumLibrary">
+<doc>*DEPRECATED in SeleniumLibrary 4.0.*, use `Page Should Contain Element` with ``limit`` argument instead.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[2]/*</arg>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:05:25.844" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:05:25.861" level="INFO">Current page contains 5 elements matching 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[2]/*'.</msg>
+<status status="PASS" starttime="20200501 18:05:25.844" endtime="20200501 18:05:25.861"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[1]</arg>
+</arguments>
+<assign>
+<var>${place_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:25.892" level="INFO">${place_link} = 15 Place Vendôme, 75001, Paris, France</msg>
+<status status="PASS" starttime="20200501 18:05:25.861" endtime="20200501 18:05:25.892"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${place_link}</arg>
+<arg>15 Place Vendôme, 75001, Paris, France</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:25.893" endtime="20200501 18:05:25.893"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[2]</arg>
+</arguments>
+<assign>
+<var>${distance_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:25.929" level="INFO">${distance_link} = Distance from centre: 6,3 km.</msg>
+<status status="PASS" starttime="20200501 18:05:25.893" endtime="20200501 18:05:25.929"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${distance_link}</arg>
+<arg>Distance from centre: 6,3 km.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:25.929" endtime="20200501 18:05:25.930"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[4]</arg>
+</arguments>
+<assign>
+<var>${discription_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:25.964" level="INFO">${discription_link} = Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.</msg>
+<status status="PASS" starttime="20200501 18:05:25.930" endtime="20200501 18:05:25.964"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${discription_link}</arg>
+<arg>Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:25.964" endtime="20200501 18:05:25.965"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[5]</arg>
+<arg>Available rooms</arg>
+</arguments>
+<msg timestamp="20200501 18:05:25.996" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[5]' contains text 'Available rooms'.</msg>
+<status status="PASS" starttime="20200501 18:05:25.965" endtime="20200501 18:05:25.996"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[6]</arg>
+<arg>Facilities:</arg>
+</arguments>
+<msg timestamp="20200501 18:05:26.038" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[6]' contains text 'Facilities:'.</msg>
+<status status="PASS" starttime="20200501 18:05:25.996" endtime="20200501 18:05:26.038"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a</arg>
+</arguments>
+<msg timestamp="20200501 18:05:26.069" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:05:26.038" endtime="20200501 18:05:26.070"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[7]/p</arg>
+</arguments>
+<assign>
+<var>${extern_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:26.100" level="INFO">${extern_link} = https://www.ritzparis.com/en-GB</msg>
+<status status="PASS" starttime="20200501 18:05:26.070" endtime="20200501 18:05:26.100"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${extern_link}</arg>
+<arg>https://www.ritzparis.com/en-GB</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:26.100" endtime="20200501 18:05:26.101"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[7]/p/a</arg>
+</arguments>
+<msg timestamp="20200501 18:05:26.101" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[7]/p/a'.</msg>
+<status status="PASS" starttime="20200501 18:05:26.101" endtime="20200501 18:05:28.196"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Ritz Paris: Luxury Hotel 5 stars Place Vendôme</arg>
+</arguments>
+<msg timestamp="20200501 18:05:28.212" level="INFO">Page title is 'Ritz Paris: Luxury Hotel 5 stars Place Vendôme'.</msg>
+<status status="PASS" starttime="20200501 18:05:28.197" endtime="20200501 18:05:28.212"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200501 18:05:28.213" endtime="20200501 18:05:29.049"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:29.049" endtime="20200501 18:05:29.080"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:25.779" endtime="20200501 18:05:29.080"></status>
+</kw>
+<kw name="Verify second hotel" library="WEB7-24-keywords">
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[1]/h2</arg>
+</arguments>
+<assign>
+<var>${hotel_name}</var>
+</assign>
+<msg timestamp="20200501 18:05:29.136" level="INFO">${hotel_name} = Corinthia Hotel London</msg>
+<status status="PASS" starttime="20200501 18:05:29.081" endtime="20200501 18:05:29.136"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${hotel_name}</arg>
+<arg>Corinthia Hotel London</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:29.136" endtime="20200501 18:05:29.137"></status>
+</kw>
+<kw name="Locator Should Match X Times" library="SeleniumLibrary">
+<doc>*DEPRECATED in SeleniumLibrary 4.0.*, use `Page Should Contain Element` with ``limit`` argument instead.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[2]/*</arg>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:05:29.137" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:05:29.159" level="INFO">Current page contains 5 elements matching 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[2]/*'.</msg>
+<status status="PASS" starttime="20200501 18:05:29.137" endtime="20200501 18:05:29.159"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[3]/p[1]</arg>
+</arguments>
+<assign>
+<var>${place_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:29.214" level="INFO">${place_link} = Whitehall Place, SW1A 2BD, London, United Kingdom</msg>
+<status status="PASS" starttime="20200501 18:05:29.159" endtime="20200501 18:05:29.214"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${place_link}</arg>
+<arg>Whitehall Place, SW1A 2BD, London, United Kingdom</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:29.214" endtime="20200501 18:05:29.215"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[3]/p[2]</arg>
+</arguments>
+<assign>
+<var>${distance_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:29.258" level="INFO">${distance_link} = Distance from centre: 1,6 km.</msg>
+<status status="PASS" starttime="20200501 18:05:29.215" endtime="20200501 18:05:29.258"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${distance_link}</arg>
+<arg>Distance from centre: 1,6 km.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:29.258" endtime="20200501 18:05:29.258"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[4]</arg>
+</arguments>
+<assign>
+<var>${discription_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:29.299" level="INFO">${discription_link} = The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist, London’s largest sp...</msg>
+<status status="PASS" starttime="20200501 18:05:29.259" endtime="20200501 18:05:29.299"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${discription_link}</arg>
+<arg>The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist, London’s largest spa and the world's first hotel concession for Harrods.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:29.300" endtime="20200501 18:05:29.301"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[5]</arg>
+<arg>Available rooms</arg>
+</arguments>
+<msg timestamp="20200501 18:05:29.342" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[5]' contains text 'Available rooms'.</msg>
+<status status="PASS" starttime="20200501 18:05:29.301" endtime="20200501 18:05:29.342"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[6]</arg>
+<arg>Facilities:</arg>
+</arguments>
+<msg timestamp="20200501 18:05:29.391" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[6]' contains text 'Facilities:'.</msg>
+<status status="PASS" starttime="20200501 18:05:29.342" endtime="20200501 18:05:29.391"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[2]/a</arg>
+</arguments>
+<msg timestamp="20200501 18:05:29.440" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[2]/a' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:05:29.392" endtime="20200501 18:05:29.440"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[7]/p</arg>
+</arguments>
+<assign>
+<var>${extern_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:29.478" level="INFO">${extern_link} = https://www.corinthia.com/london/</msg>
+<status status="PASS" starttime="20200501 18:05:29.440" endtime="20200501 18:05:29.478"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${extern_link}</arg>
+<arg>https://www.corinthia.com/london/</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:29.479" endtime="20200501 18:05:29.479"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[7]/p/a</arg>
+</arguments>
+<msg timestamp="20200501 18:05:29.480" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[7]/p/a'.</msg>
+<status status="PASS" starttime="20200501 18:05:29.479" endtime="20200501 18:05:40.646"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Corinthia London | Luxury Hotel in London | Corinthia Hotels - Corinthia</arg>
+</arguments>
+<msg timestamp="20200501 18:05:40.659" level="INFO">Page title is 'Corinthia London | Luxury Hotel in London | Corinthia Hotels - Corinthia'.</msg>
+<status status="PASS" starttime="20200501 18:05:40.646" endtime="20200501 18:05:40.659"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200501 18:05:40.659" endtime="20200501 18:05:41.573"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:41.573" endtime="20200501 18:05:41.613"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:29.081" endtime="20200501 18:05:41.613"></status>
+</kw>
+<kw name="Verify third hotel" library="WEB7-24-keywords">
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[1]/h2</arg>
+</arguments>
+<assign>
+<var>${hotel_name}</var>
+</assign>
+<msg timestamp="20200501 18:05:41.666" level="INFO">${hotel_name} = Eden Hotel Amsterdam</msg>
+<status status="PASS" starttime="20200501 18:05:41.614" endtime="20200501 18:05:41.666"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${hotel_name}</arg>
+<arg>Eden Hotel Amsterdam</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:41.666" endtime="20200501 18:05:41.667"></status>
+</kw>
+<kw name="Locator Should Match X Times" library="SeleniumLibrary">
+<doc>*DEPRECATED in SeleniumLibrary 4.0.*, use `Page Should Contain Element` with ``limit`` argument instead.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[2]/*</arg>
+<arg>4</arg>
+</arguments>
+<msg timestamp="20200501 18:05:41.668" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:05:41.692" level="INFO">Current page contains 4 elements matching 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[2]/*'.</msg>
+<status status="PASS" starttime="20200501 18:05:41.667" endtime="20200501 18:05:41.692"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[3]/p[1]</arg>
+</arguments>
+<assign>
+<var>${place_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:41.742" level="INFO">${place_link} = Amstelstraat 17, 1017 DA, Amsterdam, Netherlands</msg>
+<status status="PASS" starttime="20200501 18:05:41.692" endtime="20200501 18:05:41.743"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${place_link}</arg>
+<arg>Amstelstraat 17, 1017 DA, Amsterdam, Netherlands</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:41.743" endtime="20200501 18:05:41.743"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[3]/p[2]</arg>
+</arguments>
+<assign>
+<var>${distance_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:41.799" level="INFO">${distance_link} = Distance from centre: 0,9 km.</msg>
+<status status="PASS" starttime="20200501 18:05:41.744" endtime="20200501 18:05:41.799"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${distance_link}</arg>
+<arg>Distance from centre: 0,9 km.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:41.799" endtime="20200501 18:05:41.800"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[4]</arg>
+</arguments>
+<assign>
+<var>${discription_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:41.851" level="INFO">${discription_link} = Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by...</msg>
+<status status="PASS" starttime="20200501 18:05:41.801" endtime="20200501 18:05:41.851"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${discription_link}</arg>
+<arg>Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by tram.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:41.852" endtime="20200501 18:05:41.852"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[5]</arg>
+<arg>Available rooms</arg>
+</arguments>
+<msg timestamp="20200501 18:05:41.903" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[5]' contains text 'Available rooms'.</msg>
+<status status="PASS" starttime="20200501 18:05:41.852" endtime="20200501 18:05:41.903"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[6]</arg>
+<arg>Facilities</arg>
+</arguments>
+<msg timestamp="20200501 18:05:41.963" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[6]' contains text 'Facilities'.</msg>
+<status status="PASS" starttime="20200501 18:05:41.903" endtime="20200501 18:05:41.963"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[2]/a</arg>
+</arguments>
+<msg timestamp="20200501 18:05:42.026" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[2]/a' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:05:41.963" endtime="20200501 18:05:42.027"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[7]/p</arg>
+</arguments>
+<assign>
+<var>${extern_link}</var>
+</assign>
+<msg timestamp="20200501 18:05:42.084" level="INFO">${extern_link} = https://www.edenhotelamsterdam.com/en/</msg>
+<status status="PASS" starttime="20200501 18:05:42.027" endtime="20200501 18:05:42.084"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${extern_link}</arg>
+<arg>https://www.edenhotelamsterdam.com/en/</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:42.085" endtime="20200501 18:05:42.085"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[7]/p/a</arg>
+</arguments>
+<msg timestamp="20200501 18:05:42.086" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[7]/p/a'.</msg>
+<status status="PASS" starttime="20200501 18:05:42.085" endtime="20200501 18:05:45.225"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Eden Hotel Amsterdam 4* | Along the famous Amstel | 10% discount</arg>
+</arguments>
+<msg timestamp="20200501 18:05:45.979" level="INFO">Page title is 'Eden Hotel Amsterdam 4* | Along the famous Amstel | 10% discount'.</msg>
+<status status="PASS" starttime="20200501 18:05:45.225" endtime="20200501 18:05:45.979"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200501 18:05:45.979" endtime="20200501 18:05:46.775"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:05:46.776" endtime="20200501 18:05:46.796"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:41.613" endtime="20200501 18:05:46.796"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-24-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 18:05:46.797" endtime="20200501 18:05:49.066"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:46.797" endtime="20200501 18:05:49.066"></status>
+</kw>
+<doc>Test to verify that Home page is displayed names and details of hotels
+along with images</doc>
+<tags>
+<tag>Test WEb7-49 1.1</tag>
+</tags>
+<status status="PASS" starttime="20200501 18:05:14.161" endtime="20200501 18:05:49.066" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Verify Page is responsive">
+<kw name="Open Browser To Start Page" library="WEB7-24-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 18:05:49.070" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 18:05:49.070" endtime="20200501 18:05:57.483"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 18:05:57.483" endtime="20200501 18:06:01.604"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:01.605" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 18:06:01.605" endtime="20200501 18:06:03.846"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:05:49.069" endtime="20200501 18:06:03.846"></status>
+</kw>
+<kw name="Change window size value" library="WEB7-24-keywords">
+<arguments>
+<arg>300</arg>
+<arg>500</arg>
+</arguments>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<arguments>
+<arg>${width}</arg>
+<arg>${height}</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:03.849" endtime="20200501 18:06:04.116"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:03.847" endtime="20200501 18:06:04.116"></status>
+</kw>
+<kw name="Verify image is visible" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:04.117" endtime="20200501 18:06:04.144"></status>
+</kw>
+<kw name="Page Should Contain Image" library="SeleniumLibrary">
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:04.173" level="INFO">Current page contains image 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img'.</msg>
+<status status="PASS" starttime="20200501 18:06:04.144" endtime="20200501 18:06:04.173"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:04.213" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:06:04.173" endtime="20200501 18:06:04.213"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:04.117" endtime="20200501 18:06:04.214"></status>
+</kw>
+<kw name="Verify src of first image" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>${element id}</arg>
+<arg>attribute=src</arg>
+</arguments>
+<assign>
+<var>${img src}</var>
+</assign>
+<msg timestamp="20200501 18:06:04.239" level="INFO">${img src} = https://localhost:44364/pictures/ritz.jpg</msg>
+<status status="PASS" starttime="20200501 18:06:04.215" endtime="20200501 18:06:04.239"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${img src}</arg>
+<arg>https://localhost:44364/pictures/ritz.jpg</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:04.239" endtime="20200501 18:06:04.240"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200501 18:06:04.241" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200501 18:06:04.240" endtime="20200501 18:06:04.292"></status>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:04.293" endtime="20200501 18:06:04.322"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>https://localhost:44364/pictures/ritz.jpg</arg>
+</arguments>
+<msg timestamp="20200501 18:06:04.323" level="INFO">Opening url 'https://localhost:44364/pictures/ritz.jpg'</msg>
+<status status="PASS" starttime="20200501 18:06:04.322" endtime="20200501 18:06:08.406"></status>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<doc>Returns the title of the current page.</doc>
+<assign>
+<var>${image_title}</var>
+</assign>
+<msg timestamp="20200501 18:06:08.422" level="INFO">${image_title} = ritz.jpg (1280×854)</msg>
+<status status="PASS" starttime="20200501 18:06:08.406" endtime="20200501 18:06:08.422"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${image_title}</arg>
+<arg>ritz.jpg (1280×854)</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:08.422" endtime="20200501 18:06:08.423"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:06:13.425" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20200501 18:06:08.423" endtime="20200501 18:06:13.425"></status>
+</kw>
+<kw name="Close Window" library="SeleniumLibrary">
+<doc>Closes currently opened and selected browser window/tab.</doc>
+<status status="PASS" starttime="20200501 18:06:13.425" endtime="20200501 18:06:13.449"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:13.450" endtime="20200501 18:06:13.485"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:04.214" endtime="20200501 18:06:13.486"></status>
+</kw>
+<kw name="Verify image is visible" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:13.486" endtime="20200501 18:06:13.498"></status>
+</kw>
+<kw name="Page Should Contain Image" library="SeleniumLibrary">
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:13.522" level="INFO">Current page contains image 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img'.</msg>
+<status status="PASS" starttime="20200501 18:06:13.499" endtime="20200501 18:06:13.522"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:13.552" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:06:13.522" endtime="20200501 18:06:13.552"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:13.486" endtime="20200501 18:06:13.553"></status>
+</kw>
+<kw name="Verify src of second image" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>${element id}</arg>
+<arg>attribute=src</arg>
+</arguments>
+<assign>
+<var>${img src}</var>
+</assign>
+<msg timestamp="20200501 18:06:13.574" level="INFO">${img src} = https://localhost:44364/pictures/corinthia.jpg</msg>
+<status status="PASS" starttime="20200501 18:06:13.553" endtime="20200501 18:06:13.574"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${img src}</arg>
+<arg>https://localhost:44364/pictures/corinthia.jpg</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:13.574" endtime="20200501 18:06:13.574"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200501 18:06:13.575" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200501 18:06:13.575" endtime="20200501 18:06:13.612"></status>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:13.612" endtime="20200501 18:06:13.624"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>https://localhost:44364/pictures/corinthia.jpg</arg>
+</arguments>
+<msg timestamp="20200501 18:06:13.625" level="INFO">Opening url 'https://localhost:44364/pictures/corinthia.jpg'</msg>
+<status status="PASS" starttime="20200501 18:06:13.625" endtime="20200501 18:06:17.749"></status>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<doc>Returns the title of the current page.</doc>
+<assign>
+<var>${image_title}</var>
+</assign>
+<msg timestamp="20200501 18:06:17.763" level="INFO">${image_title} = corinthia.jpg (1280×853)</msg>
+<status status="PASS" starttime="20200501 18:06:17.749" endtime="20200501 18:06:17.763"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${image_title}</arg>
+<arg>corinthia.jpg (1280×853)</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:17.764" endtime="20200501 18:06:17.764"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:06:22.767" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20200501 18:06:17.765" endtime="20200501 18:06:22.767"></status>
+</kw>
+<kw name="Close Window" library="SeleniumLibrary">
+<doc>Closes currently opened and selected browser window/tab.</doc>
+<status status="PASS" starttime="20200501 18:06:22.767" endtime="20200501 18:06:22.795"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:22.796" endtime="20200501 18:06:22.826"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:13.553" endtime="20200501 18:06:22.827"></status>
+</kw>
+<kw name="Verify image is visible" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:22.827" endtime="20200501 18:06:22.842"></status>
+</kw>
+<kw name="Page Should Contain Image" library="SeleniumLibrary">
+<doc>Verifies image identified by ``locator`` is found from current page.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:22.873" level="INFO">Current page contains image 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img'.</msg>
+<status status="PASS" starttime="20200501 18:06:22.843" endtime="20200501 18:06:22.874"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${element id}</arg>
+</arguments>
+<msg timestamp="20200501 18:06:22.896" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:06:22.874" endtime="20200501 18:06:22.896"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:22.827" endtime="20200501 18:06:22.896"></status>
+</kw>
+<kw name="Verify src of third image" library="WEB7-24-keywords">
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[1]/img</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>${element id}</arg>
+<arg>attribute=src</arg>
+</arguments>
+<assign>
+<var>${img src}</var>
+</assign>
+<msg timestamp="20200501 18:06:22.913" level="INFO">${img src} = https://localhost:44364/pictures/eden.jpg</msg>
+<status status="PASS" starttime="20200501 18:06:22.897" endtime="20200501 18:06:22.913"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${img src}</arg>
+<arg>https://localhost:44364/pictures/eden.jpg</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:22.913" endtime="20200501 18:06:22.914"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200501 18:06:22.915" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200501 18:06:22.914" endtime="20200501 18:06:22.947"></status>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:22.947" endtime="20200501 18:06:22.957"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>https://localhost:44364/pictures/eden.jpg</arg>
+</arguments>
+<msg timestamp="20200501 18:06:22.957" level="INFO">Opening url 'https://localhost:44364/pictures/eden.jpg'</msg>
+<status status="PASS" starttime="20200501 18:06:22.957" endtime="20200501 18:06:28.526"></status>
+</kw>
+<kw name="Get Title" library="SeleniumLibrary">
+<doc>Returns the title of the current page.</doc>
+<assign>
+<var>${image_title}</var>
+</assign>
+<msg timestamp="20200501 18:06:28.537" level="INFO">${image_title} = eden.jpg (1024×683)</msg>
+<status status="PASS" starttime="20200501 18:06:28.527" endtime="20200501 18:06:28.537"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${image_title}</arg>
+<arg>eden.jpg (1024×683)</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:28.538" endtime="20200501 18:06:28.538"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:06:33.540" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20200501 18:06:28.539" endtime="20200501 18:06:33.540"></status>
+</kw>
+<kw name="Close Window" library="SeleniumLibrary">
+<doc>Closes currently opened and selected browser window/tab.</doc>
+<status status="PASS" starttime="20200501 18:06:33.540" endtime="20200501 18:06:33.568"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:33.568" endtime="20200501 18:06:33.602"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:22.896" endtime="20200501 18:06:33.603"></status>
+</kw>
+<kw name="Verify first hotel" library="WEB7-24-keywords">
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[1]/h2</arg>
+</arguments>
+<assign>
+<var>${hotel_name}</var>
+</assign>
+<msg timestamp="20200501 18:06:33.636" level="INFO">${hotel_name} = Ritz Hotel Paris</msg>
+<status status="PASS" starttime="20200501 18:06:33.603" endtime="20200501 18:06:33.636"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${hotel_name}</arg>
+<arg>Ritz Hotel Paris</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:33.636" endtime="20200501 18:06:33.636"></status>
+</kw>
+<kw name="Locator Should Match X Times" library="SeleniumLibrary">
+<doc>*DEPRECATED in SeleniumLibrary 4.0.*, use `Page Should Contain Element` with ``limit`` argument instead.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[2]/*</arg>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:06:33.637" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:06:33.652" level="INFO">Current page contains 5 elements matching 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[2]/*'.</msg>
+<status status="PASS" starttime="20200501 18:06:33.636" endtime="20200501 18:06:33.652"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[1]</arg>
+</arguments>
+<assign>
+<var>${place_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:33.687" level="INFO">${place_link} = 15 Place Vendôme, 75001, Paris, France</msg>
+<status status="PASS" starttime="20200501 18:06:33.652" endtime="20200501 18:06:33.687"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${place_link}</arg>
+<arg>15 Place Vendôme, 75001, Paris, France</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:33.687" endtime="20200501 18:06:33.687"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[2]</arg>
+</arguments>
+<assign>
+<var>${distance_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:33.725" level="INFO">${distance_link} = Distance from centre: 6,3 km.</msg>
+<status status="PASS" starttime="20200501 18:06:33.687" endtime="20200501 18:06:33.725"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${distance_link}</arg>
+<arg>Distance from centre: 6,3 km.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:33.726" endtime="20200501 18:06:33.726"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[4]</arg>
+</arguments>
+<assign>
+<var>${discription_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:33.768" level="INFO">${discription_link} = Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.</msg>
+<status status="PASS" starttime="20200501 18:06:33.727" endtime="20200501 18:06:33.768"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${discription_link}</arg>
+<arg>Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:33.768" endtime="20200501 18:06:33.768"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[5]</arg>
+<arg>Available rooms</arg>
+</arguments>
+<msg timestamp="20200501 18:06:33.802" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[5]' contains text 'Available rooms'.</msg>
+<status status="PASS" starttime="20200501 18:06:33.768" endtime="20200501 18:06:33.802"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[6]</arg>
+<arg>Facilities:</arg>
+</arguments>
+<msg timestamp="20200501 18:06:33.838" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[6]' contains text 'Facilities:'.</msg>
+<status status="PASS" starttime="20200501 18:06:33.802" endtime="20200501 18:06:33.838"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a</arg>
+</arguments>
+<msg timestamp="20200501 18:06:33.873" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:06:33.838" endtime="20200501 18:06:33.873"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[7]/p</arg>
+</arguments>
+<assign>
+<var>${extern_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:33.904" level="INFO">${extern_link} = https://www.ritzparis.com/en-GB</msg>
+<status status="PASS" starttime="20200501 18:06:33.873" endtime="20200501 18:06:33.904"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${extern_link}</arg>
+<arg>https://www.ritzparis.com/en-GB</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:33.904" endtime="20200501 18:06:33.905"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[7]/p/a</arg>
+</arguments>
+<msg timestamp="20200501 18:06:33.905" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[7]/p/a'.</msg>
+<status status="PASS" starttime="20200501 18:06:33.905" endtime="20200501 18:06:36.030"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Ritz Paris: Luxury Hotel 5 stars Place Vendôme</arg>
+</arguments>
+<msg timestamp="20200501 18:06:36.048" level="INFO">Page title is 'Ritz Paris: Luxury Hotel 5 stars Place Vendôme'.</msg>
+<status status="PASS" starttime="20200501 18:06:36.030" endtime="20200501 18:06:36.048"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200501 18:06:36.048" endtime="20200501 18:06:36.726"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:36.727" endtime="20200501 18:06:36.752"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:33.603" endtime="20200501 18:06:36.752"></status>
+</kw>
+<kw name="Verify second hotel" library="WEB7-24-keywords">
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[1]/h2</arg>
+</arguments>
+<assign>
+<var>${hotel_name}</var>
+</assign>
+<msg timestamp="20200501 18:06:36.795" level="INFO">${hotel_name} = Corinthia Hotel London</msg>
+<status status="PASS" starttime="20200501 18:06:36.753" endtime="20200501 18:06:36.795"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${hotel_name}</arg>
+<arg>Corinthia Hotel London</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:36.795" endtime="20200501 18:06:36.796"></status>
+</kw>
+<kw name="Locator Should Match X Times" library="SeleniumLibrary">
+<doc>*DEPRECATED in SeleniumLibrary 4.0.*, use `Page Should Contain Element` with ``limit`` argument instead.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[2]/*</arg>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200501 18:06:36.796" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:06:36.814" level="INFO">Current page contains 5 elements matching 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[2]/*'.</msg>
+<status status="PASS" starttime="20200501 18:06:36.796" endtime="20200501 18:06:36.815"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[3]/p[1]</arg>
+</arguments>
+<assign>
+<var>${place_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:36.850" level="INFO">${place_link} = Whitehall Place, SW1A 2BD, London, United Kingdom</msg>
+<status status="PASS" starttime="20200501 18:06:36.815" endtime="20200501 18:06:36.850"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${place_link}</arg>
+<arg>Whitehall Place, SW1A 2BD, London, United Kingdom</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:36.850" endtime="20200501 18:06:36.851"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[3]/p[2]</arg>
+</arguments>
+<assign>
+<var>${distance_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:36.897" level="INFO">${distance_link} = Distance from centre: 1,6 km.</msg>
+<status status="PASS" starttime="20200501 18:06:36.851" endtime="20200501 18:06:36.898"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${distance_link}</arg>
+<arg>Distance from centre: 1,6 km.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:36.898" endtime="20200501 18:06:36.899"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[4]</arg>
+</arguments>
+<assign>
+<var>${discription_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:36.947" level="INFO">${discription_link} = The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist, London’s largest sp...</msg>
+<status status="PASS" starttime="20200501 18:06:36.899" endtime="20200501 18:06:36.947"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${discription_link}</arg>
+<arg>The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist, London’s largest spa and the world's first hotel concession for Harrods.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:36.947" endtime="20200501 18:06:36.948"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[5]</arg>
+<arg>Available rooms</arg>
+</arguments>
+<msg timestamp="20200501 18:06:37.010" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[5]' contains text 'Available rooms'.</msg>
+<status status="PASS" starttime="20200501 18:06:36.948" endtime="20200501 18:06:37.011"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[6]</arg>
+<arg>Facilities:</arg>
+</arguments>
+<msg timestamp="20200501 18:06:37.044" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[6]' contains text 'Facilities:'.</msg>
+<status status="PASS" starttime="20200501 18:06:37.011" endtime="20200501 18:06:37.044"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[2]/a</arg>
+</arguments>
+<msg timestamp="20200501 18:06:37.076" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[2]/a' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:06:37.044" endtime="20200501 18:06:37.077"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[7]/p</arg>
+</arguments>
+<assign>
+<var>${extern_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:37.110" level="INFO">${extern_link} = https://www.corinthia.com/london/</msg>
+<status status="PASS" starttime="20200501 18:06:37.077" endtime="20200501 18:06:37.110"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${extern_link}</arg>
+<arg>https://www.corinthia.com/london/</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:37.110" endtime="20200501 18:06:37.111"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[7]/p/a</arg>
+</arguments>
+<msg timestamp="20200501 18:06:37.111" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[7]/p/a'.</msg>
+<status status="PASS" starttime="20200501 18:06:37.111" endtime="20200501 18:06:47.811"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Corinthia London | Luxury Hotel in London | Corinthia Hotels - Corinthia</arg>
+</arguments>
+<msg timestamp="20200501 18:06:48.072" level="INFO">Page title is 'Corinthia London | Luxury Hotel in London | Corinthia Hotels - Corinthia'.</msg>
+<status status="PASS" starttime="20200501 18:06:47.812" endtime="20200501 18:06:48.072"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200501 18:06:48.072" endtime="20200501 18:06:49.371"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:49.372" endtime="20200501 18:06:49.403"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:36.752" endtime="20200501 18:06:49.403"></status>
+</kw>
+<kw name="Verify third hotel" library="WEB7-24-keywords">
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[1]/h2</arg>
+</arguments>
+<assign>
+<var>${hotel_name}</var>
+</assign>
+<msg timestamp="20200501 18:06:49.456" level="INFO">${hotel_name} = Eden Hotel Amsterdam</msg>
+<status status="PASS" starttime="20200501 18:06:49.404" endtime="20200501 18:06:49.456"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${hotel_name}</arg>
+<arg>Eden Hotel Amsterdam</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:49.456" endtime="20200501 18:06:49.457"></status>
+</kw>
+<kw name="Locator Should Match X Times" library="SeleniumLibrary">
+<doc>*DEPRECATED in SeleniumLibrary 4.0.*, use `Page Should Contain Element` with ``limit`` argument instead.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[2]/*</arg>
+<arg>4</arg>
+</arguments>
+<msg timestamp="20200501 18:06:49.458" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:06:49.478" level="INFO">Current page contains 4 elements matching 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[2]/*'.</msg>
+<status status="PASS" starttime="20200501 18:06:49.457" endtime="20200501 18:06:49.479"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[3]/p[1]</arg>
+</arguments>
+<assign>
+<var>${place_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:49.515" level="INFO">${place_link} = Amstelstraat 17, 1017 DA, Amsterdam, Netherlands</msg>
+<status status="PASS" starttime="20200501 18:06:49.479" endtime="20200501 18:06:49.515"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${place_link}</arg>
+<arg>Amstelstraat 17, 1017 DA, Amsterdam, Netherlands</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:49.516" endtime="20200501 18:06:49.516"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[3]/p[2]</arg>
+</arguments>
+<assign>
+<var>${distance_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:49.560" level="INFO">${distance_link} = Distance from centre: 0,9 km.</msg>
+<status status="PASS" starttime="20200501 18:06:49.516" endtime="20200501 18:06:49.560"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${distance_link}</arg>
+<arg>Distance from centre: 0,9 km.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:49.561" endtime="20200501 18:06:49.561"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[4]</arg>
+</arguments>
+<assign>
+<var>${discription_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:49.614" level="INFO">${discription_link} = Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by...</msg>
+<status status="PASS" starttime="20200501 18:06:49.561" endtime="20200501 18:06:49.614"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${discription_link}</arg>
+<arg>Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by tram.</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:49.614" endtime="20200501 18:06:49.615"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[5]</arg>
+<arg>Available rooms</arg>
+</arguments>
+<msg timestamp="20200501 18:06:49.660" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[5]' contains text 'Available rooms'.</msg>
+<status status="PASS" starttime="20200501 18:06:49.615" endtime="20200501 18:06:49.660"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[6]</arg>
+<arg>Facilities</arg>
+</arguments>
+<msg timestamp="20200501 18:06:49.709" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[6]' contains text 'Facilities'.</msg>
+<status status="PASS" starttime="20200501 18:06:49.661" endtime="20200501 18:06:49.709"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[2]/a</arg>
+</arguments>
+<msg timestamp="20200501 18:06:49.751" level="INFO">Element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[2]/a' is displayed.</msg>
+<status status="PASS" starttime="20200501 18:06:49.710" endtime="20200501 18:06:49.751"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[7]/p</arg>
+</arguments>
+<assign>
+<var>${extern_link}</var>
+</assign>
+<msg timestamp="20200501 18:06:49.804" level="INFO">${extern_link} = https://www.edenhotelamsterdam.com/en/</msg>
+<status status="PASS" starttime="20200501 18:06:49.751" endtime="20200501 18:06:49.805"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${extern_link}</arg>
+<arg>https://www.edenhotelamsterdam.com/en/</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:49.805" endtime="20200501 18:06:49.806"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[7]/p/a</arg>
+</arguments>
+<msg timestamp="20200501 18:06:49.806" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[2]/div[3]/div/div[1]/div[2]/div[7]/p/a'.</msg>
+<status status="PASS" starttime="20200501 18:06:49.806" endtime="20200501 18:06:52.223"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Eden Hotel Amsterdam 4* | Along the famous Amstel | 10% discount</arg>
+</arguments>
+<msg timestamp="20200501 18:06:52.323" level="INFO">Page title is 'Eden Hotel Amsterdam 4* | Along the famous Amstel | 10% discount'.</msg>
+<status status="PASS" starttime="20200501 18:06:52.224" endtime="20200501 18:06:52.323"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200501 18:06:52.323" endtime="20200501 18:06:53.327"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 18:06:53.327" endtime="20200501 18:06:53.365"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:49.404" endtime="20200501 18:06:53.366"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-24-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 18:06:53.367" endtime="20200501 18:06:55.706"></status>
+</kw>
+<status status="PASS" starttime="20200501 18:06:53.366" endtime="20200501 18:06:55.706"></status>
+</kw>
+<doc>Test to verify that Web page is responsive with window size and is displayed names and details of hotels
+along with images</doc>
+<tags>
+<tag>Test WEb7-143</tag>
+</tags>
+<status status="PASS" starttime="20200501 18:05:49.067" endtime="20200501 18:06:55.706" critical="yes"></status>
+</test>
+<doc>This is test suite of ProjectAgileWeb7 webpage</doc>
+<status status="PASS" starttime="20200501 18:04:27.351" endtime="20200501 18:06:55.707"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0">Critical Tests</stat>
+<stat pass="3" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">Test WEb7-143</stat>
+<stat pass="1" fail="0">Test WEb7-49</stat>
+<stat pass="1" fail="0">Test WEb7-49 1.1</stat>
+</tag>
+<suite>
+<stat pass="3" fail="0" id="s1" name="WEB7-24-SampleList">WEB7-24-SampleList</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20200501 18:05:25.844" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:05:29.137" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:05:41.668" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:06:33.637" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:06:36.796" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+<msg timestamp="20200501 18:06:49.458" level="WARN">Keyword 'SeleniumLibrary.Locator Should Match X Times' is deprecated. , use `Page Should Contain Element` with ``limit`` argument instead.</msg>
+</errors>
+</robot>

@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200501 21:25:08.561" rpa="false">
+<suite id="s1" name="WEB7-35-GoogleMap" source="C:\Program Files (x86)\Jenkins\workspace\Web7AgileProjectDhanya\ProjectAgileWeb7\Tests\WEB7-35-GoogleMap.robot">
+<test id="s1-t1" name="Verify Location image is displayed">
+<kw name="Open Browser To Start Page" library="WEB7-35-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 21:25:09.205" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 21:25:09.204" endtime="20200501 21:25:20.223"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 21:25:20.223" endtime="20200501 21:25:28.705"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 21:25:28.706" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 21:25:28.706" endtime="20200501 21:25:32.859"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:09.204" endtime="20200501 21:25:32.859"></status>
+</kw>
+<kw name="Goto hotel details" library="WEB7-35-keywords">
+<arguments>
+<arg>London</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:25:32.860" endtime="20200501 21:25:32.895"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>${Search_text}</arg>
+</arguments>
+<msg timestamp="20200501 21:25:32.896" level="INFO">Typing text 'London' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200501 21:25:32.896" endtime="20200501 21:25:33.236"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200501 21:25:33.237" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200501 21:25:33.237" endtime="20200501 21:25:33.851"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>See details</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:25:33.851" endtime="20200501 21:25:33.886"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "See details")]</arg>
+</arguments>
+<msg timestamp="20200501 21:25:33.887" level="INFO">Clicking element 'xpath: //*[contains(text(), "See details")]'.</msg>
+<status status="PASS" starttime="20200501 21:25:33.886" endtime="20200501 21:25:34.783"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:32.859" endtime="20200501 21:25:34.784"></status>
+</kw>
+<kw name="Googlemap image is displayed" library="WEB7-35-keywords">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>id:largeMapLink</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:25:34.785" endtime="20200501 21:25:34.856"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>css:div.mb-3 a#largeMapLink img</arg>
+</arguments>
+<msg timestamp="20200501 21:25:34.912" level="INFO">Element 'css:div.mb-3 a#largeMapLink img' is displayed.</msg>
+<status status="PASS" starttime="20200501 21:25:34.856" endtime="20200501 21:25:34.912"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:34.784" endtime="20200501 21:25:34.912"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-35-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 21:25:34.913" endtime="20200501 21:25:38.305"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:34.913" endtime="20200501 21:25:38.305"></status>
+</kw>
+<doc>Test to verify that in the hotel details page google image is present</doc>
+<tags>
+<tag>Test WEb7-160</tag>
+</tags>
+<status status="PASS" starttime="20200501 21:25:09.203" endtime="20200501 21:25:38.306" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Verify Location image is displayed subtestcase">
+<kw name="Open Browser To Start Page" library="WEB7-35-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 21:25:38.310" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 21:25:38.310" endtime="20200501 21:25:47.722"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 21:25:47.723" endtime="20200501 21:25:52.331"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 21:25:52.331" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 21:25:52.331" endtime="20200501 21:25:54.195"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:38.309" endtime="20200501 21:25:54.195"></status>
+</kw>
+<kw name="Goto hotel details" library="WEB7-35-keywords">
+<arguments>
+<arg>Paris</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:25:54.196" endtime="20200501 21:25:54.225"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>${Search_text}</arg>
+</arguments>
+<msg timestamp="20200501 21:25:54.226" level="INFO">Typing text 'Paris' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200501 21:25:54.225" endtime="20200501 21:25:54.378"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200501 21:25:54.379" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200501 21:25:54.378" endtime="20200501 21:25:54.721"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>See details</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:25:54.721" endtime="20200501 21:25:54.759"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "See details")]</arg>
+</arguments>
+<msg timestamp="20200501 21:25:54.760" level="INFO">Clicking element 'xpath: //*[contains(text(), "See details")]'.</msg>
+<status status="PASS" starttime="20200501 21:25:54.759" endtime="20200501 21:25:55.336"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:54.195" endtime="20200501 21:25:55.336"></status>
+</kw>
+<kw name="Googlemap image is displayed" library="WEB7-35-keywords">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>id:largeMapLink</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:25:55.337" endtime="20200501 21:25:55.376"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>css:div.mb-3 a#largeMapLink img</arg>
+</arguments>
+<msg timestamp="20200501 21:25:55.448" level="INFO">Element 'css:div.mb-3 a#largeMapLink img' is displayed.</msg>
+<status status="PASS" starttime="20200501 21:25:55.377" endtime="20200501 21:25:55.448"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:55.337" endtime="20200501 21:25:55.448"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-35-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 21:25:55.450" endtime="20200501 21:25:57.913"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:55.449" endtime="20200501 21:25:57.913"></status>
+</kw>
+<doc>Test to verify that in the hotel details page google image is present</doc>
+<tags>
+<tag>Test WEb7-160 1.1</tag>
+</tags>
+<status status="PASS" starttime="20200501 21:25:38.307" endtime="20200501 21:25:57.913" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Verify Location link is working">
+<kw name="Open Browser To Start Page" library="WEB7-35-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 21:25:57.919" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 21:25:57.919" endtime="20200501 21:26:07.202"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 21:26:07.203" endtime="20200501 21:26:11.507"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 21:26:11.508" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 21:26:11.507" endtime="20200501 21:26:12.963"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:25:57.918" endtime="20200501 21:26:12.963"></status>
+</kw>
+<kw name="Goto hotel details" library="WEB7-35-keywords">
+<arguments>
+<arg>Paris</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:12.964" endtime="20200501 21:26:12.998"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>${Search_text}</arg>
+</arguments>
+<msg timestamp="20200501 21:26:12.999" level="INFO">Typing text 'Paris' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200501 21:26:12.999" endtime="20200501 21:26:13.199"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200501 21:26:13.199" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200501 21:26:13.199" endtime="20200501 21:26:13.537"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>See details</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:13.537" endtime="20200501 21:26:13.575"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "See details")]</arg>
+</arguments>
+<msg timestamp="20200501 21:26:13.575" level="INFO">Clicking element 'xpath: //*[contains(text(), "See details")]'.</msg>
+<status status="PASS" starttime="20200501 21:26:13.575" endtime="20200501 21:26:17.332"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:12.963" endtime="20200501 21:26:17.333"></status>
+</kw>
+<kw name="Verify page contains link" library="WEB7-35-keywords">
+<arguments>
+<arg>https://www.bing.com/maps/directions?cp=48.866954~2.360468&amp;sty=r&amp;lvl=16&amp;rtp=~pos.48.866954_2.360468____&amp;amp;FORM=MBEDLD</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:largeMapLink</arg>
+<arg>attribute=href</arg>
+</arguments>
+<assign>
+<var>${page_href}</var>
+</assign>
+<msg timestamp="20200501 21:26:17.463" level="INFO">${page_href} = https://www.bing.com/maps/directions?cp=48.866954~2.360468&amp;sty=r&amp;lvl=16&amp;rtp=~pos.48.866954_2.360468____&amp;amp;FORM=MBEDLD</msg>
+<status status="PASS" starttime="20200501 21:26:17.334" endtime="20200501 21:26:17.463"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${page_href}</arg>
+<arg>${href_link}</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:17.463" endtime="20200501 21:26:17.464"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:17.333" endtime="20200501 21:26:17.464"></status>
+</kw>
+<kw name="Verifying Hypertext reference link" library="WEB7-35-keywords">
+<arguments>
+<arg>https://www.bing.com/maps/directions?cp=48.866954~2.360468&amp;sty=r&amp;lvl=16&amp;rtp=~pos.48.866954_2.360468____&amp;amp;FORM=MBEDLD</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>google</arg>
+<arg>${href_link}</arg>
+</arguments>
+<msg timestamp="20200501 21:26:17.466" level="INFO">Creating Session using : alias=google, url=https://www.bing.com/maps/directions?cp=48.866954~2.360468&amp;sty=r&amp;lvl=16&amp;rtp=~pos.48.866954_2.360468____&amp;amp;FORM=MBEDLD, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200501 21:26:17.466" endtime="20200501 21:26:17.467"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>google</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200501 21:26:17.469" level="INFO">GET Request using : uri=/, params=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+data=None 
+json=None</msg>
+<msg timestamp="20200501 21:26:17.711" level="INFO">c:\users\dhany\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:997: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.bing.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(
+c:\users\dhany\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:997: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.bing.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20200501 21:26:17.712" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200501 21:26:17.467" endtime="20200501 21:26:17.712"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200501 21:26:17.713" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200501 21:26:17.712" endtime="20200501 21:26:17.713"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:17.465" endtime="20200501 21:26:17.714"></status>
+</kw>
+<kw name="Verify link is redirecting or not" library="WEB7-35-keywords">
+<kw name="Click Image" library="SeleniumLibrary">
+<doc>Clicks an image identified by ``locator``.</doc>
+<arguments>
+<arg>css:div.mb-3 a#largeMapLink img</arg>
+</arguments>
+<msg timestamp="20200501 21:26:17.715" level="INFO">Clicking image 'css:div.mb-3 a#largeMapLink img'.</msg>
+<status status="PASS" starttime="20200501 21:26:17.715" endtime="20200501 21:26:18.268"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:18.269" endtime="20200501 21:26:18.442"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:17.714" endtime="20200501 21:26:18.442"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-35-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 21:26:18.444" endtime="20200501 21:26:20.893"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:18.443" endtime="20200501 21:26:20.894"></status>
+</kw>
+<doc>Test to verify that in the hotel details page, google image is present and
+that image should contain link that should be redireting to the map</doc>
+<tags>
+<tag>Test WEb7-161</tag>
+</tags>
+<status status="PASS" starttime="20200501 21:25:57.915" endtime="20200501 21:26:20.894" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Verify Location link is working sub testcase">
+<kw name="Open Browser To Start Page" library="WEB7-35-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+</arguments>
+<msg timestamp="20200501 21:26:20.900" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200501 21:26:20.899" endtime="20200501 21:26:26.859"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200501 21:26:26.859" endtime="20200501 21:26:31.110"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200501 21:26:31.111" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200501 21:26:31.110" endtime="20200501 21:26:37.584"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:20.898" endtime="20200501 21:26:37.584"></status>
+</kw>
+<kw name="Goto hotel details" library="WEB7-35-keywords">
+<arguments>
+<arg>London</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:37.585" endtime="20200501 21:26:37.617"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>${Search_text}</arg>
+</arguments>
+<msg timestamp="20200501 21:26:37.618" level="INFO">Typing text 'London' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200501 21:26:37.617" endtime="20200501 21:26:37.792"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="search-form"]/div/div/div/div[2]</arg>
+</arguments>
+<msg timestamp="20200501 21:26:37.792" level="INFO">Clicking element 'xpath://*[@id="search-form"]/div/div/div/div[2]'.</msg>
+<status status="PASS" starttime="20200501 21:26:37.792" endtime="20200501 21:26:38.154"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>See details</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:38.155" endtime="20200501 21:26:38.197"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "See details")]</arg>
+</arguments>
+<msg timestamp="20200501 21:26:38.198" level="INFO">Clicking element 'xpath: //*[contains(text(), "See details")]'.</msg>
+<status status="PASS" starttime="20200501 21:26:38.197" endtime="20200501 21:26:38.973"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:37.585" endtime="20200501 21:26:38.973"></status>
+</kw>
+<kw name="Verify page contains link" library="WEB7-35-keywords">
+<arguments>
+<arg>https://www.bing.com/maps/directions?cp=51.506753~-0.124422&amp;sty=r&amp;lvl=16&amp;rtp=~pos.51.506753_-0.124422____&amp;amp;FORM=MBEDLD</arg>
+</arguments>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>id:largeMapLink</arg>
+<arg>attribute=href</arg>
+</arguments>
+<assign>
+<var>${page_href}</var>
+</assign>
+<msg timestamp="20200501 21:26:39.017" level="INFO">${page_href} = https://www.bing.com/maps/directions?cp=51.506753~-0.124422&amp;sty=r&amp;lvl=16&amp;rtp=~pos.51.506753_-0.124422____&amp;amp;FORM=MBEDLD</msg>
+<status status="PASS" starttime="20200501 21:26:38.974" endtime="20200501 21:26:39.018"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${page_href}</arg>
+<arg>${href_link}</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:39.018" endtime="20200501 21:26:39.018"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:38.973" endtime="20200501 21:26:39.018"></status>
+</kw>
+<kw name="Verifying Hypertext reference link" library="WEB7-35-keywords">
+<arguments>
+<arg>https://www.bing.com/maps/directions?cp=51.506753~-0.124422&amp;sty=r&amp;lvl=16&amp;rtp=~pos.51.506753_-0.124422____&amp;amp;FORM=MBEDLD</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>google</arg>
+<arg>${href_link}</arg>
+</arguments>
+<msg timestamp="20200501 21:26:39.019" level="INFO">Creating Session using : alias=google, url=https://www.bing.com/maps/directions?cp=51.506753~-0.124422&amp;sty=r&amp;lvl=16&amp;rtp=~pos.51.506753_-0.124422____&amp;amp;FORM=MBEDLD, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200501 21:26:39.019" endtime="20200501 21:26:39.019"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>google</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200501 21:26:39.020" level="INFO">GET Request using : uri=/, params=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+data=None 
+json=None</msg>
+<msg timestamp="20200501 21:26:39.190" level="INFO">c:\users\dhany\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:997: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.bing.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(
+c:\users\dhany\appdata\local\programs\python\python38-32\lib\site-packages\urllib3\connectionpool.py:997: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.bing.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20200501 21:26:39.191" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200501 21:26:39.020" endtime="20200501 21:26:39.191"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200501 21:26:39.191" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200501 21:26:39.191" endtime="20200501 21:26:39.191"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:39.019" endtime="20200501 21:26:39.191"></status>
+</kw>
+<kw name="Verify link is redirecting or not" library="WEB7-35-keywords">
+<kw name="Click Image" library="SeleniumLibrary">
+<doc>Clicks an image identified by ``locator``.</doc>
+<arguments>
+<arg>css:div.mb-3 a#largeMapLink img</arg>
+</arguments>
+<msg timestamp="20200501 21:26:39.192" level="INFO">Clicking image 'css:div.mb-3 a#largeMapLink img'.</msg>
+<status status="PASS" starttime="20200501 21:26:39.192" endtime="20200501 21:26:39.350"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>DEPRECATED in SeleniumLibrary 4.0. , use `Switch Window` instead.</doc>
+<arguments>
+<arg>- ProjectAgileWeb7</arg>
+</arguments>
+<status status="PASS" starttime="20200501 21:26:39.351" endtime="20200501 21:26:39.459"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:39.191" endtime="20200501 21:26:39.460"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-35-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200501 21:26:39.461" endtime="20200501 21:26:41.653"></status>
+</kw>
+<status status="PASS" starttime="20200501 21:26:39.460" endtime="20200501 21:26:41.654"></status>
+</kw>
+<doc>Test to verify that in the hotel details page, google image is present and
+that image should contain link that should be redireting to the map</doc>
+<tags>
+<tag>Test WEb7-161 1.1</tag>
+</tags>
+<status status="PASS" starttime="20200501 21:26:20.895" endtime="20200501 21:26:41.654" critical="yes"></status>
+</test>
+<doc>This is test suite of ProjectAgileWeb7 webpage</doc>
+<status status="PASS" starttime="20200501 21:25:08.563" endtime="20200501 21:26:41.657"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">Test WEb7-160</stat>
+<stat pass="1" fail="0">Test WEb7-160 1.1</stat>
+<stat pass="1" fail="0">Test WEb7-161</stat>
+<stat pass="1" fail="0">Test WEb7-161 1.1</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" id="s1" name="WEB7-35-GoogleMap">WEB7-35-GoogleMap</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
