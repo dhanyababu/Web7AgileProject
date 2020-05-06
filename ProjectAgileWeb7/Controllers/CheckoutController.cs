@@ -77,6 +77,7 @@ namespace ProjectAgileWeb7.Controllers
                     Type = payment.Type,
                     CardNumber = payment.CardNumber.Substring(12),
                     CVV = payment.CVV.Substring(0, 1),
+                    ExpirationDate = payment.ExpirationDate,
                     CardHolderFirstName = payment.CardHolderFirstName,
                     CardHolderLastName = payment.CardHolderLastName
                 };

@@ -37,6 +37,23 @@
                 <input asp-for="@Model.CardNumber" />
                 <span asp-validation-for="@Model.CardNumber" class="text-danger"></span><br /><br />
 
+                <h6 class="card-text font-weight-bold">Card Expiration Date:</h6>
+                <p class="card-text text-muted">Select expiration month and year</p>
+                <select asp-for="@Model.ExpirationDate">
+                    @{
+                        var year = DateTime.Now.Year;
+                    }
+                    @for (int y = year; y <= 2022; y++)
+                    {
+                        var month = (y == year) ? DateTime.Now.Month : 1;
+                        for (int m = month; m <= 12; m++)
+                        {
+                            <option>@m / @y</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span><br /><br />
+
                 <h6 class="card-text font-weight-bold">CVV:</h6>
                 <p class="card-text text-muted">Enter the Card Verification Value number</p>
                 <input asp-for="@Model.CVV" />
