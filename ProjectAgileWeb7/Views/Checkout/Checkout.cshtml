@@ -11,39 +11,51 @@
             <h5 class="card-title">
                 Step 2: Payment details
             </h5><br />
-            <h6 class="card-text font-weight-bold">Select your payment method:</h6>
+            <h6 class="card-text font-weight-bold text-primary">Select your payment method:</h6>
             <div>
                 @foreach (var item in Enum.GetValues(typeof(CardType)))
                 {
                     @Html.RadioButtonFor(p => Model.Type, @item)
-
-                    <label>@item</label>
+                    @switch (item.ToString())
+                    {
+                        case "Visa":
+                            <label>&nbsp;<i class="fab fa-cc-visa fa-3x text-primary"></i></label>
+                            break;
+                        case "MasterCard":
+                            <label>&nbsp;<i class="fab fa-cc-mastercard fa-3x text-primary"></i></label>
+                            break;
+                        case "AmericanExpress":
+                            <label>&nbsp;<i class="fab fa-cc-amex fa-3x text-primary"></i></label>
+                            break;
+                        default:
+                            break;
+                    }
                     <br />
                 }
                 <span asp-validation-for="@Model.Type" class="text-danger"></span><br /><br />
 
-                <h6 class="card-text font-weight-bold">First name:</h6>
+                <h6 class="card-text font-weight-bold text-primary">First name:</h6>
                 <p class="card-text text-muted">Enter the <span class="font-weight-bold">first</span> name that's written on the card.</p>
-                <input asp-for="@Model.CardHolderFirstName" />
+                <input class="form-control col-3 payment-input" asp-for="@Model.CardHolderFirstName" />
                 <span asp-validation-for="@Model.CardHolderFirstName" class="text-danger"></span><br /><br />
 
-                <h6 class="card-text font-weight-bold">Last name:</h6>
+                <h6 class="card-text font-weight-bold text-primary">Last name:</h6>
                 <p class="card-text text-muted">Enter the <span class="font-weight-bold">last</span> name that's written on the card.</p>
-                <input asp-for="@Model.CardHolderLastName" />
+                <input class="form-control col-3 payment-input" asp-for="@Model.CardHolderLastName" />
                 <span asp-validation-for="@Model.CardHolderLastName" class="text-danger"></span><br /><br />
 
-                <h6 class="card-text font-weight-bold">Card number:</h6>
+                <h6 class="card-text font-weight-bold text-primary">Card number:</h6>
                 <p class="card-text text-muted">Enter the card number</p>
-                <input asp-for="@Model.CardNumber" />
+                <input class="form-control col-3 payment-input" asp-for="@Model.CardNumber" />
                 <span asp-validation-for="@Model.CardNumber" class="text-danger"></span><br /><br />
 
-                <h6 class="card-text font-weight-bold">Card Expiration Date:</h6>
+                <h6 class="card-text font-weight-bold text-primary">Card Expiration Date:</h6>
                 <p class="card-text text-muted">Select expiration month and year</p>
-                <select asp-for="@Model.ExpirationDate">
+                <select class="form-control col-3 payment-input" asp-for="@Model.ExpirationDate">
                     @{
                         var year = DateTime.Now.Year;
                     }
-                    @for (int y = year; y <= 2022; y++)
+                    @for (int y = year; y <= (Convert.ToInt32(year) + 5); y++)
                     {
                         var month = (y == year) ? DateTime.Now.Month : 1;
                         for (int m = month; m <= 12; m++)
@@ -54,13 +66,13 @@
                 </select>
                 <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span><br /><br />
 
-                <h6 class="card-text font-weight-bold">CVV:</h6>
+                <h6 class="card-text font-weight-bold text-primary">CVV:</h6>
                 <p class="card-text text-muted">Enter the Card Verification Value number</p>
-                <input asp-for="@Model.CVV" />
+                <input class="form-control col-3 payment-input" asp-for="@Model.CVV" />
                 <span asp-validation-for="@Model.CVV" class="text-danger"></span><br />
                 <a href="https://www.cvvnumber.com/cvv.html" target="_blank" class="text-muted font-weight-light">What is my CVV code?</a><br /><br /><br />
 
-                <button type="submit" class="btn btn-success" id="submit-btn">Confirm booking</button>
+                <button type="submit" class="btn btn-success" id="btn submit-btn">Confirm booking</button>
                 <a asp-action="BookingConfirmation" asp-controller="HotelDetailsController" class="btn btn-danger">Cancel booking</a>
             </div>
             <br />

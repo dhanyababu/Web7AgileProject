@@ -18,7 +18,7 @@ function mobileSearchForm() {
         $('#filter-button').show();
         $('#filter-form-id').addClass('collapse');
         $('#filter-title').hide();
-
+        $('.payment-input').removeClass('col-3');
     }
     else {
         $('#heading').css('fontSize', '3rem');
@@ -31,6 +31,7 @@ function mobileSearchForm() {
         $('#filter-button').hide();
         $('#filter-form-id').removeClass('collapse');
         $('#filter-title').show();
+        $('.payment-input').addClass('col-3');
     }
 }
 
