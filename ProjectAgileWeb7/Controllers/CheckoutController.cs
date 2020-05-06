@@ -48,6 +48,10 @@ namespace ProjectAgileWeb7.Controllers
             _appContext.Bookings.Add(booking);
             await _appContext.SaveChangesAsync();
 
+            ViewBag.RoomPrice = _appContext.Rooms.Where(r => r.RoomId == booking.RoomId).Select(r => r.RoomPrice).FirstOrDefault();
+            ViewBag.NumberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
+            ViewBag.TotalPrice = ViewBag.RoomPrice * ViewBag.NumberOfNights;
+
             HttpContext.Session.SetInt32("bookingId", booking.Id);
 
             return View();

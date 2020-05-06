@@ -10,7 +10,12 @@
         <div class="card-body">
             <h5 class="card-title">
                 Step 2: Payment details
-            </h5><br />
+            </h5>
+            <p>
+                Price per night: @ViewBag.RoomPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))<br />
+                Number of nights: @ViewBag.NumberOfNights<br />
+                Total price: @ViewBag.TotalPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))
+            </p><br />
             <h6 class="card-text font-weight-bold">Select your payment method:</h6>
             <div>
                 @foreach (var item in Enum.GetValues(typeof(CardType)))
