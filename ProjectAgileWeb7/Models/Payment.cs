@@ -9,9 +9,9 @@ namespace ProjectAgileWeb7.Models
     {
         public int Id { get; set; }
 
-        public int BookingId { get; set; }
-        [ForeignKey("BookingId")]
-        public Booking Bookings { get; set; }
+        //public int BookingId { get; set; }
+        //[ForeignKey("BookingId")]
+        //public Booking Bookings { get; set; }
 
         public Status Status { get; set; }
 
