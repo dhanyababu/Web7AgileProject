@@ -56,6 +56,13 @@ $(document).ready(function () {
         maxDate: '+1Y',
         dateFormat: 'yy-MM-dd'
     });
+
+    //$('#testing').click(function () {
+    //    $('#testing').html('hello');
+    //});
+    //$('#like').click(function () {
+    //    $('#like').prop('value', 'Unlike');
+    //});
 });
 
 
@@ -175,5 +182,9 @@ $(document).ready(function () {
     //$('#my-testing-button').click(function () {
     //    getWeather();
     //});
+
+
     getWeather();
+
+
 });

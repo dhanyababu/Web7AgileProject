@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
@@ -17,20 +19,35 @@ namespace ProjectAgileWeb7.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _appContext;
+        private readonly UserManager<ApplicationUser> _userManager;
+        [BindProperty]
+        public ApplicationUser CurrentUser { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext appContext)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext appContext, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
             _appContext = appContext;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            CurrentUser = await _userManager.GetUserAsync(User);
+            string currentUserId = CurrentUser?.Id;
+            var hotelIdList = !string.IsNullOrEmpty(currentUserId)
+                ? _appContext.HotelUsers
+                    .Where(x => x.UserId == currentUserId)
+                    .Select(x => x.HotelId)
+                    .ToList()
+                : new List<int>();
+
             var hotelsViewModel = new HotelsViewModel()
             {
                 Hotels = _appContext.Hotels
                 .Include(h => h.Rooms)
-                .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility)
+                .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility),
+                FavoriteHotels = hotelIdList
+
             };
 
 
@@ -82,10 +99,10 @@ namespace ProjectAgileWeb7.Controllers
             var distanceList = hotelsViewModel.DistanceList;
 
             hotelsViewModel.Hotels = hotelList
-      .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
-      .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
-      .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
-      .ToList();
+                                    .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
+                                    .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
+                                    .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
+                                    .ToList();
 
             FillingViewBags();
 
@@ -117,6 +134,8 @@ namespace ProjectAgileWeb7.Controllers
                 .Distinct()
                 .ToList();
         }
+
+
 
         private IEnumerable<Hotel> GetHotelsBySearch(string searchKeyword, DateTime checkInDate, DateTime checkOutDate)
         {

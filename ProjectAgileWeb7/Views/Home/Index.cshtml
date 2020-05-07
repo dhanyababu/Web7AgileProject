@@ -82,6 +82,11 @@ else
                                 <div>
                                     <h2 class="hotel-name">
                                         @item.Name
+
+                                        <span>
+
+                                            <a asp-controller="Favorites" asp-action="GetHotelId" asp-route-id="@item.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@item.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
+                                        </span>
                                     </h2>
                                 </div>
                                 <div>
@@ -116,8 +121,12 @@ else
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="card-footer border-top-0 bg-white">
                             <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">See details</a>
+                            @*<a asp-controller="Favorites" asp-action="GetHotelId" asp-route-id="@item.HotelId" id="like" class="btn btn-lg float-left">Like</a>
+                                <button id="testing">Testing</button>*@
                         </div>
                     </div>
                 </div>
