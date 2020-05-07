@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Run') {
                 steps {
-                    bat 'START /B dotnet
+                    bat 'START /B dotnet'
                 }
         }
 
