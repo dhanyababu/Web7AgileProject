@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
@@ -37,8 +35,10 @@ namespace ProjectAgileWeb7.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
+
             var booking = new Booking()
             {
+
                 RoomId = Convert.ToInt32(HttpContext.Session.GetInt32("roomId")),
                 CheckIn = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"))),
                 CheckOut = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"))),
@@ -48,7 +48,7 @@ namespace ProjectAgileWeb7.Controllers
             _appContext.Bookings.Add(booking);
             await _appContext.SaveChangesAsync();
 
-            HttpContext.Session.SetInt32("bookingId", booking.Id);            
+            HttpContext.Session.SetInt32("bookingId", booking.Id);
 
             return View();
         }
@@ -57,7 +57,8 @@ namespace ProjectAgileWeb7.Controllers
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         [Authorize]
-        public IActionResult Checkout(Payment payment)        {
+        public IActionResult Checkout(Payment payment)
+        {
 
             if (ModelState.IsValid)
             {
@@ -70,7 +71,7 @@ namespace ProjectAgileWeb7.Controllers
 
                 var newPayment = new Payment()
                 {
-                    BookingId = bookingId,
+                    //BookingId = bookingId,
                     Status = Status.Pending,
                     Date = DateTime.Now.Date,
                     Amount = total,
@@ -81,7 +82,7 @@ namespace ProjectAgileWeb7.Controllers
                     CardHolderLastName = payment.CardHolderLastName
                 };
                 _appContext.Payments.Add(newPayment);
-                _appContext.SaveChanges();               
+                _appContext.SaveChanges();
 
                 return RedirectToAction("PaymentCheckout", newPayment);
             }
@@ -96,8 +97,11 @@ namespace ProjectAgileWeb7.Controllers
         {
             if (payment != null)
             {
-                var bookingFromDb = _appContext.Bookings.FirstOrDefault(b => b.Id == payment.BookingId);
+                //var bookingFromDb = _appContext.Bookings.FirstOrDefault(b => b.Id == payment.BookingId);
+
+                var bookingFromDb = _appContext.Bookings.FirstOrDefault(b => b.Id == HttpContext.Session.GetInt32("bookingId"));
                 bookingFromDb.Status = Status.Accepted;
+                bookingFromDb.PaymentId = payment.Id;
                 _appContext.Update(bookingFromDb);
 
                 var paymentFromDb = _appContext.Payments.FirstOrDefault(p => p == payment);
@@ -122,13 +126,14 @@ namespace ProjectAgileWeb7.Controllers
             var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             var user = _appContext.ApplicationUsers.FirstOrDefault(u => u.Id == identityClaim.Value);
-            var bookingId = _appContext.Payments.Where(p => p == payment).Select(p => p.BookingId).FirstOrDefault();
+            //var bookingId = _appContext.Payments.Where(p => p == payment).Select(p => p.BookingId).FirstOrDefault();
+            var bookingId = HttpContext.Session.GetInt32("bookingId");
             var booking = _appContext.Bookings.FirstOrDefault(b => b.Id == bookingId);
             var room = _appContext.Rooms.FirstOrDefault(r => r.RoomId == booking.RoomId);
             var hotel = _appContext.Hotels.FirstOrDefault(h => h.HotelId == room.HotelId);
 
             var bookingConfVM = new BookingConfirmationViewModel()
-            {   
+            {
                 User = user,
                 Payment = payment,
                 Booking = booking,

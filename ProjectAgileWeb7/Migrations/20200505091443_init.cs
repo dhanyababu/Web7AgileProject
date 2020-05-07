@@ -61,7 +61,8 @@ namespace ProjectAgileWeb7.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     IsFree = table.Column<bool>(nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    Symbol = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,6 +79,27 @@ namespace ProjectAgileWeb7.Migrations
                 },
                 constraints: table =>
                 {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    Type = table.Column<int>(nullable: false),
+                    CardNumber = table.Column<string>(nullable: false),
+                    CVV = table.Column<string>(nullable: false),
+                    CardHolderFirstName = table.Column<string>(nullable: false),
+                    CardHolderLastName = table.Column<string>(nullable: false),
+                    BankAndClearing = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -255,6 +277,7 @@ namespace ProjectAgileWeb7.Migrations
                     NumberOfBeds = table.Column<int>(nullable: false),
                     Capacity = table.Column<int>(nullable: false),
                     IsAvailable = table.Column<bool>(nullable: false),
+                    RoomImageUrl = table.Column<string>(nullable: true),
                     HotelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -298,11 +321,18 @@ namespace ProjectAgileWeb7.Migrations
                     CheckIn = table.Column<DateTime>(nullable: false),
                     CheckOut = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
+                    PaymentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Payments_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "Payments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Bookings_Rooms_RoomId",
                         column: x => x.RoomId,
@@ -315,34 +345,6 @@ namespace ProjectAgileWeb7.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingId = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Type = table.Column<int>(nullable: false),
-                    CardNumber = table.Column<string>(nullable: false),
-                    CVV = table.Column<string>(nullable: false),
-                    CardHolderFirstName = table.Column<string>(nullable: false),
-                    CardHolderLastName = table.Column<string>(nullable: false),
-                    BankAndClearing = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Payments_Bookings_BookingId",
-                        column: x => x.BookingId,
-                        principalTable: "Bookings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -390,6 +392,11 @@ namespace ProjectAgileWeb7.Migrations
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bookings_PaymentId",
+                table: "Bookings",
+                column: "PaymentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_RoomId",
                 table: "Bookings",
                 column: "RoomId");
@@ -408,11 +415,6 @@ namespace ProjectAgileWeb7.Migrations
                 name: "IX_Hotels_ApplicationUserId",
                 table: "Hotels",
                 column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payments_BookingId",
-                table: "Payments",
-                column: "BookingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rooms_HotelId",
@@ -441,25 +443,25 @@ namespace ProjectAgileWeb7.Migrations
                 name: "BookedRooms");
 
             migrationBuilder.DropTable(
+                name: "Bookings");
+
+            migrationBuilder.DropTable(
                 name: "HotelFacilities");
 
             migrationBuilder.DropTable(
                 name: "HotelsViewModel");
 
             migrationBuilder.DropTable(
-                name: "Payments");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Facilities");
-
-            migrationBuilder.DropTable(
-                name: "Bookings");
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "Rooms");
+
+            migrationBuilder.DropTable(
+                name: "Facilities");
 
             migrationBuilder.DropTable(
                 name: "Hotels");
