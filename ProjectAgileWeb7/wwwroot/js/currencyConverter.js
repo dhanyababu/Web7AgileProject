@@ -1,8 +1,10 @@
-﻿var amountToConvert = "";
+﻿var amountPerNightToConvert = "";
+var amountTotalToConvert = "";
 var baseCurrency = "";
 var selectedCurrency = "";
 var exchangeRate = "";
-var newAmount = "";
+var newPerNightAmount = "";
+var newTotalAmount = "";
 var ajaxResult = [];
 
 $(document).ready(function () {
@@ -12,7 +14,9 @@ $(document).ready(function () {
 
     $(".selectedCurrency").on('change', function () {
         selectedCurrency = $(".selectedCurrency option:selected").text();
-        amountToConvert = $(".totalPriceDisplay").val();
+        amountPerNightToConvert = $(".perNightPriceDisplay").text();
+        amountTotalToConvert = $(".totalPriceDisplayLabel").text();
+
         $(".selectedCurrency").blur();
 
         $.ajax({
@@ -22,10 +26,12 @@ $(document).ready(function () {
             success: function (response) {
                 ajaxResult = response.conversion_rates;
                 exchangeRate = ajaxResult[selectedCurrency];
-                console.log(exchangeRate);
-                newAmount = (amountToConvert * exchangeRate).toFixed(2);
-                console.log(newAmount);
-                $(".totalPriceDisplay").val(newAmount);
+
+                newPerNightAmount = (amountPerNightToConvert * exchangeRate).toFixed(2);
+                newTotalAmount = (amountTotalToConvert * exchangeRate).toFixed(2);
+                $(".perNightPriceDisplay").text(newPerNightAmount)
+                $(".totalPriceDisplayLabel").text(newTotalAmount);
+                $(".totalPriceDisplay").val(newTotalAmount);
             },
             error: function (response) {
                 console.log(JSON.stringify(response));

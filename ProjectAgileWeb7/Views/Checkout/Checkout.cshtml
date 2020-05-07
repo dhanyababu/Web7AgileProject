@@ -11,14 +11,15 @@
             <h5 class="card-title">
                 Step 2: Payment details
             </h5>
-                Price per night: @ViewBag.RoomPrice.ToString("F") @Currency.SEK<br />
-                Number of nights: @ViewBag.NumberOfNights<br />
-                Total price: <input asp-for="@Model.Amount" class="totalPriceDisplay" value="@ViewBag.TotalPrice.ToString("F")" style="width:100px"/>
-            
+            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice.ToString("F")</label><br />
+            Number of nights: @ViewBag.NumberOfNights<br />
+            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice.ToString("F")</label>
+            <input type="hidden" asp-for="@Model.Amount" class="totalPriceDisplay" val="" style="width:100px" />
+
             <br />Currency:
-                @Html.DropDownListFor( m=> m.Currency,
-                    new SelectList(Enum.GetValues(typeof(Currency))),
-                    new { @class = "selectedCurrency" })
+            @Html.DropDownListFor(m => m.Currency,
+                new SelectList(Enum.GetValues(typeof(Currency))),
+                new { @class = "selectedCurrency" })
             <br /><br />
             <h6 class="card-text font-weight-bold">Select your payment method:</h6>
             <div>
