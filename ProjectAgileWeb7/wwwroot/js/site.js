@@ -57,12 +57,6 @@ $(document).ready(function () {
         dateFormat: 'yy-MM-dd'
     });
 
-    //$('#testing').click(function () {
-    //    $('#testing').html('hello');
-    //});
-    //$('#like').click(function () {
-    //    $('#like').prop('value', 'Unlike');
-    //});
 });
 
 
@@ -179,12 +173,6 @@ $(document).ready(function () {
     //    ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
     //});
 
-    //$('#my-testing-button').click(function () {
-    //    getWeather();
-    //});
-
-
     getWeather();
-
 
 });
