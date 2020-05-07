@@ -10,7 +10,7 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200506080722_init")]
+    [Migration("20200507120154_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -432,6 +432,9 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<string>("CardNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");

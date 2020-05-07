@@ -89,6 +89,7 @@ namespace ProjectAgileWeb7.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
+                    Currency = table.Column<int>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     Type = table.Column<int>(nullable: false),
                     CardNumber = table.Column<string>(nullable: false),

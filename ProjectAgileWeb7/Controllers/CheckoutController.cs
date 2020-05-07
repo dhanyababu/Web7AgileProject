@@ -48,7 +48,7 @@ namespace ProjectAgileWeb7.Controllers
 
             ViewBag.RoomPrice = _appContext.Rooms.Where(r => r.RoomId == booking.RoomId).Select(r => r.RoomPrice).FirstOrDefault();
             ViewBag.NumberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
-            ViewBag.TotalPrice = ViewBag.RoomPrice * ViewBag.NumberOfNights;
+            ViewBag.TotalPrice = decimal.Round(ViewBag.RoomPrice * ViewBag.NumberOfNights, 2, MidpointRounding.AwayFromZero);
 
             HttpContext.Session.SetInt32("bookingId", booking.Id);
 
@@ -74,7 +74,8 @@ namespace ProjectAgileWeb7.Controllers
                 {
                     Status = Status.Pending,
                     Date = DateTime.Now.Date,
-                    Amount = total,
+                    Amount = payment.Amount,
+                    Currency = payment.Currency,
                     Type = payment.Type,
                     CardNumber = payment.CardNumber.Substring(12),
                     CVV = payment.CVV.Substring(0, 1),

@@ -11,16 +11,15 @@
             <h5 class="card-title">
                 Step 2: Payment details
             </h5>
-                <input class="totalPriceDisplay form-control-lg" placeholder="Current Price" style="width: 200px;"
-                       value="@(ViewBag.TotalPrice == null || ViewBag.TotalPrice == 0 ? "" : ViewBag.TotalPrice)" />
-                @Html.DropDownList("SelectedCurrency",
-                    new SelectList(Enum.GetValues(typeof(Currency))),
-                    new { @class = "selectedCurrency form-control-lg" })
-                @*new { @id = "selectedCurrency"})*@
-                Price per night: @ViewBag.RoomPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))<br />
+                Price per night: @ViewBag.RoomPrice.ToString("F") @Currency.SEK<br />
                 Number of nights: @ViewBag.NumberOfNights<br />
-                Total price: @ViewBag.TotalPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))
-            </p><br />
+                Total price: <input asp-for="@Model.Amount" class="totalPriceDisplay" value="@ViewBag.TotalPrice.ToString("F")" style="width:100px"/>
+            
+            <br />Currency:
+                @Html.DropDownListFor( m=> m.Currency,
+                    new SelectList(Enum.GetValues(typeof(Currency))),
+                    new { @class = "selectedCurrency" })
+            <br /><br />
             <h6 class="card-text font-weight-bold">Select your payment method:</h6>
             <div>
                 @foreach (var item in Enum.GetValues(typeof(CardType)))
@@ -63,4 +62,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/currencyConverter.js"></script>
 }
