@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ProjectAgileWeb7.Models
 {
     public enum CardType { Visa, MasterCard, AmericanExpress }
-    public enum Currency { SEK, USD, EUR, LEI, DIN}
+    public enum Currency { SEK, USD, EUR, RON, CZK}
     public class Payment
     {
         public int Id { get; set; }
