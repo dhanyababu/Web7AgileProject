@@ -6,13 +6,14 @@ var newAmount = "";
 var ajaxResult = [];
 
 $(document).ready(function () {
-    $("#selectedCurrency").focusin(function () {
-        baseCurrency = $("#selectedCurrency option:selected").text();
+    $(".selectedCurrency").focus(function () {
+        baseCurrency = $(this).val();
     });
 
-    $("#selectedCurrency").on('change', function () {
-        selectedCurrency = $("#selectedCurrency option:selected").text();
-        amountToConvert = $("#totalPriceDisplay").val();
+    $(".selectedCurrency").on('change', function () {
+        selectedCurrency = $(".selectedCurrency option:selected").text();
+        amountToConvert = $(".totalPriceDisplay").val();
+        $(".selectedCurrency").blur();
 
         $.ajax({
             url: "https://prime.exchangerate-api.com/v5/a5f16bf9860bddcdd3cf4c43/latest/" + baseCurrency,
@@ -24,7 +25,7 @@ $(document).ready(function () {
                 console.log(exchangeRate);
                 newAmount = (amountToConvert * exchangeRate).toFixed(2);
                 console.log(newAmount);
-                $("#totalPriceDisplay").val(newAmount);
+                $(".totalPriceDisplay").val(newAmount);
             },
             error: function (response) {
                 console.log(JSON.stringify(response));

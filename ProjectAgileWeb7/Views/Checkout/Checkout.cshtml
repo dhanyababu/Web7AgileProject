@@ -11,7 +11,12 @@
             <h5 class="card-title">
                 Step 2: Payment details
             </h5>
-            <p>
+                <input class="totalPriceDisplay form-control-lg" placeholder="Current Price" style="width: 200px;"
+                       value="@(ViewBag.TotalPrice == null || ViewBag.TotalPrice == 0 ? "" : ViewBag.TotalPrice)" />
+                @Html.DropDownList("SelectedCurrency",
+                    new SelectList(Enum.GetValues(typeof(Currency))),
+                    new { @class = "selectedCurrency form-control-lg" })
+                @*new { @id = "selectedCurrency"})*@
                 Price per night: @ViewBag.RoomPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))<br />
                 Number of nights: @ViewBag.NumberOfNights<br />
                 Total price: @ViewBag.TotalPrice.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))
