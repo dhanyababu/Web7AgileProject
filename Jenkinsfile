@@ -1,54 +1,35 @@
 pipeline {
-
     agent any
-
     stages {
-        stage('Checkout') {
+        stage('Restore Packages') {
                 steps {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dhanyababu/Web7AgileProject.git']]])
+                    bat "dotnet restore"
                 }
         }
         stage('Build') {
-            steps {
-                bat 'dotnet build'
-            }
+                steps {
+                    bat 'dotnet build ProjectAgileWeb7.sln'
+                }
+        }
+        stage('Pack') {
+           steps {
+                    bat 'dotnet pack --no-build --output nupkgs'
+                }
         }
         stage('Run') {
-            steps {
-                bat 'START /B dotnet run'
-            }
+                steps {
+                    bat 'START /B dotnet
+                }
         }
+
         stage('Robot') {
             steps {
-                    sleep 10
-                    bat 'robot -d results --variable BROWSER:headlesschrome "ProjectAgileWeb7/Tests/web7.robot"'
-            }
-            post {
-                always {
-                    script {
-                        step(
-                             [
-                               $class              : 'RobotPublisher',
-                               outputPath          : 'results',
-                               outputFileName      : '**/output.xml',
-                               reportFileName      : '**/report.html',
-                               logFileName         : '**/log.html',
-                               disableArchiveOutput: false,
-                               passThreshold       : 50,
-                               unstableThreshold   : 40,
-                               otherFiles          : "**/*.png,**/*.jpg",
-                            ]
-                        )
-                    }
-                }
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/searh.robot'
+
             }
 
         }
-	    
     }
-	post{
-	    always{
-            bat 'TASKKILL /F /IM dotnet.exe'
-	    }
-       }
+
 }
