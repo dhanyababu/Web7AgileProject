@@ -8,6 +8,8 @@ var newTotalAmount = "";
 var ajaxResult = [];
 
 $(document).ready(function () {
+
+
     $(".selectedCurrency").focus(function () {
         baseCurrency = $(this).val();
     });

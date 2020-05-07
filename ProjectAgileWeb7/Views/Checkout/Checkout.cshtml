@@ -16,10 +16,13 @@
             Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice.ToString("F")</label>
             <input type="hidden" asp-for="@Model.Amount" class="totalPriceDisplay" val="" style="width:100px" />
 
-            <br />Currency:
-            @Html.DropDownListFor(m => m.Currency,
-                new SelectList(Enum.GetValues(typeof(Currency))),
-                new { @class = "selectedCurrency" })
+            <br />
+            <p class="currencyTooltip" data-toggle="tooltip" title="Choose which currency to display and book in.">
+                Currency (i):
+                @Html.DropDownListFor(m => m.Currency,
+                    new SelectList(Enum.GetValues(typeof(Currency))),
+                    new { @class = "selectedCurrency" })
+            </p>
             <br /><br />
             <h6 class="card-text font-weight-bold">Select your payment method:</h6>
             <div>
