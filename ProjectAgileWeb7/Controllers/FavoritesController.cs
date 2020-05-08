@@ -77,6 +77,7 @@ namespace ProjectAgileWeb7.Controllers
         {
 
             CurrentUser = await _userManager.GetUserAsync(User);
+            ViewBag.User = CurrentUser;
             string currentUserId = CurrentUser.Id;
             var newHotelUserList = _appContext.HotelUsers
                                     .Where(x => x.UserId == currentUserId)

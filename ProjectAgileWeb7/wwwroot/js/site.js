@@ -35,6 +35,7 @@ function mobileSearchForm() {
 }
 
 $(document).ready(function () {
+
     $("#check-in").datepicker({
         showAnim: 'drop',
         numberOfMonths: 1,
