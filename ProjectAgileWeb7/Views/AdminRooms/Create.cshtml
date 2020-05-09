@@ -5,23 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="float-lg-right">
+    <a asp-action="Index" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back to List</a>
+</div>
 
-<h4>Room</h4>
+<h3 class="text-success"><i class="fas fa-plus-circle"></i>&nbsp; Add New Room</h3>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="RoomType" class="control-label"></label>
-                <select asp-for="RoomType" class="form-control"></select>
+                <select asp-for="RoomType" asp-items="Html.GetEnumSelectList<RoomType>()" class="form-control"></select>
                 <span asp-validation-for="RoomType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomNumber" class="control-label"></label>
-                <input asp-for="RoomNumber" class="form-control" />
-                <span asp-validation-for="RoomNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RoomPrice" class="control-label"></label>
@@ -30,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="RoomDescription" class="control-label"></label>
-                <input asp-for="RoomDescription" class="form-control" />
+                <textarea asp-for="RoomDescription" class="form-control"></textarea>
                 <span asp-validation-for="RoomDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -43,11 +41,6 @@
                 <input asp-for="Capacity" class="form-control" />
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsAvailable" /> @Html.DisplayNameFor(model => model.IsAvailable)
-                </label>
-            </div>
             <div class="form-group">
                 <label asp-for="RoomImageUrl" class="control-label"></label>
                 <input asp-for="RoomImageUrl" class="form-control" />
@@ -58,14 +51,10 @@
                 <select asp-for="HotelId" class ="form-control" asp-items="ViewBag.HotelId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
