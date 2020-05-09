@@ -5,23 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="float-lg-right">
+    <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i>&nbsp; Add New Hotel</a>
+    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-primary"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back</a>
+</div>
+
 <h1>Hotels</h1>
 
-<p class="float-lg-right">
-    <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i>&nbsp; Add New Hotel</a>
-</p>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>
+                    Id
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ZipCode)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.City)
@@ -40,13 +42,13 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.HotelId)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ZipCode)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.City)
