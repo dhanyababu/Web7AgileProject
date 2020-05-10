@@ -20,9 +20,15 @@ namespace ProjectAgileWeb7.Controllers
         }
 
         // GET: AdminHotelFacilities
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
             var applicationDbContext = _context.HotelFacilities.Include(h => h.Facility).Include(h => h.Hotel);
+
+            if (id != null)
+            {
+                applicationDbContext = _context.HotelFacilities.Where(h => h.HotelId == id).Include(h => h.Facility).Include(h => h.Hotel);
+            }
+            
             return View(await applicationDbContext.ToListAsync());
         }
 
