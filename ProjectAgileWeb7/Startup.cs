@@ -9,6 +9,8 @@ using Microsoft.Extensions.Options;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
 using Microsoft.AspNetCore.Authentication.Google;
+using System.Threading.Tasks;
+using System;
 
 namespace ProjectAgileWeb7
 {
@@ -27,10 +29,14 @@ namespace ProjectAgileWeb7
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddDefaultTokenProviders()
-                .AddDefaultUI()
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //////services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+            //////    .AddDefaultTokenProviders()
+            //////    .AddDefaultUI()
+            //////    .AddRoles<IdentityRole>()
+            //////    .AddEntityFrameworkStores<ApplicationDbContext>();
             //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDistributedMemoryCache();
@@ -55,7 +61,7 @@ namespace ProjectAgileWeb7
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -89,6 +95,42 @@ namespace ProjectAgileWeb7
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            CreateUserRoles(serviceProvider).Wait();
+        }
+
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            string[] roles = { "Admin", "User" };
+            IdentityResult result;
+
+            foreach (var role in roles)
+            {
+                var roleAlreadyExists = await roleManager.RoleExistsAsync(role);
+                if (!roleAlreadyExists)
+                {
+                    result = await roleManager.CreateAsync(new IdentityRole(role));
+                }
+
+                var admin = new ApplicationUser
+                {
+                    UserName = Configuration["AdminEmail"],
+                    Email = Configuration["AdminEmail"]
+                };
+                var pw = Configuration["AdminPassword"];
+
+                var user = await userManager.FindByNameAsync(Configuration["AdminEmail"]);
+                if (user == null)
+                {
+                    var addAdmin = await userManager.CreateAsync(admin, pw);
+                    if (addAdmin.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(admin, "Admin");
+                    }
+                }
+            }
         }
     }
 }

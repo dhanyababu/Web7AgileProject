@@ -9,9 +9,9 @@ namespace ProjectAgileWeb7.Models
     {
         public int Id { get; set; }
 
-        public int BookingId { get; set; }
-        [ForeignKey("BookingId")]
-        public Booking Bookings { get; set; }
+        //public int BookingId { get; set; }
+        //[ForeignKey("BookingId")]
+        //public Booking Bookings { get; set; }
 
         public Status Status { get; set; }
 
@@ -39,6 +39,10 @@ namespace ProjectAgileWeb7.Models
         [Required]
         [Display(Name = "Last Name")]
         public string CardHolderLastName { get; set; }
+
+        [Required]
+        [Display(Name = "Expiration Date")]
+        public string ExpirationDate { get; set; }
 
         public string BankAndClearing { get; set; }
     }

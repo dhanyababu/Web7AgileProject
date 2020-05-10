@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
@@ -20,5 +19,8 @@ namespace ProjectAgileWeb7.Models
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
+        public int? PaymentId { get; set; }
+        [ForeignKey("PaymentId")]
+        public Payment Payment { get; set; }
     }
 }
