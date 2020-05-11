@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
     public class FavoritesController : Controller
     {
-
-
         private readonly ApplicationDbContext _appContext;
         private readonly UserManager<ApplicationUser> _userManager;
         [BindProperty]
@@ -22,31 +22,38 @@ namespace ProjectAgileWeb7.Controllers
 
         public FavoritesController(ApplicationDbContext appContext, UserManager<ApplicationUser> userManager)
         {
-
             _appContext = appContext;
             _userManager = userManager;
         }
 
-
         [Authorize]
-        public async Task<IActionResult> GetHotelId(int id)
+        public async Task<IActionResult> GetHotelIdFromIndex(int id)
         {
             CurrentUser = await _userManager.GetUserAsync(User);
             string currentUserId = CurrentUser.Id;
 
-            var SelectedHotel = _appContext.Hotels.Where(h => h.HotelId == id)
+            CheckIfHotelIsFavorite(id, currentUserId);
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> GetHotelIdFromFavorites(int id)
+        {
+            CurrentUser = await _userManager.GetUserAsync(User);
+            string currentUserId = CurrentUser.Id;
+
+            CheckIfHotelIsFavorite(id, currentUserId);
+            return RedirectToAction("Favorites");
+        }
+
+        private void CheckIfHotelIsFavorite(int id, string currentUserId)
+        {
+            SelectedHotel = _appContext.Hotels.Where(h => h.HotelId == id)
                                     .Include(h => h.HotelFacilities)
                                     .ThenInclude(hf => hf.Facility)
                                     .FirstOrDefault();
 
-            var hotelIdList = _appContext.HotelUsers
-                                       .Where(x => x.UserId == currentUserId)
-                                       .Select(x => x.HotelId)
-                                       .ToList();
-
-            var hotelUsersList = _appContext.HotelUsers
-                                       .Where(x => x.UserId == currentUserId)
-                                       .ToList();
+            List<int> hotelIdList = GetHotelIdList(currentUserId);
 
             if (hotelIdList.Contains(id))
             {
@@ -69,24 +76,47 @@ namespace ProjectAgileWeb7.Controllers
                 _appContext.HotelUsers.Add(newHotelUser);
                 _appContext.SaveChanges();
             }
-            return RedirectToAction("Index");
         }
 
         [Authorize]
-        public async Task<IActionResult> Favorites()
+        public IActionResult Favorites()
         {
 
-            CurrentUser = await _userManager.GetUserAsync(User);
-            ViewBag.User = CurrentUser;
-            string currentUserId = CurrentUser.Id;
-            var newHotelUserList = _appContext.HotelUsers
+            string currentUserId = GetCurrentUserId();
+            var currentUser = _appContext.ApplicationUsers.Where(u => u.Id == currentUserId).FirstOrDefault();
+            ViewBag.User = currentUser;
+            var newHotelsList = _appContext.HotelUsers
                                     .Where(x => x.UserId == currentUserId)
                                     .Include(hu => hu.Hotel)
                                     .ThenInclude(h => h.HotelFacilities)
                                     .ThenInclude(hf => hf.Facility)
+                                    .Select(x => x.Hotel)
                                     .ToList();
+            List<int> hotelIdList = GetHotelIdList(currentUserId);
+            var newHotelViewModel = new HotelsViewModel
+            {
+                Hotels = newHotelsList,
+                FavoriteHotels = hotelIdList
+            };
 
-            return View(newHotelUserList);
+            return View(newHotelViewModel);
         }
+
+        private List<int> GetHotelIdList(string currentUserId)
+        {
+            return _appContext.HotelUsers
+                                       .Where(x => x.UserId == currentUserId)
+                                       .Select(x => x.HotelId)
+                                       .ToList();
+        }
+
+        private string GetCurrentUserId()
+        {
+            var claimIdentity = (ClaimsIdentity)User.Identity;
+            var identityClaimUser = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            string currentUserId = identityClaimUser?.Value;
+            return currentUserId;
+        }
+
     }
 }

@@ -54,23 +54,9 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotelsViewModel);
         }
 
-        private List<int> GetHotelIdList(string currentUserId)
-        {
-            return !string.IsNullOrEmpty(currentUserId)
-                            ? _appContext.HotelUsers
-                                .Where(x => x.UserId == currentUserId)
-                                .Select(x => x.HotelId)
-                                .ToList()
-                            : new List<int>();
-        }
 
-        private string GetCurrentUserId()
-        {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            string currentUserId = identityClaim?.Value;
-            return currentUserId;
-        }
+
+
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
@@ -80,22 +66,9 @@ namespace ProjectAgileWeb7.Controllers
             TempData["checkInDate"] = hotelsViewModel.CheckIn;
             TempData["checkOutDate"] = hotelsViewModel.CheckOut;
 
-            //CurrentUser = await _userManager.GetUserAsync(User);
-            //string currentUserId = CurrentUser?.Id;
-            //var claimsIdentity = (ClaimsIdentity)User.Identity;
-            //var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            //string currentUserId = identityClaim?.Value;
-
-            //var hotelIdList = !string.IsNullOrEmpty(currentUserId)
-            //    ? _appContext.HotelUsers
-            //        .Where(x => x.UserId == currentUserId)
-            //        .Select(x => x.HotelId)
-            //        .ToList()
-            //    : new List<int>();
             string currentUserId = GetCurrentUserId();
             List<int> hotelIdList = GetHotelIdList(currentUserId);
 
-            //hotelsViewModel.Hotels = GetHotelsBySearch(hotelsViewModel.SearchKeyword, hotelsViewModel.CheckIn, hotelsViewModel.CheckOut);
             var hotelListAfterSearch = GetHotelsBySearch(hotelsViewModel.SearchKeyword, hotelsViewModel.CheckIn, hotelsViewModel.CheckOut);
 
             var newHotelViewModel = new HotelsViewModel
@@ -127,31 +100,11 @@ namespace ProjectAgileWeb7.Controllers
             var starList = hotelsViewModel.StarsList;
             var distanceList = hotelsViewModel.DistanceList;
 
-            //hotelsViewModel.Hotels = hotelListAfterSearch
-            //                        .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
-            //                        .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
-            //                        .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
-            //                        .ToList();
-
             var hotelListAfterFilter = hotelListAfterSearch
-                                     .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
-                                     .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
-                                     .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
-                                     .ToList();
-
-            //CurrentUser = await _userManager.GetUserAsync(User);
-            //string currentUserId = CurrentUser?.Id;
-
-            //var claimsIdentity = (ClaimsIdentity)User.Identity;
-            //var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            //string currentUserId = identityClaim?.Value;
-
-            //var hotelIdList = !string.IsNullOrEmpty(currentUserId)
-            //       ? _appContext.HotelUsers
-            //       .Where(x => x.UserId == currentUserId)
-            //       .Select(x => x.HotelId)
-            //       .ToList()
-            //   : new List<int>();
+                           .Where(h => starList != null ? starList.All(s => h.Stars.ToString().Contains(s)) : true)
+                           .Where(h => facilitiesList != null ? facilitiesList.All(f => h.HotelFacilities.Select(f => f.FacilityId.ToString()).Contains(f)) : true)
+                           .Where(h => distanceList != null ? h.DistanceFromCenter < distanceList.Max() : true)
+                           .ToList();
 
             string currentUserId = GetCurrentUserId();
             List<int> hotelIdList = GetHotelIdList(currentUserId);
@@ -198,8 +151,6 @@ namespace ProjectAgileWeb7.Controllers
                 .ToList();
         }
 
-
-
         private IEnumerable<Hotel> GetHotelsBySearch(string searchKeyword, DateTime checkInDate, DateTime checkOutDate)
         {
             if (searchKeyword != null)
@@ -231,6 +182,22 @@ namespace ProjectAgileWeb7.Controllers
             {
                 return _appContext.Hotels.Include(h => h.Rooms).Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility).ToList();
             }
+        }
+        private string GetCurrentUserId()
+        {
+            var claimIdentity = (ClaimsIdentity)User.Identity;
+            var identityClaimUser = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            string currentUserId = identityClaimUser?.Value;
+            return currentUserId;
+        }
+        private List<int> GetHotelIdList(string currentUserId)
+        {
+            return !string.IsNullOrEmpty(currentUserId)
+                            ? _appContext.HotelUsers
+                                .Where(x => x.UserId == currentUserId)
+                                .Select(x => x.HotelId)
+                                .ToList()
+                            : new List<int>();
         }
     }
 }
