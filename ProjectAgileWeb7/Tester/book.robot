@@ -15,6 +15,32 @@ Test Booking While Logged In
     Book Room
     Login While Booking Room
 
+CardNumber Too Short
+    Use Valid Login
+    Book Room
+    Booking Credit Card Number Too Short
+
+Cardnumber Too Long
+    Use Valid Login
+    Book Room
+    Booking Cardnumber Too Long
+
+Cardnumber Letters
+    Use Valid Login
+    Book Room
+    Booking Cardnumber Letters
+
 Test Booking No Login
    Book Room
    No Login While Booking Room
+
+Test Card Expiration Date
+
+    Use Valid Login
+    Book Room
+    Check If Card-Date Input Appears
+
+Verify Expiration date Works
+    Use Valid Login
+    Book Room
+    Login While Booking Room
