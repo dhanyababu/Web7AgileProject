@@ -40,6 +40,10 @@ namespace ProjectAgileWeb7.Models
         [Display(Name = "Last Name")]
         public string CardHolderLastName { get; set; }
 
+        [Required]
+        [Display(Name = "Expiration Date")]
+        public string ExpirationDate { get; set; }
+
         public string BankAndClearing { get; set; }
     }
 }
