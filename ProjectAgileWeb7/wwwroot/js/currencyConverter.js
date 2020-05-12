@@ -8,7 +8,9 @@ var newTotalAmount = "";
 var ajaxResult = [];
 
 $(document).ready(function () {
-    //$(".currencyTooltip").tooltip()
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
     $(".selectedCurrency").focus(function () {
         baseCurrency = $(this).val();
