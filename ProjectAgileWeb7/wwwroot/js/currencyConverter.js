@@ -1,11 +1,11 @@
-﻿var amountPerNightToConvert = "";
-var amountTotalToConvert = "";
-var baseCurrency = "";
-var selectedCurrency = "";
-var exchangeRate = "";
-var newPerNightAmount = "";
-var newTotalAmount = "";
-var ajaxResult = [];
+﻿let baseCurrency;
+let amountPerNightToConvert;
+let amountTotalToConvert;
+let selectedCurrency;
+let exchangeRate;
+let newPerNightAmount;
+let newTotalAmount;
+let ajaxResult;
 
 $(document).ready(function () {
     $(function () {
@@ -18,8 +18,8 @@ $(document).ready(function () {
 
     $(".selectedCurrency").on('change', function () {
         selectedCurrency = $(".selectedCurrency option:selected").text();
-        amountPerNightToConvert = $(".perNightPriceDisplay").text();
-        amountTotalToConvert = $(".totalPriceDisplayLabel").text();
+        amountPerNightToConvert = parseFloat($(".perNightPriceDisplay").text());
+        amountTotalToConvert = parseFloat($(".totalPriceDisplayLabel").text());
 
         $(".selectedCurrency").blur();
 
@@ -29,13 +29,13 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 ajaxResult = response.conversion_rates;
-                exchangeRate = ajaxResult[selectedCurrency];
+                exchangeRate = parseFloat(ajaxResult[selectedCurrency]);
 
-                newPerNightAmount = (amountPerNightToConvert * exchangeRate).toFixed(2);
-                newTotalAmount = (amountTotalToConvert * exchangeRate).toFixed(2);
+                newPerNightAmount = parseFloat((amountPerNightToConvert * exchangeRate).toFixed(2));
+                newTotalAmount = parseFloat((amountTotalToConvert * exchangeRate).toFixed(2));
                 $(".perNightPriceDisplay").text(newPerNightAmount)
                 $(".totalPriceDisplayLabel").text(newTotalAmount);
-                $(".totalPriceDisplay").val(newTotalAmount);
+                $(".totalPriceHidden").val(newTotalAmount);
             },
             error: function (response) {
                 console.log(JSON.stringify(response));
