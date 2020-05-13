@@ -22,6 +22,10 @@
     width: 100%;
 }
 
+.booking-card {
+    width: 50%;
+}
+
 @media only screen and (max-width: 990px) {
     .card-body, .big-container, .container-hotel {
         flex-direction: column;
@@ -32,12 +36,17 @@
         width: 100%;
     }
 
+    .booking-card {
+        width: 100%;
+    }
+
+    .booking-container {
+        flex-direction: column;
+    }
 
     .weather-card, .map-card {
         width: 50%;
     }
-
-
 
     .carousel-container {
         width: 100%;
@@ -72,11 +81,6 @@
         width: 255px;
         height: 175px;
     }
-
-    /*.side-bar-container {
-        flex-direction: column;
-        width: 100%;
-    }*/
 }
 
 @media only screen and (max-width: 488px) {

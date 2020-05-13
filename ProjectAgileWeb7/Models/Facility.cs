@@ -10,6 +10,7 @@ namespace ProjectAgileWeb7.Models
         public bool IsFree { get; set; }
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
+        public string Symbol { get; set; }
         public ICollection<HotelFacility> HotelFacilities { get; set; }
     }
 }

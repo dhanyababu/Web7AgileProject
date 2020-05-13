@@ -10,9 +10,15 @@
     {
         <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
     }
-    @*<li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" asp-page="Home/Index">Favorites</a></li>*@
-
-
+    <li class="nav-item"><a class="nav-link" asp-action="MyBookings" asp-controller="MyBookings">My Bookings</a></li>
     @*<li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>*@
     @*<li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>*@
 </ul>
+@if (User.IsInRole("Admin"))
+{
+    <hr />
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a class="nav-link" asp-action="Index" asp-controller="AdminHotels">Manage Hotels</a></li>
+        <li class="nav-item"><a class="nav-link" asp-action="Index" asp-controller="AdminBookings">Manage Bookings</a></li>
+    </ul>
+}

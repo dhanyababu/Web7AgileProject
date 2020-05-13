@@ -1,0 +1,135 @@
+﻿@model IEnumerable<ProjectAgileWeb7.Models.Booking>
+
+@{
+    ViewData["Title"] = "MyBookings";
+}
+
+<h1>My Bookings</h1>
+<br />
+<br />
+<h5>
+    Dear <span>
+        @if (ViewBag.User.FirstName == null && ViewBag.User.LastName == null)
+        {
+
+            @ViewBag.User.UserName
+        }
+        else
+        {
+            @Html.Raw($"{@ViewBag.User.FirstName} {@ViewBag.User.LastName}")
+        },
+    </span> you have
+    <span>
+        @if (@Model.Count() == 0)
+        {
+            <span> no bookings </span>
+        }
+        else if (@Model.Count() == 1)
+        {
+            <span>1 booking </span>
+        }
+        else
+        {
+            <span> @Model.Count() bookings </span>
+        }
+    </span> saved on your account.
+</h5>
+<br />
+
+@foreach (var booking in @Model)
+{
+    <div class="card mt-2 mb-3">
+        <div class="card-body">
+            <h4 class="card-title d-flex justify-content-between align-items-center">
+                Booking Reference #@booking.Id
+            </h4>
+            <p>
+                Status: <span class="text-success"> @booking.Status</span>
+            </p>
+
+            <div class="d-flex booking-container">
+                <div class="card booking-card">
+                    <img src=@Url.Content(booking.Room.Hotel.ImageUrl) class="card-img" alt="Hotel Image">
+                </div>
+                <div class="card booking-card">
+
+                    <h3 class="card-title ml-1 mb-2">@booking.Room.Hotel.Name</h3>
+                    <div>
+                        @for (var i = 0; i < booking.Room.Hotel.Stars; i++)
+                        {
+                            <i class="fas fa-star fa-1x text-warning ml-1 mb-2"></i>
+                        }
+                    </div>
+                    <div class="card-text ml-1 mb-2">@booking.Room.Hotel.Address, @booking.Room.Hotel.ZipCode, @booking.Room.Hotel.City, @booking.Room.Hotel.Country</div>
+                    <div class="card-text ml-1 mb-2">
+                        <small class="text-muted">
+                            Distance from Center: @booking.Room.Hotel.DistanceFromCenter km
+                        </small>
+                    </div>
+                    <div class="card-text ml-1 mb-2">
+                        <small class="text-muted text-justify">@booking.Room.Hotel.Description</small>
+                    </div>
+
+                </div>
+            </div>
+            <div class="d-flex booking-container">
+                <div class=" booking-card">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Staying:
+                        @if (Int32.Parse((booking.CheckOut - booking.CheckIn).ToString("%d")) == 1)
+                        {
+                            <span class="text-success">1 night</span>
+                        }
+                        else
+                        {
+                            <span class="text-success">@((booking.CheckOut - booking.CheckIn).ToString("%d")) nights</span>
+                        }
+
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Arrival Date:
+                        <span class="text-success">@booking.CheckIn.ToString("dddd, d MMMM yyyy", new System.Globalization.CultureInfo("en-US"))</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Departure Date:
+                        <span class="text-success">@booking.CheckOut.ToString("dddd, d MMMM yyyy", new System.Globalization.CultureInfo("en-US"))</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Room Type:
+                        <span class="text-success">@booking.Room.RoomType</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Guests Number:
+                        <span class="text-success">max @booking.Room.Capacity</span>
+                    </div>
+
+                </div>
+                <div class="booking-card">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Payment Method:
+                        <span class="text-success">@booking.Payment.Type card</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Card Number:
+                        <span class="text-success">**** **** **** @booking.Payment.CardNumber</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Payment Date:
+                        <span class="text-success">@booking.Payment.Date.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("en-US"))</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Payment Status:
+                        <span class="text-success">@booking.Payment.Status</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        Total:
+                        <span class="text-success">@booking.Payment.Amount.ToString("c")</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}

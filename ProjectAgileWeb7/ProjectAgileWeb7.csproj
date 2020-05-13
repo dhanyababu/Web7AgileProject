@@ -5,19 +5,6 @@
     <UserSecretsId>aspnet-ProjectAgileWeb7-F77A51EE-2EF7-439A-ADB1-E62AF35A7368</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\**" />
-    <Content Remove="Migrations\**" />
-    <EmbeddedResource Remove="Migrations\**" />
-    <None Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Migrations\20200504110956_init.cs" />
-    <Compile Include="Migrations\20200504110956_init.Designer.cs" />
-    <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.3" />
@@ -27,13 +14,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
 
 </Project>
