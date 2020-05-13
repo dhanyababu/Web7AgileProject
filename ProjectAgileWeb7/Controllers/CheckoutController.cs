@@ -35,10 +35,8 @@ namespace ProjectAgileWeb7.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-
             var booking = new Booking()
             {
-
                 RoomId = Convert.ToInt32(HttpContext.Session.GetInt32("roomId")),
                 CheckIn = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"))),
                 CheckOut = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"))),
@@ -47,6 +45,10 @@ namespace ProjectAgileWeb7.Controllers
             };
             _appContext.Bookings.Add(booking);
             await _appContext.SaveChangesAsync();
+
+            ViewBag.RoomPrice = _appContext.Rooms.Where(r => r.RoomId == booking.RoomId).Select(r => r.RoomPrice).FirstOrDefault();
+            ViewBag.NumberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
+            ViewBag.TotalPrice = decimal.Round(ViewBag.RoomPrice * ViewBag.NumberOfNights, 2, MidpointRounding.AwayFromZero);
 
             HttpContext.Session.SetInt32("bookingId", booking.Id);
 
@@ -59,7 +61,6 @@ namespace ProjectAgileWeb7.Controllers
         [Authorize]
         public IActionResult Checkout(Payment payment)
         {
-
             if (ModelState.IsValid)
             {
                 var bookingId = Convert.ToInt32(HttpContext.Session.GetInt32("bookingId"));
@@ -67,14 +68,13 @@ namespace ProjectAgileWeb7.Controllers
                 var numberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
                 var roomId = _appContext.Bookings.Where(b => b.Id == bookingId).Select(b => b.RoomId).FirstOrDefault();
                 var roomPrice = _appContext.Rooms.Where(r => r.RoomId == roomId).Select(r => r.RoomPrice).FirstOrDefault();
-                var total = roomPrice * numberOfNights;
 
                 var newPayment = new Payment()
                 {
-                    //BookingId = bookingId,
                     Status = Status.Pending,
                     Date = DateTime.Now.Date,
-                    Amount = total,
+                    Amount = payment.Amount,
+                    Currency = payment.Currency,
                     Type = payment.Type,
                     CardNumber = payment.CardNumber.Substring(12),
                     CVV = payment.CVV.Substring(0, 1),
@@ -97,8 +97,6 @@ namespace ProjectAgileWeb7.Controllers
         {
             if (payment != null)
             {
-                //var bookingFromDb = _appContext.Bookings.FirstOrDefault(b => b.Id == payment.BookingId);
-
                 var bookingFromDb = _appContext.Bookings.FirstOrDefault(b => b.Id == HttpContext.Session.GetInt32("bookingId"));
                 bookingFromDb.Status = Status.Accepted;
                 bookingFromDb.PaymentId = payment.Id;
@@ -126,7 +124,6 @@ namespace ProjectAgileWeb7.Controllers
             var identityClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             var user = _appContext.ApplicationUsers.FirstOrDefault(u => u.Id == identityClaim.Value);
-            //var bookingId = _appContext.Payments.Where(p => p == payment).Select(p => p.BookingId).FirstOrDefault();
             var bookingId = HttpContext.Session.GetInt32("bookingId");
             var booking = _appContext.Bookings.FirstOrDefault(b => b.Id == bookingId);
             var room = _appContext.Rooms.FirstOrDefault(r => r.RoomId == booking.RoomId);

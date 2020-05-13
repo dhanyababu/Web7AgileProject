@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,6 +38,16 @@ namespace ProjectAgileWeb7.Controllers
                                     .ThenInclude(r => r.Hotel)
 
                                     .ToListAsync();
+
+            foreach (var booking in myBookingsList)
+            {
+                if (booking.Payment == null)
+                {
+                    _appContext.Bookings.Remove(booking);
+                }
+            }
+            await _appContext.SaveChangesAsync();
+
             return View(myBookingsList);
         }
     }

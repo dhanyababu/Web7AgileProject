@@ -15,12 +15,10 @@
         }
         else
         {
-            @*@Model.User.FirstName @Model.User.LastName*@
             @Html.Raw($"{@Model.User.FirstName} {@Model.User.LastName}")
         }
         !
     </h4>
-
     <i class="fas fa-check-circle"></i>&nbsp; Your booking has been completed successfully!
 
 </div>
@@ -80,7 +78,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Total:
-                        <span class="text-success">@Model.Payment.Amount.ToString("c")</span>
+                        <span class="text-success">@Model.Payment.Amount.ToString("F") @Model.Payment.Currency</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Payment Method:
@@ -113,7 +111,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Price per Night:
-                        <span class="text-success">@Model.Room.RoomPrice.ToString("c")</span>
+                        <span class="text-success">@Model.Room.RoomPrice.ToString("F") @Currency.SEK</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Description:
