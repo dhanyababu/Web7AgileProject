@@ -21,7 +21,7 @@
         <div class="card-text mb-2">
             <div class="list-group-item d-flex justify-content-between align-items-center">
                 Price/Night:
-                <span class="text-primary">@Model.RoomPrice.ToString("F") SEK</span>
+                <span class="text-primary">@Model.RoomPrice.ToString("F") @Currency.SEK</span>
             </div>
             <div class="list-group-item d-flex justify-content-between align-items-center">
                 Number of guests:
@@ -31,9 +31,6 @@
                 Number of beds:
                 <span class="text-primary">@Model.NumberOfBeds</span>
             </div>
-            @*Price per night: @Model.RoomPrice.ToString("F")<br />
-                Number of guests: @Model.Capacity persons<br />
-                Number of beds: @Model.NumberOfBeds<br />*@
         </div>
         <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to homepage</a>
     </div>

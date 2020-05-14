@@ -41,7 +41,7 @@ namespace ProjectAgileWeb7.Data
                         ZipCode="75001",
                         City="Paris",
                         Country="France",
-                        Description="Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.",
+                        Description="Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a garden and a business centre.",
                         Stars=5,
                         DistanceFromCenter=6.3,
                         Latitude="48.868164",
@@ -56,7 +56,7 @@ namespace ProjectAgileWeb7.Data
                         ZipCode="SW1A 2BD",
                         City="London",
                         Country="United Kingdom",
-                        Description="The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist, London’s largest spa and the world's first hotel concession for Harrods.",
+                        Description="The luxurious Corinthia Hotel is located in one of London’s most prestigious areas, moments from Trafalgar Square and Whitehall. It features elegant restaurants, 2 bars, a florist and the world's first hotel concession for Harrods.",
                         Stars=5,
                         DistanceFromCenter=1.6,
                         Latitude="51.506753",
@@ -71,15 +71,20 @@ namespace ProjectAgileWeb7.Data
                         ZipCode="1017 DA",
                         City="Amsterdam",
                         Country="Netherlands",
-                        Description="Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms and free WiFi. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by tram.",
+                        Description="Located in the heart of the city center, Eden Hotel Amsterdam offers warm-colored rooms. The famous Rembrandt Square is right around the corner. The central station is 10 minutes away by tram.",
                         Stars=4,
                         DistanceFromCenter=0.9,
                         Latitude="52.366983",
                         Longitude="4.898774",
                         ImageUrl="~/pictures/eden.jpg"
                     },
+
+                     new Hotel
+                     {
+
                     new Hotel
                     {
+
                         Name="Paris France Hotel",
                         Website="https://www.paris-france-hotel.com/",
                         Address="72 Rue De Turbigo",
@@ -92,7 +97,37 @@ namespace ProjectAgileWeb7.Data
                         Latitude="48.866954",
                         Longitude="2.360468",
                         ImageUrl="~/pictures/france.jpg"
-                    }
+                     },
+                     new Hotel
+                     {
+                        Name="Athenee Palace Hilton",
+                        Website="https://www.hilton.com/en/hotels/buhhitw-athenee-palace-hilton-bucharest/",
+                        Address="56 Calea Victoriei",
+                        ZipCode="010083",
+                        City="Bucharest",
+                        Country="Romania",
+                        Description="Centrally located on Victoriei Street in the heart of Bucharest, Grand Hotel Continental is steps away from the National Art Museum and close to the Athenaeum, Universitate‎ Metro Station, and business district.",
+                        Stars=5,
+                        DistanceFromCenter=0.2,
+                        Latitude="44.441230",
+                        Longitude="26.095909",
+                        ImageUrl="~/pictures/bucharest.jpg"
+                     },
+                     new Hotel
+                     {
+                        Name="Saint Ten Hotel",
+                        Website="https://saintten.com/",
+                        Address="Svetog Save 10",
+                        ZipCode="11000",
+                        City="Belgrade",
+                        Country="Serbia",
+                        Description="Set in the Vračar District of Belgrade, about 300 m from the Temple of St. Sava, the luxurious Saint Ten Hotel is housed in a cultural heritage building and offers an on-site restaurant.",
+                        Stars=5,
+                        DistanceFromCenter=1.9,
+                        Latitude="44.801582",
+                        Longitude="20.467130",
+                        ImageUrl="~/pictures/belgrade.jpg"
+                     }
                 };
 
                 dbContext.Hotels.AddRange(hotels);
@@ -105,59 +140,61 @@ namespace ProjectAgileWeb7.Data
                 {
                     new Facility
                     {
-                        Name="Room service",
-                        Symbol="concierge-bell",
-                        IsFree=true,
-                        Price= 0
-                    },
-                    new Facility
-                    {
-                        Name= "Breakfast",
-                        IsFree=true,
-                        Symbol="utensils",
-                        Price=0
-                    },
-                    new Facility
-                    {
-                        Name="Parking",
-                        Symbol="parking",
-                        IsFree=true,
-                        Price=0
-                    },
-                    new Facility
-                    {
+
                         Name="Wi-fi",
                         Symbol="wifi",
-                        IsFree=true,
-                        Price=0
+                        IsFree=true
                     },
                     new Facility
                     {
+
+                        Name="Parking",
+                        Symbol="parking",
+                        IsFree=true
+                    },
+                    new Facility
+                    {
+
+                        Name= "Breakfast",
+                        IsFree=true,
+                        Symbol="utensils"
+                    },
+                    new Facility
+                    {
+
+                        Name="Room service",
+                        Symbol="concierge-bell",
+                        IsFree=true
+                    },
+                    new Facility
+                    {
+
                         Name="Fitness center",
                         IsFree=true,
-                        Symbol="dumbbell",
-                        Price=0
-
+                        Symbol="dumbbell"
                     },
                     new Facility
                     {
+
                         Name="Pool",
                         IsFree=true,
-                        Symbol="swimming-pool",
-                        Price=0
+                        Symbol="swimming-pool"
                     },
                     new Facility
                     {
+
                         Name="Sauna",
                         Symbol="hot-tub",
-                        IsFree=true,
-                        Price=0
+                        IsFree=true
                     }
-
                 };
 
                 dbContext.Facilities.AddRange(facilities);
+
+                dbContext.SaveChanges();
+
                 await dbContext.SaveChangesAsync();
+
             }
 
             if (!dbContext.Rooms.Any())
@@ -208,6 +245,7 @@ namespace ProjectAgileWeb7.Data
             {
                 var hotelFacilities = new HotelFacility[]
                 {
+
                     new HotelFacility
                     {
                         HotelId=1,
@@ -289,6 +327,7 @@ namespace ProjectAgileWeb7.Data
                         HotelId=4,
                         FacilityId=4
                     }
+
                 };
 
                 dbContext.HotelFacilities.AddRange(hotelFacilities);

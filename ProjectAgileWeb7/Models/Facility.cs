@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
@@ -8,8 +7,8 @@ namespace ProjectAgileWeb7.Models
         public int FacilityId { get; set; }
         public string Name { get; set; }
         public bool IsFree { get; set; }
-        [Column(TypeName = "decimal(18,4)")]
-        public decimal Price { get; set; }
+        //[Column(TypeName = "decimal(18,4)")]
+        //public decimal Price { get; set; }
         public string Symbol { get; set; }
         public ICollection<HotelFacility> HotelFacilities { get; set; }
     }
