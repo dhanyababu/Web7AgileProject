@@ -33,7 +33,10 @@
         <div class="card-deck">
             <div class="card mt-4">
                 <div class="card-body d-flex">
+
                     <div class="m-auto img">
+
+
                         <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active">
@@ -69,6 +72,9 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -144,7 +150,7 @@
             <div class="card-body pb-3">
                 <div class="mb-3 text-center ">
                     <i class="fas fa-temperature-low fa-2x text-primary "></i>
-                    <span id="location" class="card-title font-weight-bold h4 "></span>
+                    <span id="location" class="card-title font-weight-bold h4 ">&nbsp; </span>
                 </div>
                 <div>
                     <span id="today" class="card-text mr-2"></span>
@@ -163,10 +169,11 @@
                 </div>
             </div>
         </div>
+
         <div class="card map-card text-center">
             <div class="mb-3 mt-2 pt-3 ">
                 <i class="fas fa-map-marked-alt fa-2x text-primary"></i>
-                <span class="card-title font-weight-bold mt-2 h4">Map View</span>
+                <span class="card-title font-weight-bold mt-2 h4">&nbsp; Map View</span>
             </div>
             <div class="mb-3">
 
@@ -178,5 +185,55 @@
 
             </div>
         </div>
+      
+
+
+        <div class="card nearby-card">
+            <input type="hidden" id="latitude" asp-for=@Model.Latitude />
+            <input type="hidden" id="longitude" asp-for=@Model.Longitude />
+
+            <div class="card-body pb-3 text-center">
+                <i class="fas fa-street-view fa-2x text-primary"></i>
+                <span class="card-title font-weight-bold mt-2 h4">&nbsp; Nearby Places</span>
+            </div>
+
+            <div class="card-body pb-3">
+                <ul id="nearby-categories" class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" title="Restaurants">
+                        <details id="restaurants">
+                            <summary>
+                                <i class="fas fa-utensils fa-2x text-primary"></i>
+                            </summary>
+                        </details>
+                        <span id="restaurantsCount" class="badge badge-primary badge-pill">0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" title="Bars and Pubs">
+                        <details id="bars">
+                            <summary>
+                                <i class="fas fa-glass-cheers fa-2x text-primary"></i>
+                            </summary>
+                        </details>
+                        <span id="barsCount" class="badge badge-primary badge-pill">0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" title="Culture and Sightseeings">
+                        <details id="culture">
+                            <summary>
+                                <i class="fas fa-landmark fa-2x text-primary"></i>
+                            </summary>
+                        </details>
+                        <span id="cultureCount" class="badge badge-primary badge-pill">0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" title="Shopping">
+                        <details id="shopping">
+                            <summary>
+                                <i class="fas fa-shopping-bag fa-2x text-primary"></i>
+                            </summary>
+                        </details>
+                        <span id="shopsCount" class="badge badge-primary badge-pill">0</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+

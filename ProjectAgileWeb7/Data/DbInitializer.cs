@@ -1,17 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ProjectAgileWeb7.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext dbContext)
+        public static async Task Initialize(IServiceProvider serviceProvider)
         {
             //dbContext.Database.EnsureDeleted();
-            dbContext.Database.EnsureCreated();
+
+            using var dbContext = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
+
+            await dbContext.Database.EnsureCreatedAsync();
             try
             {
                 if (dbContext.Database.GetPendingMigrations().Count() > 0)
@@ -23,7 +28,6 @@ namespace ProjectAgileWeb7.Data
             {
 
             }
-
 
             if (!dbContext.Hotels.Any())
             {
@@ -74,8 +78,9 @@ namespace ProjectAgileWeb7.Data
                         Longitude="4.898774",
                         ImageUrl="~/pictures/eden.jpg"
                     },
-                     new Hotel
-                     {
+
+                    new Hotel
+                    {
                         Name="Paris France Hotel",
                         Website="https://www.paris-france-hotel.com/",
                         Address="72 Rue De Turbigo",
@@ -122,7 +127,7 @@ namespace ProjectAgileWeb7.Data
                 };
 
                 dbContext.Hotels.AddRange(hotels);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
 
             if (!dbContext.Facilities.Any())
@@ -181,7 +186,9 @@ namespace ProjectAgileWeb7.Data
                 };
 
                 dbContext.Facilities.AddRange(facilities);
+
                 dbContext.SaveChanges();
+
             }
 
             if (!dbContext.Rooms.Any())
@@ -191,10 +198,11 @@ namespace ProjectAgileWeb7.Data
                 var roomsList = new List<Room>();
                 var numberOfHotels = dbContext.Hotels.Count();
                 var roomDescriptionArray = new[]
-                { "A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower." ,
-                "This double room is fully fitted with air-conditioning, flat screen TV, direct dial telephone, high-speed WiFi, hairdryer and a safe. The modern bathroom features a powerful shower.",
-                "This room includes a satellite TV, tea and coffee-making facilities, a hairdryer and a private bathroom.",
-                "This triple room has air conditioning, electric kettle, free wi-fi and hairdryer."
+                { 
+                    "A traditionally decorated room with a TV, tea and coffee-making facilities and a private shower." ,
+                    "This double room is fully fitted with air-conditioning, flat screen TV, direct dial telephone, high-speed WiFi, hairdryer and a safe. The modern bathroom features a powerful shower.",
+                    "This room includes a satellite TV, tea and coffee-making facilities, a hairdryer and a private bathroom.",
+                    "This triple room has air conditioning, electric kettle, free wi-fi and hairdryer."
                 };
                 var numberOfBedsArray = new[] { 1, 1, 2, 2 };
                 var capacityArray = new[] { 1, 2, 2, 3 };
@@ -224,14 +232,14 @@ namespace ProjectAgileWeb7.Data
                 }
 
                 dbContext.Rooms.AddRange(roomsList);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
 
             if (!dbContext.HotelFacilities.Any())
             {
-
                 var hotelFacilities = new HotelFacility[]
                 {
+
                     new HotelFacility { HotelId=1, FacilityId=1},
                     new HotelFacility { HotelId=1, FacilityId=3},
                     new HotelFacility { HotelId=1, FacilityId=5},
@@ -254,53 +262,12 @@ namespace ProjectAgileWeb7.Data
                     new HotelFacility { HotelId=6, FacilityId=1},
                     new HotelFacility { HotelId=6, FacilityId=5},
                     new HotelFacility { HotelId=6, FacilityId=7},
+
                 };
 
                 dbContext.HotelFacilities.AddRange(hotelFacilities);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
-
-
-
-
-
-
-            #region For testing purposes only!!!
-
-            // Delete when booking has been implemented.
-            //var x = dbContext.BookingPerDays.ToList();
-            //dbContext.BookingPerDays.RemoveRange(x);
-            //dbContext.SaveChanges();
-
-            //if (!dbContext.BookingPerDays.Any())
-            //{
-            //    foreach (var room in dbContext.Rooms)
-            //    {
-            //        if (room.HotelId == 1 && room.RoomId < 50)
-            //        {
-            //            dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = room.RoomId, Date = DateTime.Now.Date.AddDays(1) });
-            //        }
-            //    }
-            //}
-
-
-
-
-            //dbContext.SaveChanges();
-
-            //foreach (var booking in dbContext.Bookings)
-            //{
-            //    for (DateTime date = booking.CheckIn; date < booking.CheckOut; date = date.AddDays(1))
-            //    {
-            //        dbContext.BookingPerDays.Add(new BookingPerDay { RoomId = booking.RoomId, Date = date });
-            //    }                        
-            //}
-            //dbContext.SaveChanges();
-
-            #endregion
-
-
-
         }
     }
 }

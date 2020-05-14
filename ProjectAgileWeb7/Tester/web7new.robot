@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-Resource  ../Tests/Resources/keywords.robot
+Resource  ../Resources/keywords.robot
 Library  SeleniumLibrary
 Test Setup  Begin Login Test
 Test Teardown  End Test
@@ -35,5 +35,7 @@ User can login to website with no uppercase letter in password
     [Tags]                                  LoginfunctionNoUppercase
     No Uppercase Letter In Password
 
-
-
+User Can Login To Website With No Inputs
+    [Documentation]
+    [Tags]                                  LoginfunctionNoUppercase
+    No Inputs
