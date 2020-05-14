@@ -16,7 +16,6 @@
             Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice</label>
             <input type="hidden" asp-for="@Model.Amount" class="totalPriceHidden" val="" style="width:100px" />
             <br />
-
             <p>
                 Currency:&nbsp;
                 @Html.DropDownListFor(m => m.Currency,
