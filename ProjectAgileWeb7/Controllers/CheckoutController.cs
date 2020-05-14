@@ -46,7 +46,12 @@ namespace ProjectAgileWeb7.Controllers
             _appContext.Bookings.Add(booking);
             await _appContext.SaveChangesAsync();
 
-            ViewBag.RoomPrice = _appContext.Rooms.Where(r => r.RoomId == booking.RoomId).Select(r => r.RoomPrice).FirstOrDefault();
+            ViewBag.RoomPrice = decimal.Round(
+                _appContext.Rooms
+                .Where(r => r.RoomId == booking.RoomId)
+                .Select(r => r.RoomPrice)
+                .FirstOrDefault(), 2, MidpointRounding.AwayFromZero
+                );
             ViewBag.NumberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
             ViewBag.TotalPrice = decimal.Round(ViewBag.RoomPrice * ViewBag.NumberOfNights, 2, MidpointRounding.AwayFromZero);
 
