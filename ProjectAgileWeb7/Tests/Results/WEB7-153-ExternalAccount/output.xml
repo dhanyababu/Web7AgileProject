@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200512 22:43:53.147" rpa="false">
+<suite id="s1" name="WEB7-153-ExternalAccount" source="C:\Users\dhany\PycharmProjects\AgileProjectWeb7\Tests\WEB7-153-ExternalAccount.robot">
+<test id="s1-t1" name="Verify external link is redirecting">
+<kw name="Open Browser To Start Page" library="WEB7-153-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("--disable-web-security");add_argument("--allow-running-insecure-content");add_argument("--incognito");add_argument("--lang=en-us")</arg>
+</arguments>
+<msg timestamp="20200512 22:43:53.595" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200512 22:43:53.595" endtime="20200512 22:43:59.160"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200512 22:43:59.161" endtime="20200512 22:44:03.283"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200512 22:44:03.284" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200512 22:44:03.284" endtime="20200512 22:44:04.455"></status>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:44:04.456" endtime="20200512 22:44:04.456"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:44:04.457" endtime="20200512 22:44:05.565"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:43:53.595" endtime="20200512 22:44:05.565"></status>
+</kw>
+<kw name="Goto Login page" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a</arg>
+</arguments>
+<msg timestamp="20200512 22:44:05.567" level="INFO">Clicking element 'xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a'.</msg>
+<status status="PASS" starttime="20200512 22:44:05.567" endtime="20200512 22:44:08.130"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Use another service to log in</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:44:08.130" endtime="20200512 22:44:09.146"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:44:05.566" endtime="20200512 22:44:09.146"></status>
+</kw>
+<kw name="Click External link" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="external-account"]/div/p/button</arg>
+</arguments>
+<msg timestamp="20200512 22:44:09.148" level="INFO">Clicking element 'xpath://*[@id="external-account"]/div/p/button'.</msg>
+<status status="PASS" starttime="20200512 22:44:09.148" endtime="20200512 22:44:16.302"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20200512 22:44:36.304" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20200512 22:44:16.302" endtime="20200512 22:44:36.304"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:44:09.147" endtime="20200512 22:44:36.304"></status>
+</kw>
+<kw name="Verify external page" library="WEB7-153-keywords">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Logga in Fortsätt till Agile project</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:44:36.305" endtime="20200512 22:44:37.352"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Logga in – Google Konton</arg>
+</arguments>
+<msg timestamp="20200512 22:44:38.359" level="INFO">Page title is 'Logga in – Google Konton'.</msg>
+<status status="PASS" starttime="20200512 22:44:37.352" endtime="20200512 22:44:38.359"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:44:36.305" endtime="20200512 22:44:38.360"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-153-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200512 22:44:38.363" endtime="20200512 22:44:41.916"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:44:38.362" endtime="20200512 22:44:41.916"></status>
+</kw>
+<doc>Test to verify that External account link provided in the home page is working and check
+external account link is redirecting to another page to link google account</doc>
+<tags>
+<tag>Test WEB7-181</tag>
+</tags>
+<status status="PASS" starttime="20200512 22:43:53.593" endtime="20200512 22:44:41.917" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Verify external account invalid login">
+<kw name="Open Browser To Start Page" library="WEB7-153-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("--disable-web-security");add_argument("--allow-running-insecure-content");add_argument("--incognito");add_argument("--lang=en-us")</arg>
+</arguments>
+<msg timestamp="20200512 22:44:41.931" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200512 22:44:41.929" endtime="20200512 22:44:48.360"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200512 22:44:48.360" endtime="20200512 22:44:53.484"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200512 22:44:53.485" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200512 22:44:53.484" endtime="20200512 22:44:55.458"></status>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:44:55.458" endtime="20200512 22:44:55.458"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:44:55.458" endtime="20200512 22:44:56.478"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:44:41.927" endtime="20200512 22:44:56.478"></status>
+</kw>
+<kw name="Goto Login page" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a</arg>
+</arguments>
+<msg timestamp="20200512 22:44:56.481" level="INFO">Clicking element 'xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a'.</msg>
+<status status="PASS" starttime="20200512 22:44:56.480" endtime="20200512 22:45:00.861"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Use another service to log in</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:45:00.861" endtime="20200512 22:45:01.877"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:44:56.479" endtime="20200512 22:45:01.877"></status>
+</kw>
+<kw name="Click External link" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="external-account"]/div/p/button</arg>
+</arguments>
+<msg timestamp="20200512 22:45:01.880" level="INFO">Clicking element 'xpath://*[@id="external-account"]/div/p/button'.</msg>
+<status status="PASS" starttime="20200512 22:45:01.879" endtime="20200512 22:45:06.045"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20200512 22:45:26.047" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20200512 22:45:06.045" endtime="20200512 22:45:26.047"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:01.878" endtime="20200512 22:45:26.048"></status>
+</kw>
+<kw name="Verify external page" library="WEB7-153-keywords">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Logga in Fortsätt till Agile project</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:45:26.050" endtime="20200512 22:45:27.096"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Logga in – Google Konton</arg>
+</arguments>
+<msg timestamp="20200512 22:45:28.105" level="INFO">Page title is 'Logga in – Google Konton'.</msg>
+<status status="PASS" starttime="20200512 22:45:27.096" endtime="20200512 22:45:28.105"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:26.049" endtime="20200512 22:45:28.106"></status>
+</kw>
+<kw name="Login with Empty id" library="WEB7-153-keywords">
+<arguments>
+<arg>${EMPTY}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+<arg>${google_id}</arg>
+</arguments>
+<msg timestamp="20200512 22:45:28.110" level="INFO">Typing text '' into text field 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:45:28.109" endtime="20200512 22:45:31.271"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="identifierNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:45:31.271" level="INFO">Clicking element 'xpath://*[@id="identifierNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:45:31.271" endtime="20200512 22:45:33.427"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="view_container"]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[2]/div[2]/div</arg>
+</arguments>
+<assign>
+<var>${email_error}</var>
+</assign>
+<msg timestamp="20200512 22:45:35.467" level="INFO">${email_error} = Ange en e-postadress eller ett telefonnummer</msg>
+<status status="PASS" starttime="20200512 22:45:33.427" endtime="20200512 22:45:35.467"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Ange en e-postadress eller ett telefonnummer</arg>
+<arg>${email_error}</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:45:35.467" endtime="20200512 22:45:35.468"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:28.107" endtime="20200512 22:45:35.468"></status>
+</kw>
+<kw name="Login with Invalid Id" library="WEB7-153-keywords">
+<arguments>
+<arg>dhanyababu@hotmail.com</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+<arg>${google_id}</arg>
+</arguments>
+<msg timestamp="20200512 22:45:35.469" level="INFO">Typing text 'dhanyababu@hotmail.com' into text field 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:45:35.469" endtime="20200512 22:45:38.830"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="identifierNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:45:38.830" level="INFO">Clicking element 'xpath://*[@id="identifierNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:45:38.830" endtime="20200512 22:45:40.959"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Inget sådant Google-konto hittades</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:45:40.959" endtime="20200512 22:45:42.002"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:35.468" endtime="20200512 22:45:42.002"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-153-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200512 22:45:42.004" endtime="20200512 22:45:45.199"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:42.003" endtime="20200512 22:45:45.199"></status>
+</kw>
+<doc>Test to verify that verify external login by using an invalid google id and
+verify result should not be able to login</doc>
+<tags>
+<tag>Test WEB7-230</tag>
+</tags>
+<status status="PASS" starttime="20200512 22:44:41.923" endtime="20200512 22:45:45.201" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Verify external account register with new id">
+<kw name="Open Browser To Start Page" library="WEB7-153-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("--disable-web-security");add_argument("--allow-running-insecure-content");add_argument("--incognito");add_argument("--lang=en-us")</arg>
+</arguments>
+<msg timestamp="20200512 22:45:45.207" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200512 22:45:45.206" endtime="20200512 22:45:51.797"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200512 22:45:51.797" endtime="20200512 22:45:56.923"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200512 22:45:56.923" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200512 22:45:56.923" endtime="20200512 22:45:58.908"></status>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:45:58.908" endtime="20200512 22:45:58.908"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:45:58.909" endtime="20200512 22:45:59.927"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:45.205" endtime="20200512 22:45:59.927"></status>
+</kw>
+<kw name="Goto Login page" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a</arg>
+</arguments>
+<msg timestamp="20200512 22:45:59.928" level="INFO">Clicking element 'xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a'.</msg>
+<status status="PASS" starttime="20200512 22:45:59.928" endtime="20200512 22:46:02.319"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Use another service to log in</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:46:02.319" endtime="20200512 22:46:03.337"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:45:59.928" endtime="20200512 22:46:03.338"></status>
+</kw>
+<kw name="Click External link" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="external-account"]/div/p/button</arg>
+</arguments>
+<msg timestamp="20200512 22:46:03.341" level="INFO">Clicking element 'xpath://*[@id="external-account"]/div/p/button'.</msg>
+<status status="PASS" starttime="20200512 22:46:03.341" endtime="20200512 22:46:11.557"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20200512 22:46:31.558" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20200512 22:46:11.557" endtime="20200512 22:46:31.558"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:46:03.340" endtime="20200512 22:46:31.558"></status>
+</kw>
+<kw name="Register with external id" library="WEB7-153-keywords">
+<arguments>
+<arg>web7agile@gmail.com</arg>
+<arg>Test123$</arg>
+</arguments>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+</arguments>
+<msg timestamp="20200512 22:46:31.561" level="INFO">Clicking element 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:46:31.561" endtime="20200512 22:46:33.669"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+<arg>${google_id}</arg>
+</arguments>
+<msg timestamp="20200512 22:46:33.670" level="INFO">Typing text 'web7agile@gmail.com' into text field 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:46:33.669" endtime="20200512 22:46:36.938"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="identifierNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:46:36.938" level="INFO">Clicking element 'xpath://*[@id="identifierNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:46:36.938" endtime="20200512 22:46:39.251"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Ange ditt lösenord</arg>
+<arg>timeout=20</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:46:39.251" endtime="20200512 22:46:40.343"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20200512 22:47:00.345" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20200512 22:46:40.344" endtime="20200512 22:47:00.345"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:password</arg>
+</arguments>
+<msg timestamp="20200512 22:47:00.347" level="INFO">Clicking element 'id:password'.</msg>
+<status status="PASS" starttime="20200512 22:47:00.346" endtime="20200512 22:47:02.502"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="password"]/div[1]/div/div[1]/input</arg>
+<arg>${google_pwd}</arg>
+</arguments>
+<msg timestamp="20200512 22:47:02.503" level="INFO">Typing text 'Test123$' into text field 'xpath://*[@id="password"]/div[1]/div/div[1]/input'.</msg>
+<status status="PASS" starttime="20200512 22:47:02.502" endtime="20200512 22:47:05.703"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="passwordNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:47:05.704" level="INFO">Clicking element 'xpath://*[@id="passwordNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:47:05.703" endtime="20200512 22:47:07.964"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Associate your Google account</arg>
+<arg>timeout=30</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:07.964" endtime="20200512 22:47:10.331"></status>
+</kw>
+<kw name="Get Value" library="SeleniumLibrary">
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:Input_Email</arg>
+</arguments>
+<assign>
+<var>${Registered_id}</var>
+</assign>
+<msg timestamp="20200512 22:47:12.380" level="INFO">${Registered_id} = web7agile@gmail.com</msg>
+<status status="PASS" starttime="20200512 22:47:10.332" endtime="20200512 22:47:12.380"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>web7agile@gmail.com</arg>
+<arg>${Registered_id}</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:12.380" endtime="20200512 22:47:12.381"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div/main/div/div/form/button</arg>
+</arguments>
+<msg timestamp="20200512 22:47:12.381" level="INFO">Clicking element 'xpath:/html/body/div/main/div/div/form/button'.</msg>
+<status status="PASS" starttime="20200512 22:47:12.381" endtime="20200512 22:47:15.235"></status>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a</arg>
+<arg>Hello web7agile@gmail.com!</arg>
+<arg>timeout=20</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:15.235" endtime="20200512 22:47:17.296"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "Logout")]</arg>
+</arguments>
+<msg timestamp="20200512 22:47:17.297" level="INFO">Clicking element 'xpath: //*[contains(text(), "Logout")]'.</msg>
+<status status="PASS" starttime="20200512 22:47:17.297" endtime="20200512 22:47:20.270"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Login</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:20.270" endtime="20200512 22:47:21.287"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:46:31.559" endtime="20200512 22:47:21.287"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-153-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200512 22:47:21.288" endtime="20200512 22:47:24.505"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:47:21.288" endtime="20200512 22:47:24.506"></status>
+</kw>
+<doc>Test to verify that verify external login by using an valid id and
+verify result should not be able to login</doc>
+<tags>
+<tag>Test WEB7-229</tag>
+</tags>
+<status status="PASS" starttime="20200512 22:45:45.203" endtime="20200512 22:47:24.506" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Verify hotel booking by using registered external account">
+<kw name="Open Browser To Start Page" library="WEB7-153-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("--disable-web-security");add_argument("--allow-running-insecure-content");add_argument("--incognito");add_argument("--lang=en-us")</arg>
+</arguments>
+<msg timestamp="20200512 22:47:24.513" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200512 22:47:24.513" endtime="20200512 22:47:31.048"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200512 22:47:31.049" endtime="20200512 22:47:36.187"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200512 22:47:36.188" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200512 22:47:36.187" endtime="20200512 22:47:38.333"></status>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:38.333" endtime="20200512 22:47:38.333"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:38.333" endtime="20200512 22:47:39.352"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:47:24.512" endtime="20200512 22:47:39.352"></status>
+</kw>
+<kw name="Goto Login page" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a</arg>
+</arguments>
+<msg timestamp="20200512 22:47:39.354" level="INFO">Clicking element 'xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a'.</msg>
+<status status="PASS" starttime="20200512 22:47:39.354" endtime="20200512 22:47:41.666"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Use another service to log in</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:47:41.666" endtime="20200512 22:47:42.684"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:47:39.353" endtime="20200512 22:47:42.684"></status>
+</kw>
+<kw name="Click External link" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="external-account"]/div/p/button</arg>
+</arguments>
+<msg timestamp="20200512 22:47:42.685" level="INFO">Clicking element 'xpath://*[@id="external-account"]/div/p/button'.</msg>
+<status status="PASS" starttime="20200512 22:47:42.685" endtime="20200512 22:47:46.321"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20200512 22:48:06.322" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20200512 22:47:46.321" endtime="20200512 22:48:06.323"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:47:42.684" endtime="20200512 22:48:06.324"></status>
+</kw>
+<kw name="Login with external id" library="WEB7-153-keywords">
+<arguments>
+<arg>web7agile@gmail.com</arg>
+<arg>Test123$</arg>
+</arguments>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+</arguments>
+<msg timestamp="20200512 22:48:06.328" level="INFO">Clicking element 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:48:06.327" endtime="20200512 22:48:08.414"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+<arg>${google_id}</arg>
+</arguments>
+<msg timestamp="20200512 22:48:08.415" level="INFO">Typing text 'web7agile@gmail.com' into text field 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:48:08.415" endtime="20200512 22:48:11.723"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="identifierNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:48:11.724" level="INFO">Clicking element 'xpath://*[@id="identifierNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:48:11.724" endtime="20200512 22:48:14.048"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Ange ditt lösenord</arg>
+<arg>timeout=20</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:48:14.048" endtime="20200512 22:48:15.097"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:password</arg>
+</arguments>
+<msg timestamp="20200512 22:48:15.098" level="INFO">Clicking element 'id:password'.</msg>
+<status status="PASS" starttime="20200512 22:48:15.097" endtime="20200512 22:48:17.205"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="password"]/div[1]/div/div[1]/input</arg>
+<arg>${google_pwd}</arg>
+</arguments>
+<msg timestamp="20200512 22:48:17.205" level="INFO">Typing text 'Test123$' into text field 'xpath://*[@id="password"]/div[1]/div/div[1]/input'.</msg>
+<status status="PASS" starttime="20200512 22:48:17.205" endtime="20200512 22:48:20.378"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="passwordNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:48:20.380" level="INFO">Clicking element 'xpath://*[@id="passwordNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:48:20.379" endtime="20200512 22:48:22.725"></status>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a</arg>
+<arg>Hello web7agile@gmail.com!</arg>
+<arg>timeout=20</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:48:22.725" endtime="20200512 22:48:29.234"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:48:06.325" endtime="20200512 22:48:29.235"></status>
+</kw>
+<kw name="Search hotel" library="WEB7-153-keywords">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:48:29.238" endtime="20200512 22:48:31.288"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:search-input</arg>
+<arg>Amsterdam</arg>
+</arguments>
+<msg timestamp="20200512 22:48:31.289" level="INFO">Typing text 'Amsterdam' into text field 'id:search-input'.</msg>
+<status status="PASS" starttime="20200512 22:48:31.289" endtime="20200512 22:48:34.514"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-in</arg>
+</arguments>
+<msg timestamp="20200512 22:48:34.515" level="INFO">Clicking element 'id:check-in'.</msg>
+<status status="PASS" starttime="20200512 22:48:34.515" endtime="20200512 22:48:36.733"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-in</arg>
+<arg>CTRL+ARROW_DOWN</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200512 22:48:36.735" level="INFO">Sending key(s) ('CTRL+ARROW_DOWN', 'ENTER') to id:check-in element.</msg>
+<msg timestamp="20200512 22:48:39.089" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20200512 22:48:39.089" level="INFO">Pressing special key ARROW_DOWN down.</msg>
+<msg timestamp="20200512 22:48:39.089" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200512 22:48:39.089" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20200512 22:48:40.116" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200512 22:48:40.116" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200512 22:48:36.734" endtime="20200512 22:48:41.159"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:check-out</arg>
+</arguments>
+<msg timestamp="20200512 22:48:41.160" level="INFO">Clicking element 'id:check-out'.</msg>
+<status status="PASS" starttime="20200512 22:48:41.160" endtime="20200512 22:48:43.278"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>id:check-out</arg>
+<arg>CTRL+ARROW_DOWN</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20200512 22:48:43.280" level="INFO">Sending key(s) ('CTRL+ARROW_DOWN', 'ENTER') to id:check-out element.</msg>
+<msg timestamp="20200512 22:48:45.583" level="INFO">Pressing special key CONTROL down.</msg>
+<msg timestamp="20200512 22:48:45.583" level="INFO">Pressing special key ARROW_DOWN down.</msg>
+<msg timestamp="20200512 22:48:45.583" level="INFO">Releasing special key CONTROL.</msg>
+<msg timestamp="20200512 22:48:45.584" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20200512 22:48:46.619" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20200512 22:48:46.620" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20200512 22:48:43.278" endtime="20200512 22:48:47.643"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:submit-btn</arg>
+</arguments>
+<msg timestamp="20200512 22:48:47.645" level="INFO">Clicking element 'id:submit-btn'.</msg>
+<status status="PASS" starttime="20200512 22:48:47.644" endtime="20200512 22:48:50.522"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>See details</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:48:50.522" endtime="20200512 22:48:51.538"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:48:29.236" endtime="20200512 22:48:51.538"></status>
+</kw>
+<kw name="See details" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "See details")]</arg>
+</arguments>
+<msg timestamp="20200512 22:48:51.539" level="INFO">Clicking element 'xpath: //*[contains(text(), "See details")]'.</msg>
+<status status="PASS" starttime="20200512 22:48:51.539" endtime="20200512 22:48:54.653"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Book a room</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:48:54.654" endtime="20200512 22:48:55.689"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:48:51.539" endtime="20200512 22:48:55.689"></status>
+</kw>
+<kw name="Book room" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div[1]/main/div[2]/div[1]/div[2]/table/thead//*[contains(text(), "Book a room")]</arg>
+</arguments>
+<msg timestamp="20200512 22:48:55.690" level="INFO">Clicking element 'xpath:/html/body/div[1]/main/div[2]/div[1]/div[2]/table/thead//*[contains(text(), "Book a room")]'.</msg>
+<status status="PASS" starttime="20200512 22:48:55.690" endtime="20200512 22:48:58.251"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Personal details</arg>
+<arg>timeout=20</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:48:58.251" endtime="20200512 22:48:59.271"></status>
+</kw>
+<kw name="Get Value" library="SeleniumLibrary">
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:user_Email</arg>
+</arguments>
+<assign>
+<var>${email_id}</var>
+</assign>
+<msg timestamp="20200512 22:49:01.314" level="INFO">${email_id} = web7agile@gmail.com</msg>
+<status status="PASS" starttime="20200512 22:48:59.271" endtime="20200512 22:49:01.314"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>web7agile@gmail.com</arg>
+<arg>${email_id}</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:01.314" endtime="20200512 22:49:01.314"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:user_PhoneNumber</arg>
+<arg>987654321</arg>
+</arguments>
+<msg timestamp="20200512 22:49:01.315" level="INFO">Typing text '987654321' into text field 'id:user_PhoneNumber'.</msg>
+<status status="PASS" starttime="20200512 22:49:01.315" endtime="20200512 22:49:04.547"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div/main/a</arg>
+</arguments>
+<msg timestamp="20200512 22:49:04.548" level="INFO">Clicking element 'xpath:/html/body/div/main/a'.</msg>
+<status status="PASS" starttime="20200512 22:49:04.548" endtime="20200512 22:49:07.327"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Step 2: Payment details</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:07.327" endtime="20200512 22:49:08.345"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:48:55.690" endtime="20200512 22:49:08.345"></status>
+</kw>
+<kw name="Enter payment details" library="WEB7-153-keywords">
+<kw name="Select Radio Button" library="SeleniumLibrary">
+<doc>Sets the radio button group ``group_name`` to ``value``.</doc>
+<arguments>
+<arg>Type</arg>
+<arg>Visa</arg>
+</arguments>
+<msg timestamp="20200512 22:49:08.346" level="INFO">Selecting 'Visa' from radio button 'Type'.</msg>
+<status status="PASS" starttime="20200512 22:49:08.346" endtime="20200512 22:49:11.468"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:CardHolderFirstName</arg>
+<arg>Dhanya</arg>
+</arguments>
+<msg timestamp="20200512 22:49:11.468" level="INFO">Typing text 'Dhanya' into text field 'id:CardHolderFirstName'.</msg>
+<status status="PASS" starttime="20200512 22:49:11.468" endtime="20200512 22:49:14.700"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:CardHolderLastName</arg>
+<arg>Babu</arg>
+</arguments>
+<msg timestamp="20200512 22:49:14.701" level="INFO">Typing text 'Babu' into text field 'id:CardHolderLastName'.</msg>
+<status status="PASS" starttime="20200512 22:49:14.700" endtime="20200512 22:49:17.890"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:CardNumber</arg>
+<arg>1234567891234567</arg>
+</arguments>
+<msg timestamp="20200512 22:49:17.890" level="INFO">Typing text '1234567891234567' into text field 'id:CardNumber'.</msg>
+<status status="PASS" starttime="20200512 22:49:17.890" endtime="20200512 22:49:21.168"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:ExpirationDate</arg>
+</arguments>
+<msg timestamp="20200512 22:49:21.168" level="INFO">Clicking element 'id:ExpirationDate'.</msg>
+<status status="PASS" starttime="20200512 22:49:21.168" endtime="20200512 22:49:23.329"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="ExpirationDate"]/option[8]</arg>
+</arguments>
+<msg timestamp="20200512 22:49:23.329" level="INFO">Clicking element 'xpath://*[@id="ExpirationDate"]/option[8]'.</msg>
+<status status="PASS" starttime="20200512 22:49:23.329" endtime="20200512 22:49:25.390"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:CVV</arg>
+<arg>123</arg>
+</arguments>
+<msg timestamp="20200512 22:49:25.390" level="INFO">Typing text '123' into text field 'id:CVV'.</msg>
+<status status="PASS" starttime="20200512 22:49:25.390" endtime="20200512 22:49:28.575"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:btn submit-btn</arg>
+</arguments>
+<msg timestamp="20200512 22:49:28.575" level="INFO">Clicking element 'id:btn submit-btn'.</msg>
+<status status="PASS" starttime="20200512 22:49:28.575" endtime="20200512 22:49:31.792"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Your booking has been completed successfully!</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:31.792" endtime="20200512 22:49:32.813"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:49:08.345" endtime="20200512 22:49:32.813"></status>
+</kw>
+<kw name="Confirm booking" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "Hello")]</arg>
+</arguments>
+<msg timestamp="20200512 22:49:32.814" level="INFO">Clicking element 'xpath: //*[contains(text(), "Hello")]'.</msg>
+<status status="PASS" starttime="20200512 22:49:32.814" endtime="20200512 22:49:35.304"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>My Bookings</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:35.304" endtime="20200512 22:49:36.329"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div/main/div/div/div[1]/ul/li[4]</arg>
+</arguments>
+<msg timestamp="20200512 22:49:36.329" level="INFO">Clicking element 'xpath:/html/body/div/main/div/div/div[1]/ul/li[4]'.</msg>
+<status status="PASS" starttime="20200512 22:49:36.329" endtime="20200512 22:49:38.619"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>My Bookings</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:38.620" endtime="20200512 22:49:39.643"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div/main/div/div/p/span</arg>
+</arguments>
+<assign>
+<var>${Booking_status}</var>
+</assign>
+<msg timestamp="20200512 22:49:41.693" level="INFO">${Booking_status} = Accepted</msg>
+<status status="PASS" starttime="20200512 22:49:39.643" endtime="20200512 22:49:41.693"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Accepted</arg>
+<arg>${Booking_status}</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:41.693" endtime="20200512 22:49:41.693"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:49:32.814" endtime="20200512 22:49:41.694"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-153-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200512 22:49:41.695" endtime="20200512 22:49:45.076"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:49:41.695" endtime="20200512 22:49:45.076"></status>
+</kw>
+<doc>Test to verify that verify that hotel booking by using already registered external account
+Entry Criteria:Register an account using external registration link
+Firstrun test case Tag-Test WEB7-229</doc>
+<tags>
+<tag>Test WEB7-209</tag>
+</tags>
+<status status="PASS" starttime="20200512 22:47:24.508" endtime="20200512 22:49:45.077" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Verify external account registration with already registered email id">
+<kw name="Open Browser To Start Page" library="WEB7-153-keywords" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("--disable-web-security");add_argument("--allow-running-insecure-content");add_argument("--incognito");add_argument("--lang=en-us")</arg>
+</arguments>
+<msg timestamp="20200512 22:49:45.085" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200512 22:49:45.084" endtime="20200512 22:49:51.545"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200512 22:49:51.545" endtime="20200512 22:49:56.675"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200512 22:49:56.676" level="INFO">Opening url 'https://localhost:44364/'</msg>
+<status status="PASS" starttime="20200512 22:49:56.676" endtime="20200512 22:49:58.718"></status>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:58.718" endtime="20200512 22:49:58.718"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Find your dream destination</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:58.718" endtime="20200512 22:49:59.738"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:49:45.083" endtime="20200512 22:49:59.738"></status>
+</kw>
+<kw name="Goto register" library="WEB7-153-keywords">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:49:59.741" endtime="20200512 22:49:59.742"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a</arg>
+</arguments>
+<msg timestamp="20200512 22:49:59.743" level="INFO">Clicking element 'xpath:/html/body/header/nav/div/div/ul[1]/li[1]/a'.</msg>
+<status status="PASS" starttime="20200512 22:49:59.742" endtime="20200512 22:50:02.053"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Register</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:50:02.054" endtime="20200512 22:50:03.081"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:49:59.740" endtime="20200512 22:50:03.082"></status>
+</kw>
+<kw name="Register account" library="WEB7-153-keywords">
+<arguments>
+<arg>web7testing@gmail.com</arg>
+<arg>Test123$</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:Input_Email</arg>
+<arg>${google_id}</arg>
+</arguments>
+<msg timestamp="20200512 22:50:03.085" level="INFO">Typing text 'web7testing@gmail.com' into text field 'id:Input_Email'.</msg>
+<status status="PASS" starttime="20200512 22:50:03.084" endtime="20200512 22:50:06.376"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:Input_Password</arg>
+<arg>${google_pwd}</arg>
+</arguments>
+<msg timestamp="20200512 22:50:06.378" level="INFO">Typing text 'Test123$' into text field 'id:Input_Password'.</msg>
+<status status="PASS" starttime="20200512 22:50:06.376" endtime="20200512 22:50:09.589"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:Input_ConfirmPassword</arg>
+<arg>${google_pwd}</arg>
+</arguments>
+<msg timestamp="20200512 22:50:09.589" level="INFO">Typing text 'Test123$' into text field 'id:Input_ConfirmPassword'.</msg>
+<status status="PASS" starttime="20200512 22:50:09.589" endtime="20200512 22:50:12.740"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div/main/div/div[1]/form/button</arg>
+</arguments>
+<msg timestamp="20200512 22:50:12.740" level="INFO">Clicking element 'xpath:/html/body/div/main/div/div[1]/form/button'.</msg>
+<status status="PASS" starttime="20200512 22:50:12.740" endtime="20200512 22:50:15.228"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Hello web7testing@gmail.com</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:50:15.228" endtime="20200512 22:50:16.246"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath: //*[contains(text(), "Logout")]</arg>
+</arguments>
+<msg timestamp="20200512 22:50:16.246" level="INFO">Clicking element 'xpath: //*[contains(text(), "Logout")]'.</msg>
+<status status="PASS" starttime="20200512 22:50:16.246" endtime="20200512 22:50:18.532"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Login</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:50:18.533" endtime="20200512 22:50:19.564"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:50:03.083" endtime="20200512 22:50:19.564"></status>
+</kw>
+<kw name="Goto Login page" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a</arg>
+</arguments>
+<msg timestamp="20200512 22:50:19.565" level="INFO">Clicking element 'xpath:/html/body/header/nav/div/div/ul[1]/li[2]/a'.</msg>
+<status status="PASS" starttime="20200512 22:50:19.565" endtime="20200512 22:50:21.847"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Use another service to log in</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:50:21.848" endtime="20200512 22:50:22.886"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:50:19.565" endtime="20200512 22:50:22.887"></status>
+</kw>
+<kw name="Click External link" library="WEB7-153-keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="external-account"]/div/p/button</arg>
+</arguments>
+<msg timestamp="20200512 22:50:22.890" level="INFO">Clicking element 'xpath://*[@id="external-account"]/div/p/button'.</msg>
+<status status="PASS" starttime="20200512 22:50:22.889" endtime="20200512 22:50:26.577"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20200512 22:50:46.578" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20200512 22:50:26.577" endtime="20200512 22:50:46.578"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:50:22.888" endtime="20200512 22:50:46.578"></status>
+</kw>
+<kw name="Register with external existing id" library="WEB7-153-keywords">
+<arguments>
+<arg>web7testing@gmail.com</arg>
+<arg>Test123$</arg>
+</arguments>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+</arguments>
+<msg timestamp="20200512 22:50:46.578" level="INFO">Clicking element 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:50:46.578" endtime="20200512 22:50:48.689"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id:identifierId</arg>
+<arg>${google_id}</arg>
+</arguments>
+<msg timestamp="20200512 22:50:48.690" level="INFO">Typing text 'web7testing@gmail.com' into text field 'id:identifierId'.</msg>
+<status status="PASS" starttime="20200512 22:50:48.690" endtime="20200512 22:50:52.026"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="identifierNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:50:52.027" level="INFO">Clicking element 'xpath://*[@id="identifierNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:50:52.027" endtime="20200512 22:50:54.230"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Ange ditt lösenord</arg>
+<arg>timeout=20</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:50:54.230" endtime="20200512 22:50:55.267"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:password</arg>
+</arguments>
+<msg timestamp="20200512 22:50:55.268" level="INFO">Clicking element 'id:password'.</msg>
+<status status="PASS" starttime="20200512 22:50:55.268" endtime="20200512 22:50:57.364"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="password"]/div[1]/div/div[1]/input</arg>
+<arg>${google_pwd}</arg>
+</arguments>
+<msg timestamp="20200512 22:50:57.365" level="INFO">Typing text 'Test123$' into text field 'xpath://*[@id="password"]/div[1]/div/div[1]/input'.</msg>
+<status status="PASS" starttime="20200512 22:50:57.364" endtime="20200512 22:51:00.568"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id="passwordNext"]/span</arg>
+</arguments>
+<msg timestamp="20200512 22:51:00.568" level="INFO">Clicking element 'xpath://*[@id="passwordNext"]/span'.</msg>
+<status status="PASS" starttime="20200512 22:51:00.568" endtime="20200512 22:51:02.713"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Associate your Google account</arg>
+<arg>timeout=30</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:51:02.714" endtime="20200512 22:51:07.669"></status>
+</kw>
+<kw name="Get Value" library="SeleniumLibrary">
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<arguments>
+<arg>id:Input_Email</arg>
+</arguments>
+<assign>
+<var>${Registered_id}</var>
+</assign>
+<msg timestamp="20200512 22:51:09.699" level="INFO">${Registered_id} = web7testing@gmail.com</msg>
+<status status="PASS" starttime="20200512 22:51:07.670" endtime="20200512 22:51:09.699"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>web7testing@gmail.com</arg>
+<arg>${Registered_id}</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:51:09.699" endtime="20200512 22:51:09.700"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath:/html/body/div/main/div/div/form/button</arg>
+</arguments>
+<msg timestamp="20200512 22:51:09.700" level="INFO">Clicking element 'xpath:/html/body/div/main/div/div/form/button'.</msg>
+<status status="PASS" starttime="20200512 22:51:09.700" endtime="20200512 22:51:12.002"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>User name 'web7testing@gmail.com' is already taken</arg>
+<arg>timeout=10</arg>
+</arguments>
+<status status="PASS" starttime="20200512 22:51:12.002" endtime="20200512 22:51:13.019"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:50:46.578" endtime="20200512 22:51:13.019"></status>
+</kw>
+<kw name="End Web Test" library="WEB7-153-keywords" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200512 22:51:13.020" endtime="20200512 22:51:16.225"></status>
+</kw>
+<status status="PASS" starttime="20200512 22:51:13.020" endtime="20200512 22:51:16.226"></status>
+</kw>
+<doc>Test to verify that verify that an external account registration where that email id is
+already registered in the webapp.Here registering web7agile@gmail.com account first
+then again trying to register thorugh external account
+Entry Criteria: Delete the account already registered with id web7agile@gmail.com</doc>
+<tags>
+<tag>Test WEB7-229 1.1</tag>
+</tags>
+<status status="PASS" starttime="20200512 22:49:45.079" endtime="20200512 22:51:16.227" critical="yes"></status>
+</test>
+<doc>This is test suite of ProjectAgileWeb7 webpage</doc>
+<status status="PASS" starttime="20200512 22:43:53.155" endtime="20200512 22:51:16.232"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0">Critical Tests</stat>
+<stat pass="5" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">Test WEB7-181</stat>
+<stat pass="1" fail="0">Test WEB7-209</stat>
+<stat pass="1" fail="0">Test WEB7-229</stat>
+<stat pass="1" fail="0">Test WEB7-229 1.1</stat>
+<stat pass="1" fail="0">Test WEB7-230</stat>
+</tag>
+<suite>
+<stat pass="5" fail="0" id="s1" name="WEB7-153-ExternalAccount">WEB7-153-ExternalAccount</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
