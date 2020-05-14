@@ -10,6 +10,7 @@ let ajaxResult;
 $(document).ready(function () {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
+        $(".totalPriceHidden").val($(".totalPriceDisplayLabel").text());
     })
 
     $(".selectedCurrency").focus(function () {
@@ -18,8 +19,8 @@ $(document).ready(function () {
 
     $(".selectedCurrency").on('change', function () {
         selectedCurrency = $(".selectedCurrency option:selected").text();
-        amountPerNightToConvert = parseFloat($(".perNightPriceDisplay").text());
-        amountTotalToConvert = parseFloat($(".totalPriceDisplayLabel").text());
+        amountPerNightToConvert = $(".perNightPriceDisplay").text();
+        amountTotalToConvert = $(".totalPriceDisplayLabel").text();
 
         $(".selectedCurrency").blur();
 
