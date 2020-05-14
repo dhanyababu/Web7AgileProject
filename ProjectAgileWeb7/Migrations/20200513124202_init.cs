@@ -61,12 +61,36 @@ namespace ProjectAgileWeb7.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     IsFree = table.Column<bool>(nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     Symbol = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Facilities", x => x.FacilityId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    HotelId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Website = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Stars = table.Column<int>(nullable: false),
+                    DistanceFromCenter = table.Column<double>(nullable: false),
+                    Latitude = table.Column<string>(nullable: true),
+                    Longitude = table.Column<string>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    RatedByGuests = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.HotelId);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,38 +234,6 @@ namespace ProjectAgileWeb7.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hotels",
-                columns: table => new
-                {
-                    HotelId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Website = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Stars = table.Column<int>(nullable: false),
-                    DistanceFromCenter = table.Column<double>(nullable: false),
-                    Latitude = table.Column<string>(nullable: true),
-                    Longitude = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    RatedByGuests = table.Column<int>(nullable: false),
-                    ApplicationUserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hotels", x => x.HotelId);
-                    table.ForeignKey(
-                        name: "FK_Hotels_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "HotelFacilities",
                 columns: table => new
                 {
@@ -262,6 +254,30 @@ namespace ProjectAgileWeb7.Migrations
                         column: x => x.HotelId,
                         principalTable: "Hotels",
                         principalColumn: "HotelId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelUsers",
+                columns: table => new
+                {
+                    HotelId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelUsers", x => new { x.HotelId, x.UserId });
+                    table.ForeignKey(
+                        name: "FK_HotelUsers_Hotels_HotelId",
+                        column: x => x.HotelId,
+                        principalTable: "Hotels",
+                        principalColumn: "HotelId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HotelUsers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -413,9 +429,9 @@ namespace ProjectAgileWeb7.Migrations
                 column: "FacilityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hotels_ApplicationUserId",
-                table: "Hotels",
-                column: "ApplicationUserId");
+                name: "IX_HotelUsers_UserId",
+                table: "HotelUsers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rooms_HotelId",
@@ -453,6 +469,9 @@ namespace ProjectAgileWeb7.Migrations
                 name: "HotelsViewModel");
 
             migrationBuilder.DropTable(
+                name: "HotelUsers");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -465,10 +484,10 @@ namespace ProjectAgileWeb7.Migrations
                 name: "Facilities");
 
             migrationBuilder.DropTable(
-                name: "Hotels");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Hotels");
         }
     }
 }

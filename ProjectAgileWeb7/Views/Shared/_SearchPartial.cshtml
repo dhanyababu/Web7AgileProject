@@ -2,7 +2,8 @@
 
 <h1 class="text-success mb-3" id="heading">Just a step away</h1>
 
-<button type="button" id="search-btn" class="btn btn-outline-success btn-block mb-1" data-toggle="collapse" data-target="#search-form"><i class="fas fa-search-plus"></i> &nbsp; Search Availability</button><br />
+<button type="button" id="search-btn" class="btn btn-outline-success btn-block mb-1" data-toggle="collapse" data-target="#search-form"><i class="fas fa-search-plus"></i> &nbsp; Search Availability</button>
+<br />
 
 <form asp-controller="Home" asp-action="Search" method="post" id="search-form" class="collapse">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -13,7 +14,7 @@
                     <span class="input-group-text"><i class="fas fa-map-marker-alt fa-lg"></i></span>
                 </div>
                 <input asp-for="@Model.SearchKeyword" class="input-group-text bg-white form-control p-4 custom-file" id="search-input" type="text" autocomplete="off" placeholder="Search by city or hotel name...">
-                <input asp-for="@Model.CheckIn" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-in" type="text" readonly="readonly" placeholder="Check-In Date">                
+                <input asp-for="@Model.CheckIn" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-in" type="text" readonly="readonly" placeholder="Check-In Date">
                 <input asp-for="@Model.CheckOut" class="input-group-text bg-white form-control p-4 date-input custom-file" id="check-out" type="text" readonly="readonly" placeholder="Check-Out Date">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-success btn-lg" id="submit-btn">Search</button>

@@ -11,10 +11,10 @@
             <h5 class="card-title">
                 Step 2: Payment details
             </h5>
-            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice.ToString("F")</label><br />
+            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice</label><br />
             Number of nights: @ViewBag.NumberOfNights<br />
-            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice.ToString("F")</label>
-            <input type="hidden" asp-for="@Model.Amount" class="totalPriceDisplay" val="" style="width:100px" />
+            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice</label>
+            <input type="hidden" asp-for="@Model.Amount" class="totalPriceHidden" val="" style="width:100px" />
             <br />
 
             <p>

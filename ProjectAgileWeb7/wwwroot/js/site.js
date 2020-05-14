@@ -178,8 +178,6 @@ $(document).ready(function () {
     //    ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
     //});
 
-    //$('#my-testing-button').click(function () {
-    //    getWeather();
-    //});
     getWeather();
+
 });

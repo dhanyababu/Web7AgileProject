@@ -1,0 +1,104 @@
+﻿@model ProjectAgileWeb7.Models.HotelsViewModel
+@{
+    ViewData["Title"] = "Favorites";
+}
+@*@{
+        var user = @Model.FirstOrDefault();
+    }*@
+<h1>Favorite hotels</h1>
+<h5 class="mt-3">
+    Dear <span>
+        @if (ViewBag.User.LastName == null && ViewBag.User.FirstName == null)
+        {
+
+            @ViewBag.User.UserName
+        }
+        else
+        {
+            @Html.Raw($"{@ViewBag.User.FirstName} {@ViewBag.User.LastName}")
+        },
+    </span> you have
+    <span>
+        @if (@Model.Hotels.Count() == 0)
+        {
+            <span> no favorite hotels </span>
+        }
+        else if (@Model.Hotels.Count() == 1)
+        {
+            <span>1 favorite hotel </span>
+        }
+        else
+        {
+            <span> @Model.Hotels.Count() favorite hotels </span>
+        }
+    </span> saved on your account.
+</h5>
+
+@*@if (@Model.Hotels.Count() == 0)
+    {
+        <p>You have no favorite hotels saved on your account. </p>
+    }
+    else*@
+@if (@Model.Hotels.Count() > 0)
+{
+    <div class="container  p-0 m-0">
+        @foreach (var hotel in @Model.Hotels)
+        {
+            <div class="card-deck">
+                <div class="card mt-4">
+                    <div class="card-body d-flex">
+                        <div class="text-center">
+                            <img class="hotel-image" src=@Url.Content(hotel.ImageUrl) />
+                        </div>
+                        <div class="ml-3">
+                            <div>
+                                <h2 class="hotel-name">
+                                    @hotel.Name
+                                    <span>
+                                        <a asp-controller="Favorites" asp-action="GetHotelIdFromFavorites" asp-route-id="@hotel.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@hotel.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
+                                    </span>
+                                </h2>
+                            </div>
+                            <div>
+                                @for (var i = 0; i < hotel.Stars; i++)
+                                {
+                                    <i class="fas fa-star text-warning "></i>
+                                }
+                            </div>
+                            <div>
+                                <p>
+                                    @hotel.Address, @hotel.ZipCode, @hotel.City, @hotel.Country
+                                </p>
+                                <p>
+                                    Distance from centre: @hotel.DistanceFromCenter km.
+                                </p>
+                            </div>
+                            <div class="card-text text-justify">
+                                <p>@hotel.Description</p>
+                            </div>
+
+                            <div>
+                                <p>
+                                    Facilities: &nbsp;
+                                    @foreach (var facility in hotel.HotelFacilities)
+                                    {
+                                        <span class="mr-1">@facility.Facility.Name</span>
+                                    }
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p> <a href="@hotel.Website">@hotel.Website</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer border-top-0 bg-white">
+                        <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@hotel.HotelId" class="btn my-button  btn-lg btn-success float-right ">See details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a asp-action="Index" asp-controller="Home" class="btn btn-primary mt-2">Back to homepage</a>
+
+}

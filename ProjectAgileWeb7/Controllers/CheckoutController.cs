@@ -63,11 +63,11 @@ namespace ProjectAgileWeb7.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bookingId = Convert.ToInt32(HttpContext.Session.GetInt32("bookingId"));
-                var booking = _appContext.Bookings.FirstOrDefault(b => b.Id == bookingId);
-                var numberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
-                var roomId = _appContext.Bookings.Where(b => b.Id == bookingId).Select(b => b.RoomId).FirstOrDefault();
-                var roomPrice = _appContext.Rooms.Where(r => r.RoomId == roomId).Select(r => r.RoomPrice).FirstOrDefault();
+                //var bookingId = Convert.ToInt32(HttpContext.Session.GetInt32("bookingId"));
+                //var booking = _appContext.Bookings.FirstOrDefault(b => b.Id == bookingId);
+                //var numberOfNights = Convert.ToDecimal((booking.CheckOut - booking.CheckIn).TotalDays);
+                //var roomId = _appContext.Bookings.Where(b => b.Id == bookingId).Select(b => b.RoomId).FirstOrDefault();
+                //var roomPrice = _appContext.Rooms.Where(r => r.RoomId == roomId).Select(r => r.RoomPrice).FirstOrDefault();
 
                 var newPayment = new Payment()
                 {
