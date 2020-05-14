@@ -31,8 +31,8 @@ $(document).ready(function () {
                 ajaxResult = response.conversion_rates;
                 exchangeRate = parseFloat(ajaxResult[selectedCurrency]);
 
-                newPerNightAmount = (amountPerNightToConvert * exchangeRate).toFixed(2).replace(/\./g, ',');
-                newTotalAmount = (amountTotalToConvert * exchangeRate).toFixed(2).replace(/\./g, ',');
+                newPerNightAmount = (amountPerNightToConvert * exchangeRate).toFixed(2);
+                newTotalAmount = (amountTotalToConvert * exchangeRate).toFixed(2);
                 $(".perNightPriceDisplay").text(newPerNightAmount)
                 $(".totalPriceDisplayLabel").text(newTotalAmount);
                 $(".totalPriceHidden").val(newTotalAmount);
