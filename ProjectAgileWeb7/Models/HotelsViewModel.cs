@@ -28,5 +28,7 @@ namespace ProjectAgileWeb7.Models
         public List<string> StarsList { get; set; }
         [NotMapped]
         public List<int> DistanceList { get; set; }
+        [NotMapped]
+        public List<int> FavoriteHotels { get; set; }
     }
 }

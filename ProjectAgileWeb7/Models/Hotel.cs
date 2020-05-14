@@ -23,5 +23,6 @@ namespace ProjectAgileWeb7.Models
 
         public ICollection<HotelFacility> HotelFacilities { get; set; }
 
+        public ICollection<HotelUser> HotelUsers { get; set; }
     }
 }

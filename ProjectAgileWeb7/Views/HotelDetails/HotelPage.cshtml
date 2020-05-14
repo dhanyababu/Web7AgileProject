@@ -104,7 +104,7 @@
                                 @pair.Key
                             </td>
                             <td>
-                                @pair.Value.ToString("C", new System.Globalization.CultureInfo("sr-Cyrl-CS"))
+                                @pair.Value.ToString("F") @Currency.SEK
                             </td>
                             <td>
                                 @((ViewBag.RoomsAvailable as List<Room>).Where(r=>r.RoomType == pair.Key).Count())/

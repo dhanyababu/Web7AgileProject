@@ -35,6 +35,12 @@ function mobileSearchForm() {
 }
 
 $(document).ready(function () {
+    var checkin = $("#check-in").attr('placeholder'); // Test this
+    var checkout = $("#check-out").attr('placeholder'); // Test this
+
+    $("check-in").text(checkin); // Test this
+    $("check-out").text(checkout); // Test this
+    
     $("#check-in").datepicker({
         showAnim: 'drop',
         numberOfMonths: 1,
@@ -48,14 +54,14 @@ $(document).ready(function () {
             }
             $('#check-out').datepicker('option', 'minDate', date || 1);
         }
-    });
+    }).val(checkin);
     $("#check-out").datepicker({
         showAnim: 'drop',
         numberOfMonths: 1,
         minDate: 1,
         maxDate: '+1Y',
         dateFormat: 'yy-MM-dd'
-    });
+    }).val(checkout);
 });
 
 
@@ -172,8 +178,6 @@ $(document).ready(function () {
     //    ($(this).val().length == 0) ? $('#submit-btn').attr('disabled', true) : $('#submit-btn').attr('disabled', false);
     //});
 
-    //$('#my-testing-button').click(function () {
-    //    getWeather();
-    //});
     getWeather();
+
 });

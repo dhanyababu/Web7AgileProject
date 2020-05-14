@@ -25,7 +25,7 @@ namespace ProjectAgileWeb7.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingPerDay> BookedRooms { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
+        public DbSet<HotelUser> HotelUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -46,6 +46,18 @@ namespace ProjectAgileWeb7.Data
 
             modelBuilder.Entity<HotelsViewModel>()
                 .HasNoKey();
+
+            modelBuilder.Entity<HotelUser>()
+               .HasKey(hu => new { hu.HotelId, hu.UserId });
+            modelBuilder.Entity<HotelUser>()
+                .HasOne(hu => hu.Hotel)
+                .WithMany(h => h.HotelUsers)
+                .HasForeignKey(hu => hu.HotelId);
+            modelBuilder.Entity<HotelUser>()
+                .HasOne(hu => hu.ApplicationUser)
+                .WithMany(u => u.HotelUsers)
+                .HasForeignKey(hu => hu.UserId);
+
         }
     }
 }
