@@ -5,10 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="float-lg-right">
+    <a asp-action="Index" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back to List</a>
+</div>
 
-<h4>Hotel</h4>
+<h3 class="text-success"><i class="fas fa-plus-circle"></i>&nbsp; Add New Hotel</h3>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -78,15 +81,9 @@
                 <input asp-for="RatedByGuests" class="form-control" />
                 <span asp-validation-for="RatedByGuests" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            <input type="submit" value="Add Hotel to Database" class="btn btn-success" />
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

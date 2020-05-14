@@ -178,11 +178,7 @@ $(document).ready(function () {
     //});
 
     getWeather();
-
-
-
     getPlacesNearby();
-
 });
 
 const getPlacesNearby = function () {

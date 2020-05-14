@@ -78,13 +78,8 @@ namespace ProjectAgileWeb7.Data
                         Longitude="4.898774",
                         ImageUrl="~/pictures/eden.jpg"
                     },
-
                      new Hotel
                      {
-
-                    new Hotel
-                    {
-
                         Name="Paris France Hotel",
                         Website="https://www.paris-france-hotel.com/",
                         Address="72 Rue De Turbigo",
@@ -190,11 +185,7 @@ namespace ProjectAgileWeb7.Data
                 };
 
                 dbContext.Facilities.AddRange(facilities);
-
-                dbContext.SaveChanges();
-
                 await dbContext.SaveChangesAsync();
-
             }
 
             if (!dbContext.Rooms.Any())
@@ -245,89 +236,28 @@ namespace ProjectAgileWeb7.Data
             {
                 var hotelFacilities = new HotelFacility[]
                 {
-
-                    new HotelFacility
-                    {
-                        HotelId=1,
-                        FacilityId=1
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=1,
-                        FacilityId=3
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=1,
-                        FacilityId=5
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=1,
-                        FacilityId=6
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=1,
-                        FacilityId=7
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=2,
-                        FacilityId=1
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=2,
-                        FacilityId=2
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=2,
-                        FacilityId=3
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=2,
-                        FacilityId=6
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=2,
-                        FacilityId=7
-                    },
-
-                    new HotelFacility
-                    {
-                        HotelId=3,
-                        FacilityId=1
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=3,
-                        FacilityId=2
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=3,
-                        FacilityId=3
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=3,
-                        FacilityId=4
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=4,
-                        FacilityId=1
-                    },
-                    new HotelFacility
-                    {
-                        HotelId=4,
-                        FacilityId=4
-                    }
-
+                    new HotelFacility { HotelId=1, FacilityId=1},
+                    new HotelFacility { HotelId=1, FacilityId=3},
+                    new HotelFacility { HotelId=1, FacilityId=5},
+                    new HotelFacility { HotelId=1, FacilityId=6},
+                    new HotelFacility { HotelId=1, FacilityId=7},
+                    new HotelFacility { HotelId=2, FacilityId=1},
+                    new HotelFacility { HotelId=2, FacilityId=2},
+                    new HotelFacility { HotelId=2, FacilityId=3},
+                    new HotelFacility { HotelId=2, FacilityId=6},
+                    new HotelFacility { HotelId=2, FacilityId=7},
+                    new HotelFacility { HotelId=3, FacilityId=1},
+                    new HotelFacility { HotelId=3, FacilityId=2},
+                    new HotelFacility { HotelId=3, FacilityId=3},
+                    new HotelFacility { HotelId=3, FacilityId=4},
+                    new HotelFacility { HotelId=4, FacilityId=1},
+                    new HotelFacility { HotelId=4, FacilityId=4},
+                    new HotelFacility { HotelId=5, FacilityId=1},
+                    new HotelFacility { HotelId=5, FacilityId=2},
+                    new HotelFacility { HotelId=5, FacilityId=3},
+                    new HotelFacility { HotelId=6, FacilityId=1},
+                    new HotelFacility { HotelId=6, FacilityId=5},
+                    new HotelFacility { HotelId=6, FacilityId=7},
                 };
 
                 dbContext.HotelFacilities.AddRange(hotelFacilities);

@@ -1,0 +1,73 @@
+﻿@model ProjectAgileWeb7.Models.Room
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="float-lg-right">
+    <a asp-action="Index" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i>&nbsp; Edit</a>
+</div>
+<h3 class="text-info"><i class="fas fa-info-circle"></i>&nbsp; Room Id: @Model.RoomId</h3>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfBeds)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfBeds)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomImageUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomImageUrl)
+        </dd>
+        <dt class="col-sm-2">
+            Image
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Url.Content(Model.RoomImageUrl)" width="200" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Hotel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Hotel.HotelId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Hotel.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Hotel.Name) &nbsp;
+            <a asp-action="Details" asp-controller="AdminHotels" asp-route-id="@Model.HotelId" class="btn btn-sm btn-outline-info">Show Hotel Details</a>
+        </dd>
+    </dl>
+</div>

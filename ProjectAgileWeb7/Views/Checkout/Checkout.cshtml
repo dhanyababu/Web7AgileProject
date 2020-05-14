@@ -10,14 +10,12 @@
         <div class="card-body">
             <h5 class="card-title">
                 Step 2: Payment details
-
             </h5>
-            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice.ToString("F")</label><br />
+            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice</label><br />
             Number of nights: @ViewBag.NumberOfNights<br />
-            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice.ToString("F")</label>
+            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice</label>
             <input type="hidden" asp-for="@Model.Amount" class="totalPriceHidden" val="" style="width:100px" />
             <br />
-
             <p>
                 Currency:&nbsp;
                 @Html.DropDownListFor(m => m.Currency,
@@ -29,10 +27,6 @@
             </p>
             <br /><br />
             <h6 class="card-text font-weight-bold">Select your payment method:</h6>
-
-            </h5><br />
-            <h6 class="card-text font-weight-bold text-primary">Select your payment method:</h6>
-
             <div>
                 @foreach (var item in Enum.GetValues(typeof(CardType)))
                 {
