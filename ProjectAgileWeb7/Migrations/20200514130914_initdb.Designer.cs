@@ -10,7 +10,7 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200510203353_initdb")]
+    [Migration("20200514130914_initdb")]
     partial class initdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -311,9 +311,6 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,4)");
-
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(max)");
 
@@ -331,9 +328,6 @@ namespace ProjectAgileWeb7.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -373,8 +367,6 @@ namespace ProjectAgileWeb7.Migrations
 
                     b.HasKey("HotelId");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.ToTable("Hotels");
                 });
 
@@ -391,6 +383,21 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasIndex("FacilityId");
 
                     b.ToTable("HotelFacilities");
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelUser", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("HotelId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HotelUsers");
                 });
 
             modelBuilder.Entity("ProjectAgileWeb7.Models.HotelsViewModel", b =>
@@ -436,6 +443,9 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<string>("CardNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -573,13 +583,6 @@ namespace ProjectAgileWeb7.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectAgileWeb7.Models.Hotel", b =>
-                {
-                    b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", null)
-                        .WithMany("Favorites")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("ProjectAgileWeb7.Models.HotelFacility", b =>
                 {
                     b.HasOne("ProjectAgileWeb7.Models.Facility", "Facility")
@@ -591,6 +594,21 @@ namespace ProjectAgileWeb7.Migrations
                     b.HasOne("ProjectAgileWeb7.Models.Hotel", "Hotel")
                         .WithMany("HotelFacilities")
                         .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectAgileWeb7.Models.HotelUser", b =>
+                {
+                    b.HasOne("ProjectAgileWeb7.Models.Hotel", "Hotel")
+                        .WithMany("HotelUsers")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectAgileWeb7.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("HotelUsers")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

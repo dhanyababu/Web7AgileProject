@@ -5,11 +5,6 @@
     <UserSecretsId>aspnet-ProjectAgileWeb7-F77A51EE-2EF7-439A-ADB1-E62AF35A7368</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20200510203220_initdb.cs" />
-    <Compile Remove="Migrations\20200510203220_initdb.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.3" />
