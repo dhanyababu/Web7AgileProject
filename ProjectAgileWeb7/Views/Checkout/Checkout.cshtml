@@ -10,8 +10,7 @@
         <div class="card-body">
             <h5 class="card-title">
                 Step 2: Payment details
-            </h5><br />
-            <h6 class="card-text font-weight-bold text-primary">Select your payment method:</h6>
+
             <div>
                 @foreach (var item in Enum.GetValues(typeof(CardType)))
                 {
@@ -82,4 +81,7 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/currencyConverter.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
 }
