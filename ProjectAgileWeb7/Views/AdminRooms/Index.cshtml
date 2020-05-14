@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProjectAgileWeb7.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="float-lg-right">
+    <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i>&nbsp; Add New Room</a>
+    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-primary"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back to Profile</a>
+</div>
+
+<h1>Rooms</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfBeds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hotel.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.RoomId)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfBeds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hotel.Name)
+                    </td>
+                    <td class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@item.RoomId" class="btn btn-outline-warning"><i class="fas fa-edit"></i>&nbsp; Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.RoomId" class="btn btn-outline-info ml-1"><i class="fas fa-info-circle"></i>&nbsp; Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.RoomId" class="btn btn-outline-danger ml-1"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
