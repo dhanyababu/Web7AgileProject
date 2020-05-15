@@ -107,7 +107,6 @@ namespace ProjectAgileWeb7.Controllers
                 bookingFromDb.Status = Status.Accepted;
                 bookingFromDb.PaymentId = payment.Id;
                 _appContext.Update(bookingFromDb);
-
                 var paymentFromDb = _appContext.Payments.FirstOrDefault(p => p == payment);
                 paymentFromDb.Status = Status.Accepted;
                 _appContext.Update(paymentFromDb);
