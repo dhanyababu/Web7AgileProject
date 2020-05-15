@@ -11,9 +11,11 @@
             <h5 class="card-title">
                 Step 2: Payment details
             </h5>
-            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice</label><br />
+            Price per night: <label class="perNightPriceDisplay">@ViewBag.RoomPrice</label>&nbsp;
+            <label class="currentCurrency">SEK</label><br />
             Number of nights: @ViewBag.NumberOfNights<br />
-            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice</label>
+            Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice</label>&nbsp;
+            <label class="currentCurrency">SEK</label>
             <input type="hidden" asp-for="@Model.Amount" class="totalPriceHidden" val="" style="width:100px" />
             <br />
 

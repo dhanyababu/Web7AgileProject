@@ -34,7 +34,8 @@ $(document).ready(function () {
 
                 newPerNightAmount = (amountPerNightToConvert * exchangeRate).toFixed(2);
                 newTotalAmount = (amountTotalToConvert * exchangeRate).toFixed(2);
-                $(".perNightPriceDisplay").text(newPerNightAmount)
+                $(".currentCurrency").text(selectedCurrency);
+                $(".perNightPriceDisplay").text(newPerNightAmount);
                 $(".totalPriceDisplayLabel").text(newTotalAmount);
                 $(".totalPriceHidden").val(newTotalAmount);
             },
