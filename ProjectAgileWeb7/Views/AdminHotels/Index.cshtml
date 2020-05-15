@@ -16,22 +16,22 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>
+                <th class="mobile-toggle">
                     Id
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.Address)
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.City)
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.Country)
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.Stars)
                 </th>
                 <th></th>
@@ -41,22 +41,22 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.HotelId)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.Address)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.City)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.Country)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.Stars)
                     </td>
                     <td class="btn-group">
