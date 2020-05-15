@@ -140,7 +140,7 @@ namespace ProjectAgileWeb7.Controllers
                 Payment = payment,
                 Booking = booking,
                 Room = room,
-                Hotel = hotel
+                Hotel = hotel,
             };
 
             return View(bookingConfVM);
