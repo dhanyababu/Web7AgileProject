@@ -35,8 +35,8 @@ namespace ProjectAgileWeb7.Controllers
         // GET: AdminHotelFacilities/Create
         public IActionResult Create()
         {
-            ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "FacilityId");
-            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId");
+            ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name");
+            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "Name");
             return View();
         }
 
