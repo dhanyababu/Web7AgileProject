@@ -37,6 +37,7 @@ namespace ProjectAgileWeb7.Controllers
         {
             ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name");
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "Name");
+            ViewData["Duplicate"] = false;
             return View();
         }
 
@@ -47,14 +48,15 @@ namespace ProjectAgileWeb7.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelId,FacilityId")] HotelFacility hotelFacility)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !_context.HotelFacilities.Any(h => h.HotelId == hotelFacility.HotelId && h.FacilityId == hotelFacility.FacilityId))
             {
                 _context.Add(hotelFacility);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));            
             }
             ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name", hotelFacility.FacilityId);
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "Name", hotelFacility.HotelId);
+            ViewData["Duplicate"] = true;
             return View(hotelFacility);
         }
 

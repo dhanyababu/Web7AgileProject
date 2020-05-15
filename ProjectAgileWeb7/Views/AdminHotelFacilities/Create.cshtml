@@ -18,12 +18,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Hotel" class="control-label"></label>
-                <select asp-for="HotelId" class ="form-control" asp-items="ViewBag.HotelId"></select>
+                <select asp-for="HotelId" class="form-control" asp-items="ViewBag.HotelId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Facility" class="control-label"></label>
-                <select asp-for="FacilityId" class ="form-control" asp-items="ViewBag.FacilityId"></select>
+                <select asp-for="FacilityId" class="form-control" asp-items="ViewBag.FacilityId"></select>
             </div>
+            @if (ViewBag.Duplicate)
+            {
+                <div class="text-danger mb-3">Facility already added to the hotel</div>
+            }
             <input type="submit" value="Add Hotel Facility to Database" class="btn btn-success" />
         </form>
     </div>
