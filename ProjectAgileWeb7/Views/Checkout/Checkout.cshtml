@@ -67,6 +67,7 @@
                 <h6 class="card-text font-weight-bold text-primary">Card Expiration Date:</h6>
                 <p class="card-text text-muted">Select expiration month and year</p>
                 <select class="form-control col-3 payment-input" asp-for="@Model.ExpirationDate">
+                    <option value="" selected disabled hidden>MM / YYYY</option>
                     @{
                         var year = DateTime.Now.Year;
                     }
@@ -74,7 +75,7 @@
                     {
                         var month = (y == year) ? DateTime.Now.Month : 1;
                         for (int m = month; m <= 12; m++)
-                        {
+                        {                            
                             <option>@m / @y</option>
                         }
                     }
