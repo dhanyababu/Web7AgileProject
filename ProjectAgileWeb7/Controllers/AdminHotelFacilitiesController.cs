@@ -53,8 +53,8 @@ namespace ProjectAgileWeb7.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "FacilityId", hotelFacility.FacilityId);
-            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", hotelFacility.HotelId);
+            ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name", hotelFacility.FacilityId);
+            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "Name", hotelFacility.HotelId);
             return View(hotelFacility);
         }
 
