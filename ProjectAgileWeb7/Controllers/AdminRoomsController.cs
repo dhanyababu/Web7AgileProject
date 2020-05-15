@@ -90,7 +90,7 @@ namespace ProjectAgileWeb7.Controllers
             {
                 return NotFound();
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", room.HotelId);
+            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "Name", room.HotelId);
             return View(room);
         }
 
