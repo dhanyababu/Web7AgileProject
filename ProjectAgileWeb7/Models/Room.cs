@@ -7,18 +7,13 @@ namespace ProjectAgileWeb7.Models
     {
         public int RoomId { get; set; }
         public RoomType RoomType { get; set; }
-        public int RoomNumber { get; set; }
         [Column(TypeName = "decimal(18,4)")]
         public decimal RoomPrice { get; set; }
         public string RoomDescription { get; set; }
         public int NumberOfBeds { get; set; }
-        public int Capacity { get; set; } //how many persons 
-        public bool IsAvailable { get; set; }
+        public int Capacity { get; set; } //how many persons
         public string RoomImageUrl { get; set; }
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
-
-
     }
-
 }

@@ -17,7 +17,6 @@ namespace ProjectAgileWeb7.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public string ImageUrl { get; set; }
-        public int RatedByGuests { get; set; }
 
         public ICollection<Room> Rooms { get; set; }
 
