@@ -1,0 +1,60 @@
+﻿@model ProjectAgileWeb7.Models.Room
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="float-lg-right">
+    <a asp-action="Index" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back to List</a>
+</div>
+
+<h3 class="text-success"><i class="fas fa-plus-circle"></i>&nbsp; Add New Room</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoomType" class="control-label"></label>
+                <select asp-for="RoomType" asp-items="Html.GetEnumSelectList<RoomType>()" class="form-control"></select>
+                <span asp-validation-for="RoomType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomPrice" class="control-label"></label>
+                <input asp-for="RoomPrice" class="form-control" />
+                <span asp-validation-for="RoomPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomDescription" class="control-label"></label>
+                <textarea asp-for="RoomDescription" class="form-control"></textarea>
+                <span asp-validation-for="RoomDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfBeds" class="control-label"></label>
+                <input asp-for="NumberOfBeds" class="form-control" />
+                <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomImageUrl" class="control-label"></label>
+                <input asp-for="RoomImageUrl" class="form-control" />
+                <span asp-validation-for="RoomImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HotelId" class="control-label"></label>
+                <select asp-for="HotelId" class ="form-control" asp-items="ViewBag.HotelId"></select>
+            </div>
+            <input type="submit" value="Add Hotel Room to Database" class="btn btn-success" />
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

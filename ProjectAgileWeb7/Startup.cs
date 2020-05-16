@@ -11,6 +11,7 @@ using ProjectAgileWeb7.Models;
 using Microsoft.AspNetCore.Authentication.Google;
 using System.Threading.Tasks;
 using System;
+using System.Globalization;
 
 namespace ProjectAgileWeb7
 {
@@ -63,6 +64,11 @@ namespace ProjectAgileWeb7
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            var cultureInfo = new CultureInfo("en-US");
+            //cultureInfo.NumberFormat.CurrencySymbol = "€";
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

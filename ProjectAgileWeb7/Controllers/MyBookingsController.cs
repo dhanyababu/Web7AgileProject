@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,22 +30,31 @@ namespace ProjectAgileWeb7.Controllers
             {
                 ViewBag.User = CurrentUser;
             }
+            //var myBookingsList = await _appContext.Bookings
+            //                        .Where(b => b.UserId == CurrentUser.Id)
+            //                        .Include(b => b.Payment)
+            //                        .Include(b => b.Room)
+            //                        .ThenInclude(r => r.Hotel)
+
+            //                        .ToListAsync();
+
             var myBookingsList = await _appContext.Bookings
-                                    .Where(b => b.UserId == CurrentUser.Id)
+                                    .Where(b => b.UserId == CurrentUser.Id && b.Status == Status.Accepted)
                                     .Include(b => b.Payment)
+                                    .Where(p => p.Status == Status.Accepted)
                                     .Include(b => b.Room)
                                     .ThenInclude(r => r.Hotel)
-
                                     .ToListAsync();
 
-            foreach (var booking in myBookingsList)
-            {
-                if (booking.Payment == null)
-                {
-                    _appContext.Bookings.Remove(booking);
-                }
-            }
-            await _appContext.SaveChangesAsync();
+
+            //foreach (var booking in myBookingsList)
+            //{
+            //    if (booking.Payment == null)
+            //    {
+            //        _appContext.Bookings.Remove(booking);
+            //    }
+            //}
+            //await _appContext.SaveChangesAsync();
 
             return View(myBookingsList);
         }

@@ -78,9 +78,8 @@ namespace ProjectAgileWeb7.Data
                         Longitude="4.898774",
                         ImageUrl="~/pictures/eden.jpg"
                     },
-
-                    new Hotel
-                    {
+                     new Hotel
+                     {
                         Name="Paris France Hotel",
                         Website="https://www.paris-france-hotel.com/",
                         Address="72 Rue De Turbigo",
@@ -186,9 +185,7 @@ namespace ProjectAgileWeb7.Data
                 };
 
                 dbContext.Facilities.AddRange(facilities);
-
-                dbContext.SaveChanges();
-
+                await dbContext.SaveChangesAsync();
             }
 
             if (!dbContext.Rooms.Any())
@@ -239,7 +236,6 @@ namespace ProjectAgileWeb7.Data
             {
                 var hotelFacilities = new HotelFacility[]
                 {
-
                     new HotelFacility { HotelId=1, FacilityId=1},
                     new HotelFacility { HotelId=1, FacilityId=3},
                     new HotelFacility { HotelId=1, FacilityId=5},
@@ -262,7 +258,6 @@ namespace ProjectAgileWeb7.Data
                     new HotelFacility { HotelId=6, FacilityId=1},
                     new HotelFacility { HotelId=6, FacilityId=5},
                     new HotelFacility { HotelId=6, FacilityId=7},
-
                 };
 
                 dbContext.HotelFacilities.AddRange(hotelFacilities);
