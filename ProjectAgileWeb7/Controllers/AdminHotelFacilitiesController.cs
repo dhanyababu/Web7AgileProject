@@ -83,9 +83,9 @@ namespace ProjectAgileWeb7.Controllers
         // POST: AdminHotelFacilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? hotelId, int? facilityId)
         {
-            var hotelFacility = await _context.HotelFacilities.FindAsync(id);
+            var hotelFacility = await _context.HotelFacilities.FirstOrDefaultAsync(h => h.HotelId == hotelId && h.FacilityId == facilityId);
             _context.HotelFacilities.Remove(hotelFacility);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
