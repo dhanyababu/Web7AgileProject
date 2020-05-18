@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="HotelId" />
             <div class="form-group">
@@ -71,9 +71,8 @@
                 <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <label class="control-label">Image</label>
+                <input type="file" name="files" multiple class="form-control"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
