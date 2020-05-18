@@ -57,6 +57,11 @@ namespace ProjectAgileWeb7.Controllers
 
             HttpContext.Session.SetInt32("bookingId", booking.Id);
 
+            if (ViewBag.NumberOfNights == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
