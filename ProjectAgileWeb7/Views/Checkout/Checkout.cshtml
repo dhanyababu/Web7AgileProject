@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Checkout";
 }
-
+<input type="hidden" id="initialPricePerNight" value="@ViewBag.RoomPrice"/>
+<input type="hidden" id="initialTotalPrice" value="@ViewBag.TotalPrice"/>
 <form asp-controller="Checkout" asp-action="Checkout" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="card">
@@ -15,7 +16,7 @@
             <label class="currentCurrency">SEK</label><br />
             Number of nights: @ViewBag.NumberOfNights<br />
             Total price: <label class="totalPriceDisplayLabel">@ViewBag.TotalPrice</label>&nbsp;
-            <label class="currentCurrency">SEK</label>
+            <label class="currentCurrency">SEK</label><br />
             <input type="hidden" asp-for="@Model.Amount" class="totalPriceHidden" val="" style="width:100px" />
             <br />
 
