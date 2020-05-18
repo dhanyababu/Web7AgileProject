@@ -2,6 +2,7 @@
 Documentation
 Library  SeleniumLibrary
 Library  DateTime
+Library  String
 
 
 *** Keywords ***
@@ -25,13 +26,13 @@ Book Room
     Press Keys                              id:check-in   CTRL+ARROW_DOWN  ENTER
     Click Element                           id:check-out
     Press Keys                              id:check-out   CTRL+ARROW_DOWN  ENTER
-    Sleep                                   2s
+    Sleep                                   4s
     Click Button                            xpath://*[@id="submit-btn"]
-    Sleep                                   2s
+    Sleep                                   4s
     Click Element                           xpath://html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a
-    Sleep                                   2s
-    Click Element                           xpath:/html/body/div[1]/main/div[2]/div[1]/div[2]/table/thead/tr[3]/td[4]/a
-    Sleep                                   2s
+    Sleep                                   4s
+    Click Element                           xpath:/html/body/div[1]/main/div[2]/div[1]/div[2]/table/thead/tr[4]/td[4]/a
+    Sleep                                   4s
 
 Login While Booking Room
     Input Text                              id:user_Email                       balder@hotmail.com
@@ -67,7 +68,11 @@ Verify Exp Date Is Up To Date
     Click Element                           xpath:/html/body/div/main/a
     ${xyz}=     Get Text                    xpath://*[@id="ExpirationDate"]/option[1]
     Log                                     ${xyz}
-    Should Be Equal As Strings              ${xyz}      5 / 2020
+    ${current_month} =                   Get Current Date      local      result_format=%m
+    ${current_date_without_zero}=         Replace String Using Regexp      ${current_month}     ^0           ${EMPTY}
+    ${current_year} =                   Get Current Date       local      result_format=%Y
+    Should Be Equal As Strings            ${xyz}         ${current_date_without_zero} / ${current_year}
+
 
 End Test
     Close Browser

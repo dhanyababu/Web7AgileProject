@@ -6,7 +6,7 @@ Library  DateTime
 
 *** Keywords ***
 Begin Login Test
-    Open Browser                            about:blank     ${BROWSER}		options=add_argument("--ignore-certificate-errors")
+    Open Browser                            about:blank     ${BROWSER}
     Go To                                   ${URL}
     Wait Until Page Contains                Use a local account to log in.
 
