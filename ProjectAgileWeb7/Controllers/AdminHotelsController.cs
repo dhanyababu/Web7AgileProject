@@ -117,15 +117,22 @@ namespace ProjectAgileWeb7.Controllers
                 {
                     var webRootPath = _webHostEnvironment.WebRootPath;
                     var files = HttpContext.Request.Form.Files;
-                    var fileName = Guid.NewGuid().ToString();
-                    var folder = Path.Combine(webRootPath, @"pictures");
-                    var extension = Path.GetExtension(files[0].FileName);
-
-                    using (var fileStream = new FileStream(Path.Combine(folder, fileName + extension), FileMode.Create))
+                    if (files.Count > 0)
                     {
-                        await files[0].CopyToAsync(fileStream);
+                        var fileName = Guid.NewGuid().ToString();
+                        var folder = Path.Combine(webRootPath, @"pictures");
+                        var extension = Path.GetExtension(files[0].FileName);
+
+                        using (var fileStream = new FileStream(Path.Combine(folder, fileName + extension), FileMode.Create))
+                        {
+                            await files[0].CopyToAsync(fileStream);
+                        }
+                        hotel.ImageUrl = @"~/pictures/" + fileName + extension;
                     }
-                    hotel.ImageUrl = @"~/pictures/" + fileName + extension;
+                    else
+                    {
+                        hotel.ImageUrl = _context.Hotels.Where(h => h.HotelId == hotel.HotelId).Select(h => h.ImageUrl).FirstOrDefault();
+                    }
 
                     _context.Update(hotel);
                     await _context.SaveChangesAsync();
