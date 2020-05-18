@@ -34,13 +34,4 @@ Test Booking No Login
    Book Room
    No Login While Booking Room
 
-Test Card Expiration Date
 
-    Use Valid Login
-    Book Room
-    Check If Card-Date Input Appears
-
-Verify Expiration date Works
-    Use Valid Login
-    Book Room
-    Login While Booking Room
