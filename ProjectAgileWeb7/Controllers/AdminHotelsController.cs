@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +17,12 @@ namespace ProjectAgileWeb7.Controllers
     public class AdminHotelsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AdminHotelsController(ApplicationDbContext context)
+        public AdminHotelsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Hotels
@@ -60,6 +64,18 @@ namespace ProjectAgileWeb7.Controllers
         {
             if (ModelState.IsValid)
             {
+                var webRootPath = _webHostEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                var fileName = Guid.NewGuid().ToString();
+                var folder = Path.Combine(webRootPath, @"pictures");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var fileStream = new FileStream(Path.Combine(folder, fileName + extension), FileMode.Create))
+                {
+                    await files[0].CopyToAsync(fileStream);
+                }
+                hotel.ImageUrl = @"~/pictures/" + fileName + extension;
+
                 _context.Add(hotel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
