@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "BookingConfirmation";
+    var nightsCount = (Model.Booking.CheckOut - Model.Booking.CheckIn).Days;
+    var nightPriceChosenCurrency = (Model.Payment.Amount / nightsCount);
 }
 
 <div class="alert alert-dismissible alert-success">
@@ -65,8 +67,8 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Number of nights:
-                        @{ var nightsCount = Model.Booking.CheckOut - Model.Booking.CheckIn; }
-                        <span class="text-success">@nightsCount.ToString("%d")</span>
+                        
+                        <span class="text-success">@nightsCount</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Arrival Date:
@@ -111,7 +113,8 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Price per Night:
-                        <span class="text-success">@Model.Room.RoomPrice.ToString("F") @Currency.SEK</span>
+                        @*<span class="text-success">@Model.Room.RoomPrice.ToString("F") @Currency.SEK</span>*@
+                        <span class="text-success">@nightPriceChosenCurrency.ToString("F") @Model.Payment.Currency</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Description:
