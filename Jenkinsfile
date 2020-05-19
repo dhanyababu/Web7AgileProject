@@ -22,10 +22,34 @@ pipeline {
                 }
         }
 
-        stage('Robot') {
+        stage('login') {
             steps {
                 sleep 10
-        bat 'robot  ProjectAgileWeb7/Tester/searh.robot'
+        bat 'robot  ProjectAgileWeb7/Tester/WEB718-loginTest.robot'
+
+            }
+
+        }
+
+	stage('expdate') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB7198-expDate.robot'
+
+            }
+	}
+        stage('remember') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB718-remember.robot'
+
+            }
+
+        }
+        stage('Search') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB723-search.robot'
 
             }
 
