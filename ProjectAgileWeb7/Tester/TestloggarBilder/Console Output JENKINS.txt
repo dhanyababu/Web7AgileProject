@@ -1,0 +1,334 @@
+Started by user Balder Noren
+Obtained Jenkinsfile from git https://github.com/dhanyababu/Web7AgileProject.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\Users\abram\.jenkins\workspace\WebAgile7
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+using credential 3b2c89b5-3b00-4cbb-8def-0cf389ece386
+ > git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/dhanyababu/Web7AgileProject.git # timeout=10
+Fetching upstream changes from https://github.com/dhanyababu/Web7AgileProject.git
+ > git.exe --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git.exe fetch --tags --force --progress -- https://github.com/dhanyababu/Web7AgileProject.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/BalderBranch^{commit}" # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/origin/BalderBranch^{commit}" # timeout=10
+Checking out Revision 3b086e772d10dea7f684a292c5adc6e9abe37540 (refs/remotes/origin/BalderBranch)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 3b086e772d10dea7f684a292c5adc6e9abe37540 # timeout=10
+Commit message: "JEnkinsfile fix"
+ > git.exe rev-list --no-walk 5a70694a3093cfe8ca5e6c8df4137c6e6ce78a15 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Restore Packages)
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>dotnet restore 
+  Restore completed in 793,29 ms for C:\Users\abram\.jenkins\workspace\WebAgile7\ProjectAgileWeb7\ProjectAgileWeb7.csproj.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>dotnet build ProjectAgileWeb7.sln 
+Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 82,63 ms for C:\Users\abram\.jenkins\workspace\WebAgile7\ProjectAgileWeb7\ProjectAgileWeb7.csproj.
+  ProjectAgileWeb7 -> C:\Users\abram\.jenkins\workspace\WebAgile7\ProjectAgileWeb7\bin\Debug\netcoreapp3.1\ProjectAgileWeb7.dll
+  ProjectAgileWeb7 -> C:\Users\abram\.jenkins\workspace\WebAgile7\ProjectAgileWeb7\bin\Debug\netcoreapp3.1\ProjectAgileWeb7.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.84
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Pack)
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>dotnet pack --no-build --output nupkgs 
+Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\dotnet\sdk\3.1.201\Sdks\NuGet.Build.Tasks.Pack\build\NuGet.Build.Tasks.Pack.targets(187,6): warning : This project cannot be packaged because packaging has been disabled. Add <IsPackable>true</IsPackable> to the project file to enable producing a package from this project. [C:\Users\abram\.jenkins\workspace\WebAgile7\ProjectAgileWeb7\ProjectAgileWeb7.csproj]
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run)
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>START /B dotnet C:/Users/abram/.jenkins/workspace/WebAgile7/ProjectAgileWeb7/bin/Debug/netcoreapp3.1/ProjectAgileWeb7.dll 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (login)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB718-loginTest.robot 
+==============================================================================
+WEB718-loginTest                                                              
+==============================================================================
+User can login to website with valid inputs                           | PASS |
+------------------------------------------------------------------------------
+User can login to website with invalid password                       | PASS |
+------------------------------------------------------------------------------
+User can login to website with invalid Email                          | PASS |
+------------------------------------------------------------------------------
+User can login to website with no uppercase letter in password        | PASS |
+------------------------------------------------------------------------------
+User Can Login To Website With No Inputs                              | PASS |
+------------------------------------------------------------------------------
+WEB718-loginTest                                                      | PASS |
+5 critical tests, 5 passed, 0 failed
+5 tests total, 5 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (expdate)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB7198-expDate.robot 
+==============================================================================
+WEB7198-expDate                                                               
+==============================================================================
+Test Card Expiration Date                                             | PASS |
+------------------------------------------------------------------------------
+Verify Expiration date Works                                          | PASS |
+------------------------------------------------------------------------------
+Verify Exp Date Option1 Equals Current Month                          | PASS |
+------------------------------------------------------------------------------
+WEB7198-expDate                                                       | PASS |
+3 critical tests, 3 passed, 0 failed
+3 tests total, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (remember)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB718-remember.robot 
+==============================================================================
+WEB718-remember                                                               
+==============================================================================
+User Can Save Their Login Info                                        | PASS |
+------------------------------------------------------------------------------
+WEB718-remember                                                       | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Search)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB723-search.robot 
+==============================================================================
+WEB723-search                                                                 
+==============================================================================
+Test If Search Works With No Chosen Dates                             | PASS |
+------------------------------------------------------------------------------
+Test If Search Works With Dates                                       | PASS |
+------------------------------------------------------------------------------
+Test If Search Works With No Chosen Dates And Invalid Search Input    | PASS |
+------------------------------------------------------------------------------
+WEB723-search                                                         | PASS |
+3 critical tests, 3 passed, 0 failed
+3 tests total, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (filters)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB726-filters.robot 
+==============================================================================
+WEB726-filters                                                                
+==============================================================================
+Verify Filters Work                                                   | PASS |
+------------------------------------------------------------------------------
+Verify Stars Filter Work                                              | PASS |
+------------------------------------------------------------------------------
+Veirfy Distance Filters                                               | PASS |
+------------------------------------------------------------------------------
+WEB726-filters                                                        | PASS |
+3 critical tests, 3 passed, 0 failed
+3 tests total, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (respfilters)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB726-respFilters.robot 
+==============================================================================
+WEB726-respFilters                                                            
+==============================================================================
+Filter Window 1024x768                                                | PASS |
+------------------------------------------------------------------------------
+WEB726-respFilters                                                    | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (book)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB727and28-book.robot 
+==============================================================================
+WEB727and28-book                                                              
+==============================================================================
+Test Booking While Logged In                                          | PASS |
+------------------------------------------------------------------------------
+CardNumber Too Short                                                  | PASS |
+------------------------------------------------------------------------------
+Cardnumber Too Long                                                   | PASS |
+------------------------------------------------------------------------------
+Cardnumber Letters                                                    | PASS |
+------------------------------------------------------------------------------
+Test Booking No Login                                                 | PASS |
+------------------------------------------------------------------------------
+WEB727and28-book                                                      | PASS |
+5 critical tests, 5 passed, 0 failed
+5 tests total, 5 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (favourites)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB730-myFavourites.robot 
+==============================================================================
+WEB730-myFavourites                                                           
+==============================================================================
+Mark As Favourite                                                     | PASS |
+------------------------------------------------------------------------------
+Delete Favourite                                                      | PASS |
+------------------------------------------------------------------------------
+Mark Multiple As Favourite                                            | PASS |
+------------------------------------------------------------------------------
+Delete Multiple Favourite                                             | PASS |
+------------------------------------------------------------------------------
+WEB730-myFavourites                                                   | PASS |
+4 critical tests, 4 passed, 0 failed
+4 tests total, 4 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (weather)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB733-weather.robot 
+==============================================================================
+WEB733-weather                                                                
+==============================================================================
+Test Weather                                                          | PASS |
+------------------------------------------------------------------------------
+WEB733-weather                                                        | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (nearbyplaces)
+[Pipeline] sleep
+Sleeping for 10 sec
+[Pipeline] bat
+
+C:\Users\abram\.jenkins\workspace\WebAgile7>robot  ProjectAgileWeb7/Tester/WEB7204-nearbyplaces.robot 
+==============================================================================
+WEB7204-nearbyplaces                                                          
+==============================================================================
+Verify List Appears                                                   | PASS |
+------------------------------------------------------------------------------
+Verify Lists Are Expandable                                           | PASS |
+------------------------------------------------------------------------------
+Verify List Size Of Restaurants Are Correct                           | PASS |
+------------------------------------------------------------------------------
+Verify List Size Of Culture Are Correct                               | PASS |
+------------------------------------------------------------------------------
+Verify List Size Of Bars Are Correct                                  | PASS |
+------------------------------------------------------------------------------
+Verify List Size Of Shopping Are Correct                              | PASS |
+------------------------------------------------------------------------------
+WEB7204-nearbyplaces                                                  | PASS |
+6 critical tests, 6 passed, 0 failed
+6 tests total, 6 passed, 0 failed
+==============================================================================
+Output:  C:\Users\abram\.jenkins\workspace\WebAgile7\output.xml
+Log:     C:\Users\abram\.jenkins\workspace\WebAgile7\log.html
+Report:  C:\Users\abram\.jenkins\workspace\WebAgile7\report.html
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
