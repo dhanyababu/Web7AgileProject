@@ -54,6 +54,55 @@ pipeline {
             }
 
         }
+	stage('filters') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB726-filters.robot'
+
+            }
+
+        }
+	stage('respfilters') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB726-respFilters.robot'
+
+            }
+
+        }
+	stage('book') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB727and28-book.robot'
+
+            }
+
+        }
+	stage('favourites') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB730-myFavourites.robot'
+
+            }
+
+        }
+	stage('weather') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB733-weather.robot'
+
+            }
+
+        }
+	stage('nearbyplaces') {
+            steps {
+                sleep 10
+        bat 'robot  ProjectAgileWeb7/Tester/WEB7204-nearbyplaces.robot'
+
+            }
+
+        }
+
     }
 
 }
