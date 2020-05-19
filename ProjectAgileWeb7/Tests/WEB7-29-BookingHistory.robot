@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   This is test suite of ProjectAgileWeb7 webpage for verifying booking history of user
-Resource        ../Tests/Resources/WEB7-176-keywords.robot
+Resource        ../Tests/Resources/WEB7-29-keywords.robot
 Library         SeleniumLibrary
 Test Setup      Open Browser To Start Page
 Test Teardown   End Web Test
