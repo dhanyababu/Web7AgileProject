@@ -22,7 +22,7 @@ pipeline {
                 }
         }
 
-        stage('Robot') {
+        stage('WEB7-153-ExternalAccount') {
             steps {
                 sleep 10
 		bat 'robot  ProjectAgileWeb7/Tests/WEB7-153-ExternalAccount.robot'
@@ -30,6 +30,24 @@ pipeline {
             }
            
         }
+       stage('WEB7-176-BookingHistory') {
+            steps {
+                sleep 10
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-176-BookingHistory.robot'
+               
+            }
+           
+        }
+	stage('WEB7-34-Currency.robot') {
+            steps {
+                sleep 10
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-34-Currency.robot'
+               
+            }
+           
+        }
+	
+
     }
 	
 }
