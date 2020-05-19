@@ -31,8 +31,8 @@ Verify Location link is working
         ...                                     that image should contain link that should be redireting to the map
         [Tags]                                  Test WEb7-161
         Goto hotel details                      Paris
-        Verify page contains link               https://www.bing.com/maps/directions?cp=48.866954~2.360468&sty=r&lvl=16&rtp=~pos.48.866954_2.360468____&amp;FORM=MBEDLD
-        Verifying Hypertext reference link      https://www.bing.com/maps/directions?cp=48.866954~2.360468&sty=r&lvl=16&rtp=~pos.48.866954_2.360468____&amp;FORM=MBEDLD
+        Verify page contains link               https://www.bing.com/maps/directions?cp=48.868164~2.328888&sty=r&lvl=16&rtp=~pos.48.868164_2.328888____&amp;FORM=MBEDLD
+        Verifying Hypertext reference link      https://www.bing.com/maps/directions?cp=48.868164~2.328888&sty=r&lvl=16&rtp=~pos.48.868164_2.328888____&amp;FORM=MBEDLD
         Verify link is redirecting or not
 
 
