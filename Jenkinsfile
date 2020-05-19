@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
                 steps {
-                    bat 'dotnet build'
+                    bat 'dotnet build ProjectAgileWeb7.sln'
                 }
         }
         stage('Pack') {
