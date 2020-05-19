@@ -3,10 +3,10 @@
 
 // Write your JavaScript code.
 
-$(window).on('resize', mobileSearchForm);
-$(window).on('load', mobileSearchForm);
+$(window).on('resize', mobileVersion);
+$(window).on('load', mobileVersion);
 
-function mobileSearchForm() {
+function mobileVersion() {
     if ($(window).width() < 990) {
         $('#heading').css('fontSize', '2rem');
         $('#search-btn').show();
@@ -19,6 +19,7 @@ function mobileSearchForm() {
         $('#filter-form-id').addClass('collapse');
         $('#filter-title').hide();
         $('.payment-input').removeClass('col-3');
+        $('.mobile-toggle').hide();
     }
     else {
         $('#heading').css('fontSize', '3rem');
@@ -32,6 +33,7 @@ function mobileSearchForm() {
         $('#filter-form-id').removeClass('collapse');
         $('#filter-title').show();
         $('.payment-input').addClass('col-3');
+        $('.mobile-toggle').show();
     }
 }
 

@@ -16,19 +16,19 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.RoomId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.RoomType)
+                    Type
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.RoomPrice)
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.NumberOfBeds)
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     @Html.DisplayNameFor(model => model.Capacity)
                 </th>
                 <th>
@@ -41,19 +41,19 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <th>
+                    <th class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.RoomId)
                     </th>
                     <td>
                         @Html.DisplayFor(modelItem => item.RoomType)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.RoomPrice)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.NumberOfBeds)
                     </td>
-                    <td>
+                    <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.Capacity)
                     </td>
                     <td>

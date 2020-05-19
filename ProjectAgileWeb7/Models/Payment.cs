@@ -41,7 +41,5 @@ namespace ProjectAgileWeb7.Models
         [Required]
         [Display(Name = "Expiration Date")]
         public string ExpirationDate { get; set; }
-
-        public string BankAndClearing { get; set; }
     }
 }

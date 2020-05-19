@@ -77,8 +77,8 @@
                     {
                         var month = (y == year) ? DateTime.Now.Month : 1;
                         for (int m = month; m <= 12; m++)
-                        {
-                            <option>@m / @y</option>
+                        {                            
+                            <option value="@m / @y">@m / @y</option>
                         }
                     }
                 </select>

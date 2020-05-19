@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAgileWeb7.Models
 {
@@ -6,19 +7,26 @@ namespace ProjectAgileWeb7.Models
     public class Room
     {
         public int RoomId { get; set; }
+
+        [Required]
         public RoomType RoomType { get; set; }
-        public int RoomNumber { get; set; }
+
+        [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal RoomPrice { get; set; }
+
+        [Required]
         public string RoomDescription { get; set; }
+
+        [Required]
         public int NumberOfBeds { get; set; }
-        public int Capacity { get; set; } //how many persons 
-        public bool IsAvailable { get; set; }
+
+        [Required]
+        public int Capacity { get; set; } //how many persons
         public string RoomImageUrl { get; set; }
+
+        [Required]
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
-
-
     }
-
 }
