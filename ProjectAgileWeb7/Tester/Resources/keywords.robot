@@ -63,7 +63,7 @@ Click Remember Me
 
 No Inputs
 
-    Click Button                            xpath://*[@id="submit-btn"]
+    Click Button                            xpath://*[@id="account"]/div[5]/button
     Wait Until Page Contains                The Email field is required.
 
 Input Text Into Searchbar With Dates
