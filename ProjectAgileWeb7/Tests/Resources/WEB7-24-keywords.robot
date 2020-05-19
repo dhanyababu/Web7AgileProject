@@ -70,7 +70,7 @@ Verify first hotel
         ${distance_link}=               Get Text                        xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[2]
         Should Be Equal                 ${distance_link}                Distance from centre: 6.3 km.
         ${discription_link}=            Get Text                        xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[4]
-        Should Be Equal                 ${discription_link}             Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.
+        Should Be Equal                 ${discription_link}             Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a garden and a business centre.
         Element Should Contain          xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[5]         Available rooms
         Element Should Contain          xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[6]          Facilities:
         Element Should Be Visible       xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a
