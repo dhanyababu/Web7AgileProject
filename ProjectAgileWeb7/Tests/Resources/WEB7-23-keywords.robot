@@ -38,10 +38,10 @@ Search text before clear
         ${search_text_old} =           Get element attribute        id:search-input           attribute=value
         Should Be Equal                ${search_text_old}           London
         ${current_date} =              Get Current Date             local                                       result_format=%Y-%m-%d
-        ${selected_checkin_date}=      Add Time To Date             ${current_date}           7 days            result_format=%Y-%b-%d
+        ${selected_checkin_date}=      Add Time To Date             ${current_date}           7 days            result_format=%Y-%B-%d
         ${Search_in_date} =            Get element attribute        id:check-in               attribute=value
         Should Be Equal                ${Search_in_date}            ${selected_checkin_date}
-        ${selected_checkout_date}=     Add Time To Date             ${current_date}          15 days            result_format=%Y-%b-%d
+        ${selected_checkout_date}=     Add Time To Date             ${current_date}          15 days            result_format=%Y-%B-%d
         ${Search_out_date} =           Get element attribute        id:check-out              attribute=value
         Should Be Equal                ${Search_out_date}           ${selected_checkout_date}
 
@@ -80,11 +80,11 @@ Select start date in calendar
 
 
 Verify start date is current date
-        ${current_date} =              Get Current Date             local                                       result_format=%Y-%b-%d
+        ${current_date} =              Get Current Date             local                                       result_format=%Y-%B-%d
         ${Search_in_date} =            Get element attribute        id:check-in               attribute=value
         Should Be Equal                ${Search_in_date}            ${current_date}
         ${current_date} =              Get Current Date             local                                       result_format=%Y-%m-%d
-        ${selected_checkout_date}=     Add Time To Date             ${current_date}           1 days            result_format=%Y-%b-%d
+        ${selected_checkout_date}=     Add Time To Date             ${current_date}           1 days            result_format=%Y-%B-%d
         ${Search_out_date} =           Get element attribute        id:check-out              attribute=value
         Should Be Equal                ${Search_out_date}           ${selected_checkout_date}
 
@@ -130,10 +130,10 @@ Select end date in calendar
 
 Verify end date of calendar
         ${current_date} =              Get Current Date             local                     result_format=%Y-%m-%d
-        ${selected_checkin_date}=      Add Time To Date             ${current_date}           364 days            result_format=%Y-%b-%d
+        ${selected_checkin_date}=      Add Time To Date             ${current_date}           364 days            result_format=%Y-%B-%d
         ${Search_in_date} =            Get element attribute        id:check-in               attribute=value
         Should Be Equal                ${Search_in_date}            ${selected_checkin_date}
-        ${selected_checkout_date}=     Add Time To Date             ${current_date}           365 days            result_format=%Y-%b-%d
+        ${selected_checkout_date}=     Add Time To Date             ${current_date}           365 days            result_format=%Y-%B-%d
         ${Search_out_date} =           Get element attribute        id:check-out              attribute=value
         Should Be Equal                ${Search_out_date}           ${selected_checkout_date}
 
@@ -151,14 +151,15 @@ Select a random date
 
 Verify random date is in between limit
         ${current_date} =              Get Current Date             local                                         result_format=%Y-%m-%d
-        ${start_date_checkin}=         Get Current Date             local                                         result_format=%Y-%b-%d
-        ${end_date_checkin}=           Add Time To Date             ${current_date}           364 days            result_format=%Y-%b-%d
+        ${start_date_checkin}=         Get Current Date             local                                         result_format=%Y-%B-%d
+        ${end_date_checkin}=           Add Time To Date             ${current_date}           364 days            result_format=%Y-%B-%d
         ${Selected_checkin} =          Get element attribute        id:check-in               attribute=value
-        Should Be True                 '${start_date_checkin}' < '${Selected_checkin}' < '${end_date_checkin}'
-        ${start_date_checkout}=        Add Time To Date             ${current_date}           1 days               result_format=%Y-%b-%d
-        ${end_date_checkout}=          Add Time To Date             ${current_date}           365 days             result_format=%Y-%b-%d
+        Should Be True                 '${start_date_checkin}'<'${Selected_checkin}'<'${end_date_checkin}'
+        ${start_date_checkout}=        Add Time To Date             ${current_date}           1 days               result_format=%Y-%B-%d
+        ${end_date_checkout}=          Add Time To Date             ${current_date}           365 days             result_format=%Y-%B-%d
         ${Selected_checkout}=          Get element attribute        id:check-out              attribute=value
-        Should Be True                 '${start_date_checkout}' < '${Selected_checkout}' < '${end_date_checkout}'
+        Should Be True                 '${start_date_checkout}'>'${Selected_checkout}'
+        should be true                 '${Selected_checkout}'<'${end_date_checkout}'
 
 
 
