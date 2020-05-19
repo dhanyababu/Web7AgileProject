@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-Resource  ../Tester/Resources/placeskeywords.robot
+Resource  ../Resources/placeskeywords.robot
 Library  SeleniumLibrary
 Test Setup  Begin Login Test
 Test Teardown  End Test

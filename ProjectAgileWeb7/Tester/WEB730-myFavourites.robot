@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-Resource  ../Tester/Resources/keywordsmyF.robot
+Resource  ../Resources/keywordsmyF.robot
 Library  SeleniumLibrary
 Test Setup  Begin Login Test
 Test Teardown  End Test

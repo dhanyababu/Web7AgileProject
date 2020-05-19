@@ -27,11 +27,11 @@ Book Room
     Press Keys                              id:check-out   CTRL+ARROW_DOWN  ENTER
     Sleep                                   2s
     Click Button                            xpath://*[@id="submit-btn"]
-    Sleep                                   2s
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a
-    Sleep                                   2s
-    Click Element                           xpath:/html/body/div[1]/main/div[2]/div[1]/div[2]/table/thead/tr[3]/td[4]/a
-    Sleep                                   2s
+    Sleep                                   3s
+    Click Element                           xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[2]/a
+    Sleep                                   4s
+    Click Element                           xpath:/html/body/div[1]/main/div[2]/div[1]/div[2]/table/thead/tr[2]/td[4]/a
+    Sleep                                   3s
 
 No Login While Booking Room
     Wait Until Page Contains                Use a local account to log in.

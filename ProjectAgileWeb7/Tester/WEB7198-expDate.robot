@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-Resource  ../Tester/Resources/keywordsExpDte.robot
+Resource  ../Resources/keywordsExpDte.robot
 Library  SeleniumLibrary
 Test Setup  Begin Login Test
 Test Teardown  End Test

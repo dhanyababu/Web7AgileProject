@@ -95,92 +95,110 @@ Input Invalid Text Into Searchbar
 
 Test WiFi Filter
 
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[1]/div[1]/label
-    Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
+    Click Element                           xpath://*[@id="filter-form-id"]/div[1]/div[6]/label
+    Click Button                            xpath:/html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
     Wait until Page Contains                Ritz Hotel Paris
-    Wait until Page Contains                Eden Hotel Amsterdam
-    WAit Until Page Contains                Paris France Hotel
-    Wait Until Page Does Not Contain        Corinthia Hotel London
-    Click Element                           xpath:/html/body/div[1]/main/a
     Wait Until Page Contains                Corinthia Hotel London
-
+    Wait until Page Does Not Contain        Eden Hotel Amsterdam
+    Wait Until Page Does Not Contain        Paris France Hotel
+    Click Element                           xpath:/html/body/div[1]/main/a
+    Wait Until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Paris France Hotel
+    Wait until Page Contains                Ritz Hotel Paris
+    Wait Until Page Contains                Corinthia Hotel London
 
 Test Breakfast Filter
 
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[1]/div[2]/label
-    Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
-    Wait until Page Contains                Ritz Hotel Paris
-    Wait Until Page Does Not Contain        Paris France Hotel
+    Click Element                           xpath://*[@id="filter-form-id"]/div[1]/div[4]/label
+    Click Button                            xpath:/html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
+    Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Paris France Hotel
     Wait Until Page Does Not Contain        Corinthia Hotel London
+    Wait Until Page Does Not Contain        Athenee Palace Hilton
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
     Wait Until Page Contains                Corinthia Hotel London
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait until Page Contains                Eden Hotel Amsterdam
     Wait Until Page Contains                Paris France Hotel
-
 Test Room Service Filter
 
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[1]/div[3]/label
-    Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
+    Click Element                           xpath://*[@id="filter-form-id"]/div[1]/div[3]/label
+    Click Button                            xpath:/html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
     Wait until Page Contains                Eden Hotel Amsterdam
-    Wait until Page Does Not Contain        Ritz Hotel Paris
+    Wait until Page Contains                Ritz Hotel Paris
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Corinthia Hotel London
     Wait Until Page Does Not Contain        Paris France Hotel
-    Wait Until Page Does Not Contain        Corinthia Hotel London
+    Wait Until Page Does Not Contain        Saint Ten Hotel
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
-    Wait Until Page Contains                Corinthia Hotel London
     Wait Until Page Contains                Paris France Hotel
-    Wait until Page Contains                Ritz Hotel Paris
+    Wait Until Page Contains                Saint Ten Hotel
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait until Page Contains                Ritz Hotel Paris
 
 Test Fitness Center Filter
 
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[1]/div[4]/label
-    Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
-    Wait until Page Does Not Contain        Eden Hotel Amsterdam
-    Wait until Page Does Not Contain        Ritz Hotel Paris
-    Wait Until Page Does Not Contain        Paris France Hotel
+    Click Element                           xpath://*[@id="filter-form-id"]/div[1]/div[2]/label
+    Click Button                            xpath:/html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
+    Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Athenee Palace Hilton
     Wait Until Page Contains                Corinthia Hotel London
+    Wait Until Page Does Not Contain        Paris France Hotel
+    Wait until Page Does Not Contain        Ritz Hotel Paris
+    Wait until Page Does Not Contain        Saint Ten Hotel
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
-    Wait Until Page Contains                Corinthia Hotel London
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
+    Wait until Page Contains                Saint Ten Hotel
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Corinthia Hotel London
 
 Test Pool Filter
 
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[1]/div[5]/label
-    Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
-    Wait until Page Does Not Contain        Corinthia Hotel London
-    Wait until Page Does Not Contain        Ritz Hotel Paris
-    Wait Until Page Does Not Contain        Paris France Hotel
+    Click Element                           xpath://*[@id="filter-form-id"]/div[1]/div[1]/label
+    Click Button                            xpath:/html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
+    Wait until Page Contains                Corinthia Hotel London
+    Wait until Page Contains                Ritz Hotel Paris
+    Wait Until Page Contains                Paris France Hotel
     Wait Until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
-    Wait Until Page Contains                Corinthia Hotel London
-    Wait Until Page Contains                Paris France Hotel
+    Wait until Page Contains                Corinthia Hotel London
     Wait until Page Contains                Ritz Hotel Paris
-    Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Paris France Hotel
+    Wait Until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
 
 Test Sauna Filter
 
-    Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[1]/div[5]/label
-    Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
-    Wait until Page Does Not Contain        Corinthia Hotel London
-    Wait until Page Does Not Contain        Ritz Hotel Paris
+    Click Element                           xpath://*[@id="filter-form-id"]/div[1]/div[7]/label
+    Click Button                            xpath:/html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
+    Wait Until Page Contains                Corinthia Hotel London
+    Wait until Page Contains                Ritz Hotel Paris
+    Wait Until Page Contains                Saint Ten Hotel
+    Wait until Page Does Not Contain        Eden Hotel Amsterdam
     Wait Until Page Does Not Contain        Paris France Hotel
-    Wait Until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Does Not Contain        Athenee Palace Hilton
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
-    Wait Until Page Contains                Corinthia Hotel London
+    Wait Until Page Contains                Eden Hotel Amsterdam
     Wait Until Page Contains                Paris France Hotel
+    Wait until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Corinthia Hotel London
     Wait until Page Contains                Ritz Hotel Paris
-    Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Saint Ten Hotel
 
 Three Star Filter
 
@@ -189,6 +207,8 @@ Three Star Filter
     Wait until Page Does Not Contain        Corinthia Hotel London
     Wait until Page Does Not Contain        Ritz Hotel Paris
     Wait Until Page Does Not Contain        Eden Hotel Amsterdam
+    Wait until Page Does Not Contain        Athenee Palace Hilton
+    Wait until Page Does Not Contain        Saint Ten Hotel
     Wait Until Page Contains                Paris France Hotel
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
@@ -205,6 +225,8 @@ Four Star Filter
     Wait until Page Does Not Contain        Corinthia Hotel London
     Wait until Page Does Not Contain        Ritz Hotel Paris
     Wait Until Page Does Not Contain        Paris France Hotel
+    Wait until Page Does Not Contain        Athenee Palace Hilton
+    Wait until Page Does Not Contain        Saint Ten Hotel
     Wait Until Page Contains                Eden Hotel Amsterdam
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
@@ -213,6 +235,8 @@ Four Star Filter
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
 
 Five Star Filter
 
@@ -220,6 +244,8 @@ Five Star Filter
     Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
     Wait until Page Contains                Corinthia Hotel London
     Wait until Page Contains                Ritz Hotel Paris
+    Wait until Page Contains                Athenee Palace Hilton
+    Wait until Page Contains                Saint Ten Hotel
     Wait Until Page Does Not Contain        Paris France Hotel
     Wait Until Page Does Not Contain        Eden Hotel Amsterdam
     Sleep                                   2s
@@ -229,15 +255,19 @@ Five Star Filter
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait until Page Contains                Athenee Palace Hilton
+    Wait until Page Contains                Saint Ten Hotel
 
 1km Filter
 
     Click Element                           xpath://html/body/div[1]/main/div[2]/div[1]/form/div[3]/div[1]/label
     Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait until Page Contains                Athenee Palace Hilton
     Wait until Page Does Not Contain        Ritz Hotel Paris
     Wait Until Page Does Not Contain        Paris France Hotel
     Wait Until Page Does Not Contain        Corinthia Hotel London
+    Wait Until Page Does Not Contain        Saint Ten Hotel
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
@@ -245,6 +275,8 @@ Five Star Filter
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait until Page Contains                Saint Ten Hotel
+    Wait until Page Contains                Athenee Palace Hilton
 
 3km Filter
 
@@ -252,6 +284,8 @@ Five Star Filter
     Click Button                            xpath://html/body/div[1]/main/div[2]/div[1]/form/div[4]/input
     Wait until Page Contains                Eden Hotel Amsterdam
     Wait Until Page Contains                Corinthia Hotel London
+    Wait until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
     Wait until Page Does Not Contain        Ritz Hotel Paris
     Wait Until Page Does Not Contain        Paris France Hotel
     Sleep                                   2s
@@ -261,6 +295,8 @@ Five Star Filter
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
 
 5km Filter
 
@@ -269,6 +305,8 @@ Five Star Filter
     Wait until Page Contains                Eden Hotel Amsterdam
     Wait Until Page Contains                Corinthia Hotel London
     Wait Until Page Contains                Paris France Hotel
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
     Wait until Page Does Not Contain        Ritz Hotel Paris
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
@@ -277,6 +315,8 @@ Five Star Filter
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
     Wait until Page Contains                Eden Hotel Amsterdam
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
 
 10km Filter
 
@@ -286,6 +326,8 @@ Five Star Filter
     Wait Until Page Contains                Corinthia Hotel London
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
     Sleep                                   2s
     Click Element                           xpath:/html/body/div[1]/main/a
     Sleep                                   2s
@@ -293,12 +335,15 @@ Five Star Filter
     Wait Until Page Contains                Paris France Hotel
     Wait until Page Contains                Ritz Hotel Paris
     Wait until Page Contains                Eden Hotel Amsterdam
-
+    Wait Until Page Contains                Athenee Palace Hilton
+    Wait Until Page Contains                Saint Ten Hotel
 
 Change Window Size
     [Arguments]                      ${width}                       ${height}
     Set Window Size                  ${width}                       ${height}
 
+View Filters Mobile
+    Click Element                           xpath:/html/body/div[1]/main/div[2]/div[1]/button
 
 End Test
     Close Browser

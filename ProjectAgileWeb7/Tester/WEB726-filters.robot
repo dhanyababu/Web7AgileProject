@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-Resource  ../Tester/Resources/keywords.robot
+Resource  ../Resources/keywords.robot
 Library  SeleniumLibrary
 Test Setup  Begin Login Test
 Test Teardown  End Test
@@ -19,6 +19,7 @@ Verify Filters Work
     Test Fitness Center Filter
     Test Pool Filter
     Test Sauna Filter
+
 
 Verify Stars Filter Work
     Use Valid Login
