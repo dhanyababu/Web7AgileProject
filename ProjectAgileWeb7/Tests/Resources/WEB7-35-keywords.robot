@@ -9,6 +9,8 @@ Open Browser To Start Page
         Open Browser                     about:blank                    ${BROWSER}      options=add_argument("--ignore-certificate-errors")
         Maximize Browser Window
         Go To                                                           ${URL}
+        Set Selenium Speed                                              1
+        Wait Until Page Contains                                        Find your dream destination        timeout=10
 
 
 
@@ -22,7 +24,7 @@ Goto hotel details
 
 
 Googlemap image is displayed
-        Wait Until Page Contains Element        id:largeMapLink						 timeout=10
+        Wait Until Page Contains Element        id:largeMapLink                                     timeout=10
         Element Should Be Visible               css:div.mb-3 a#largeMapLink img
 
 

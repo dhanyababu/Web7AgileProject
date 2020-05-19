@@ -6,9 +6,11 @@ Library                                  RequestsLibrary
 
 *** Keywords ***
 Open Browser To Start Page
-        Open Browser                     about:blank      ${BROWSER}			options=add_argument("--ignore-certificate-errors")
+        Open Browser                     about:blank      ${BROWSER}        options=add_argument("--ignore-certificate-errors")
         Maximize Browser Window
         Go To                                             ${URL}
+        Set Selenium Speed                                1
+        Wait Until Page Contains                          Find your dream destination        timeout=10
 
 
 Verify image is visible
@@ -66,7 +68,7 @@ Verify first hotel
         ${place_link}=                  Get Text                        xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[1]
         Should Be Equal                 ${place_link}                   15 Place Vendôme, 75001, Paris, France
         ${distance_link}=               Get Text                        xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[3]/p[2]
-        Should Be Equal                 ${distance_link}                Distance from centre: 6,3 km.
+        Should Be Equal                 ${distance_link}                Distance from centre: 6.3 km.
         ${discription_link}=            Get Text                        xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[4]
         Should Be Equal                 ${discription_link}             Located in Paris, 500 m from Opéra Garnier, Ritz Paris features a selection of bars and restaurants, a fitness center and a spa and wellness center which includes a pool, sauna and massage facilities.
         Element Should Contain          xpath:/html/body/div[1]/main/div[2]/div[2]/div[1]/div/div[1]/div[2]/div[5]         Available rooms

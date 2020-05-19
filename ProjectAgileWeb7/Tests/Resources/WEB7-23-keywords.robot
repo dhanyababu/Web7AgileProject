@@ -10,15 +10,17 @@ Open Browser To Start Page
         Open Browser                     about:blank                ${BROWSER}     options=add_argument("--ignore-certificate-errors")
         Maximize Browser Window
         Go To                                                       ${URL}
+        Set Selenium Speed                                          1
+        Wait Until Page Contains                                    Find your dream destination        timeout=10
 
 
 Before search
         ${search_text_clear}=           Get Element Attribute        id:search-input    attribute=value
         Should Be Equal                 ${search_text_clear}         ${EMPTY}
         ${Search_in_date} =             Get element attribute        id:check-in        attribute=value
-        Should Be Equal                 ${Search_in_date}            0001-01-01
+        Should Be Equal                 ${Search_in_date}            Check-In Date
         ${Search_out_date} =            Get element attribute        id:check-out       attribute=value
-        Should Be Equal                 ${Search_out_date}           0001-01-01
+        Should Be Equal                 ${Search_out_date}           Check-Out Date
 
 
 Input search text
@@ -30,12 +32,6 @@ Input date
         Press Keys                      id:check-in                  CTRL+ARROW_DOWN     ENTER
         Click Element                   id:check-out
         Press Keys                      id:check-out                 CTRL+ARROW_DOWN     ENTER
-
-
-
-Click Search
-        Click Element                   xpath://*[@id="search-form"]/div/div/div/div[2]
-        Wait Until Page Contains        London                      timeout=10
 
 
 Search text before clear
@@ -50,6 +46,11 @@ Search text before clear
         Should Be Equal                ${Search_out_date}           ${selected_checkout_date}
 
 
+Click Search
+        Click Element                   xpath://*[@id="search-form"]/div/div/div/div[2]
+        Wait Until Page Contains        London                      timeout=10
+
+
 Click clear filter
         Wait Until Page Contains Element    xpath:/html/body/div[1]/main/a
         Element Should Be Visible           xpath:/html/body/div[1]/main/a
@@ -61,9 +62,9 @@ Verify filter
         ${search_text_clear}=          Get Element Attribute        id:search-input         attribute=value
         Should Be Equal                ${search_text_clear}         ${EMPTY}
         ${Search_in_date} =            Get element attribute        id:check-in             attribute=value
-        Should Be Equal                ${Search_in_date}            0001-01-01
+        Should Be Equal                ${Search_in_date}            Check-In Date
         ${Search_out_date} =           Get element attribute        id:check-out            attribute=value
-        Should Be Equal                ${Search_out_date}           0001-01-01
+        Should Be Equal                ${Search_out_date}           Check-Out Date
 
 
 Select start date in calendar
@@ -75,7 +76,7 @@ Select start date in calendar
         Click Element                       css:div#ui-datepicker-div table.ui-datepicker-calendar td.ui-datepicker-today
         Click Element                       id:check-out
         Press Keys                          id:check-out                 CTRL     ENTER
-        Click Element                       xpath://*[@id="search-form"]/div/div/div/div[2]
+
 
 
 Verify start date is current date
@@ -86,6 +87,7 @@ Verify start date is current date
         ${selected_checkout_date}=     Add Time To Date             ${current_date}           1 days            result_format=%Y-%b-%d
         ${Search_out_date} =           Get element attribute        id:check-out              attribute=value
         Should Be Equal                ${Search_out_date}           ${selected_checkout_date}
+
 
 
 Select end date in calendar
@@ -123,7 +125,6 @@ Select end date in calendar
         Click Element                       xpath://*[@id="ui-datepicker-div"]//*[contains(text(), "${current_date_less_A_day}")]
         Click Element                       id:check-out
         Press Keys                          id:check-out                 CTRL     ENTER
-        Click Element                       xpath://*[@id="search-form"]/div/div/div/div[2]
 
 
 
@@ -137,6 +138,7 @@ Verify end date of calendar
         Should Be Equal                ${Search_out_date}           ${selected_checkout_date}
 
 
+
 Select a random date
         Wait Until Page Contains Element    id:search-input
         Input Text                          id:search-input              London
@@ -144,7 +146,7 @@ Select a random date
         Press Keys                          id:check-in                  CTRL+ARROW_DOWN     ENTER
         Click Element                       id:check-out
         Press Keys                          id:check-out                 CTRL+ARROW_DOWN     ENTER
-        Click Element                       xpath://*[@id="search-form"]/div/div/div/div[2]
+
 
 
 Verify random date is in between limit
@@ -157,6 +159,7 @@ Verify random date is in between limit
         ${end_date_checkout}=          Add Time To Date             ${current_date}           365 days             result_format=%Y-%b-%d
         ${Selected_checkout}=          Get element attribute        id:check-out              attribute=value
         Should Be True                 '${start_date_checkout}' < '${Selected_checkout}' < '${end_date_checkout}'
+
 
 
 End Web Test

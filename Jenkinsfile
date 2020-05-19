@@ -21,6 +21,38 @@ pipeline {
                     bat 'START /B dotnet C:/Program Files (x86)/Jenkins/workspace/Web7AgileProjectDhanya/ProjectAgileWeb7/bin/Debug/netcoreapp3.1/ProjectAgileWeb7.dll'
                 }
         }
+	stage('WEB7-18-Registration') {
+            steps {
+                sleep 10
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-18-Registration.robot'
+               
+            }
+           
+        }
+	stage('WEB7-23-Search') {
+            steps {
+                sleep 10
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-23-Search.robot'
+               
+            }
+           
+        }
+	stage('WEB7-24-SampleList') {
+            steps {
+                sleep 10
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-24-SampleList.robot'
+               
+            }
+           
+        }
+	stage('WEB7-35-GoogleMap') {
+            steps {
+                sleep 10
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-35-GoogleMap.robot'
+               
+            }
+           
+        }
 
         stage('WEB7-153-ExternalAccount') {
             steps {

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   This is test suite of ProjectAgileWeb7 webpage
+Documentation   This is test suite of ProjectAgileWeb7 webpage for verifying the sample list of hotels
 Resource        ../Tests/Resources/WEB7-24-keywords.robot
 Library         SeleniumLibrary
 Test Setup      Open Browser To Start Page

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   This is test suite of ProjectAgileWeb7 webpage
+Documentation   This is test suite of ProjectAgileWeb7 webpage testing with external account login
 Resource        ../Tests/Resources/WEB7-153-keywords.robot
 Library         SeleniumLibrary
 Test Setup      Open Browser To Start Page

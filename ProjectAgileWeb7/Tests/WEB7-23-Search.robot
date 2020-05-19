@@ -18,8 +18,8 @@ Verify clear filter
             Before search
             Input search text
             Input date
-            Click Search
             Search text before clear
+            Click Search
             Click clear filter
             Verify filter
 
