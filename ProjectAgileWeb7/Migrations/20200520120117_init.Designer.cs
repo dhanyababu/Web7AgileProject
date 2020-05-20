@@ -10,8 +10,8 @@ using ProjectAgileWeb7.Data;
 namespace ProjectAgileWeb7.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200515115508_AddValidationToHotel")]
-    partial class AddValidationToHotel
+    [Migration("20200520120117_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -485,6 +485,7 @@ namespace ProjectAgileWeb7.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RoomDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoomImageUrl")

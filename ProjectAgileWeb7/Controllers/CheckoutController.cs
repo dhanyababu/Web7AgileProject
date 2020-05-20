@@ -56,7 +56,11 @@ namespace ProjectAgileWeb7.Controllers
             ViewBag.TotalPrice = decimal.Round(ViewBag.RoomPrice * ViewBag.NumberOfNights, 2, MidpointRounding.AwayFromZero);
 
             HttpContext.Session.SetInt32("bookingId", booking.Id);
-
+            // it is not working if you do not book enything in the current session
+            //if (ViewBag.NumberOfNights == 0)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
             return View();
         }
 

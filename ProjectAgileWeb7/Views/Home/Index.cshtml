@@ -121,7 +121,14 @@ else
                         </div>
 
                         <div class="card-footer border-top-0 bg-white">
-                            <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">See details</a>
+                            @if (Model.CheckIn != Convert.ToDateTime("1/1/0001") && Model.CheckOut != Convert.ToDateTime("1/1/0001"))
+                            {
+                                <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">See details</a>
+                            }
+                            else
+                            {
+                                <button class="btn my-button  btn-lg btn-outline-success float-right">Select dates to see details</button>
+                            }
                         </div>
                     </div>
                 </div>
