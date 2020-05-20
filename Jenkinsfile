@@ -65,7 +65,7 @@ pipeline {
        stage('WEB7-176-BookingHistory') {
             steps {
                 sleep 10
-		bat 'robot  ProjectAgileWeb7/Tests/WEB7-176-BookingHistory.robot'
+		bat 'robot  ProjectAgileWeb7/Tests/WEB7-29-BookingHistory.robot'
                
             }
            
