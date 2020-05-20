@@ -25,7 +25,7 @@ Verify currency list SEK
     Select SEK currency
     Verify SEK Payment details
     Select USD currency
-    Verify USD Payment details      0.102
+    Verify USD Payment details      0.1033
     Select EUR currency
     Verify EUR Payment details      0.094
     Select RON currency
