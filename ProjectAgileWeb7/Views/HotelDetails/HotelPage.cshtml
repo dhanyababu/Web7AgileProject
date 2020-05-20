@@ -120,7 +120,7 @@
                             <td>
                                 @pair.Value.ToString("F") @Currency.SEK
                             </td>
-                            <td>
+                            <td class="mobile-room">
                                 @((ViewBag.RoomsAvailable as List<Room>).Where(r=>r.RoomType == pair.Key).Count())/
                                 @Model.Rooms.Where(t => t.RoomType == pair.Key).Count()
                             </td>
