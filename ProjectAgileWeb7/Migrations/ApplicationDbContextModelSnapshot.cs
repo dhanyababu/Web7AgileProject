@@ -325,15 +325,19 @@ namespace ProjectAgileWeb7.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("DistanceFromCenter")
@@ -343,24 +347,26 @@ namespace ProjectAgileWeb7.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Latitude")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Longitude")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RatedByGuests")
-                        .HasColumnType("int");
 
                     b.Property<int>("Stars")
                         .HasColumnType("int");
 
                     b.Property<string>("Website")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ZipCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("HotelId");
@@ -423,9 +429,6 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("BankAndClearing")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CVV")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -476,20 +479,15 @@ namespace ProjectAgileWeb7.Migrations
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
                     b.Property<int>("NumberOfBeds")
                         .HasColumnType("int");
 
                     b.Property<string>("RoomDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoomImageUrl")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoomNumber")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("RoomPrice")
                         .HasColumnType("decimal(18,4)");

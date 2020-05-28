@@ -74,19 +74,18 @@ namespace ProjectAgileWeb7.Migrations
                 {
                     HotelId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Website = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Website = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    ZipCode = table.Column<string>(nullable: false),
+                    City = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
                     Stars = table.Column<int>(nullable: false),
                     DistanceFromCenter = table.Column<double>(nullable: false),
-                    Latitude = table.Column<string>(nullable: true),
-                    Longitude = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    RatedByGuests = table.Column<int>(nullable: false)
+                    Latitude = table.Column<string>(nullable: false),
+                    Longitude = table.Column<string>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,8 +119,7 @@ namespace ProjectAgileWeb7.Migrations
                     CVV = table.Column<string>(nullable: false),
                     CardHolderFirstName = table.Column<string>(nullable: false),
                     CardHolderLastName = table.Column<string>(nullable: false),
-                    ExpirationDate = table.Column<string>(nullable: false),
-                    BankAndClearing = table.Column<string>(nullable: true)
+                    ExpirationDate = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -289,12 +287,10 @@ namespace ProjectAgileWeb7.Migrations
                     RoomId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoomType = table.Column<int>(nullable: false),
-                    RoomNumber = table.Column<int>(nullable: false),
                     RoomPrice = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    RoomDescription = table.Column<string>(nullable: true),
+                    RoomDescription = table.Column<string>(nullable: false),
                     NumberOfBeds = table.Column<int>(nullable: false),
                     Capacity = table.Column<int>(nullable: false),
-                    IsAvailable = table.Column<bool>(nullable: false),
                     RoomImageUrl = table.Column<string>(nullable: true),
                     HotelId = table.Column<int>(nullable: false)
                 },

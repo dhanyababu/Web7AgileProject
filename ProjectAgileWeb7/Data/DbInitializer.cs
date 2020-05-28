@@ -133,55 +133,13 @@ namespace ProjectAgileWeb7.Data
             {
                 var facilities = new Facility[]
                 {
-                    new Facility
-                    {
-
-                        Name="Wi-fi",
-                        Symbol="wifi",
-                        IsFree=true
-                    },
-                    new Facility
-                    {
-
-                        Name="Parking",
-                        Symbol="parking",
-                        IsFree=true
-                    },
-                    new Facility
-                    {
-
-                        Name= "Breakfast",
-                        IsFree=true,
-                        Symbol="utensils"
-                    },
-                    new Facility
-                    {
-
-                        Name="Room service",
-                        Symbol="concierge-bell",
-                        IsFree=true
-                    },
-                    new Facility
-                    {
-
-                        Name="Fitness center",
-                        IsFree=true,
-                        Symbol="dumbbell"
-                    },
-                    new Facility
-                    {
-
-                        Name="Pool",
-                        IsFree=true,
-                        Symbol="swimming-pool"
-                    },
-                    new Facility
-                    {
-
-                        Name="Sauna",
-                        Symbol="hot-tub",
-                        IsFree=true
-                    }
+                    new Facility { Name="Wi-fi", Symbol="wifi" },
+                    new Facility { Name="Parking", Symbol="parking" },
+                    new Facility { Name= "Breakfast", Symbol="utensils" },
+                    new Facility { Name="Room service", Symbol="concierge-bell" },
+                    new Facility { Name="Fitness center", Symbol="dumbbell" }, 
+                    new Facility { Name="Pool", Symbol="swimming-pool" },
+                    new Facility { Name="Sauna", Symbol="hot-tub" }
                 };
 
                 dbContext.Facilities.AddRange(facilities);
@@ -222,7 +180,6 @@ namespace ProjectAgileWeb7.Data
                         RoomDescription = roomDescriptionArray[index],
                         NumberOfBeds = numberOfBedsArray[index],
                         Capacity = capacityArray[index],
-                        IsAvailable = true,
                         RoomImageUrl = roomImagesArray[index],
                         HotelId = randomHotel
                     });

@@ -16,13 +16,13 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>
+                <th class="mobile-toggle">
                     Hotel Id
                 </th>
                 <th>
                     Hotel Name
                 </th>
-                <th>
+                <th class="mobile-toggle">
                     Facility Id
                 </th>
                 <th>
@@ -35,13 +35,13 @@
             @foreach (var item in Model)
             {
             <tr>
-                <td>
+                <td class="mobile-toggle">
                     @Html.DisplayFor(modelItem => item.Hotel.HotelId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Hotel.Name)
                 </td>
-                <td>
+                <td class="mobile-toggle">
                     @Html.DisplayFor(modelItem => item.Facility.FacilityId)
                 </td>
                 <td>

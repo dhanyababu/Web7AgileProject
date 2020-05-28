@@ -57,6 +57,10 @@ namespace ProjectAgileWeb7.Controllers
 
             ViewBag.RoomsAvailable = availableRoomsToBeBooked.ToList();
 
+            //if (daysRangeList.Count() == 0)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
             return View(hotel[0]);
         }
 
