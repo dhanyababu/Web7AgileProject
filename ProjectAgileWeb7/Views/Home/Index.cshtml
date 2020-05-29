@@ -68,19 +68,23 @@ else
             {
                 <div class="card-deck">
                     <div class="card mt-4">
-                        <div class="card-body d-flex">
+                        <div class="card-header m-0 pb-0 border-bottom-0 bg-white">
+                            <a asp-controller="Favorites" asp-action="GetHotelIdFromIndex" asp-route-id="@item.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@item.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
+                        </div>
+                        <div class="card-body pb-0 pt-0 d-flex">
                             <div class="text-center">
                                 <img class="hotel-image" src=@Url.Content(@item.ImageUrl) />
                             </div>
-                            <div class="ml-3">
+                            <div class="ml-3 w-100">
                                 <div>
                                     <h2 class="hotel-name">
                                         @item.Name
-                                        <span>
-                                            <a asp-controller="Favorites" asp-action="GetHotelIdFromIndex" asp-route-id="@item.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@item.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
-                                        </span>
+                                        @*<span>
+                                                <a asp-controller="Favorites" asp-action="GetHotelIdFromIndex" asp-route-id="@item.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@item.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
+                                            </span>*@
                                     </h2>
                                 </div>
+
                                 <div>
                                     @for (var i = 0; i < item.Stars; i++)
                                     {
@@ -113,7 +117,7 @@ else
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer border-top-0 bg-white">
+                        <div class="card-footer pt-0 pl-0 border-top-0 bg-white">
                             @if (Model.CheckIn != Convert.ToDateTime("1/1/0001") && Model.CheckOut != Convert.ToDateTime("1/1/0001"))
                             {
                                 <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@item.HotelId" class="btn my-button btn-lg btn-success float-right ">See details</a>
