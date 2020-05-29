@@ -9,6 +9,7 @@ namespace ProjectAgileWeb7.Models
 
         [Required]
         [Display(Name = "Hotel Name")]
+        [StringLength(30)]
         public string Name { get; set; }
 
         [Required]
