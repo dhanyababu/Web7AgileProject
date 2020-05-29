@@ -92,9 +92,22 @@ const getTimeNow = function () {
 const getWeather = function () {
     const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
     const apiKey = '2fa2b9559079337382b2c8d5b4817940';
-    const latitude = document.getElementById('latitude').value;
-    const longitude = document.getElementById('longitude').value;
-    let queryString = `lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+    const latitude = document.getElementById('latitude');
+    if (latitude != null) {
+        latitudeValue = latitude.value;
+    }
+    else {
+        latitudeValue = null;
+    }
+    const longitude = document.getElementById('longitude');
+    if (longitude != null) {
+        longitudeValue = longitude.value;
+    }
+    else {
+        longitudeValue = null;
+    }
+
+    let queryString = `lat=${latitudeValue}&lon=${longitudeValue}&appid=${apiKey}`;
     let endpoint = baseUrl + queryString;
     const temperature = document.getElementById('temperature');
     const weather = document.getElementById('weather');
@@ -105,66 +118,68 @@ const getWeather = function () {
     const weatherIcon = document.getElementById('weather-icon');
     const wind = document.getElementById('wind');
 
+    if (latitudeValue != null && longitudeValue != null) {
+        fetch(endpoint)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
 
-    fetch(endpoint)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
+                if (data.cod === 200) {
 
-            if (data.cod === 200) {
+                    switch (data.weather[0].main) {
+                        case 'Rain':
+                            weatherIcon.innerHTML = '<i class="fas fa-cloud-rain fa-2x text-info"></i>';
+                            break;
+                        case 'Clouds':
+                            weatherIcon.innerHTML = '<i class="fas fa-cloud fa-2x text-secondary"></i>';
+                            break;
+                        case 'Clear':
+                            weatherIcon.innerHTML = '<i class="fas fa-sun fa-2x text-warning"></i>';
+                            break;
+                        case 'Snow':
+                            weatherIcon.innerHTML = '<i class="fas fa-snowflake fa-2x text-info"></i>';
+                            break;
+                        case 'Drizzle':
+                            weatherIcon.innerHTML = '<i class="fas fa-cloud-sun-rain fa-2x text-secondary"></i>';
+                            break;
+                        case 'Mist':
+                            weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
+                            break;
+                        case 'Fog':
+                            weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
+                            break;
+                        case 'Haze':
+                            weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
+                            break;
+                        case 'Thunderstorm':
+                            weatherIcon.innerHTML = '<i class="fas fa-bolt fa-2x text-warning"></i>';
+                            break;
+                        case 'Tornado':
+                            weatherIcon.innerHTML = '<i class="fas fa-cloud-showers-heavy fa-2x text-info"></i>';
+                            break;
 
-                switch (data.weather[0].main) {
-                    case 'Rain':
-                        weatherIcon.innerHTML = '<i class="fas fa-cloud-rain fa-2x text-info"></i>';
-                        break;
-                    case 'Clouds':
-                        weatherIcon.innerHTML = '<i class="fas fa-cloud fa-2x text-secondary"></i>';
-                        break;
-                    case 'Clear':
-                        weatherIcon.innerHTML = '<i class="fas fa-sun fa-2x text-warning"></i>';
-                        break;
-                    case 'Snow':
-                        weatherIcon.innerHTML = '<i class="fas fa-snowflake fa-2x text-info"></i>';
-                        break;
-                    case 'Drizzle':
-                        weatherIcon.innerHTML = '<i class="fas fa-cloud-sun-rain fa-2x text-secondary"></i>';
-                        break;
-                    case 'Mist':
-                        weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
-                        break;
-                    case 'Fog':
-                        weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
-                        break;
-                    case 'Haze':
-                        weatherIcon.innerHTML = '<i class="fas fa-smog fa-2x text-secondary"></i>';
-                        break;
-                    case 'Thunderstorm':
-                        weatherIcon.innerHTML = '<i class="fas fa-bolt fa-2x text-warning"></i>';
-                        break;
-                    case 'Tornado':
-                        weatherIcon.innerHTML = '<i class="fas fa-cloud-showers-heavy fa-2x text-info"></i>';
-                        break;
+                        default:
+                            weatherIcon.innerHTML = ' <i class="fas fa-cloud-sun fa-2x text-primary"></i>';
+                    }
 
-                    default:
-                        weatherIcon.innerHTML = ' <i class="fas fa-cloud-sun fa-2x text-primary"></i>';
+                    location.innerHTML = data.name;
+                    weather.innerHTML = data.weather[0].main;
+                    description.innerHTML = data.weather[0].description;
+                    temperature.innerHTML = kToC(data.main.temp) + '°C';
+                    wind.innerHTML = data.wind.speed;
+                    today.innerHTML = getToday();
+                    time.innerHTML = getTimeNow();
                 }
+                else {
+                    weather.innerHtml = 'No weather data available';
+                }
+            })
+            .catch(function (error) {
+                return console.log(error);
+            });
+    }
 
-                location.innerHTML = data.name;
-                weather.innerHTML = data.weather[0].main;
-                description.innerHTML = data.weather[0].description;
-                temperature.innerHTML = kToC(data.main.temp) + '°C';
-                wind.innerHTML = data.wind.speed;
-                today.innerHTML = getToday();
-                time.innerHTML = getTimeNow();
-            }
-            else {
-                weather.innerHtml = 'No weather data available';
-            }
-        })
-        .catch(function (error) {
-            return console.log(error);
-        });
 
 
 }
