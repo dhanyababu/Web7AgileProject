@@ -32,7 +32,6 @@ else
                     <p class="ml-2">Stars</p>
                     @foreach (var star in (List<int>)ViewBag.Stars)
                     {
-
                         <div class="custom-control custom-checkbox">
                             <input name="StarsList" value="@star" type="checkbox" id="star_@star" class="custom-control-input">
 
@@ -50,23 +49,18 @@ else
                     @foreach (var element in Enum.GetValues(typeof(DistanceEnum)))
                     {
                         <div class="custom-control custom-checkbox">
-
                             <input name="DistanceList" value="@((Int32)element)" type="checkbox" id="d_@((Int32)element)" class="custom-control-input">
 
                             <label for="d_@((Int32)element)" class="custom-control-label">
                                 Less then @((Int32)element) km
                             </label>
-
                         </div>
                     }
-
-
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Filter" class="btn btn-primary float-right mr-2 filter-button" />
                 </div>
             </form>
-
         </div>
 
         <div class="container  p-0 m-0">
@@ -119,21 +113,19 @@ else
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-footer border-top-0 bg-white">
                             @if (Model.CheckIn != Convert.ToDateTime("1/1/0001") && Model.CheckOut != Convert.ToDateTime("1/1/0001"))
                             {
-                                <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@item.HotelId" class="btn my-button  btn-lg btn-success float-right ">See details</a>
+                                <a asp-controller="HotelDetails" asp-action="HotelPage" asp-route-id="@item.HotelId" class="btn my-button btn-lg btn-success float-right ">See details</a>
                             }
                             else
                             {
-                                <button class="btn my-button  btn-lg btn-outline-success float-right">Select dates to see details</button>
+                                <button class="btn my-button btn-lg btn-outline-success float-right">Select dates to see hotel details</button>
                             }
                         </div>
                     </div>
                 </div>
             }
         </div>
-
     </div>
 }
