@@ -21,14 +21,12 @@ namespace ProjectAgileWeb7.Controllers
             _context = context;
         }
 
-        // GET: Bookings
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Bookings.Include(b => b.Payment).Include(b => b.Room).Include(b => b.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,7 +47,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(booking);
         }
 
-        // GET: Bookings/Create
         public IActionResult Create()
         {
             ViewData["PaymentId"] = new SelectList(_context.Payments, "Id", "CVV");
@@ -58,9 +55,6 @@ namespace ProjectAgileWeb7.Controllers
             return View();
         }
 
-        // POST: Bookings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,RoomId,CheckIn,CheckOut,Status,UserId,PaymentId")] Booking booking)
@@ -77,7 +71,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(booking);
         }
 
-        // GET: Bookings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,9 +89,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(booking);
         }
 
-        // POST: Bookings/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,RoomId,CheckIn,CheckOut,Status,UserId,PaymentId")] Booking booking)
@@ -134,7 +124,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(booking);
         }
 
-        // GET: Bookings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,7 +144,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(booking);
         }
 
-        // POST: Bookings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

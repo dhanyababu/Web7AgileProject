@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
+    [Authorize]
     public class MyBookingsController : Controller
     {
         private readonly ApplicationDbContext _appContext;
@@ -22,7 +23,6 @@ namespace ProjectAgileWeb7.Controllers
             _userManager = userManager;
         }
 
-        [Authorize]
         public async Task<IActionResult> MyBookings()
         {
             CurrentUser = await _userManager.GetUserAsync(User);
@@ -30,13 +30,6 @@ namespace ProjectAgileWeb7.Controllers
             {
                 ViewBag.User = CurrentUser;
             }
-            //var myBookingsList = await _appContext.Bookings
-            //                        .Where(b => b.UserId == CurrentUser.Id)
-            //                        .Include(b => b.Payment)
-            //                        .Include(b => b.Room)
-            //                        .ThenInclude(r => r.Hotel)
-
-            //                        .ToListAsync();
 
             var myBookingsList = await _appContext.Bookings
                                     .Where(b => b.UserId == CurrentUser.Id && b.Status == Status.Accepted)
@@ -45,16 +38,6 @@ namespace ProjectAgileWeb7.Controllers
                                     .Include(b => b.Room)
                                     .ThenInclude(r => r.Hotel)
                                     .ToListAsync();
-
-
-            //foreach (var booking in myBookingsList)
-            //{
-            //    if (booking.Payment == null)
-            //    {
-            //        _appContext.Bookings.Remove(booking);
-            //    }
-            //}
-            //await _appContext.SaveChangesAsync();
 
             return View(myBookingsList);
         }

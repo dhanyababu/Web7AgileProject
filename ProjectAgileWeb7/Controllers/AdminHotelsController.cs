@@ -25,13 +25,11 @@ namespace ProjectAgileWeb7.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Hotels
         public async Task<IActionResult> Index()
         {
             return View(await _context.Hotels.ToListAsync());
         }
 
-        // GET: Hotels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,15 +47,11 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hotels/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelId,Name,Website,Address,ZipCode,City,Country,Description,Stars,DistanceFromCenter,Latitude,Longitude,ImageUrl,RatedByGuests")] Hotel hotel)
@@ -83,7 +77,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,9 +92,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("HotelId,Name,Website,Address,ZipCode,City,Country,Description,Stars,DistanceFromCenter,Latitude,Longitude,ImageUrl,RatedByGuests")] Hotel hotel)
@@ -131,7 +121,9 @@ namespace ProjectAgileWeb7.Controllers
                     }
                     else
                     {
-                        hotel.ImageUrl = _context.Hotels.Where(h => h.HotelId == hotel.HotelId).Select(h => h.ImageUrl).FirstOrDefault();
+                        hotel.ImageUrl = _context.Hotels.Where(h => h.HotelId == hotel.HotelId)
+                            .Select(h => h.ImageUrl)
+                            .FirstOrDefault();
                     }
 
                     _context.Update(hotel);
@@ -153,7 +145,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -171,7 +162,6 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
