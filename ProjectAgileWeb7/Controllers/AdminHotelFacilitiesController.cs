@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
@@ -15,7 +13,7 @@ namespace ProjectAgileWeb7.Controllers
     public class AdminHotelFacilitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
+
         public AdminHotelFacilitiesController(ApplicationDbContext context)
         {
             _context = context;
@@ -34,7 +32,7 @@ namespace ProjectAgileWeb7.Controllers
                     .Include(h => h.Facility)
                     .Include(h => h.Hotel);
             }
-            
+
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -58,7 +56,7 @@ namespace ProjectAgileWeb7.Controllers
             {
                 _context.Add(hotelFacility);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));            
+                return RedirectToAction(nameof(Index));
             }
 
             ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name", hotelFacility.FacilityId);
@@ -91,17 +89,12 @@ namespace ProjectAgileWeb7.Controllers
         public async Task<IActionResult> DeleteConfirmed(int? hotelId, int? facilityId)
         {
             var hotelFacility = await _context.HotelFacilities
-                .FirstOrDefaultAsync(h => h.HotelId == hotelId && 
+                .FirstOrDefaultAsync(h => h.HotelId == hotelId &&
                 h.FacilityId == facilityId);
 
             _context.HotelFacilities.Remove(hotelFacility);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool HotelFacilityExists(int id)
-        {
-            return _context.HotelFacilities.Any(e => e.HotelId == id);
         }
     }
 }
