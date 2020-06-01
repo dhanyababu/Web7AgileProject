@@ -2,9 +2,7 @@
 @{
     ViewData["Title"] = "Favorites";
 }
-@*@{
-        var user = @Model.FirstOrDefault();
-    }*@
+
 <h1>Favorite hotels</h1>
 <h5 class="mt-3">
     Dear <span>
@@ -34,11 +32,6 @@
     </span> saved on your account.
 </h5>
 
-@*@if (@Model.Hotels.Count() == 0)
-    {
-        <p>You have no favorite hotels saved on your account. </p>
-    }
-    else*@
 @if (@Model.Hotels.Count() > 0)
 {
     <div class="container  p-0 m-0">
@@ -58,9 +51,6 @@
                             <div>
                                 <h2 class="hotel-name">
                                     @hotel.Name
-                                    @*<span>
-                                            <a asp-controller="Favorites" asp-action="GetHotelIdFromFavorites" asp-route-id="@hotel.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@hotel.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
-                                        </span>*@
                                 </h2>
                             </div>
                             <div>

@@ -77,14 +77,8 @@ else
                             </div>
                             <div class="ml-3 w-100">
                                 <div>
-                                    <h2 class="hotel-name text-break">
-                                        @item.Name
-                                        @*<span>
-                                                <a asp-controller="Favorites" asp-action="GetHotelIdFromIndex" asp-route-id="@item.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@item.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
-                                            </span>*@
-                                    </h2>
+                                    <h2 class="hotel-name text-break">   @item.Name  </h2>
                                 </div>
-
                                 <div>
                                     @for (var i = 0; i < item.Stars; i++)
                                     {
@@ -102,7 +96,6 @@ else
                                 <div class="card-text text-justify">
                                     <p>@item.Description</p>
                                 </div>
-
                                 <div>
                                     <p>
                                         Facilities: &nbsp;

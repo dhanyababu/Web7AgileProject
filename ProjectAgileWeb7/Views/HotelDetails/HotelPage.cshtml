@@ -1,5 +1,4 @@
 ﻿@model ProjectAgileWeb7.Models.Hotel
-@*<partial name="_SearchPartial" , model="new HotelsViewModel { }" />*@
 
 @{
     var imageUrl = Model.ImageUrl;
@@ -14,12 +13,6 @@
     }
 }
 
-@*@if (ViewBag.DataInfo.Count < 2)
-    {
-        <h4 class="text-danger">You can not see the details for this hotel if you do not choose the dates for your trip.</h4>
-    }*@
-@*else
-    {*@
 <div>
     <div class="card mb-4 border-0">
         <h1 class="hotel-name ">
@@ -233,4 +226,3 @@
         </div>
     </div>
 </div>
-@*}*@
