@@ -77,7 +77,7 @@ else
                             </div>
                             <div class="ml-3 w-100">
                                 <div>
-                                    <h2 class="hotel-name">
+                                    <h2 class="hotel-name text-break">
                                         @item.Name
                                         @*<span>
                                                 <a asp-controller="Favorites" asp-action="GetHotelIdFromIndex" asp-route-id="@item.HotelId" class="btn btn-lg float-right @(Model.FavoriteHotels.Contains(@item.HotelId) ? "text-success" : "text-dark")" id="favorite-button"><i class="fas fa-heart"></i></a>
