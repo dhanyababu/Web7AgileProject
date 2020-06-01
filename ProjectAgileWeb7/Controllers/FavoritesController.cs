@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
+    [Authorize]
     public class FavoritesController : Controller
     {
         private readonly ApplicationDbContext _appContext;
@@ -26,7 +27,6 @@ namespace ProjectAgileWeb7.Controllers
             _userManager = userManager;
         }
 
-        [Authorize]
         public async Task<IActionResult> GetHotelIdFromIndex(int id)
         {
             CurrentUser = await _userManager.GetUserAsync(User);
@@ -36,7 +36,6 @@ namespace ProjectAgileWeb7.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
         public async Task<IActionResult> GetHotelIdFromFavorites(int id)
         {
             CurrentUser = await _userManager.GetUserAsync(User);
@@ -78,10 +77,8 @@ namespace ProjectAgileWeb7.Controllers
             }
         }
 
-        [Authorize]
         public IActionResult Favorites()
         {
-
             string currentUserId = GetCurrentUserId();
             var currentUser = _appContext.ApplicationUsers.Where(u => u.Id == currentUserId).FirstOrDefault();
             ViewBag.User = currentUser;
@@ -117,6 +114,5 @@ namespace ProjectAgileWeb7.Controllers
             string currentUserId = identityClaimUser?.Value;
             return currentUserId;
         }
-
     }
 }

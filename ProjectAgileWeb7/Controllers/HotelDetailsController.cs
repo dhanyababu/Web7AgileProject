@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace ProjectAgileWeb7.Controllers
 {
+    [Authorize]
     public class HotelDetailsController : Controller
     {
         private readonly ApplicationDbContext _appContext;
@@ -56,15 +57,9 @@ namespace ProjectAgileWeb7.Controllers
                                                 .Where(r => r.HotelId == id);
 
             ViewBag.RoomsAvailable = availableRoomsToBeBooked.ToList();
-
-            //if (daysRangeList.Count() == 0)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
             return View(hotel[0]);
         }
 
-        [Authorize]
         public async Task<IActionResult> BookRoom(RoomType roomType, int id)
         {
             CurrentUser = await _userManager.GetUserAsync(User);
@@ -98,20 +93,15 @@ namespace ProjectAgileWeb7.Controllers
 
         private List<DateTime> GetStayingDaysRangeList()
         {
-            var checkInObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"));
-            var checkOutObj = JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"));
-            var checkInDate = Convert.ToDateTime(checkInObj);
-            var checkOutDate = Convert.ToDateTime(checkOutObj);
+            var checkInDate = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate")));
+            var checkOutDate = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate")));
             var daysRangeList = new List<DateTime>();
 
             for (DateTime date = checkInDate; date <= checkOutDate; date = date.AddDays(1))
             {
                 daysRangeList.Add(date);
             }
-
             return daysRangeList;
         }
-
-
     }
 }

@@ -15,26 +15,29 @@ namespace ProjectAgileWeb7.Controllers
     public class AdminHotelFacilitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        
         public AdminHotelFacilitiesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: AdminHotelFacilities
         public async Task<IActionResult> Index(int? id)
         {
-            var applicationDbContext = _context.HotelFacilities.Include(h => h.Facility).Include(h => h.Hotel);
+            var applicationDbContext = _context.HotelFacilities
+                .Include(h => h.Facility)
+                .Include(h => h.Hotel);
 
             if (id != null)
             {
-                applicationDbContext = _context.HotelFacilities.Where(h => h.HotelId == id).Include(h => h.Facility).Include(h => h.Hotel);
+                applicationDbContext = _context.HotelFacilities
+                    .Where(h => h.HotelId == id)
+                    .Include(h => h.Facility)
+                    .Include(h => h.Hotel);
             }
             
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: AdminHotelFacilities/Create
         public IActionResult Create()
         {
             ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name");
@@ -43,26 +46,27 @@ namespace ProjectAgileWeb7.Controllers
             return View();
         }
 
-        // POST: AdminHotelFacilities/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelId,FacilityId")] HotelFacility hotelFacility)
         {
-            if (ModelState.IsValid && !_context.HotelFacilities.Any(h => h.HotelId == hotelFacility.HotelId && h.FacilityId == hotelFacility.FacilityId))
+            var isHotelAndFacilitiesExists = _context.HotelFacilities
+                .Any(h => h.HotelId == hotelFacility.HotelId &&
+                    h.FacilityId == hotelFacility.FacilityId);
+
+            if (ModelState.IsValid && !isHotelAndFacilitiesExists)
             {
                 _context.Add(hotelFacility);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));            
             }
+
             ViewData["FacilityId"] = new SelectList(_context.Facilities, "FacilityId", "Name", hotelFacility.FacilityId);
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "Name", hotelFacility.HotelId);
             ViewData["Duplicate"] = true;
             return View(hotelFacility);
         }
 
-        // GET: AdminHotelFacilities/Delete/5
         public async Task<IActionResult> Delete(int? hotelId, int? facilityId)
         {
             if (hotelId == null || facilityId == null)
@@ -82,12 +86,14 @@ namespace ProjectAgileWeb7.Controllers
             return View(hotelFacility);
         }
 
-        // POST: AdminHotelFacilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? hotelId, int? facilityId)
         {
-            var hotelFacility = await _context.HotelFacilities.FirstOrDefaultAsync(h => h.HotelId == hotelId && h.FacilityId == facilityId);
+            var hotelFacility = await _context.HotelFacilities
+                .FirstOrDefaultAsync(h => h.HotelId == hotelId && 
+                h.FacilityId == facilityId);
+
             _context.HotelFacilities.Remove(hotelFacility);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
