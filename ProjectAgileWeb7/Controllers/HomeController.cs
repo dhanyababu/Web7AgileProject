@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ProjectAgileWeb7.Data;
 using ProjectAgileWeb7.Models;
@@ -15,21 +13,15 @@ using System.Security.Claims;
 namespace ProjectAgileWeb7.Controllers
 {
     public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
+    {       
         private readonly ApplicationDbContext _appContext;
-        private readonly UserManager<ApplicationUser> _userManager;
-        [BindProperty]
-        public ApplicationUser CurrentUser { get; set; }
-
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext appContext, UserManager<ApplicationUser> userManager)
-        {
-            _logger = logger;
+        
+        public HomeController(ApplicationDbContext appContext)
+        {            
             _appContext = appContext;
-            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(bool clear)
         {
             string currentUserId = GetCurrentUserId();
             List<int> hotelIdList = GetHotelIdList(currentUserId);
@@ -37,15 +29,24 @@ namespace ProjectAgileWeb7.Controllers
             var hotelsViewModel = new HotelsViewModel()
             {
                 Hotels = _appContext.Hotels
-                .Include(h => h.Rooms)
-                .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility),
+                                    .Include(h => h.Rooms)
+                                    .Include(h => h.HotelFacilities).ThenInclude(hf => hf.Facility),
                 FavoriteHotels = hotelIdList
-
             };
 
             FillingViewBags();
-            HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(null));
-            HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(null));
+            if (HttpContext.Session.GetString("SearchKeyword") == null || clear)
+            {
+                HttpContext.Session.SetString("SearchKeyword", string.Empty);
+            }
+            if (HttpContext.Session.GetString("CheckInDate") == null || clear)
+            {
+                HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(null));
+            }
+            if (HttpContext.Session.GetString("CheckOutDate") == null || clear)
+            {
+                HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(null));
+            }
 
             return View(hotelsViewModel);
         }
@@ -54,26 +55,37 @@ namespace ProjectAgileWeb7.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult Search(HotelsViewModel hotelsViewModel)
         {
-            TempData["searchKeyword"] = hotelsViewModel.SearchKeyword;
-            TempData["checkInDate"] = hotelsViewModel.CheckIn;
-            TempData["checkOutDate"] = hotelsViewModel.CheckOut;
+            if (hotelsViewModel.SearchKeyword != null)
+            {
+                HttpContext.Session.SetString("SearchKeyword", hotelsViewModel.SearchKeyword);
+            }
+            if (hotelsViewModel.CheckIn != DateTime.MinValue)
+            {
+                HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(hotelsViewModel.CheckIn));
+            }
+            if (hotelsViewModel.CheckOut != DateTime.MinValue)
+            {
+                HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(hotelsViewModel.CheckOut));
+            }
 
             string currentUserId = GetCurrentUserId();
             List<int> hotelIdList = GetHotelIdList(currentUserId);
 
-            var hotelListAfterSearch = GetHotelsBySearch(hotelsViewModel.SearchKeyword, hotelsViewModel.CheckIn, hotelsViewModel.CheckOut);
+            var hotelListAfterSearch = GetHotelsBySearch(
+                HttpContext.Session.GetString("SearchKeyword"), 
+                Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"))), 
+                Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate")))
+                );
 
             var newHotelViewModel = new HotelsViewModel
             {
-                SearchKeyword = hotelsViewModel.SearchKeyword,
-                CheckIn = hotelsViewModel.CheckIn,
-                CheckOut = hotelsViewModel.CheckOut,
+                SearchKeyword = HttpContext.Session.GetString("SearchKeyword"),
+                CheckIn = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"))),
+                CheckOut = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"))),
                 FavoriteHotels = hotelIdList,
                 Hotels = hotelListAfterSearch
             };
 
-            HttpContext.Session.SetString("CheckInDate", JsonConvert.SerializeObject(hotelsViewModel.CheckIn));
-            HttpContext.Session.SetString("CheckOutDate", JsonConvert.SerializeObject(hotelsViewModel.CheckOut));
             FillingViewBags();
 
             return Filter(newHotelViewModel);
@@ -84,9 +96,9 @@ namespace ProjectAgileWeb7.Controllers
         {
             var hotelListAfterSearch = hotelsViewModel.Hotels ??
                 GetHotelsBySearch(
-                    TempData["searchKeyword"]?.ToString(), 
-                    Convert.ToDateTime(TempData["checkInDate"]?.ToString()), 
-                    Convert.ToDateTime(TempData["checkOutDate"]?.ToString())
+                    HttpContext.Session.GetString("SearchKeyword"),
+                    Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"))),
+                    Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate")))
                 );
 
             var facilitiesList = hotelsViewModel.Facilities;
@@ -104,9 +116,9 @@ namespace ProjectAgileWeb7.Controllers
 
             var newHotelViewModel = new HotelsViewModel
             {
-                SearchKeyword = hotelsViewModel.SearchKeyword,
-                CheckIn = hotelsViewModel.CheckIn,
-                CheckOut = hotelsViewModel.CheckOut,
+                SearchKeyword = HttpContext.Session.GetString("SearchKeyword"),
+                CheckIn = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckInDate"))),
+                CheckOut = Convert.ToDateTime(JsonConvert.DeserializeObject(HttpContext.Session.GetString("CheckOutDate"))),
                 FavoriteHotels = hotelIdList,
                 Hotels = hotelListAfterFilter
             };
@@ -143,16 +155,19 @@ namespace ProjectAgileWeb7.Controllers
 
         private IEnumerable<Hotel> GetHotelsBySearch(string searchKeyword, DateTime checkInDate, DateTime checkOutDate)
         {
-            if (searchKeyword != null)
+            if (searchKeyword != null && searchKeyword != string.Empty)
             {
                 var hotelsViewModel = new HotelsViewModel
                 {
-                    Hotels = _appContext.Hotels.Include(h => h.HotelFacilities).Include(h => h.Rooms)
-                      .Where(h => h.Name.Contains(searchKeyword) ||
-                        h.City.Contains(searchKeyword)).ToList()
+                    Hotels = _appContext.Hotels
+                        .Include(h => h.HotelFacilities)
+                        .Include(h => h.Rooms)
+                        .Where(h => h.Name.Contains(searchKeyword) ||
+                                    h.City.Contains(searchKeyword))
+                        .ToList()
                 };
 
-                if (checkInDate != null && checkOutDate != null)
+                if (checkInDate != DateTime.MinValue && checkOutDate != DateTime.MinValue)
                 {
                     var stay = new List<DateTime>();
                     for (DateTime date = checkInDate; date < checkOutDate; date = date.AddDays(1))
@@ -162,10 +177,11 @@ namespace ProjectAgileWeb7.Controllers
 
                     var unavailableRooms = _appContext.Rooms
                         .Where(r => _appContext.BookedRooms
-                        .Any(b => b.RoomId == r.RoomId && 
-                            stay.Contains(b.Date)));
+                        .Any(b => b.RoomId == r.RoomId && stay.Contains(b.Date)));
 
-                    var availableRooms = _appContext.Rooms.Except(unavailableRooms);
+                    var availableRooms = _appContext.Rooms
+                        .Except(unavailableRooms);
+
                     var availableHotels = availableRooms
                         .Select(r => r.Hotel)
                         .Distinct()
@@ -179,11 +195,11 @@ namespace ProjectAgileWeb7.Controllers
 
                 return hotelsViewModel.Hotels;
             }
-                return _appContext.Hotels
-                    .Include(h => h.Rooms)
-                    .Include(h => h.HotelFacilities)
-                    .ThenInclude(hf => hf.Facility)
-                    .ToList();
+            return _appContext.Hotels
+                .Include(h => h.Rooms)
+                .Include(h => h.HotelFacilities)
+                .ThenInclude(hf => hf.Facility)
+                .ToList();
         }
 
         private string GetCurrentUserId()
@@ -203,6 +219,5 @@ namespace ProjectAgileWeb7.Controllers
                                 .ToList()
                             : new List<int>();
         }
-
     }
 }
