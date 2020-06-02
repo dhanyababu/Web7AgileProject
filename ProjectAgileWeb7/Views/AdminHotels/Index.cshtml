@@ -59,14 +59,18 @@
                     <td class="mobile-toggle">
                         @Html.DisplayFor(modelItem => item.Stars)
                     </td>
-                    <td class="btn-group">
+                    <td class="btn-group mobile-toggle">
                         <a asp-action="Edit" asp-route-id="@item.HotelId" class="btn btn-outline-warning"><i class="fas fa-edit"></i>&nbsp; Edit</a>
                         <a asp-action="Details" asp-route-id="@item.HotelId" class="btn btn-outline-info ml-1"><i class="fas fa-info-circle"></i>&nbsp; Details</a>
                         <a asp-action="Delete" asp-route-id="@item.HotelId" class="btn btn-outline-danger ml-1"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>
+                    </td>
+                    <td class="btn-group button-group-icons">
+                        <a asp-action="Edit" asp-route-id="@item.HotelId" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.HotelId" class="btn btn-outline-info ml-1"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.HotelId" class="btn btn-outline-danger ml-1"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-

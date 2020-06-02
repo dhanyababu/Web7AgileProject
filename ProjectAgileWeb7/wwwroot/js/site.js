@@ -17,6 +17,7 @@ function mobileVersion() {
         $('#filter-title').hide();
         $('.payment-input').removeClass('col-3');
         $('.mobile-toggle').hide();
+        $('.button-group-icons').show();
     }
     else {
         $('#heading').css('fontSize', '3rem');
@@ -31,6 +32,7 @@ function mobileVersion() {
         $('#filter-title').show();
         $('.payment-input').addClass('col-3');
         $('.mobile-toggle').show();
+        $('.button-group-icons').hide();
     }
 }
 

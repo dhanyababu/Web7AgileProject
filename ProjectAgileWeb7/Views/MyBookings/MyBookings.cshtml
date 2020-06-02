@@ -4,37 +4,44 @@
     ViewData["Title"] = "MyBookings";
 }
 
-<h1>My Bookings</h1>
-<br />
-<br />
-<h5>
-    Dear <span>
-        @if (ViewBag.User.FirstName == null && ViewBag.User.LastName == null)
-        {
 
-            @ViewBag.User.UserName
-        }
-        else
-        {
-            @Html.Raw($"{@ViewBag.User.FirstName} {@ViewBag.User.LastName}")
-        },
-    </span> you have
-    <span>
-        @if (@Model.Count() == 0)
-        {
-            <span> no bookings </span>
-        }
-        else if (@Model.Count() == 1)
-        {
-            <span>1 booking </span>
-        }
-        else
-        {
-            <span> @Model.Count() bookings </span>
-        }
-    </span> saved on your account.
-</h5>
-<br />
+<div class="card border-0">
+    <div class="card-body border-0 p-0">
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-primary float-right"><i class="fas fa-arrow-alt-circle-left"></i>&nbsp; Back to Profile</a>
+
+    </div>
+    <div class="card-header bg-white pt-0 border-0 h1">
+        My Bookings
+    </div>
+    <div class="card-body bg-white pt-0 border-0 h5">
+        Dear <span>
+            @if (ViewBag.User.FirstName == null && ViewBag.User.LastName == null)
+            {
+
+                @ViewBag.User.UserName
+            }
+            else
+            {
+                @Html.Raw($"{@ViewBag.User.FirstName} {@ViewBag.User.LastName}")
+            },
+        </span> you have
+        <span>
+            @if (@Model.Count() == 0)
+            {
+                <span> no bookings </span>
+            }
+            else if (@Model.Count() == 1)
+            {
+                <span>1 booking </span>
+            }
+            else
+            {
+                <span> @Model.Count() bookings </span>
+            }
+        </span> saved on your account.
+    </div>
+</div>
+
 
 @foreach (var booking in @Model)
 {
