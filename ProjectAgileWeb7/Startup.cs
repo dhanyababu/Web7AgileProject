@@ -23,8 +23,6 @@ namespace ProjectAgileWeb7
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -33,13 +31,6 @@ namespace ProjectAgileWeb7
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            //////services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-            //////    .AddDefaultTokenProviders()
-            //////    .AddDefaultUI()
-            //////    .AddRoles<IdentityRole>()
-            //////    .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDistributedMemoryCache();
 
             services.AddSession();
@@ -52,16 +43,9 @@ namespace ProjectAgileWeb7
                     options.ClientId = "346232706638-4mhc073ul7db2is8ickqo6gp7q5th5hu.apps.googleusercontent.com";
                     options.ClientSecret = "dDxbxMoyLuDAJ42-1Fns5p46";
                 });
-                //.AddFacebook(options =>
-                //{
-                //    options.AppId = "238960640755122";
-                //    options.AppSecret = "6485815bc32dc80d39e48720e4e62bab";
-                //});
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             var cultureInfo = new CultureInfo("en-US");
