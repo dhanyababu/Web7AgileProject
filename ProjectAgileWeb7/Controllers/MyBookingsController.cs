@@ -34,6 +34,7 @@ namespace ProjectAgileWeb7.Controllers
             var myBookingsList = await _appContext.Bookings
                                     .Where(b => b.UserId == CurrentUser.Id && b.Status == Status.Accepted)
                                     .Include(b => b.Payment)
+                                    .OrderByDescending(b=>b.Payment.Date)
                                     .Where(p => p.Status == Status.Accepted)
                                     .Include(b => b.Room)
                                     .ThenInclude(r => r.Hotel)
